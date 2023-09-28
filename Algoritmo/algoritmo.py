@@ -12,6 +12,6 @@ from surprise.model_selection import GridSearchCV,RandomizedSearchCV
 from sklearn.metrics import confusion_matrix, precision_score, recall_score,classification_report
 
 #el path a los datos es relativo mientras no podamos subir la bdd
-df = pd.read_csv("C:/Users/gpall/Desktop/U/8vo semestre/Movies Dataset/ratings_small.csv")
+df = pd.read_csv("")
 
 df.head()
