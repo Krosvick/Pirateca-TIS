@@ -2,6 +2,20 @@
 
 pip install numpy, pandas, matplotlib, seaborn, surprise, sklearn
 
+## Donde clonar este repo?
+Debido al uso de xampp para el desarrollo de la aplicacion web, se recomienda clonar este repositorio en la carpeta htdocs de xampp. Otro punto a tener en cuenta es el uso de wsl para el desarrollo del algoritmo de recomendacion.
+
+## Como clonar este repo?
+Abrir la terminal en el directorio htdocs y ejecutar vscode desde la terminal con el comando:
+```bash
+code .
+```
+Una vez abierto vscode, abrir una terminal de wsl en visual studio code y clonar el repositorio con el comando:
+```bash
+git clone git@github.com:Krosvick/Sufrimiento-TIS.git
+```
+
+
 ## Uso y proposito de virtualenv
 Virtualenv es una herramienta para crear entornos aislados de Python. Estos entornos pueden tener sus propias instalaciones de paquetes de Python, lo que permite un control más estricto sobre las dependencias y las versiones, y evitar problemas con los requisitos de paquetes para otros proyectos.
 
