@@ -32,6 +32,8 @@ NO CORRER ESTE CODIGO
 TOMA EONES, HAY QUE OPTIMIZAR
 """
 
+#la lectura de matrices no esta optimizada a continuacion
+
 param_grid = {'k': list(range(10,45,5)),
              'min_k' : list(range(5,11))}
 

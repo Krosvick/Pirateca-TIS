@@ -34,4 +34,4 @@ def get_top_n_recommendations(userId,predictions, n=5):
     print("="*10,"Recommended movies for user {} :".format(userId),"="*10)
     print(movies[movies["id"].isin(top_movies)]["original_title"].to_string(index=False))
 
-#get_top_n_recommendations(450,test_predictions)
+get_top_n_recommendations(455,test_predictions)
