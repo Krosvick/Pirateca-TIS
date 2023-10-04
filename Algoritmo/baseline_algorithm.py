@@ -22,7 +22,7 @@ test_predictions = baseline_model.test(test_ratings)
 movies = pd.read_csv("/home/kiwi/Escritorio/Movies/movies_metadata.csv")
 movies.head()
 
-def get_top_n_recommendations(userId,predictions, n=10):
+def get_top_n_recommendations(userId,predictions, n=100):
     predict_ratings = {}
     # loop for getting predictions for the user
     for uid, iid, true_r, est, _ in predictions:
@@ -33,5 +33,38 @@ def get_top_n_recommendations(userId,predictions, n=10):
     top_movies = [str(i) for i in top_movies]
     print("="*10,"Recommended movies for user {} :".format(userId),"="*10)
     print(movies[movies["id"].isin(top_movies)]["original_title"].to_string(index=False))
+    return top_movies #the ID of the top movies for the user, sorted by possible match
 
-get_top_n_recommendations(450,test_predictions)
+def get_liked_movies(userId, df, n=100):
+    user_likes = df[(df['userId'] == userId) & (df['rating'] >= 4.0)]
+    
+    if user_likes.empty:
+        print("No liked movies found for user {}.".format(userId))
+        return []
+    
+    liked_movie_ids = user_likes['movieId'].astype(int).tolist()
+    
+    print("\n", "=" * 10, "Movies that user {} likes: ".format(userId), "=" * 10)
+    
+    liked_movies_titles = []
+    
+    for movie_id in liked_movie_ids:
+        movie_id_str = str(movie_id)
+        
+        if movie_id_str in movies['id'].astype(str).values:
+            movie_title = movies[movies['id'].astype(str) == movie_id_str]['original_title'].values[0]
+            liked_movies_titles.append(movie_title)
+    
+    for title in liked_movies_titles:
+        print(title)
+    
+    return liked_movie_ids
+
+
+user_temp = int(input("Enter the id of the user you want to recommend movies to: "))
+
+#for use in "recommended for you"
+get_top_n_recommendations(user_temp,test_predictions)
+
+#for use in "watch again"
+get_liked_movies(user_temp,df)
