@@ -1,7 +1,5 @@
 <?php
 
-use Core\Response;
-
 function dd($value)
 {
     echo "<pre>";
@@ -50,9 +48,4 @@ function redirect($path)
 {
     header("location: {$path}");
     exit();
-}
-
-function old($key, $default = '')
-{
-    return Core\Session::get('old')[$key] ?? $default;
 }
