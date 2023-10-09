@@ -1,8 +1,10 @@
 from surprise import dump, Dataset, Reader
 import pandas as pd
+import time
 
+start_time = time.time()
 #load data
-model_file = 'svd_model_better.pkl'
+model_file = 'svd_model_biased.pkl'
 loaded_model = dump.load(model_file)[1]
 df = pd.read_csv("/home/kiwi/Escritorio/Movies/ratings_small.csv")
 reader = Reader()
@@ -27,8 +29,11 @@ for movie_id in movies_to_recommend:
 recommendations.sort(key=lambda x: x[1], reverse=True)
 
 #ALSO WE NEED ADAPTER
-top_N = 30
+top_N = 15
 top_recommendations = recommendations[:top_N]
 
 for i, (movie_id, estimated_rating) in enumerate(top_recommendations, 1):
     print(f"Recommendation {i}: Movie ID {movie_id}, Estimated Rating: {estimated_rating}")
+
+end_time = time.time()
+print("Time: ", end_time - start_time)
