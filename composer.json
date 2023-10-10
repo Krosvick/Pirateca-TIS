@@ -1,5 +1,6 @@
 {
     "require": {
-        "vlucas/phpdotenv": "^5.5"
+        "vlucas/phpdotenv": "^5.5",
+        "parsecsv/php-parsecsv": "^1.3"
     }
 }
