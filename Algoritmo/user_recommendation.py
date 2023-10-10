@@ -15,7 +15,7 @@ half_time = time.time()
 
 
 # WE NEED INPUT
-user_id = 3
+user_id = 37
 
 
 movie_ids = df['movieId'].unique()
@@ -32,7 +32,7 @@ for movie_id in movies_to_recommend:
 recommendations.sort(key=lambda x: x[1], reverse=True)
 
 #ALSO WE NEED INPUT
-top_N = 15
+top_N = 30
 top_recommendations = recommendations[:top_N]
 
 for i, (movie_id, estimated_rating) in enumerate(top_recommendations, 1):

@@ -31,8 +31,8 @@ param_distributions = {
     'reg_all': np.arange(0.02, 0.2, 0.02),
     'n_epochs': list(range(1, 51))
 }
-# ------------------------------------ CHANGE ITERATIONS FOR PERFORMANCE ------------------------------------
-rs = RandomizedSearchCV(SVD, param_distributions, measures=['rmse'], return_train_measures=True, cv=5, n_iter=10)
+# ------------------------------------ LOG PERFORMANCE, MORE THAN 5 ARE NOT REQUIRED ------------------------------------
+rs = RandomizedSearchCV(SVD, param_distributions, measures=['rmse'], return_train_measures=True, cv=5, n_iter=1)
 rs.fit(ratings)
 
 # Get the best hyperparameters
@@ -57,7 +57,7 @@ print("Biased SVD Model Train RMSE:", accuracy.rmse(train_predictions, verbose=F
 print("Biased SVD Model Test RMSE:", accuracy.rmse(test_predictions, verbose=False))
 
 # Save the tuned model to a file
-model_file = 'svd_model_biased_10.pkl'
+model_file = 'svd_model_biased.pkl'
 dump(model_file, algo=biased_svd_model)
 
 end_time = time.time()
