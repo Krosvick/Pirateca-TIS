@@ -46,4 +46,41 @@ class Database
 
         return $result;
     }
+    
+    #cascadeDelete will possible receive more than 1 table variable and an id
+    public function cascadeDelete($id, ...$tables)
+    {
+        foreach ($tables as $table) {
+            $this->query("UPDATE $table SET deleted_at = NOW() WHERE id = :id", [
+                'id' => $id
+            ]);
+        }
+    }
+    public function Delete($table, $id)
+    {
+        #update deleted_at
+        $this->query("UPDATE $table SET deleted_at = NOW() WHERE id = :id", [
+            'id' => $id
+        ]);
+    }
+    public function JoinFilter($table, $pivot, $id, $id2, $conditions = [])
+    {
+        $query = "SELECT * FROM $table WHERE id IN (SELECT $id2 FROM $pivot WHERE $id = :id)";
+
+        if (!empty($conditions)) {
+            $query .= " AND " . implode(" AND ", $conditions);
+        }
+
+        $this->statement = $this->connection->prepare($query);
+        $params = ['id' => $id];
+
+        foreach ($conditions as $key => $value) {
+            $params[$key] = $value;
+        }
+
+        $this->statement->execute($params);
+
+        return $this;
+    }
+
 }
