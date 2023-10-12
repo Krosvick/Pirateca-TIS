@@ -82,5 +82,4 @@ class Database
 
         return $this;
     }
-
 }
