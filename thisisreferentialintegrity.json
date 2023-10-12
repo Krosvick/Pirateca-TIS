@@ -1,0 +1,6 @@
+[
+    {
+        "users" : ["ratings"],
+        "movies": ["ratings"]
+    }
+]
