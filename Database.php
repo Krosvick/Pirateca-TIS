@@ -63,6 +63,15 @@ class Database
             'id' => $id
         ]);
     }
+    public function DeleteAll($table)
+    {
+        $this->query("UPDATE $table SET deleted_at = NOW()");
+    }
+    public function DeleteAllHard($table)
+    {
+        $this->query("DELETE FROM $table");
+        $this->query("ALTER TABLE $table AUTO_INCREMENT = 1");
+    }
     public function JoinFilter($table, $pivot, $id, $id2, $conditions = [])
     {
         $query = "SELECT * FROM $table WHERE id IN (SELECT $id2 FROM $pivot WHERE $id = :id)";
