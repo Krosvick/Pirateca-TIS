@@ -1,0 +1,10 @@
+Array
+(
+    [original_title] => Yu-Gi-Oh! The Movie
+    [overview] => After the conclusion of the Battle City Tournament, deep below the sands of Egypt, an ancient evil has awakened. Anubis, who was defeated centuries ago by Yugi’s mysterious alter ego – the ancient Pharaoh – has returned for revenge. Wielding the power of the Eighth Millennium Item, Anubis is determined to destroy Yugi and take over the world.
+    [genres] => [{'id': 12, 'name': 'Adventure'}, {'id': 14, 'name': 'Fantasy'}, {'id': 16, 'name': 'Animation'}, {'id': 28, 'name': 'Action'}, {'id': 35, 'name': 'Comedy'}, {'id': 53, 'name': 'Thriller'}, {'id': 878, 'name': 'Science Fiction'}, {'id': 10751, 'name': 'Family'}]
+    [belongs_to_collection] => ""
+    [adult] => 0
+    [original_language] => en
+    [release_date] => 2004-08-13
+)
