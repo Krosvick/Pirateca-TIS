@@ -35,7 +35,7 @@ def get_top_n_recommendations(userId,predictions, n=100):
     print(movies[movies["id"].isin(top_movies)]["original_title"].to_string(index=False))
     return top_movies #the ID of the top movies for the user, sorted by possible match
 
-def get_liked_movies(userId, df, n=100):
+def get_liked_movies(userId, df):
     user_likes = df[(df['userId'] == userId) & (df['rating'] >= 4.0)]
     
     if user_likes.empty:
