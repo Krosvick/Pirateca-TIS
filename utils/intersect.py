@@ -17,18 +17,15 @@ def load_ratings():
     return df
 
 def intersect(df, ratings):
-    df = df[['id']]
-    df = df.astype(str)
-    ratings = ratings[['movieId']]
-    ratings = ratings.astype(str)
-    df = df.merge(ratings, left_on='id', right_on='movieId', how='inner')
-    return df
+    #this will remove from ratings the rows that have movieId that are not in df, and then return ratings with the rows removed
+    ratings = ratings[ratings['movieId'].isin(df['id'])]
+    return ratings
 
 def main():
     df = load_data()
     ratings = load_ratings()
-    df = intersect(df, ratings)
-    df.to_csv('datasets/ratings_small_cleaned.csv', index=False)
+    ratings = intersect(df, ratings)
+    ratings.to_csv('datasets/ratings_small_cleaned.csv', index=False)
 
 if __name__ == '__main__':
     main()
