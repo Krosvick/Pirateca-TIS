@@ -3,7 +3,6 @@
 #then it will remove those rows from ratings_small.csv and save it as ratings_small_cleaned.csv
 
 import pandas as pd
-import numpy as np
 import os
 import sys
 sys.path.append(os.path.abspath(os.path.join('..')))
@@ -17,8 +16,11 @@ def load_ratings():
     return df
 
 def intersect(df, ratings):
-    #this will remove from ratings the rows that have movieId that are not in df, and then return ratings with the rows removed
+    #this will remove from ratings the rows that have movieId that are not in df, and then return ratings
+    #also save a json with the dropped rows to know which rows were dropped
+    dropped_rows = ratings[~ratings['movieId'].isin(df['id'])]
     ratings = ratings[ratings['movieId'].isin(df['id'])]
+    dropped_rows.to_json('datasets/json_files/dropped_rows_ratings.json', orient='records')
     return ratings
 
 def main():
