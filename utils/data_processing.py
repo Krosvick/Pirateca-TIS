@@ -19,6 +19,11 @@ def null_remover(df):
     dropped_rows.to_json('datasets/json_files/dropped_rows_movies.json', orient='records')
     return df
 
+
+def id_normalizer(df):
+    df = df[~df['id'].str.contains('-')]
+    return df
+
 def check_null(df):
     for col in unnullable_cols:
         if df[col].isnull().sum() > 0:
@@ -27,6 +32,7 @@ def check_null(df):
 
 def main():
     df = load_data()
+    df = id_normalizer(df)
     df = null_remover(df)
     check_null(df)
     df.to_csv('datasets/movies_metadata_cleaned.csv', index=False)
