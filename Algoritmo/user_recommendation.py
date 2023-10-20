@@ -11,7 +11,7 @@ df = pd.read_csv("/home/kiwi/Escritorio/Movies/ratings_small.csv")
 
 #half_time = time.time()
 
-def Get_User_Recommendations(user_id, df, loaded_model, top_N=30): #all file input is in csv format, user_id and top_N are integers
+def Get_User_Recommendations(user_id, df, loaded_model, top_N=30, to_json=False): #all file input is in csv format, user_id and top_N are integers
     movie_ids = df['movieId'].unique()
 
     # Create a list of movie IDs that the user has not rated
@@ -29,6 +29,11 @@ def Get_User_Recommendations(user_id, df, loaded_model, top_N=30): #all file inp
 
     for i, (movie_id, estimated_rating) in enumerate(top_recommendations, 1):
         print(f"Recommendation {i}: Movie ID {movie_id}, Estimated Rating: {estimated_rating}")
+    
+    
+    if to_json:
+        top_recommendations = pd.DataFrame(top_recommendations, columns=['movieId', 'estimated_rating'])
+        top_recommendations.to_json(f'datasets/json_files/user_{user_id}_recommendations.json', orient='records')
 
     return top_recommendations
 
