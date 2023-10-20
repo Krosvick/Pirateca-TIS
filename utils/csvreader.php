@@ -1,57 +1,64 @@
 <?php
-    const BASE_PATH = __DIR__.'..';
+    const BASE_PATH = __DIR__.'/..';
     require 'functions.php';
     require 'Database.php';
-    require_once __DIR__ . '/vendor/autoload.php';
-    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+    require_once BASE_PATH . '/vendor/autoload.php';
+    $dotenv = Dotenv\Dotenv::createImmutable(BASE_PATH);
     $dotenv->load();
     #needed rows
-    $needed_columns_movies = ['title','adult','genres','original_language', 'original_title','overview','release_date','belongs_to_collection'];
+    $needed_columns_movies = ['id','title','adult','genres','original_language', 'original_title','overview','release_date','belongs_to_collection'];
     $needed_columns_users = [];
 
-    $csv = new \ParseCsv\Csv();
-    $csv->delimiter = ",";
-    $csv->auto(base_path("/datasets/movies_metadata_cleaned.csv"));
+    $movies_values = ':id, :title, :adult, :genres, :original_language, :original_title, :overview, :release_date, :belongs_to_collection';
 
-    $filteredData = [];
 
-    foreach ($csv->data as $row) {
-        $filteredRow = array_intersect_key($row, array_flip($needed_columns));
-        $filteredData[] = $filteredRow;
-    }
-    $movies = [];
-    foreach ($filteredData as $row) {
-        $movies[] = [
-            'original_title' => $row['original_title'],
-            'overview' => $row['overview'],
-            'genres' => json_encode($row['genres']),
-            'belongs_to_collection' => json_encode($row['belongs_to_collection']),
-            'adult' => $row['adult'] == 'True' ? 1 : 0,
-            'original_language' => $row['original_language'],
-            'release_date' => $row['release_date'],
-        ];
+    function parseCSV($file, $needed_columns) {
+        $csv = new \ParseCsv\Csv();
+        $csv->delimiter = ",";
+        $csv->auto($file);
+        $filteredData = [];
+        foreach ($csv->data as $row) {
+            $filteredRow = array_intersect_key($row, array_flip($needed_columns));
+            $filteredData[] = $filteredRow;
+        }
+        return $filteredData;
     }
 
-    $db = new Database($_ENV['DB_USERNAME'], $_ENV['DB_PASSWORD']);
-    #split the array into chunks of 1000
-    $movies = array_chunk($movies, 1000);
-    #insert each chunk into the database
-    set_time_limit(0);
-    foreach ($movies as $chunk) {
-        foreach ($chunk as $movie) {
+    function dataToDB($data, $table, $query_parameters, $values){
+        set_time_limit(0);
+        $db = new Database($_ENV['DB_USERNAME'], $_ENV['DB_PASSWORD']);
+        foreach ($data as $row) {
             try {
-                $db->query("INSERT INTO movies (original_title, overview, genres, belongs_to_collection, adult, original_language, release_date) VALUES (:original_title, :overview, :genres, :belongs_to_collection, :adult, :original_language, :release_date)", $movie);
+                $db->query("INSERT INTO $table ($query_parameters) VALUES ($values)", $row);
             }
             catch (Exception $e) {
                 echo $e->getMessage();
                 echo '<br>';
                 echo '<pre>';
-                print_r($movie);
+                print_r($row);
                 echo '</pre>';
                 continue;
             }
         }
     }
+    
+    function dataToArray($filtered_data, $needed_columns, $keys){
+        $data_array = [];
+        foreach ($filteredData as $row) {
+            $filteredRow = array_intersect_key($row, array_flip($needed_columns));
+            $data_array[] = array_combine($keys, $filteredRow);
+        }
+        return $data_array;
+
+    }
+
+    $db = new Database($_ENV['DB_USERNAME'], $_ENV['DB_PASSWORD']);
+    $db->Delete_All('movies');
+    $movies = parseCSV(BASE_PATH.'/data/movies_metadata.csv', $needed_columns_movies);
+    $movies = dataToArray($movies, $needed_columns_movies, $needed_columns_movies);
+    dataToDB($movies, 'movies', implode(', ', $needed_columns_movies), $movies_values);
+
+    
 
 
 
