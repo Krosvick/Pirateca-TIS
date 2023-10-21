@@ -29,12 +29,15 @@ def check_null(df):
         if df[col].isnull().sum() > 0:
             print(col, df[col].isnull().sum())
 
+def df_count(df):
+    return df.count()
 
 def main():
     df = load_data()
     df = id_normalizer(df)
     df = null_remover(df)
     check_null(df)
+    print(df_count(df))
     df.to_csv('datasets/movies_metadata_cleaned.csv', index=False)
 
 if __name__ == '__main__':
