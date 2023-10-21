@@ -4,22 +4,24 @@ use PDO;
 
 class Database
 {
-    public static $connection;
-    public $statement;
+    private static $instance;
+    private $connection;
+    public $statement; 
 
-    public static function getConnection($username = 'root', $password = '')
-    {
-        if (!self::$connection) {
-            $dsn = "mysql:host={$_ENV["DB_HOST"]};dbname={$_ENV["DB_NAME"]}";
-            $options = array(
-                PDO::MYSQL_ATTR_SSL_CA => __DIR__ . '/cacert.pem',
-            );
+    private function __construct($username = 'root', $password = '') {
+        $dsn = "mysql:host={$_ENV["DB_HOST"]};dbname={$_ENV["DB_NAME"]}";
+        $options = array(
+            PDO::MYSQL_ATTR_SSL_CA => base_path('/cacert.pem'),
+        );
 
-            $this->connection = new PDO($dsn, $username, $password, $options);
+        $this->connection = new PDO($dsn, $username, $password, $options);
+    }
+
+    public static function getInstance($username = 'root', $password = '') {
+        if (self::$instance == null) {
+            self::$instance = new Database($username, $password);
         }
-        else {
-            $this->connection = self::$connection;
-        }
+        return self::$instance;
     }
 
     public function query($query, $params = [])
