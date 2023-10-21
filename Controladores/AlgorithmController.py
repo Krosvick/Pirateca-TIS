@@ -3,7 +3,7 @@ class AlgorithmController():
     def __init__(self, algorithm):
         self.algorithm = algorithm
 
-    def Generate_model(df): #all file input is in csv format
+    def Generate_model(df): #all file input is in csv format, remember to save the model
         from surprise import SVD
         import numpy as np
         import pandas as pd
