@@ -41,12 +41,19 @@ def save_df_to_json(df, file_name):
         data = json.load(f)
     with open(file_name, 'w') as f:
         json.dump(data, f, indent=4)
+
+#Function that receives a json file path
+#the json file is badly foramtted and has the entire content in one line
+#this function will fix that
+def json_format(file):
+    import json
+    with open(file) as f:
+        data = json.load(f)
+    with open(file, 'w') as f:
+        json.dump(data, f, indent=4)
         
 
 
-
-print(top_5('datasets/json_files/dropped_rows_ratings.json', 'datasets/json_files/dropped_rows_movies.json', 'movieId', 'id'))
-
-save_df_to_json(top_5('datasets/json_files/dropped_rows_ratings.json', 'datasets/json_files/dropped_rows_movies.json', 'movieId', 'id'), 'datasets/json_files/top_5_movies_dropped.json')
+json_format('json_files/error_rows.json')
 
 
