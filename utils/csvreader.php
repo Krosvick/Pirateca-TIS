@@ -1,8 +1,11 @@
 <?php
     const BASE_PATH = __DIR__.'/..';
     require 'functions.php';
-    require_once BASE_PATH . '/core/Database.php';
-    require_once BASE_PATH . '/vendor/autoload.php';
+    require_once base_path('/Core/Database.php');
+    require_once base_path('/vendor/autoload.php');
+
+    use DAO\peliculasDAO;
+
     $dotenv = Dotenv\Dotenv::createImmutable(BASE_PATH);
     $dotenv->load();
     #needed rows
@@ -52,7 +55,6 @@
     function dataToArray($filtered_data, $needed_columns, $keys){
         $data_array = [];
         foreach ($filtered_data as $row) {
-            
             $row = array_merge(array_flip($needed_columns), $row);
             #then assign the values to the keys
             $row = array_combine($keys, $row);
@@ -84,8 +86,10 @@
         return $result;
     }
 
-    $db = new Database($_ENV['DB_USERNAME'], $_ENV['DB_PASSWORD']);
-    $db->get('movies');
+$peliculas = new peliculasDAO('peliculas');
+$peliculas_result = $peliculas->getSome(10, 0);
+print_r($peliculas_result);
+
 
     
 
