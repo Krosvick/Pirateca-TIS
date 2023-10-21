@@ -1,5 +1,6 @@
 <?php
 
+namespace Core;
 use PDO;
 
 class Database
@@ -17,9 +18,9 @@ class Database
         $this->connection = new PDO($dsn, $username, $password, $options);
     }
 
-    public static function getInstance($username = 'root', $password = '') {
+    public static function getInstance() {
         if (self::$instance == null) {
-            self::$instance = new Database($username, $password);
+            self::$instance = new Database($_ENV["DB_USERNAME"], $_ENV["DB_PASSWORD"]);
         }
         return self::$instance;
     }
@@ -33,10 +34,17 @@ class Database
         return $this;
     }
 
-    public function get($table)
+    public function get($table, $batchSize = NULL)
     {
         $this->statement = $this->connection->prepare("SELECT * FROM $table");
-        return $this->statement->execute();
+        $this->statement->execute();
+        $results = $this->statement->fetchAll();
+
+        if ($batchSize) {
+            $results = array_chunk($results, $batchSize);
+        }
+
+        return $results;
     }
 
     public function find()
