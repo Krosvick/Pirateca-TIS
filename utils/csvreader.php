@@ -1,7 +1,7 @@
 <?php
     const BASE_PATH = __DIR__.'/..';
     require 'functions.php';
-    require 'Database.php';
+    require_once BASE_PATH . '/core/Database.php';
     require_once BASE_PATH . '/vendor/autoload.php';
     $dotenv = Dotenv\Dotenv::createImmutable(BASE_PATH);
     $dotenv->load();
@@ -85,10 +85,7 @@
     }
 
     $db = new Database($_ENV['DB_USERNAME'], $_ENV['DB_PASSWORD']);
-    $db->DeleteAllHard('movies');
-    $movies = parseCSV(BASE_PATH.'/datasets/movies_metadata_cleaned.csv', $needed_columns_movies);
-    $movies = dataToArray($movies, $needed_columns_movies, $needed_columns_movies);
-    dataToDB($movies, 'movies', implode(', ', $needed_columns_movies), $movies_values);
+    $db->get('movies');
 
     
 
