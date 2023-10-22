@@ -2,7 +2,7 @@
 
 require_once __DIR__ .'/Core/Database.php';
 //alo commit
-    class pelicula_model{
+    class movies_model{
 
         private $conexion;
         public $adult;
@@ -43,9 +43,9 @@ require_once __DIR__ .'/Core/Database.php';
             }
         }
 
-        public function register(peliculas $data){
+        public function register(movies $data){
             try{
-                $sql = "INSERT INTO peliculas (adult, belongs_to_collection, budget, genres, homepage, id, imdb_id, original_language, original_title, overview, popularity, poster_path, production_companies, production_countries, release_date, revenue, runtime, spoken_languages, status, tagline, title, video, vote_average, vote_count)
+                $sql = "INSERT INTO movies (adult, belongs_to_collection, budget, genres, homepage, id, imdb_id, original_language, original_title, overview, popularity, poster_path, production_companies, production_countries, release_date, revenue, runtime, spoken_languages, status, tagline, title, video, vote_average, vote_count)
                         VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
                 $this->conexion->prepare($sql)->execute(array(
                     $data->adult,
@@ -82,7 +82,7 @@ require_once __DIR__ .'/Core/Database.php';
         public function actualizar($data){
             try
             {
-                $sql = "UPDATE peliculas SET 
+                $sql = "UPDATE movies SET 
                             adult = ?,
                             belongs_to_collection = ?,
                             budget = ?,
@@ -148,7 +148,7 @@ require_once __DIR__ .'/Core/Database.php';
         public function eliminar($id){
             try
             {
-                $sql = "DELETE FROM peliculas WHERE id = ?";
+                $sql = "DELETE FROM movies WHERE id = ?";
                 $this->conexion->prepare($sql)->execute(array($id));
             }
             catch(Exception $e)
@@ -159,7 +159,7 @@ require_once __DIR__ .'/Core/Database.php';
 
         public function obtener($id_movie){
             try {
-                $stm = $this->conexion->prepare("SELECT * FROM peliculas WHERE id = ?");
+                $stm = $this->conexion->prepare("SELECT * FROM movies WHERE id = ?");
                 $stm->execute(array($id_movie));
                 $r = $stm->fetch(PDO::FETCH_OBJ);
                 return $r;
@@ -175,7 +175,7 @@ require_once __DIR__ .'/Core/Database.php';
             {
                 $result = array();
 
-                $stm = $this->conexion->prepare("SELECT * FROM peliculas");
+                $stm = $this->conexion->prepare("SELECT * FROM movies");
                 $stm->execute();
 
                 return $stm->fetchAll(PDO::FETCH_OBJ);
