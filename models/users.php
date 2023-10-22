@@ -4,7 +4,7 @@ require_once 'Core/Database.php'; // Database connection???
 
 class user_model{
 
-    public $id;
+    public $user_id;
     public $username;
     public $password;
     public $email;
@@ -12,7 +12,7 @@ class user_model{
     public $tipo;
 
     public function __construct(){
-        $this->id=$id;
+        $this->user_id=$user_id;
         $this->username=$username;
         $this->password=$password;
         $this->email=$email;
@@ -20,8 +20,8 @@ class user_model{
         $this->tipo=$tipo;
     }
 
-    public function get_id(){
-        return $this->id;
+    public function get_user_id(){
+        return $this->user_id;
     }
 
     public function get_username(){
