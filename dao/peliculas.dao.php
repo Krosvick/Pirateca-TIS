@@ -5,7 +5,7 @@ namespace DAO;
 use Core\Database;
 use PDO;
 
-class peliculasDAO {
+class peliculasDAO implements DAOInterface {
 
     private $table;
 

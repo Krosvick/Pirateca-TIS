@@ -1,5 +1,7 @@
 <?php
 
+namespace DAO;
+
 interface DAOInterface {
     public function get_some($limit, $offset);
     public function get_all();
