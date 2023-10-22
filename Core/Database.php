@@ -34,17 +34,8 @@ class Database
         return $this;
     }
 
-    public function get($table, $batchSize = NULL)
-    {
-        $this->statement = $this->connection->prepare("SELECT * FROM $table");
-        $this->statement->execute();
-        $results = $this->statement->fetchAll();
-
-        if ($batchSize) {
-            $results = array_chunk($results, $batchSize);
-        }
-
-        return $results;
+    public function get(){
+        return $this->statement->fetchAll(PDO::FETCH_OBJ);
     }
 
     public function find()
