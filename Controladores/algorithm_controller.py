@@ -1,9 +1,9 @@
-class AlgorithmController():
+class algorithm_controller():
 
     def __init__(self, algorithm):
         self.algorithm = algorithm
 
-    def Generate_model(df): #all file input is in csv format, remember to save the model
+    def generate_model(df): #all file input is in csv format, remember to save the model
         from surprise import SVD
         import numpy as np
         import pandas as pd
@@ -58,7 +58,7 @@ class AlgorithmController():
 
         return biased_svd_model
     
-    def Get_User_Recommendations(user_id, df, loaded_model, top_N=30, to_json=False): #all file input is in csv format, user_id and top_N are integers
+    def get_user_recommendations(user_id, df, loaded_model, top_N=30, to_json=False): #all file input is in csv format, user_id and top_N are integers
         import pandas as pd
         movie_ids = df['movieId'].unique()
 
