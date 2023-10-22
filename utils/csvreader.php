@@ -1,10 +1,12 @@
 <?php
-    const BASE_PATH = __DIR__.'/..';
-    require 'functions.php';
-    require_once base_path('/Core/Database.php');
+    const BASE_PATH = __DIR__.'/../';
+    require BASE_PATH.'functions.php';
+    require base_path('/core/Database.php');
+    require base_path('/dao/moviesdao.php');
     require_once base_path('/vendor/autoload.php');
 
-    use DAO\peliculasDAO;
+    use DAO\moviesDAO;
+    use Core\Database;
 
     $dotenv = Dotenv\Dotenv::createImmutable(BASE_PATH);
     $dotenv->load();
@@ -86,8 +88,8 @@
         return $result;
     }
 
-$peliculas = new peliculasDAO('peliculas');
-$peliculas_result = $peliculas->getSome(10, 0);
+$peliculas = new moviesDAO('movies');
+$peliculas_result = $peliculas->get_some(10, 0);
 print_r($peliculas_result);
 
 
