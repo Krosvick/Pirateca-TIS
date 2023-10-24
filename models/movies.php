@@ -5,185 +5,54 @@ require_once __DIR__ .'/Core/Database.php';
     class movies_model{
 
         private $conexion;
-        public $adult;
-        public $belongs_to_collection;
-        public $budget;
-        public $genres;
-        public $homepage;
+
         public $id;
-        public $imdb_id;
-        public $original_language;
         public $original_title;
         public $overview;
-        public $popularity;
-        public $poster_path;
-        public $production_companies;
-        public $production_countries;
+        public $genres;
+        public $belongs_to_collection;
+        public $adult;
+        public $original_language;
         public $release_date;
-        public $revenue;
-        public $runtime;
-        public $spoken_languages;
-        public $status;
-        public $tagline;
-        public $title;
-        public $video;
-        public $vote_average;
-        public $vote_count;
 
 
         function __construct(){
-            try
-            {
-                $this->conexion = new Database();
-                $this->conexion = $this->conexion->getInstance();
-            }
-            catch(Exception $e)
-            {
-                die($e->getMessage());
-            }
+            $this->id=$id;
+            $this->original_title=$original_title;
+            $this->overview=$overview;
+            $this->genres=$genres;
+            $this->belongs_to_collection=$belongs_to_collection;
+            $this->adult=$adult;
+            $this->original_language=$original_language;
+            $this->release_date=$release_date;
         }
 
-        public function register(movies $data){
-            try{
-                $sql = "INSERT INTO movies (adult, belongs_to_collection, budget, genres, homepage, id, imdb_id, original_language, original_title, overview, popularity, poster_path, production_companies, production_countries, release_date, revenue, runtime, spoken_languages, status, tagline, title, video, vote_average, vote_count)
-                        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-                $this->conexion->prepare($sql)->execute(array(
-                    $data->adult,
-                    $data->belongs_to_collection,
-                    $data->budget,
-                    $data->genres,
-                    $data->homepage,
-                    $data->id,
-                    $data->imdb_id,
-                    $data->original_language,
-                    $data->original_title,
-                    $data->overview,
-                    $data->popularity,
-                    $data->poster_path,
-                    $data->production_companies,
-                    $data->production_countries,
-                    $data->release_date,
-                    $data->revenue,
-                    $data->runtime,
-                    $data->spoken_languages,
-                    $data->status,
-                    $data->tagline,
-                    $data->title,
-                    $data->video,
-                    $data->vote_average,
-                    $data->vote_count
-                ));
-            }
-            catch(Exception $e){
-                die($e->getMessage());
-            }
+        public function get_original_title(){
+            return $this->original_title;
         }
 
-        public function actualizar($data){
-            try
-            {
-                $sql = "UPDATE movies SET 
-                            adult = ?,
-                            belongs_to_collection = ?,
-                            budget = ?,
-                            genres = ?,
-                            homepage = ?,
-                            id = ?,
-                            imdb_id = ?,
-                            original_language = ?,
-                            original_title = ?,
-                            overview = ?,
-                            popularity = ?,
-                            poster_path = ?,
-                            production_companies = ?,
-                            production_countries = ?,
-                            release_date = ?,
-                            revenue = ?,
-                            runtime = ?,
-                            spoken_languages = ?,
-                            status = ?,
-                            tagline = ?,
-                            title = ?,
-                            video = ?,
-                            vote_average = ?,
-                            vote_count = ?
-                        WHERE id = ?";
-
-                $this->conexion->prepare($sql)->execute(array(
-                    $data->adult,
-                    $data->belongs_to_collection,
-                    $data->budget,
-                    $data->genres,
-                    $data->homepage,
-                    $data->id,
-                    $data->imdb_id,
-                    $data->original_language,
-                    $data->original_title,
-                    $data->overview,
-                    $data->popularity,
-                    $data->poster_path,
-                    $data->production_companies,
-                    $data->production_countries,
-                    $data->release_date,
-                    $data->revenue,
-                    $data->runtime,
-                    $data->spoken_languages,
-                    $data->status,
-                    $data->tagline,
-                    $data->title,
-                    $data->video,
-                    $data->vote_average,
-                    $data->vote_count,
-                    $data->id
-                ));
-
-            }
-            catch(Exception $e)
-            {
-                die($e->getMessage());
-            }
-
+        public function get_overview(){
+            return $this->overview;
         }
 
-        public function eliminar($id){
-            try
-            {
-                $sql = "DELETE FROM movies WHERE id = ?";
-                $this->conexion->prepare($sql)->execute(array($id));
-            }
-            catch(Exception $e)
-            {
-                die($e->getMessage());
-            }
+        public function get_genres(){
+            return $this->genres;
         }
 
-        public function obtener($id_movie){
-            try {
-                $stm = $this->conexion->prepare("SELECT * FROM movies WHERE id = ?");
-                $stm->execute(array($id_movie));
-                $r = $stm->fetch(PDO::FETCH_OBJ);
-                return $r;
-            }
-            catch (Exception $e)
-            {
-                die($e->getMessage());
-            }
+        public function get_belongs_to_collection(){
+            return $this->belongs_to_collection;
         }
 
-        public function obtenerTodos(){
-            try
-            {
-                $result = array();
+        public function get_adult(){
+            return $this->adult;
+        }
 
-                $stm = $this->conexion->prepare("SELECT * FROM movies");
-                $stm->execute();
+        public function get_original_language(){
+            return $this->original_language;
+        }
 
-                return $stm->fetchAll(PDO::FETCH_OBJ);
-            }
-            catch(Exception $e)
-            {
-                die($e->getMessage());
-            }
+        public function get_release_date(){
+            return $this->release_date;
         }
         
     }
