@@ -9,18 +9,19 @@ class Database
     private $connection;
     public $statement; 
 
-    private function __construct($username = 'root', $password = '') {
+    private function __construct() {
         $dsn = "mysql:host={$_ENV["DB_HOST"]};dbname={$_ENV["DB_NAME"]}";
         $options = array(
             PDO::MYSQL_ATTR_SSL_CA => base_path('/cacert.pem'),
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
         );
 
-        $this->connection = new PDO($dsn, $username, $password, $options);
+        $this->connection = new PDO($dsn, $_ENV["DB_USERNAME"], $_ENV["DB_PASSWORD"], $options);
     }
 
     public static function getInstance() {
-        if (self::$instance == null) {
-            self::$instance = new Database($_ENV["DB_USERNAME"], $_ENV["DB_PASSWORD"]);
+        if (!(self::$instance instanceof self)) {
+            self::$instance = new self();
         }
         return self::$instance;
     }
@@ -28,14 +29,24 @@ class Database
     public function query($query, $params = [])
     {
         $this->statement = $this->connection->prepare($query);
+        #params will look like this
+        /*
+            $params = array(
+                    'limit' => [$limit, PDO::PARAM_INT], //PDO::PARAM_INT es para especificar que es un entero
+                    'offset' => [$offset, PDO::PARAM_INT]
+                );
+        */
+        foreach ($params as $key => $value) {
+            $this->statement->bindValue($key, $value[0], $value[1]);
+        }
 
-        $this->statement->execute($params);
+        $this->statement->execute();
 
         return $this;
     }
 
     public function get(){
-        return $this->statement->fetchAll(PDO::FETCH_OBJ);
+        return $this->statement->fetchAll();
     }
 
     public function find()
