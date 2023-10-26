@@ -88,9 +88,7 @@
         return $result;
     }
 
-$peliculas = new moviesDAO('movies');
-$peliculas_result = $peliculas->get_some(10, 0);
-print_r($peliculas_result);
+
 
 
     

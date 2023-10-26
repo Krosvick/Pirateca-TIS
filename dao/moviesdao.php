@@ -60,8 +60,10 @@ class moviesDAO implements DAOInterface {
             die($e->getMessage());
         }
     }
-
-    public function register(Movie $data) {
+    /**
+    * @param Movie $data
+    */
+    public function register($data) {
         try {
             $sql = "INSERT INTO {$this->table} (original_title, overview, genres, belongs_to_collection, adult, original_language, release_date) VALUES (?, ?, ?, ?, ?, ?, ?)";
             $params = array(
@@ -80,8 +82,10 @@ class moviesDAO implements DAOInterface {
         }
 
     }
-
-    public function update($id, Movie $data) {
+    /**
+    * @param Movie $data
+    */
+    public function update($id, $data) {
         try {
             $sql = "UPDATE {$this->table} SET original_title = ?, overview = ?, genres = ?, belongs_to_collection = ?, adult = ?, original_language = ?, release_date = ? WHERE id = ?";
             $params = array(

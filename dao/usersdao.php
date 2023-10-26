@@ -68,9 +68,11 @@ use PDO;
                 die($e->getMessage());
             }
         }
-
+        /**
+        * @param User $data
+        */
         //registro de usuarios
-        public function register(User $data){
+        public function register($data){
             try{
                 //Sentencia SQL.
                 //id autoincrementable?
@@ -90,9 +92,11 @@ use PDO;
                 die($e->getMessage());
             }
         }
-
+        /**
+        * @param User $data
+        */
         //actualizar usuarios
-        public function update(User $data,$id){
+        public function update($data,$id){
             try{
                 $sql = "UPDATE users SET username = ?, password= ?, email = ? WHERE id = :id" ; //ASUMIENDO QUE SON LAS UNICAS 3 VARIABLES MODIFICABLES
                 $params = array(
