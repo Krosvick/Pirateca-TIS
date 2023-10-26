@@ -1,24 +1,26 @@
 <?php
 
-require_once 'Core/Database.php'; // Database connection???
+namespace Models;
 
-class ratings_model{
+use Models\User;
+
+class UserRating{
     
 
-    public $user_id;
+    public User $user;
     public $movie_id;
     public $rating;
     public $timestamp;
 
-    function __construct(){
-        $this->user_id=$user_id;
+    function __construct(User $user, $movie_id, $rating, $timestamp){
+        $this->user= $user;
         $this->movie_id=$movie_id;
         $this->rating=$rating;
         $this->timestamp=$timestamp;
     }
 
     public function get_user_id(){
-        return $this->user_id;
+        return $this->user->get_user_id();
     }
 
     public function get_movie_id(){

@@ -1,10 +1,11 @@
 <?php
 
-require_once __DIR__ .'/Core/Database.php';
-//alo commit
-    class movies_model{
+namespace Models;
 
-        private $conexion;
+
+//alo commit
+    class Movie{
+
 
         public $id;
         public $original_title;
@@ -16,7 +17,7 @@ require_once __DIR__ .'/Core/Database.php';
         public $release_date;
 
 
-        function __construct(){
+        function __construct($id,$original_title,$overview,$genres,$belongs_to_collection,$adult,$original_language,$release_date){
             $this->id=$id;
             $this->original_title=$original_title;
             $this->overview=$overview;
