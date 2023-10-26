@@ -6,7 +6,8 @@
     "autoload": {
         "psr-4": {
             "DAO\\": "dao/",
-            "Core\\": "Core/"
+            "Core\\": "Core/",
+            "Models\\": "models/"
         }
     }
 }
