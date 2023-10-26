@@ -8,17 +8,17 @@ namespace DAO;
 use Core\Database;
 use Models\User;
 use Exception;
+use PDO;
 
-    class UserDAO{
+    class UserDAO implements DAOInterface{
         //Clase para operaciones CRUD de usuarios
-        private $conexion;
+        private $connection;
         private $table = "users";
 
         public function __construct(){
             try
             {
-                $this->conexion = new Database;
-                $this->conexion = $this->conexion->getInstance();
+                $this->connection = Database::getInstance();
             }
             catch(Exception $e)
             {
@@ -26,57 +26,76 @@ use Exception;
             }
         }
 
-    //registro de usuarios
-    public function register(User $data){
-		try{
-			//Sentencia SQL.
-            //id autoincrementable?
-            //datos deben ser proporcionados
-			$sql = "INSERT INTO users {$this->table} (username, password, email, tipo, status)
-		        VALUES (?, ?, ?, ?, ?)";  // por default usuario normal?
-            $params = array(
-                $data->username,
-                $data->password,
-                $data->email,
-                $data->tipo,
-                $data->status
-            );
-            $stmt = $this->conexion->query($sql, $params);
-            return $stmt;
-		} 
-        catch (Exception $e){
-			die($e->getMessage());
-		}
-	}
+        public function get_some($limit, $offset){
+            try{
+                $sql = "SELECT * FROM {$this->table} LIMIT :limit OFFSET :offset";
+                $params = array(
+                    'limit' => [$limit, PDO::PARAM_INT], //PDO::PARAM_INT es para especificar que es un entero
+                    'offset' => [$offset, PDO::PARAM_INT]
+                );
+                $stmt = $this->connection->query($sql, $params);
+                $users = $stmt->get();
+                return $users;
+            }
+            catch(Exception $e){
+                die($e->getMessage());
+            }
+        }
 
-    //actualizar usuarios
-    public function update(User $data,$id){
-        try{
-            $sql = "UPDATE users SET username = ?, password= ?, email = ? WHERE id = :id" ; //ASUMIENDO QUE SON LAS UNICAS 3 VARIABLES MODIFICABLES
-            $params = array(
-                $data->username,
-                $data->password,
-                $data->email
-            );
-            $stmt = $this->conexion->query($sql, $params);
-            return $stmt;
+        //registro de usuarios
+        public function register(User $data){
+            try{
+                //Sentencia SQL.
+                //id autoincrementable?
+                //datos deben ser proporcionados
+                $sql = "INSERT INTO {$this->table} (username, password, email, tipo, status) VALUES (?, ?, ?, ?, ?)";
+                $params = array(
+                    "username" => [$data->username, PDO::PARAM_STR],
+                    "password" => [$data->password, PDO::PARAM_STR],
+                    "email" => [$data->email, PDO::PARAM_STR],
+                    "tipo" => [$data->tipo, PDO::PARAM_STR],
+                    "status" => [$data->status, PDO::PARAM_INT]
+                );
+                $stmt = $this->connection->query($sql, $params);
+                return $stmt;
+            } 
+            catch (Exception $e){
+                die($e->getMessage());
+            }
         }
-        catch(Exception $e){
-            die($e->getMessage());
-        }
-    }
 
-    //borrado logico
-    public function delete($id){
-        try{
-            $sql = "UPDATE users SET status = 0  WHERE id = :id" ; 
-            $stmt = $this->conexion->query($sql, $id);
-            return $stmt;
+        //actualizar usuarios
+        public function update(User $data,$id){
+            try{
+                $sql = "UPDATE users SET username = ?, password= ?, email = ? WHERE id = :id" ; //ASUMIENDO QUE SON LAS UNICAS 3 VARIABLES MODIFICABLES
+                $params = array(
+                    "username" => [$data->username, PDO::PARAM_STR],
+                    "password" => [$data->password, PDO::PARAM_STR],
+                    "email" => [$data->email, PDO::PARAM_STR],
+                    "id" => [$id, PDO::PARAM_INT]
+                );
+                $stmt = $this->connection->query($sql, $params);
+                return $stmt;
+            }
+            catch(Exception $e){
+                die($e->getMessage());
+            }
         }
-        catch(Exception $e){
-            die($e->getMessage());
+
+        //borrado logico
+        public function delete($id){
+            try{
+                $sql = "UPDATE users SET status = 0  WHERE id = :id" ; 
+                $params = array(
+                    "id" => [$id, PDO::PARAM_INT]
+                );
+                $stmt = $this->connection->query($sql, $params);
+                return $stmt;
+            }
+            catch(Exception $e){
+                die($e->getMessage());
+            }
         }
-    }
 
     }
 
