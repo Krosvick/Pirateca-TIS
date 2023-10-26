@@ -42,6 +42,33 @@ use PDO;
             }
         }
 
+        public function get_all(){
+            try{
+                $sql = "SELECT * FROM {$this->table}";
+                $stmt = $this->connection->query($sql);
+                $users = $stmt->get();
+                return $users;
+            }
+            catch(Exception $e){
+                die($e->getMessage());
+            }
+        }
+
+        public function find($id){
+            try{
+                $sql = "SELECT * FROM {$this->table} WHERE id = :id";
+                $params = array(
+                    "id" => [$id, PDO::PARAM_INT]
+                );
+                $stmt = $this->connection->query($sql, $params);
+                $user = $stmt->find();
+                return $user;
+            }
+            catch(Exception $e){
+                die($e->getMessage());
+            }
+        }
+
         //registro de usuarios
         public function register(User $data){
             try{
