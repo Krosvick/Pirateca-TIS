@@ -1,8 +1,9 @@
 <?php
 
-require_once 'Core/Database.php'; // Database connection???
+namespace Models;
+use Core\Database;
 
-class user_model{
+class User{
 
     public $user_id;
     public $username;
@@ -11,7 +12,7 @@ class user_model{
     public $status;
     public $tipo;
 
-    public function __construct(){
+    public function __construct($user_id, $username, $password, $email, $status, $tipo){
         $this->user_id=$user_id;
         $this->username=$username;
         $this->password=$password;
