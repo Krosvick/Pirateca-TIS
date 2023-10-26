@@ -7,8 +7,12 @@ const BASE_PATH = __DIR__.'/';
 
 require 'functions.php';
 //require 'router.php';
-require 'Database.php';
+require base_path('dao/DAO.php');
+require base_path('Core/Database.php');
 
-$db = new Database($_ENV['DB_USERNAME'], $_ENV['DB_PASSWORD']);
-dd($db);
+use DAO\moviesDAO;
+
+$peliculas = new moviesDAO();
+$peliculas_result = $peliculas->get_some(10, 0);
+dd($peliculas_result);
 
