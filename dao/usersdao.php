@@ -1,20 +1,24 @@
 <?php
 
+namespace DAO;
 //PENSADO PARA UNA TABLA "Users"
 //CON COLUMNAS ID, USERNAME, PASSWORD, MAIL, TIPO, STATUS
 //SUJETO A CAMBIOS
 
-require_once __DIR__ .'/Core/Database.php';
+use Core\Database;
+use Models\User;
+use Exception;
 
-    class user_model{
+    class UserDAO{
         //Clase para operaciones CRUD de usuarios
         private $conexion;
+        private $table = "users";
 
         public function __construct(){
             try
             {
                 $this->conexion = new Database;
-                $this->conexion = this->conexion->getInstance();
+                $this->conexion = $this->conexion->getInstance();
             }
             catch(Exception $e)
             {
@@ -23,23 +27,22 @@ require_once __DIR__ .'/Core/Database.php';
         }
 
     //registro de usuarios
-    public function register(user $data){
+    public function register(User $data){
 		try{
 			//Sentencia SQL.
             //id autoincrementable?
             //datos deben ser proporcionados
-			$sql = "INSERT INTO users (username, password, mail, tipo, status)
+			$sql = "INSERT INTO users {$this->table} (username, password, email, tipo, status)
 		        VALUES (?, ?, ?, ?, ?)";  // por default usuario normal?
-            $stmt = $this->conexion->prepare($sql);
-			$stmt->execute(
-				array(
-                    $data->username,
-                    $data->password,
-                    $data->mail,
-                    'basico',   // Valor predeterminado para 'tipo'
-                    1    // Valor predeterminado para 'status'
-                )
-			);
+            $params = array(
+                $data->username,
+                $data->password,
+                $data->email,
+                $data->tipo,
+                $data->status
+            );
+            $stmt = $this->conexion->query($sql, $params);
+            return $stmt;
 		} 
         catch (Exception $e){
 			die($e->getMessage());
@@ -47,17 +50,16 @@ require_once __DIR__ .'/Core/Database.php';
 	}
 
     //actualizar usuarios
-    public function update($data,$id){
+    public function update(User $data,$id){
         try{
-            $sql = "UPDATE users SET username = ?, password= ?, mail = ? WHERE id = :id" ; //ASUMIENDO QUE SON LAS UNICAS 3 VARIABLES MODIFICABLES
-            $stmt = $this->conexion->prepare($sql);
-            $stmt->execute(                             //CONSIDERAR USAR BINDPARAM EN LUGAR DE EXECUTE
-                array(
-                    $data->username,
-                    $data->password,
-                    $data->mail
-                )
+            $sql = "UPDATE users SET username = ?, password= ?, email = ? WHERE id = :id" ; //ASUMIENDO QUE SON LAS UNICAS 3 VARIABLES MODIFICABLES
+            $params = array(
+                $data->username,
+                $data->password,
+                $data->email
             );
+            $stmt = $this->conexion->query($sql, $params);
+            return $stmt;
         }
         catch(Exception $e){
             die($e->getMessage());
@@ -67,9 +69,9 @@ require_once __DIR__ .'/Core/Database.php';
     //borrado logico
     public function delete($id){
         try{
-            $sql = "UPDATE users SET status = 0  WHERE id = :id" ; //ASUMIENDO QUE SON LAS UNICAS 3 VARIABLES MODIFICABLES
-            $stmt = $this->conexion->prepare($sql);
-            $stmt->execute();
+            $sql = "UPDATE users SET status = 0  WHERE id = :id" ; 
+            $stmt = $this->conexion->query($sql, $id);
+            return $stmt;
         }
         catch(Exception $e){
             die($e->getMessage());
