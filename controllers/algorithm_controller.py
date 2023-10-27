@@ -85,12 +85,6 @@ class algorithm_controller():
             result.append({'movieId': movie_id, 'estimated_rating': estimated_rating})
         
         return result
-        
-        if to_json:
-            top_recommendations = pd.DataFrame(top_recommendations, columns=['movieId', 'estimated_rating'])
-            top_recommendations.to_json(f'datasets/json_files/user_{user_id}_recommendations.json', orient='records')
-
-        return top_recommendations
     
     def get_liked_movies(userId, df, movies):
         user_likes = df[(df['userId'] == userId) & (df['rating'] >= 4.0)]
