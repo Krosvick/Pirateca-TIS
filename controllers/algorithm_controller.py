@@ -110,8 +110,14 @@ class algorithm_controller():
         
         return liked_movie_ids
 
-    def get_top_n_recommendations(userId,predictions, movies, n=10):
+    def get_top_n_recommendations(userId, movies, ratings n=10):
+        from surprise.model_selection import train_test_split
+        from surprise import BaselineOnly
         predict_ratings = {}
+        train_ratings, test_ratings = train_test_split(ratings, test_size=.20, random_state = 42)
+        baseline_model = BaselineOnly(verbose = False)
+        baseline_model.fit(train_ratings)
+        predictions = baseline_model.test(test_ratings)
         # loop for getting predictions for the user
         for uid, iid, true_r, est, _ in predictions:
             if (uid==userId):
@@ -123,4 +129,3 @@ class algorithm_controller():
         print(movies[movies["id"].isin(top_movies)]["original_title"].to_string(index=False))
         return top_movies #the ID of the top movies for the user, sorted by possible match
     
-#testing commits after massive pc failure
