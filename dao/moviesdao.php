@@ -11,14 +11,14 @@ use PDO;
 class moviesDAO implements DAOInterface {
 
     private $connection;
-    const TABLE_NAME = "movies";
+    private $table = "movies";
 
     public function __construct() {
         try {
             $this->connection = Database::getInstance();
         } catch (Exception $e) {
             die($e->getMessage());
-        }
+        } 
     }
 
     public function get_some($limit = 10, $offset = 0) {
