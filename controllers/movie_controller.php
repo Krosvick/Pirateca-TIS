@@ -4,17 +4,25 @@ namespace Controllers;
 
 use Models\Movie;
 use DAO\moviesDAO;
+use controllers\api;
 
 class MovieController {
     private $movieDAO;
+    private $api;
 
     public function __construct() {
         $this->movieDAO = new moviesDAO();
+        $this->api = new api();
     }
 
     public function listMovies() {
         $movies = $this->movieDAO->get_all();
         // Implement code to display a list of movies in the View
+    }
+
+    public function list_movies_for_user($id){
+        $movies = $this->movieDAO->get_all();
+        $movies_for_user = $this->api->do_GET($id, $movies);
     }
 
     public function showMovie($id) {
