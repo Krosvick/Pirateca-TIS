@@ -11,7 +11,7 @@ use PDO;
 class moviesDAO implements DAOInterface {
 
     private $connection;
-    const TABLE_NAME = "movies";
+    private $table = "movies";
 
     public function __construct() {
         try {
