@@ -110,7 +110,7 @@ class algorithm_controller():
         
         return liked_movie_ids
 
-    def get_top_n_recommendations(userId, movies, ratings n=10):
+    def get_top_n_recommendations(userId, movies, ratings, n=10):
         from surprise.model_selection import train_test_split
         from surprise import BaselineOnly
         predict_ratings = {}
