@@ -28,6 +28,10 @@ namespace Models;
             $this->release_date=$release_date;
         }
 
+        public function get_movie_id(){
+            return $this->id;
+        }
+
         public function get_original_title(){
             return $this->original_title;
         }
