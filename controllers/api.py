@@ -1,7 +1,8 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
+import pandas as pd
 from urllib.parse import urlparse, parse_qs
 import json
-from algorithm_controller import get_user_recommendations, generate_model
+from algorithm_controller import algorithm_controller
 import sys
 sys.path.append("..")
 
@@ -33,20 +34,33 @@ class SimpleAPI(BaseHTTPRequestHandler):
         if parsed_url.path == '/recommendations':
             userId = int(query_params['userId'][0])
             n = int(query_params.get('n', [10])[0])
-            top_movies = get_user_recommendations(userid, ratings_df, model, n)
+            top_movies = algorithm_controller.get_user_recommendations(userId, ratings_df, model, n)
             response = {'top_movies': top_movies}
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
             self.end_headers()
-            self.wfile.write(json.dumps(response).encode())
+            self.wfile.write(json.dumps(response, cls=NpEncoder).encode('utf-8'))
         else:
             self.send_response(404)
             self.end_headers()
+
+import numpy as np
+
+class NpEncoder(json.JSONEncoder):
+
+    def default(self, obj):
+        if isinstance(obj, np.integer):
+            return int(obj)
+        if isinstance(obj, np.floating):
+            return float(obj)
+        if isinstance(obj, np.ndarray):
+            return obj.tolist()
+        return super(NpEncoder, self).default(obj)
 
 if __name__ == '__main__':
     server_address = ('', 8001)
     httpd = HTTPServer(server_address, SimpleAPI)
     ratings_df = pd.read_csv('datasets/ratings_small_cleaned.csv')
-    model = generate_model("datasets/ratings_small_cleaned.csv")
+    model = algorithm_controller.generate_model(ratings_df)
     print('Starting server...')
     httpd.serve_forever()

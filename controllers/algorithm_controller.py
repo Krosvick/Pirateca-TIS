@@ -75,9 +75,16 @@ class algorithm_controller():
 
         top_recommendations = recommendations[:top_N]
 
-        for i, (movie_id, estimated_rating) in enumerate(top_recommendations, 1):
-            print(f"Recommendation {i}: Movie ID {movie_id}, Estimated Rating: {estimated_rating}")
+        #top_recommendations is a list of tuples
+        """
+            [(318, 4.327501001837994), (4973, 4.289579757337473), (4226, 4.288369094103607), (2692, 4.2516131662793315), (923, 4.2428413377628305), (898, 4.239507008315757), (3683, 4.237841176249015), (1254, 4.237667303613109), (1283, 4.224226310670601), (58559, 4.215303761456968)]
+        """
+        #i need to serialize this list of tuples into a json file
+        result = []
+        for movie_id, estimated_rating in top_recommendations:
+            result.append({'movieId': movie_id, 'estimated_rating': estimated_rating})
         
+        return result
         
         if to_json:
             top_recommendations = pd.DataFrame(top_recommendations, columns=['movieId', 'estimated_rating'])
