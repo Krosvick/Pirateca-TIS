@@ -3,18 +3,19 @@
 namespace Models;
 
 use Models\User;
+use Models\Movie;
 
 class UserRating{
     
 
     public User $user;
-    public $movie_id;
+    public Movie $movie;
     public $rating;
     public $timestamp;
 
-    function __construct(User $user, $movie_id, $rating, $timestamp){
+    function __construct(User $user,Movie $movie, $rating, $timestamp){
         $this->user= $user;
-        $this->movie_id=$movie_id;
+        $this->movie= $movie;
         $this->rating=$rating;
         $this->timestamp=$timestamp;
     }
@@ -24,7 +25,7 @@ class UserRating{
     }
 
     public function get_movie_id(){
-        return  $this->movie_id;
+        return $this->movie->get_movie_id();
     }
 
     public function get_rating(){
