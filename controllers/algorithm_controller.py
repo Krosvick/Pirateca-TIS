@@ -3,6 +3,10 @@ class algorithm_controller():
     def __init__(self, algorithm):
         self.algorithm = algorithm
 
+    def adapter_db_to_csv(db):
+        csv = db.to_csv('datasets/ratings_small_cleaned.csv', index=False)
+        return csv
+
     def generate_model(df): #all file input is in csv format, remember to save the model
         from surprise import SVD
         import numpy as np
