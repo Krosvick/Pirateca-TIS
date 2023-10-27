@@ -1,7 +1,9 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from urllib.parse import urlparse, parse_qs
 import json
-from algorithm_controller import get_top_n_recommendations
+from algorithm_controller import get_user_recommendations, generate_model
+import sys
+sys.path.append("..")
 
 class SimpleAPI(BaseHTTPRequestHandler):
     """
@@ -15,7 +17,7 @@ class SimpleAPI(BaseHTTPRequestHandler):
         If the endpoint is not recognized, returns a 404 error.
 
         Query params are expected to be in the format:
-        /recommendations?userId=1&n=10
+        localhost:8001/recommendations?userId=1&n=10
         where 'userId' is the ID of the user for whom to generate recommendations,
         and 'n' is the number of recommendations to generate.
 
@@ -31,9 +33,7 @@ class SimpleAPI(BaseHTTPRequestHandler):
         if parsed_url.path == '/recommendations':
             userId = int(query_params['userId'][0])
             n = int(query_params.get('n', [10])[0])
-            predictions = ...
-            movies = ...
-            top_movies = get_top_n_recommendations(userId, predictions, movies, n)
+            top_movies = get_user_recommendations(userid, ratings_df, model, n)
             response = {'top_movies': top_movies}
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
@@ -44,7 +44,9 @@ class SimpleAPI(BaseHTTPRequestHandler):
             self.end_headers()
 
 if __name__ == '__main__':
-    server_address = ('', 800)
+    server_address = ('', 8001)
     httpd = HTTPServer(server_address, SimpleAPI)
+    ratings_df = pd.read_csv('datasets/ratings_small_cleaned.csv')
+    model = generate_model("datasets/ratings_small_cleaned.csv")
     print('Starting server...')
     httpd.serve_forever()
