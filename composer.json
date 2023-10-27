@@ -7,7 +7,8 @@
         "psr-4": {
             "DAO\\": "dao/",
             "Core\\": "Core/",
-            "Models\\": "models/"
+            "Models\\": "models/",
+            "Controllers\\": "controllers/" 
         }
     }
 }
