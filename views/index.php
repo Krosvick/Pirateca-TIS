@@ -8,7 +8,7 @@
    
       <!-- banner -->
       <section class="banner_main">
-         <div class="titulo"><h1>Trucoteca</h1></div>
+         <div class="titulo"><h1>Pirateca</h1></div>
          <div id="banner1" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
                <li data-target="#banner1" data-slide-to="0" class="active"></li>
@@ -21,7 +21,7 @@
                   <div class="container">
                      <div class="carousel-caption">
                         <div class="text-bg">
-                           <h1> <span class="blu">Bienvenido a <br></span>Trucoteca</h1>
+                           <h1>Titulo Pelicula</h1>
                            <figure><img src="images/drive.png" alt="#"/></figure>
                            <a class="read_more" href="#">Mirar sinopsis</a>
                         </div>
@@ -32,7 +32,7 @@
                   <div class="container">
                      <div class="carousel-caption">
                         <div class="text-bg">
-                           <h1> <span class="blu">Bienvenido a <br></span>Trucoteca</h1>
+                           <h1>Titulo Pelicula</h1>
                            <figure><img src="images/blade2049.png" alt="#"/></figure>
                            <a class="read_more" href="#">Mirar sinopsis</a>
                         </div>
@@ -43,7 +43,7 @@
                   <div class="container">
                      <div class="carousel-caption">
                         <div class="text-bg">
-                           <h1> <span class="blu">Bienvenido a <br></span>Trucoteca</h1>
+                           <h1>Titulo Pelicula</h1>
                            <figure><img src="images/spacemovie.jpg" alt="#"/></figure>
                            <a class="read_more" href="#">Mirar sinopsis</a>
                         </div>
@@ -54,7 +54,7 @@
                   <div class="container">
                      <div class="carousel-caption">
                         <div class="text-bg">
-                           <h1> <span class="blu">Bienvenido a <br></span>Trucoteca</h1>
+                           <h1>Titulo Pelicula</h1>
                            <figure><img src="images/barrandero.png" alt="#"/></figure>
                            <a class="read_more" href="#">Mirar sinopsis</a>
                         </div>

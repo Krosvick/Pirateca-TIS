@@ -41,12 +41,13 @@ html {
 }
 
 body {
-     color: #000000;
+     color: #fff;
      font-size: 14px;
      font-family: 'Poppins', sans-serif;
      line-height: 1.80857;
      font-weight: normal;
-     background: rgb(23,0,62);
+     background: rgb(5,0,28);
+     background: linear-gradient(0deg, rgba(5,0,28,1) 0%, rgba(36,0,99,1) 72%, rgba(47,4,134,1) 100%);
 }
 
 a {
@@ -325,7 +326,8 @@ button {
 
 
 .banner_main {
-     background: rgb(25, 0, 71);
+     background: rgb(5,0,28);
+     background: linear-gradient(0deg, rgba(5,0,28,1) 0%, rgba(36,0,99,1) 72%, rgba(47,4,134,1) 100%);
      
      padding: 198px 0px 90px 0px;
 }
@@ -348,12 +350,11 @@ button {
 }
 
 .titulo h1 {
-     color: #070404;
+     color: #ffffff;
      font-size: 60px;
      line-height: 76px;
      padding-bottom: 45px;
      font-weight: bold;
-     text-transform: uppercase;
 }
 
 .text-bg .read_more {
