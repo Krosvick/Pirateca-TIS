@@ -5,7 +5,6 @@ namespace Controllers;
 use Models\Movie;
 use Models\User;
 use DAO\moviesDAO;
-use GuzzleHttp;
 
 class MovieController {
     private $movieDAO;
