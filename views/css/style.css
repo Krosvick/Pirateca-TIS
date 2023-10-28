@@ -327,8 +327,8 @@ button {
 
 
 .banner_main {
-     background: rgb(5,0,28);
-     background: linear-gradient(0deg, rgba(5,0,28,1) 0%, rgba(36,0,99,1) 72%, rgba(47,4,134,1) 100%);
+     background: rgb(36,0,196);
+     background: radial-gradient(circle, rgba(36,0,196,1) 0%, rgba(17,0,37,1) 100%);
      
      padding: 198px 0px 90px 0px;
 }
@@ -350,17 +350,22 @@ button {
      text-transform: lowercase;
 }
 
+#borderimg {
+
+     border: solid 10px #fff; 
+}
+
 .titulo h1 {
      color: #ffffff;
-     font-size: 85px;
+     font-size: 120px;
      line-height: 76px;
      padding-bottom: 45px;
      font-weight: bold;
 }
 
 .text-bg .read_more {
-     border: #000000 solid 2px;
-     color: #10011d !important;
+     border: #fff solid 2px;
+     color: #fff !important;
      font-weight: 500;
      display: block;
      margin: 0 auto;
