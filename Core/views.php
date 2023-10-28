@@ -4,7 +4,7 @@ namespace Core;
 
 class View
 {
-    protected $viewPath;
+    protected $viewPath = base_path('views/');
 
     public function __construct($viewPath)
     {
