@@ -269,7 +269,7 @@ button {
 
 .navigation.navbar-dark .navbar-nav .nav-link {
      padding: 0 20px;
-     color: #ffffff;
+     color: #000000;
      font-size: 17px;
      line-height: 20px;
      font-weight: 500;
@@ -277,14 +277,14 @@ button {
 
 .navigation.navbar-dark .navbar-nav .nav-link:focus,
 .navigation.navbar-dark .navbar-nav .nav-link:hover {
-     color: #ffffff;
+     color: #000000;
 }
 
 .navigation.navbar-dark .navbar-nav .active>.nav-link,
 .navigation.navbar-dark .navbar-nav .nav-link.active,
 .navigation.navbar-dark .navbar-nav .nav-link.show,
 .navigation.navbar-dark .navbar-nav .show>.nav-link {
-     color: #ffffff;
+     color: #3d0083;
 }
 
 .navbar-expand-md .navbar-nav {
@@ -301,7 +301,8 @@ button {
 }
 
 .login_btn a:hover {
-     background: #000 !important;
+     background: #29006b !important;
+     color: #fff !important;
 }
 
 .sea_icon a {
@@ -351,7 +352,7 @@ button {
 
 .titulo h1 {
      color: #ffffff;
-     font-size: 60px;
+     font-size: 85px;
      line-height: 76px;
      padding-bottom: 45px;
      font-weight: bold;
@@ -380,10 +381,10 @@ button {
      width: 62px;
      height: 60px;
      background: transparent;
-     border: #1a1a1a solid 2px;
+     border: #ffffff solid 2px;
      opacity: 1;
      font-size: 30px;
-     color: #131215;
+     color: #ffffff;
      border-radius: 60px;
      top: 43%;
 }
@@ -392,9 +393,9 @@ button {
 #banner1 .carousel-control-next:hover,
 #banner1 .carousel-control-prev:focus,
 #banner1 .carousel-control-next:focus {
-     background: transparent;
-     border: #000000 solid 2px;
-     color: #000000;
+     background: white;
+     border: #ffffff solid 2px;
+     color: #280096;
 }
 
 #banner1 a.carousel-control-prev {
@@ -430,7 +431,7 @@ button {
 .read_more {
      font-size: 17px;
      background-color: transparent;
-     border:  #ffffff solid 2px;
+     border:  #ffffff solid;
      color:  #e7e7e7 ;
      padding: 15px 0px;
      width: 100%;
@@ -443,8 +444,8 @@ button {
 }
 
 .read_more:hover {
-     background: #03cafc;
-     color: #fff !important;
+     background: #fff;
+     color: #240077 !important;
      transition: ease-in all 0.5s;
 }
 
