@@ -1,3 +1,4 @@
+<<<<<<< HEAD:views/partials/header.php
   <header>
     <!-- header inner -->
     <div class="header">
@@ -14,6 +15,9 @@
              </div>
              <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
                 <nav class="navigation navbar navbar-expand-md navbar-dark ">
+=======
+<nav class="navigation navbar navbar-expand-md navbar-dark ">
+>>>>>>> 1f8cec9b38507948ea0e46d41191cf84f705b4b7:views/partials/nav.php
                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
                    <span class="navbar-toggler-icon"></span>
                    </button>
@@ -29,18 +33,14 @@
                             <a class="nav-link" href="glasses.html">Peliculas Gustadas</a>
                          </li>
                          <li class="nav-item d_none login_btn">
-                            <a class="nav-link" href="#">Perfil</a>
+                            <a class="nav-link" href="/">Perfil</a>
+                         </li>
+                         <li class="nav-item">
+                            <a class="nav-link" href="/testing">Testing</a>
                          </li>
                          <li class="nav-item d_none sea_icon">
-                            <a class="nav-link" href="#"><i class="fa fa-shopping-bag" aria-hidden="true"></i><i class="fa fa-search" aria-hidden="true"></i></a>
+                            <a class="nav-link" href="/"><i class="fa fa-shopping-bag" aria-hidden="true"></i><i class="fa fa-search" aria-hidden="true"></i></a>
                          </li>
                       </ul>
                    </div>
-                </nav>
-             </div>
-          </div>
-       </div>
-    </div>
- </header>
-      <!-- end header inner -->
-    
+              </nav>

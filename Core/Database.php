@@ -12,7 +12,8 @@ class Database
     private function __construct() {
         $dsn = "mysql:host={$_ENV["DB_HOST"]};dbname={$_ENV["DB_NAME"]}";
         $options = array(
-            PDO::MYSQL_ATTR_SSL_CA => base_path('/cacert.pem'),
+            //the attrs_ssl_ca will look for the default path if we are in linux
+            PDO::MYSQL_ATTR_SSL_CA => strtoupper(substr(PHP_OS, 0, 3)) === 'WIN' ? base_path("cacert.pem") : openssl_get_cert_locations()['default_cert_file'],
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
         );
 

@@ -2,7 +2,7 @@
 
 namespace DAO;
 //PENSADO PARA UNA TABLA "Users"
-//CON COLUMNAS ID, USERNAME, PASSWORD, MAIL, TIPO, STATUS
+//CON COLUMNAS ID, USERNAME, PASSWORD, MAIL, role, STATUS
 //SUJETO A CAMBIOS
 
 use Core\Database;
@@ -77,12 +77,12 @@ use PDO;
                 //Sentencia SQL.
                 //id autoincrementable?
                 //datos deben ser proporcionados
-                $sql = "INSERT INTO {$this->table} (username, password, email, tipo, status) VALUES (?, ?, ?, ?, ?)";
+                $sql = "INSERT INTO {$this->table} (username, password, email, role, status) VALUES (?, ?, ?, ?, ?)";
                 $params = array(
                     "username" => [$data->username, PDO::PARAM_STR],
                     "password" => [$data->password, PDO::PARAM_STR],
                     "email" => [$data->email, PDO::PARAM_STR],
-                    "tipo" => [$data->tipo, PDO::PARAM_STR],
+                    "role" => [$data->role, PDO::PARAM_STR],
                     "status" => [$data->status, PDO::PARAM_INT]
                 );
                 $stmt = $this->connection->query($sql, $params);
@@ -131,7 +131,7 @@ use PDO;
     }
 
     //VENTAJAS "bindParam"
-    //Control del tipo de dato: Puedes especificar explícitamente el tipo de dato que se espera para cada valor vinculado. Por ejemplo, PDO::PARAM_STR para cadenas de caracteres o PDO::PARAM_INT para enteros.
+    //Control del role de dato: Puedes especificar explícitamente el role de dato que se espera para cada valor vinculado. Por ejemplo, PDO::PARAM_STR para cadenas de caracteres o PDO::PARAM_INT para enteros.
 
 //Vinculación por referencia: Puedes vincular valores por referencia, lo que significa que los valores de las variables se pueden actualizar y reflejarán esos cambios en la consulta.
 
