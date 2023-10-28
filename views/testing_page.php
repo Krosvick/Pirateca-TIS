@@ -9,7 +9,12 @@
   <main>
     <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
       <!-- Your content -->
+      <?php foreach ($result as $result): ?>
+      <li><?= $result['original_title'] ?></li>
+      <?php endforeach; ?>
+
     </div>
   </main>
 
+  
 <?php require('partial_testing/footer.php')?>
