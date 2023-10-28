@@ -22,7 +22,7 @@
                      <div class="carousel-caption">
                         <div class="text-bg">
                            <h1>Titulo Pelicula</h1>
-                           <figure><img src="images/drive.png" alt="#"/></figure>
+                           <figure><img id="borderimg" src="images/drive.png" alt="#"/></figure>
                            <a class="read_more" href="#">Mirar sinopsis</a>
                         </div>
                      </div>
@@ -33,7 +33,7 @@
                      <div class="carousel-caption">
                         <div class="text-bg">
                            <h1>Titulo Pelicula</h1>
-                           <figure><img src="images/blade2049.png" alt="#"/></figure>
+                           <figure><img id="borderimg" src="images/blade2049.png" alt="#"/></figure>
                            <a class="read_more" href="#">Mirar sinopsis</a>
                         </div>
                      </div>
@@ -44,7 +44,7 @@
                      <div class="carousel-caption">
                         <div class="text-bg">
                            <h1>Titulo Pelicula</h1>
-                           <figure><img src="images/spacemovie.jpg" alt="#"/></figure>
+                           <figure><img id="borderimg" src="images/spacemovie.jpg" alt="#"/></figure>
                            <a class="read_more" href="#">Mirar sinopsis</a>
                         </div>
                      </div>
@@ -55,7 +55,7 @@
                      <div class="carousel-caption">
                         <div class="text-bg">
                            <h1>Titulo Pelicula</h1>
-                           <figure><img src="images/barrandero.png" alt="#"/></figure>
+                           <figure><img id="borderimg" src="images/barrandero.png" alt="#"/></figure>
                            <a class="read_more" href="#">Mirar sinopsis</a>
                         </div>
                      </div>

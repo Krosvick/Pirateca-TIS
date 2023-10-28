@@ -12,13 +12,13 @@ class UserController {
         $this->userDAO = new UserDAO();
     }
 
-    public function registerUser($username, $password, $email, $tipo) {
+    public function registerUser($username, $password, $email, $role) {
         // You can add input validation and error handling here
         // For example, check if the username or email is already taken
         // Password should be hashed before storing in the database
 
         // Create a new user object
-        $user = new User(null, $username, $password, $email, UserDAO::STATUS_ACTIVE, $tipo);
+        $user = new User(null, $username, $password, $email, UserDAO::STATUS_ACTIVE, $role);
 
         // Register the user using the UserDAO
         $this->userDAO->register($user);
