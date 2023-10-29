@@ -10,10 +10,6 @@ $dotenv->load();
 const BASE_PATH = __DIR__.'/';
 
 require 'functions.php';
-require base_path('Core/base_controller.php');
-require base_path('Core/views.php');
-require base_path('dao/DAO.php');
-require base_path('Core/Database.php');
 
 $router = new Router();
 require base_path('routes.php');

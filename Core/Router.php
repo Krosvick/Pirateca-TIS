@@ -51,11 +51,9 @@ class Router
                 // Extract the controller class and method
                 list($controllerClass, $method) = explode('@', $route['controller']);
                 
-                $originalControllerClass = $controllerClass; //for debugging purposes
-                $controllerClass = $this->getDirectory() . $controllerClass;
-                $controllerClass = base_path($controllerClass . '.php');
-                require $controllerClass;
-                $controllerClass = $this->getNamespace() . $originalControllerClass;
+                // Prepend the namespace
+                $controllerClass = $this->getNamespace() . $controllerClass;
+
                 $controller = new $controllerClass();
 
                 // Call the relevant method
