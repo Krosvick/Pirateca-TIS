@@ -20,15 +20,16 @@
       <?php foreach ($result as $result): ?>
         
       <li>
-      <a href="#" class = "text-blue-500 hover:underline">
+      <a href="/another_test?id=<?= $result['id']?>" class = "text-blue-500 hover:underline">
         <?= $result['original_title'] ?>
       
       </li>
       <?php endforeach; ?>
       </a>
       <h1>Find function</h1>
+      <li>
       <?= $result2['original_title'] ?>
-        
+      </li>
     </div>
   </main>
 
