@@ -10,7 +10,7 @@ abstract class BaseController
     public function __construct($routeParams = null)
     {
         $this->routeParams = $routeParams;
-        $this->view = new View(__DIR__ . '/../views/'); // Set the view path here
+        $this->view = new View(); // Set the view path here
     }
 
     protected function before()
@@ -39,5 +39,6 @@ abstract class BaseController
         http_response_code(404);
         echo '404 - Not Found';
     }
+
 }
 
