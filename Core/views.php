@@ -4,11 +4,11 @@ namespace Core;
 
 class View
 {
-    protected $viewPath = base_path('views/');
+    protected $viewPath;
 
-    public function __construct($viewPath)
+    public function __construct()
     {
-        $this->viewPath = $viewPath;
+        $this->viewPath = base_path("views/");
     }
 
     public function render($view, $data = [])
