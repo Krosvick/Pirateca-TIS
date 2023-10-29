@@ -4,7 +4,6 @@ namespace Core;
 
 use Controllers;
 
-
 class Router
 {
     protected $routes = [];
@@ -49,9 +48,12 @@ class Router
     {
         foreach ($this->routes as $route) {
             if ($route['uri'] === $uri && $route['method'] === strtoupper($method)) {
+
                 // Extract the controller class and method
                 list($controllerClass, $method) = explode('@', $route['controller']);
+                
                 // Create an instance of the controller
+                
                 $controller = new $controllerClass();
 
                 // Call the specified method on the controller
