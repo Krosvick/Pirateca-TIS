@@ -7,7 +7,7 @@ abstract class BaseController
     protected $routeParams;
     protected $view;
 
-    public function __construct($routeParams)
+    public function __construct($routeParams = null)
     {
         $this->routeParams = $routeParams;
         $this->view = new View(__DIR__ . '/../views/'); // Set the view path here
