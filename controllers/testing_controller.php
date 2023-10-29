@@ -9,7 +9,7 @@ require BASE_PATH . '/vendor/autoload.php'; //composer
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__.'/../'); //credenciales?
 $dotenv->load();
 
-require BASE_PATH . 'functions.php';
+//require BASE_PATH . 'functions.php'; ya presente en 'index.php'
 require BASE_PATH . 'dao/DAO.php';
 require BASE_PATH . 'Core/Database.php';
 
