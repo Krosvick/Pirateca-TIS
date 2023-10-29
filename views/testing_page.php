@@ -13,25 +13,25 @@
     </div>
   </header>
   <main>
-    <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8 h-auto">
       <!-- Your content -->
       <!-- "?=" is the same as "echo $variable" -->
-      <h1>Get some function</h1>
-      <?php foreach ($result as $result): ?>
-        
-      <li>
-      <a href="/another_test?id=<?= $result['id']?>" class = "text-blue-500 hover:underline">
-        <?= $result['original_title'] ?>
-      
-      </li>
+      <div class="flex justify-center">
+        <h1 class="text-5xl font-bold pb-5 inline">Get some</h1>
+        <h1 class="inline text-5xl pl-5 ">Movies</h1>
+      </div>
+      <div class="flex flex-col justify-center items-center h-screen w-full overflow-scroll gap-5 mt-5 snap-y snap-mandatory">
+        <?php foreach ($user_movies as $result): ?>
+        <div class="h-screen w-1/4 snap-center relative place-items-center">
+          <img src="https://th.bing.com/th/id/OIP.Ntc0avgIkLYQdaqiq6OTzwHaK9?pid=ImgDet&rs=1" alt="poster" class="h-full w-full rounded">
+          <a href="/another_test?id=<?= $result['id']?>" class="absolute bottom-1 h-1/4 w-full bg-gray-700 opacity-80">
+              <?= $result['original_title'] ?>
+          </a>
+        </div>
       <?php endforeach; ?>
-      </a>
-      <h1>Find function</h1>
-      <li>
-      <?= $result2['original_title'] ?>
-      </li>
+      </div>
     </div>
   </main>
 
   
-<?php require('partial_testing/footer.php')?>
+<?php require('partials/footer.php')?>

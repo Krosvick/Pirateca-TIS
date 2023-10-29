@@ -35,7 +35,7 @@ class Database
             $params = array(
                     'limit' => [$limit, PDO::PARAM_INT], //PDO::PARAM_INT es para especificar que es un entero
                     'offset' => [$offset, PDO::PARAM_INT]
-                );
+            );
         */
         foreach ($params as $key => $value) {
             $this->statement->bindValue($key, $value[0], $value[1]);

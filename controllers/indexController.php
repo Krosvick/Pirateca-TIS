@@ -12,8 +12,7 @@ class IndexController extends BaseController
     {
         $dummy_user = new User();
         $dummy_user->user_id = 1;
-        $dummy_user->get_recommended_movies(3);
-        dd($dummy_user);
+        $user_movies = $dummy_user->get_recommended_movies(3);
 
         $peliculas = new moviesDAO();
         $result = $peliculas->get_some(3, 0);
@@ -23,6 +22,7 @@ class IndexController extends BaseController
             'title' => 'Home',
             'result' => $result,
             'result2' => $result2,
+            'user_movies' => $user_movies
         ];
         $this->render('testing_page', $data);
     }
