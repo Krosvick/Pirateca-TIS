@@ -10,18 +10,22 @@ $routes = [
     // '/more_routes' => 'controllers/controller.php'
 ];
 
-function route_to_controller($uri, $routes){
-    if(array_key_exists($uri,$routes)){  //If uri exist in routes
+function route_to_controller($uri, $routes)
+{
+    if(array_key_exists($uri,$routes))
+    {                                   //If uri exist in routes
         require $routes[$uri];          //do this
-    }else {
+    }
+    else 
+    {
         cringe();
     }
 }
 
-function cringe(){
-    http_response_code(404);
+function cringe($code = 404){
+    http_response_code($code);
 
-    require 'views/404.php';
+    require "views/{$code}.php";
 
     die();
 }
