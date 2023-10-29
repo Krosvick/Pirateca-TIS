@@ -8,7 +8,7 @@ use Models\Movie;
 use Exception;
 use PDO;
 
-class moviesDAO implements DAOInterface {
+class MoviesDAO implements DAOInterface {
 
     private $connection;
     private $table = "movies";

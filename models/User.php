@@ -14,7 +14,7 @@ class User{
     public $deleted_at;
     public $role;
 
-    public function __construct($user_id, $username, $password, $email, $deleted_at, $role){
+    public function __construct($user_id = null, $username = null, $password = null, $email = null, $deleted_at = null, $role = "user"){
         $this->user_id=$user_id;
         $this->username=$username;
         $this->password=$password;

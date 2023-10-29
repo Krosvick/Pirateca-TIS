@@ -10,7 +10,7 @@ use Models\User;
 use Exception;
 use PDO;
 
-    class UserDAO implements DAOInterface{
+    class UsersDAO implements DAOInterface{
         //Clase para operaciones CRUD de usuarios
         private $connection;
         private $table = "users";
