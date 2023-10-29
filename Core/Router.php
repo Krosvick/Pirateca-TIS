@@ -2,7 +2,6 @@
 
 namespace Core;
 
-use Controllers;
 
 class Router
 {
@@ -52,20 +51,38 @@ class Router
                 // Extract the controller class and method
                 list($controllerClass, $method) = explode('@', $route['controller']);
                 
-                // Create an instance of the controller
-                
+                $originalControllerClass = $controllerClass; //for debugging purposes
+                $controllerClass = $this->getDirectory() . $controllerClass;
+                $controllerClass = base_path($controllerClass . '.php');
+                require $controllerClass;
+                $controllerClass = $this->getNamespace() . $originalControllerClass;
                 $controller = new $controllerClass();
 
-                // Call the specified method on the controller
+                // Call the relevant method
                 $controller->$method();
 
+                
                 return;
+
             }
         }
 
         $this->abort();
     }
 
+    public function getNamespace()
+    {
+        $namespace = 'Controllers\\';
+
+        return $namespace;
+    }
+
+    public function getDirectory()
+    {
+        $directory = 'controllers\\';
+
+        return $directory;
+    }
 
     public function previousUrl()
     {
