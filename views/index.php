@@ -2,7 +2,7 @@
 <?php require('partials/head.php') ?>
 
       <!-- header -->
-      <?php require('partials/header.php')?>
+      <?php require('partials/nav.php')?>
         <!-- end header -->
 
    

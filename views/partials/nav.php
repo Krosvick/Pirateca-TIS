@@ -1,4 +1,3 @@
-<<<<<<< HEAD:views/partials/header.php
   <header>
     <!-- header inner -->
     <div class="header">
@@ -8,16 +7,13 @@
                 <div class="full">
                    <div class="center-desk">
                       <div class="logo">
-                         <a href="index.php"><img src="images/logopirateca.png" alt="#" /></a>
+                         <a href="index.php"><img src="images/PLACEHOLDER.png" alt="#" /></a>
                       </div>
                    </div>
                 </div>
              </div>
              <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
                 <nav class="navigation navbar navbar-expand-md navbar-dark ">
-=======
-<nav class="navigation navbar navbar-expand-md navbar-dark ">
->>>>>>> 1f8cec9b38507948ea0e46d41191cf84f705b4b7:views/partials/nav.php
                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
                    <span class="navbar-toggler-icon"></span>
                    </button>

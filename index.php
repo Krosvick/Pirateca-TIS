@@ -11,6 +11,10 @@
 //require base_path('dao/DAO.php');
 //require base_path('Core/Database.php');
 
+//require 'functions.php';
+//require 'router.php';
+//require base_path('dao/DAO.php');
+//require base_path('Core/Database.php');
 
 /*$router = new Router();
 require base_path('routes.php');
