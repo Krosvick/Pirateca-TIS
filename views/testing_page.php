@@ -13,18 +13,18 @@
     </div>
   </header>
   <main>
-    <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8 h-auto">
+    <div>
       <!-- Your content -->
       <!-- "?=" is the same as "echo $variable" -->
-      <div class="flex justify-center">
-        <h1 class="text-5xl font-bold pb-5 inline">Get some</h1>
-        <h1 class="inline text-5xl pl-5 ">Movies</h1>
+      <div class="flex justify-left mt-5 mx-5">
+        <h1 class="text-3xl font-bold pb-5 inline">Recomendado para</h1>
+        <h1 class="inline text-3xl pl-5 italic">ti</h1>
       </div>
-      <div class="flex flex-col justify-center items-center h-screen w-full overflow-scroll gap-5 mt-5 snap-y snap-mandatory">
+      <div class="flex flex-row items-center h-auto snap-x snap-mandatory overflow-x-auto">
         <?php foreach ($user_movies as $result): ?>
-        <div class="h-screen w-1/4 snap-center relative place-items-center">
-          <img src="https://th.bing.com/th/id/OIP.Ntc0avgIkLYQdaqiq6OTzwHaK9?pid=ImgDet&rs=1" alt="poster" class="h-full w-full rounded">
-          <a href="/another_test?id=<?= $result['id']?>" class="absolute bottom-1 h-1/4 w-full bg-gray-700 opacity-80">
+        <div class="flex justify-center h-screen min-w-full w-full snap-center relative my-5">
+          <img src="https://th.bing.com/th/id/OIP.Ntc0avgIkLYQdaqiq6OTzwHaK9?pid=ImgDet&rs=1" alt="poster" class="h-full w-4/6 rounded-2xl hover:drop-shadow-md lg:w-1/4">
+          <a href="/another_test?id=<?= $result['id']?>" class="absolute bottom-0 h-10 w-1/2 bg-slate-900 border-t-2 border-x-2 border-zinc-300 rounded text-white text-center lg:w-1/4">
               <?= $result['original_title'] ?>
           </a>
         </div>
