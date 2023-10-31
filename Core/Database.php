@@ -29,19 +29,23 @@ class Database
 
     public function query($query, $params = [])
     {
-        $this->statement = $this->connection->prepare($query);
-        #params will look like this
-        /*
-            $params = array(
-                    'limit' => [$limit, PDO::PARAM_INT], //PDO::PARAM_INT es para especificar que es un entero
-                    'offset' => [$offset, PDO::PARAM_INT]
-            );
-        */
-        foreach ($params as $key => $value) {
-            $this->statement->bindValue($key, $value[0], $value[1]);
-        }
+        try{
+            $this->statement = $this->connection->prepare($query);
+            #params will look like this
+            /*
+                $params = array(
+                        'limit' => [$limit, PDO::PARAM_INT], //PDO::PARAM_INT es para especificar que es un entero
+                        'offset' => [$offset, PDO::PARAM_INT]
+                );
+            */
+            foreach ($params as $key => $value) {
+                $this->statement->bindValue($key, $value[0], $value[1]);
+            }
 
-        $this->statement->execute();
+            $this->statement->execute();
+        }catch(\PDOException $e){
+            die($e->getMessage());
+        }
 
         return $this;
     }
