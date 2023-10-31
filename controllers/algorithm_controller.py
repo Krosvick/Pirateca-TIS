@@ -10,7 +10,6 @@ class algorithm_controller():
     def generate_model(df): #all file input is in csv format, remember to save the model
         from surprise import SVD
         import numpy as np
-        import pandas as pd
 
         from surprise import Dataset 
         from surprise import Reader
@@ -63,7 +62,6 @@ class algorithm_controller():
         return biased_svd_model
     
     def get_user_recommendations(user_id, df, loaded_model, top_N=30, to_json=False): #all file input is in csv format, user_id and top_N are integers
-        import pandas as pd
         movie_ids = df['movieId'].unique()
 
         # Create a list of movie IDs that the user has not rated

@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+
 <?php 
 //La carpeta 'partials' tiene como unico proposito
 //guardar porciones de codigo html y asi
@@ -6,6 +8,10 @@
 
 <?php require('partial_testing/head.php')?>
 <?php require('partial_testing/nav.php')?>
+
+
+  <link rel="stylesheet" href="css/style_testing.css">
+  <!-- testeo en cosas de css para quitar el bootstrap lo mas posible-->
 
   <header class="bg-white shadow">
     <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
@@ -23,7 +29,7 @@
       <div class="flex flex-row items-center h-auto snap-x snap-mandatory overflow-x-auto">
         <?php foreach ($user_movies as $result): ?>
         <div class="flex justify-center h-screen min-w-full w-full snap-center relative my-5">
-          <img src="https://th.bing.com/th/id/OIP.Ntc0avgIkLYQdaqiq6OTzwHaK9?pid=ImgDet&rs=1" alt="poster" class="h-full w-4/6 rounded-2xl hover:drop-shadow-md lg:w-1/4">
+          <img src="<?= $result["poster_path"] ? "https://image.tmdb.org/t/p/w500".$result['poster_path'] : '/views/images/scplogo.png' ?>" alt="poster" class="h-full w-4/6 rounded-2xl hover:drop-shadow-md lg:w-1/4">
           <a href="/another_test?id=<?= $result['id']?>" class="absolute bottom-0 h-10 w-1/2 bg-slate-900 border-t-2 border-x-2 border-zinc-300 rounded text-white text-center lg:w-1/4">
               <?= $result['original_title'] ?>
           </a>
@@ -35,3 +41,5 @@
 
   
 <?php require('partials/footer.php')?>
+
+</html>
