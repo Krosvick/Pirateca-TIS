@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+
 <?php 
 //La carpeta 'partials' tiene como unico proposito
 //guardar porciones de codigo html y asi
@@ -6,6 +8,10 @@
 
 <?php require('partial_testing/head.php')?>
 <?php require('partial_testing/nav.php')?>
+
+
+  <link rel="stylesheet" href="css/style_testing.css">
+  <!-- testeo en cosas de css para quitar el bootstrap lo mas posible-->
 
   <header class="bg-white shadow">
     <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
@@ -35,3 +41,5 @@
 
   
 <?php require('partials/footer.php')?>
+
+</html>
