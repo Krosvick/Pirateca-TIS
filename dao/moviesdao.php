@@ -82,29 +82,32 @@ class MoviesDAO implements DAOInterface {
         }
 
     }
-    /**
-    * @param Movie $data
-    */
-    public function update($id, $data) {
+    public function update($id, $data, $columns = null) {
         try {
-            $sql = "UPDATE {$this->table} SET original_title = ?, overview = ?, genres = ?, belongs_to_collection = ?, adult = ?, original_language = ?, release_date = ?, poster_path = ? WHERE id = ?";
-            $params = array(
-                "original_title" => [$data->original_title, PDO::PARAM_STR],
-                "overview" => [$data->overview, PDO::PARAM_STR],
-                "genres" => [$data->genres, PDO::PARAM_STR],
-                "belongs_to_collection" => [$data->belongs_to_collection, PDO::PARAM_STR],
-                "adult" => [$data->adult, PDO::PARAM_STR],
-                "original_language" => [$data->original_language, PDO::PARAM_STR],
-                "release_date" => [$data->release_date, PDO::PARAM_STR],
-                "poster_path" => [$data->poster_path, PDO::PARAM_STR],
-                "id" => [$id, PDO::PARAM_INT]
-            );
-            $stmt = $this->connection->query($sql, $params);
-            return $stmt;
+            if (empty($columns)) {
+                return false; // No columns specified for update
+            }
+
+            $sql = "UPDATE {$this->table} SET ";
+            $params = [];
+            foreach ($columns as $column) {
+                $paramName = ":$column";
+                $sql .= "$column = $paramName, ";
+                $params[$paramName] = [$data[$column], PDO::PARAM_STR];
+            }
+            $sql = rtrim($sql, ', ');
+            $sql .= " WHERE id = :id";
+            $params[':id'] = [$id, PDO::PARAM_INT];
+
+            $this->connection->query($sql, $params);
+
+            return true; // Success
         } catch (Exception $e) {
-            die($e->getMessage());
+            // Handle the exception or log the error
+            return false; // Error
         }
     }
+
     public function delete($id) {
         try {
             $sql = "DELETE FROM {$this->table} WHERE id = ?";
