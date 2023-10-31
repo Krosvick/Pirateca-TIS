@@ -15,7 +15,7 @@
          <div class="container">
             <div class="row">
                <div class="col-md-12">
-                  <p>© 2023 All Rights Reserved. Design by Alonso Bordones</p>
+                  <p></p>
                </div>
             </div>
          </div>
