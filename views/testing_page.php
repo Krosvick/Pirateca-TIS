@@ -23,7 +23,7 @@
       <div class="flex flex-row items-center h-auto snap-x snap-mandatory overflow-x-auto">
         <?php foreach ($user_movies as $result): ?>
         <div class="flex justify-center h-screen min-w-full w-full snap-center relative my-5">
-          <img src="https://th.bing.com/th/id/OIP.Ntc0avgIkLYQdaqiq6OTzwHaK9?pid=ImgDet&rs=1" alt="poster" class="h-full w-4/6 rounded-2xl hover:drop-shadow-md lg:w-1/4">
+          <img src="https://image.tmdb.org/t/p/original<?= $result["poster_path"]?>" alt="poster" class="h-full w-4/6 rounded-2xl hover:drop-shadow-md lg:w-1/4">
           <a href="/another_test?id=<?= $result['id']?>" class="absolute bottom-0 h-10 w-1/2 bg-slate-900 border-t-2 border-x-2 border-zinc-300 rounded text-white text-center lg:w-1/4">
               <?= $result['original_title'] ?>
           </a>
