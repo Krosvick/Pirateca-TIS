@@ -34,13 +34,21 @@ function get_collumns($filtered_data, $collumns){
     return $data_array;
 }
 
-function update_movies($data_array, $updated_collumns){
+function update_movies($data_array, $updated_columns, $batch_size = 100) {
     $movies = new MoviesDAO();
-    #in data_array we have 2 columns: id and the collum to be updated, so we need to update the movies table
-    foreach ($data_array as $row) {
-        $movies->update($row['id'], $row[$updated_collumns], [$updated_collumns]);
-    }
     
+    $num_rows = count($data_array);
+    $num_batches = ceil($num_rows / $batch_size);
+    
+    for ($i = 0; $i < $num_batches; $i++) {
+        $start = $i * $batch_size;
+        $end = min(($i + 1) * $batch_size, $num_rows);
+        $batch_data = array_slice($data_array, $start, $end - $start, true);
+        
+        foreach ($batch_data as $row) {
+            $movies->update($row['id'], $row, [$updated_columns]);
+        }
+    }
 }
 
 $csvData = parseCSV(BASE_PATH . 'datasets/movies_metadata_cleaned.csv', ['id', 'poster_path']);
