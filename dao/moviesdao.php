@@ -87,7 +87,7 @@ class MoviesDAO implements DAOInterface {
     */
     public function update($id, $data) {
         try {
-            $sql = "UPDATE {$this->table} SET original_title = ?, overview = ?, genres = ?, belongs_to_collection = ?, adult = ?, original_language = ?, release_date = ? WHERE id = ?";
+            $sql = "UPDATE {$this->table} SET original_title = ?, overview = ?, genres = ?, belongs_to_collection = ?, adult = ?, original_language = ?, release_date = ?, poster_path = ? WHERE id = ?";
             $params = array(
                 "original_title" => [$data->original_title, PDO::PARAM_STR],
                 "overview" => [$data->overview, PDO::PARAM_STR],
@@ -96,6 +96,7 @@ class MoviesDAO implements DAOInterface {
                 "adult" => [$data->adult, PDO::PARAM_STR],
                 "original_language" => [$data->original_language, PDO::PARAM_STR],
                 "release_date" => [$data->release_date, PDO::PARAM_STR],
+                "poster_path" => [$data->poster_path, PDO::PARAM_STR],
                 "id" => [$id, PDO::PARAM_INT]
             );
             $stmt = $this->connection->query($sql, $params);
