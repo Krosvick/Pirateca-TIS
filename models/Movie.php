@@ -15,6 +15,7 @@ namespace Models;
         public $adult;
         public $original_language;
         public $release_date;
+        public $poster_path;
 
 
         function __construct($id,$original_title,$overview,$genres,$belongs_to_collection,$adult,$original_language,$release_date){
