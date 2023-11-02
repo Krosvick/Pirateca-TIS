@@ -9,7 +9,7 @@ class algorithm_controller():
 
     def generate_model(df): #all file input is in csv format, remember to save the model
         from surprise import SVD
-        import numpy as np
+        from numpy import arange
 
         from surprise import Dataset 
         from surprise import Reader
@@ -31,7 +31,7 @@ class algorithm_controller():
         # Perform hyperparameter tuning
         param_distributions = {
             'n_factors': list(range(50, 160, 10)),
-            'reg_all': np.arange(0.02, 0.2, 0.02),
+            'reg_all': arange(0.02, 0.2, 0.02),
             'n_epochs': list(range(1, 51))
         }
         # ------------------------------------ LOG PERFORMANCE, MORE THAN 2 ARE NOT REQUIRED ------------------------------------

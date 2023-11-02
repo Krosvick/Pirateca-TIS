@@ -4,6 +4,8 @@ from urllib.parse import urlparse, parse_qs
 import json
 from algorithm_controller import algorithm_controller
 import sys
+import time
+import threading
 sys.path.append("..")
 
 class SimpleAPI(BaseHTTPRequestHandler):
@@ -28,13 +30,16 @@ class SimpleAPI(BaseHTTPRequestHandler):
         Returns:
             None
     """
+    ratings_df = None
+    model = None
+
     def do_GET(self):
         parsed_url = urlparse(self.path)
         query_params = parse_qs(parsed_url.query)
         if parsed_url.path == '/recommendations':
             userId = int(query_params['userId'][0])
             n = int(query_params.get('n', [10])[0])
-            top_movies = algorithm_controller.get_user_recommendations(userId, ratings_df, model, n)
+            top_movies = algorithm_controller.get_user_recommendations(userId, SimpleAPI.ratings_df, SimpleAPI.model, 10)
             response = {'top_movies': top_movies}
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
@@ -57,10 +62,27 @@ class NpEncoder(json.JSONEncoder):
             return obj.tolist()
         return super(NpEncoder, self).default(obj)
 
+def generate_model_periodically():
+    while True:
+        if SimpleAPI.ratings_df is not None:  # Check if ratings_df is defined
+            ratings_df = SimpleAPI.ratings_df  # Access ratings_df
+            # Call the generate_model function
+            SimpleAPI.model = algorithm_controller.generate_model(ratings_df)
+            print('Model regenerated.')
+        else:
+            print('ratings_df is not defined yet. Waiting...')
+        
+        # Wait for 20 seconds before regenerating the model
+        time.sleep(20)
+
+
 if __name__ == '__main__':
+    SimpleAPI.ratings_df = pd.read_csv('datasets/ratings_small_cleaned.csv')  # Initialize ratings_df
+    model_thread = threading.Thread(target=generate_model_periodically)
+    model_thread.daemon = True
+    model_thread.start()
+
     server_address = ('', 8001)
     httpd = HTTPServer(server_address, SimpleAPI)
-    ratings_df = pd.read_csv('datasets/ratings_small_cleaned.csv')
-    model = algorithm_controller.generate_model(ratings_df)
     print('Starting server...')
     httpd.serve_forever()
