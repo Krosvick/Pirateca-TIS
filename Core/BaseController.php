@@ -34,6 +34,12 @@ abstract class BaseController
         exit;
     }
 
+    protected function json($data)
+    {
+        header('Content-Type: application/json');
+        echo json_encode($data);
+    }
+
     public function notFoundAction()
     {
         http_response_code(404);
