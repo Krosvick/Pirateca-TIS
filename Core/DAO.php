@@ -8,6 +8,7 @@
 //update: update a record from the database with the given data
 //delete: delete a row from the database, if the table has relations, we also delete the related rows
 namespace Core;
+use PDO;
 
 abstract class DAO {
     protected $connection;
