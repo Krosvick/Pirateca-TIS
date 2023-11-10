@@ -52,7 +52,6 @@ class IndexController extends BaseController
             'result2' => $result2,
             'user_movies' => $user_movies
         ];
-        #return a json response
-        return $this->json($data);
+        return $this->render("index", $data);
     }
 }
