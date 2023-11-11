@@ -10,41 +10,32 @@ class User{
     public $user_id;
     public $username;
     public $password;
-    public $email;
-    public $deleted_at;
-    public $role;
+    public UserDAO $userDAO;
 
-    public function __construct($user_id = null, $username = null, $password = null, $email = null, $deleted_at = null, $role = "user"){
-        $this->user_id=$user_id;
-        $this->username=$username;
-        $this->password=$password;
-        $this->email=$email;
-        $this->deleted_at=$deleted_at;
-        $this->role=$role;
+    public function __construct($username, $password){ //we could use user 0 as a guest user
+        $this->username = $username;
+        $this->password = $password;
+        $this->userDAO = new UserDAO();
     }
 
-    public function get_user_id(){
-        return $this->user_id;
+    public function login(){
+        $user = $this->userDAO->find($this->username);
+        if ($user != null){
+            if ($user->password == $this->password){
+                $this->user_id = $user->user_id;
+                return true;
+            }
+        }
+        return false;
     }
 
-    public function get_username(){
-        return $this->username;
-    }
-
-    public function get_password(){
-        return $this->password;
-    }
-
-    public  function get_email(){
-        return $this->email;
-    }
-
-    public function get_deleted_at(){
-        return $this->deleted_at;
-    }
-
-    public function get_role(){
-        return $this->role;
+    public function register(){
+        $user = $this->userDAO->find($this->username);
+        if ($user == null){
+            $this->userDAO->add($this);
+            return true;
+        }
+        return false;
     }
 
     public function get_recommended_movies($quantity): array{
@@ -53,5 +44,16 @@ class User{
         $response = json_decode($response->getBody(), true);
         return $response;
     }
+
+    public function get_user_movies($quantity): array{
+        $client = new GuzzleHttp\Client();
+        $response = $client->request('GET', 'localhost:8001/user-movies?userId='.$this->user_id.'&n='.$quantity);
+        $response = json_decode($response->getBody(), true);
+        return $response;
+    }
+
+    //login
+    //register
+    //delete account
 
 }

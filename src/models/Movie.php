@@ -27,6 +27,30 @@ class Movie{
         $this->movies_list = $movies;
         return $this->movies_list;
     }
-    
+
+    public function find_movie($id){
+        $movie = $this->moviesDAO->find($id);
+        return $movie;
+    }
+
+    public function search_movie($title){
+        $movies = $this->moviesDAO->search($title);
+        return $movies;
+    }
+
+    public function get_all(){
+        $movies = $this->moviesDAO->get_all();
+        return $movies;
+    }
+
+
+
+    //search movie by title
+    //show movie details
+    //delete movie
+    //add movie
+    //view all movies
+
+
 }
 ?>
