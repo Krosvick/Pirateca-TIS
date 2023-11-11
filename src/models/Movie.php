@@ -18,7 +18,7 @@ class Movie{
         $movies = array();
         foreach($id_list as $body){
             foreach($body as $movie){
-                $movie = $moviesDAO->find($movie['movieId']);
+                $movie = $this->moviesDAO->find($movie['movieId']);
                 if ($movie != null){
                     array_push($movies, $movie);
                 }

@@ -53,8 +53,8 @@ class User{
         $client = new GuzzleHttp\Client();
         $response = $client->request('GET', 'localhost:8001/recommendations?userId='.$this->user_id.'&n='.$quantity);
         $response = json_decode($response->getBody(), true);
-        $this->movies = $this->movies->find_movies($response);
-        return $movies;
+        $movies_array = $this->movies->find_movies($response);
+        return $movies_array;
     }
 
 }
