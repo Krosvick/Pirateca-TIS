@@ -8,9 +8,9 @@ use GuzzleHttp;
 
 class User{
 
-    public $user_id;
-    public $username;
-    public $password;
+    private $user_id;
+    private $username;
+    private $password;
     public UsersDAO $userDAO;
 
     public function __construct(){ //we could use user 0 as a guest user
@@ -31,13 +31,8 @@ class User{
         return false;
     }
 
-    public function register(){
-        $user = $this->userDAO->find($this->username);
-        if ($user == null){
-            $this->userDAO->add($this);
-            return true;
-        }
-        return false;
+    public function register($username, $password){
+        $this->userDAO->add($username, $password);
     }
 
     public function get_recommended_movies($quantity): array{

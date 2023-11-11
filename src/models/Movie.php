@@ -34,7 +34,7 @@ class Movie{
     }
 
     public function search_movie($title){
-        $movies = $this->moviesDAO->search($title);
+        $movies = $this->moviesDAO->search($title); //need search function in moviesDAO or something similar
         return $movies;
     }
 
@@ -43,14 +43,13 @@ class Movie{
         return $movies;
     }
 
+    public function delete_movie($id){
+        $this->moviesDAO->delete($id);
+    }
 
-
-    //search movie by title
-    //show movie details
-    //delete movie
-    //add movie
-    //view all movies
-
+    public function add_movie($movie){
+        $this->moviesDAO->add($movie);
+    }
 
 }
 ?>
