@@ -1,4 +1,7 @@
-<!DOCTYPE html>
+<!-- arreglar el tema del directorio -->
+<?php require('C:\xampp\htdocs\Sufrimiento-TIS\src\views\partials\nav.php')?>
+
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
