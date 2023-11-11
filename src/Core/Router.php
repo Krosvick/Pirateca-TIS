@@ -2,70 +2,105 @@
 
 namespace Core;
 
+//routes will be added follwing the format below
+//$router->addRoute('/', 'indexController@index');
+//where the first parameter is the url and the second is the controller and method to be called
 
 class Router
 {
     protected $routes = [];
-
-    public function add($method, $uri, $controller)
+    protected $params = [];
+    protected $request;
+    protected $response;
+    protected $router;
+    public function __construct(Request $request, Response $response)
     {
-        $this->routes[] = [
-            'uri' => $uri,
+        $this->request = $request;
+        $this->response = $response;
+
+    }
+    public function addRoute($url, $handler)
+    {
+        // Split the handler into controller and action
+        list($controller, $action) = explode('@', $handler);
+
+        // Add route with controller and action as params
+        $this->routes[$url] = [
             'controller' => $controller,
-            'method' => $method,
+            'action' => $action,
         ];
-
-        return $this;
     }
 
-    public function get($uri, $controller)
+    public function getRoutes()
     {
-        return $this->add('GET', $uri, $controller);
+        return $this->routes;
     }
 
-    public function post($uri, $controller)
+    public function matchRoute($url)
     {
-        return $this->add('POST', $uri, $controller);
-    }
-
-    public function delete($uri, $controller)
-    {
-        return $this->add('DELETE', $uri, $controller);
-    }
-
-    public function patch($uri, $controller)
-    {
-        return $this->add('PATCH', $uri, $controller);
-    }
-
-    public function put($uri, $controller)
-    {
-        return $this->add('PUT', $uri, $controller);
-    }
-
-    public function route($uri, $method)
-    {
-        foreach ($this->routes as $route) {
-            if ($route['uri'] === $uri && $route['method'] === strtoupper($method)) {
-
-                // Extract the controller class and method
-                list($controllerClass, $method) = explode('@', $route['controller']);
-                
-                // Prepend the namespace
-                $controllerClass = $this->getNamespace() . $controllerClass;
-
-                $controller = new $controllerClass();
-
-                // Call the relevant method
-                $controller->$method();
-
-                
-                return;
-
+        foreach ($this->routes as $route => $params) {
+            if ($url == $route) {
+                $this->params = $params;
+                return true;
             }
         }
+        return false;
+    }
 
-        $this->abort();
+    public function getParams()
+    {
+        return $this->params;
+    }
+
+    public function dispatch()
+    {
+        $url = $this->request->getUrl();
+        $url = $this->removeQueryStringVariables($url);
+
+        if (isset($this->routes[$url])) {
+            $params = $this->routes[$url];
+
+            $controller = $this->getNamespace() . $this->toStudlyCaps($params['controller']);
+            if (class_exists($controller)) {
+                $controller_object = new $controller($params);
+                $action = $this->toCamelCase($params['action']);
+
+                if (is_callable([$controller_object, $action])) {
+                    $controller_object->$action();
+                } else {
+                    $this->abort(404);
+                }
+            } else {
+                $this->abort(404);
+            }
+        } else {
+            $this->abort(404);
+        }
+    }
+
+
+    protected function removeQueryStringVariables($url)
+    {
+        if ($url != '') {
+            $parts = explode('&', $url, 2);
+            if (strpos($parts[0], '=') === false) {
+                $url = $parts[0];
+            } else {
+                $url = '';
+            }
+
+        }
+        return $url;
+    }
+
+    protected function toStudlyCaps($string)
+    {
+        return str_replace(' ', '', ucwords(str_replace('-', ' ', $string)));
+    }
+
+    protected function toCamelCase($string)
+    {
+        return lcfirst($this->toStudlyCaps($string));
     }
 
     public function getNamespace()
@@ -73,13 +108,6 @@ class Router
         $namespace = 'Controllers\\';
 
         return $namespace;
-    }
-
-    public function getDirectory()
-    {
-        $directory = 'controllers\\';
-
-        return $directory;
     }
 
     public function previousUrl()
