@@ -68,13 +68,13 @@ class Router
                 if (is_callable([$controller_object, $action])) {
                     $controller_object->$action();
                 } else {
-                    $this->abort(404);
+                    $this->response->abort(404);
                 }
             } else {
-                $this->abort(404);
+                $this->response->abort(404);
             }
         } else {
-            $this->abort(404);
+            $this->response->abort(404);
         }
     }
 
@@ -115,12 +115,4 @@ class Router
         return $_SERVER['HTTP_REFERER'];
     }
 
-    protected function abort($code = 404)
-    {
-        http_response_code($code);
-
-        require base_path("views/{$code}.php");
-
-        die();
-    }
 }
