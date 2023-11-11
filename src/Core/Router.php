@@ -24,12 +24,23 @@ class Router
         // Split the handler into controller and action
         list($controller, $action) = explode('@', $handler);
 
-        // Add route with controller and action as params
+        // Extract dynamic segments from the URL
+        $segments = [];
+        $pattern = preg_replace('/{([a-z]+)}/', '([^/]+)', $url);
+        $pattern = "#^$pattern$#";
+        if (preg_match($pattern, $url, $matches)) {
+            array_shift($matches);
+            $segments = $matches;
+        }
+
+        // Add route with controller, action, and segments as params
         $this->routes[$url] = [
             'controller' => $controller,
             'action' => $action,
+            'segments' => $segments,
         ];
     }
+
 
     public function getRoutes()
     {
@@ -37,15 +48,21 @@ class Router
     }
 
     public function matchRoute($url)
-    {
-        foreach ($this->routes as $route => $params) {
-            if ($url == $route) {
-                $this->params = $params;
-                return true;
-            }
+{
+    foreach ($this->routes as $route => $params) {
+        // Check if the route has dynamic segments
+        $pattern = preg_replace('/{[a-z]+}/', '([^/]+)', $route);
+        $pattern = "#^$pattern$#";
+        if (preg_match($pattern, $url, $matches)) {
+            // Extract values for dynamic segments
+            array_shift($matches);
+            $this->params = array_merge($params, array_combine($params['segments'], $matches));
+            return true;
         }
-        return false;
     }
+    return false;
+}
+
 
     public function getParams()
     {
@@ -57,16 +74,16 @@ class Router
         $url = $this->request->getUrl();
         $url = $this->removeQueryStringVariables($url);
 
-        if (isset($this->routes[$url])) {
-            $params = $this->routes[$url];
+        if ($this->matchRoute($url)) {
+            $params = $this->params;
 
             $controller = $this->getNamespace() . $this->toStudlyCaps($params['controller']);
             if (class_exists($controller)) {
-                $controller_object = new $controller($params);
+                $controllerObject = new $controller($params);
                 $action = $this->toCamelCase($params['action']);
 
-                if (is_callable([$controller_object, $action])) {
-                    $controller_object->$action();
+                if (is_callable([$controllerObject, $action])) {
+                    $controllerObject->$action();
                 } else {
                     $this->response->abort(404);
                 }
@@ -77,6 +94,7 @@ class Router
             $this->response->abort(404);
         }
     }
+
 
 
     protected function removeQueryStringVariables($url)
