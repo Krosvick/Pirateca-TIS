@@ -2,6 +2,7 @@
 
 namespace Core;
 
+
 abstract class BaseController
 {
     protected $routeParams;
@@ -39,12 +40,5 @@ abstract class BaseController
         header('Content-Type: application/json');
         echo json_encode($data);
     }
-
-    public function notFoundAction()
-    {
-        http_response_code(404);
-        echo '404 - Not Found';
-    }
-
 }
 
