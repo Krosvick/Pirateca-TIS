@@ -13,6 +13,7 @@ class User{
     public $email;
     public $deleted_at;
     public $role;
+    private Movie $movies;
 
     public function __construct($user_id = null, $username = null, $password = null, $email = null, $deleted_at = null, $role = "user"){
         $this->user_id=$user_id;
@@ -21,6 +22,7 @@ class User{
         $this->email=$email;
         $this->deleted_at=$deleted_at;
         $this->role=$role;
+        $this->movies = new Movie();
     }
 
     public function get_user_id(){
@@ -49,20 +51,9 @@ class User{
 
     public function get_recommended_movies($quantity): array{
         $client = new GuzzleHttp\Client();
-        $movies = array();
         $response = $client->request('GET', 'localhost:8001/recommendations?userId='.$this->user_id.'&n='.$quantity);
         $response = json_decode($response->getBody(), true);
-        $movieDAO = new moviesDAO();
-        #the response is a json that contains movies ids and a estimated rating for each movie
-        #we need to get the movies from the database
-        foreach($response as $body){
-            foreach($body as $movie){
-                $movie = $movieDAO->find($movie['movieId']);
-                if ($movie != null){
-                    array_push($movies, $movie);
-                }
-            }
-        }   
+        $this->movies = $this->movies->find_movies($response);
         return $movies;
     }
 

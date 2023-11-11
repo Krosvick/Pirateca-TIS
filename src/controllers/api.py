@@ -73,7 +73,7 @@ def generate_model_periodically():
             print('ratings_df is not defined yet. Waiting...')
         
         # Wait for 20 seconds before regenerating the model
-        time.sleep(20)
+        time.sleep(120)
 
 
 if __name__ == '__main__':
