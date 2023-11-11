@@ -2,11 +2,13 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 import pandas as pd
 from urllib.parse import urlparse, parse_qs
 import json
-from algorithm_controller import algorithm_controller
-import sys
 import time
 import threading
-sys.path.append("..")
+import sys
+
+sys.path.append('src')
+from models.Algorithm import Algorithm
+
 
 class SimpleAPI(BaseHTTPRequestHandler):
     """
@@ -14,7 +16,7 @@ class SimpleAPI(BaseHTTPRequestHandler):
 
         Parses the URL to determine the requested endpoint and query parameters.
         If the endpoint is '/recommendations', calls the 'get_top_n_recommendations'
-        function from the 'algorithm_controller' module with the provided user ID,
+        function from the 'Algorithm' module with the provided user ID,
         number of recommendations, predictions, and movies data. Returns a JSON
         response containing the top recommended movies for the user.
         If the endpoint is not recognized, returns a 404 error.
@@ -39,7 +41,7 @@ class SimpleAPI(BaseHTTPRequestHandler):
         if parsed_url.path == '/recommendations':
             userId = int(query_params['userId'][0])
             n = int(query_params.get('n', [10])[0])
-            top_movies = algorithm_controller.get_user_recommendations(userId, SimpleAPI.ratings_df, SimpleAPI.model, 10)
+            top_movies = Algorithm.get_user_recommendations(userId, SimpleAPI.ratings_df, SimpleAPI.model, 10)
             response = {'top_movies': top_movies}
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
@@ -67,7 +69,7 @@ def generate_model_periodically():
         if SimpleAPI.ratings_df is not None:  # Check if ratings_df is defined
             ratings_df = SimpleAPI.ratings_df  # Access ratings_df
             # Call the generate_model function
-            SimpleAPI.model = algorithm_controller.generate_model(ratings_df)
+            SimpleAPI.model = Algorithm.generate_model(ratings_df)
             print('Model regenerated.')
         else:
             print('ratings_df is not defined yet. Waiting...')

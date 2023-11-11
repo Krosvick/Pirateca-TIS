@@ -8,9 +8,9 @@ use GuzzleHttp;
 
 class User{
 
-    private $user_id;
-    private $username;
-    private $password;
+    public $user_id;
+    public $username;
+    public $password;
     public UsersDAO $userDAO;
 
     public function __construct(){ //we could use user 0 as a guest user

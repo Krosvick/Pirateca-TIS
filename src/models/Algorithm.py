@@ -1,4 +1,4 @@
-class algorithm_controller():
+class Algorithm():
 
     def __init__(self, algorithm):
         self.algorithm = algorithm
