@@ -14,7 +14,7 @@ class Movie{
         $this->movies_list = $this->moviesDAO->get_some();
     }
 
-    public function find_movies($id_list){
+    public function find_movies($id_list){ //id_list is an array of arrays, check the example in the model user and index controller
         $movies = array();
         foreach($id_list as $body){
             foreach($body as $movie){

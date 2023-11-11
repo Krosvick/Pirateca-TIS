@@ -5,15 +5,18 @@ namespace Controllers;
 use Core\BaseController;
 use DAO\moviesDAO;
 use Models\User;
+use Models\Movie;
 use GuzzleHttp\Client;
 
 class IndexController extends BaseController
 {
     public function index()
     {
-        $dummy_user = new User();
-        $dummy_user->user_id = 2;
-        $user_movies = $dummy_user->get_recommended_movies(6);
+        $test_user = new User();
+        $test_user->user_id = 2;
+        $test_movies = new Movie();
+        $user_movies = $test_movies->find_movies($test_user->get_recommended_movies(6));
+
         $client = new Client();
         foreach($user_movies as $movie){
             $poster_url = 'https://image.tmdb.org/t/p/original'.$movie['poster_path'];
