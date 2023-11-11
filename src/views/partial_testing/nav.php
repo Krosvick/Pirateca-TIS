@@ -31,7 +31,7 @@
                 <button type="button" class="relative flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                   <span class="absolute -inset-1.5"></span>
                   <span class="sr-only">Open user menu</span>
-                  <img class="h-10 w-10 rounded-full" src="https://cdn.discordapp.com/attachments/1046175774169907201/1168324620781359164/8d3c63e0-590a-4263-8046-f1b0dea4b061.png?ex=65515a18&is=653ee518&hm=a8beb7421184b4d4e3e25180dbd4766461c5ac16555aa31cf9d8bfc9127754eb&" alt="">
+                  <img class="h-10 w-10 rounded-full" src="https://cdn.discordapp.com/attachments/324358291561906186/1172908205068800160/image.png?ex=656206e3&is=654f91e3&hm=ca8e71b36e8f7c2afb64674c51780e94bca641beb6adb0a7ede617da1e3a5d1c&" alt="">
                 </button>
               </div>
 
