@@ -24,7 +24,8 @@ class Movie{
                 }
             }
         }
-        return $movies;
+        $this->movies_list = $movies;
+        return $this->movies_list;
     }
     
 }
