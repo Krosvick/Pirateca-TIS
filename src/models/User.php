@@ -3,6 +3,7 @@
 namespace Models;
 use Core\Database;
 use DAO\moviesDAO;
+use DAO\UsersDAO;
 use GuzzleHttp;
 
 class User{
@@ -10,12 +11,13 @@ class User{
     public $user_id;
     public $username;
     public $password;
-    public UserDAO $userDAO;
+    public UsersDAO $userDAO;
 
-    public function __construct($username, $password){ //we could use user 0 as a guest user
-        $this->username = $username;
-        $this->password = $password;
-        $this->userDAO = new UserDAO();
+    public function __construct(){ //we could use user 0 as a guest user
+        $this->userDAO = new UsersDAO();
+        $this->user_id = 0;
+        $this->username = 'guest';
+        $this->password = 'guest';
     }
 
     public function login(){
