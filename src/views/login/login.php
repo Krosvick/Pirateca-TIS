@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Bienvenido a Pirateca</title>
-    <link rel="stylesheet" href="styles-login.css">
+    <link rel="stylesheet" href="styles_login.css">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body>
@@ -23,7 +23,7 @@
                     </div>
 
  
-                    <button class?="boton" type="submit" class="text-white bg-stone-800 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Ingresar</button>
+                    <button class?="boton" type="submit" class="text-white bg-stone-800 hover:bg-white hover:text-blue-60 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Ingresar</button>
                   </form>
             </div>
         </div>

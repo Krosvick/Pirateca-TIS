@@ -1,7 +1,7 @@
 
 /* bg */
 .bg {
-    background-image: url('C:/xampp/htdocs/Sufrimiento-TIS/src/views/css/images/cine-fondo.png'); 
+    background-image: url('fondo-cine.png'); 
     background-size: cover;
     background-position: center;
     filter: blur(8px);
@@ -23,10 +23,10 @@
 
 /* login */
 .login-container {
-    background-color: #333; 
+    background-color: rgb(59 7 100); 
+    background-image: radial-gradient(circle, rgba(63,16,164,1) 0%, rgba(26,0,75,1) 100%);
     border-radius: 8px;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-    border-image: linear-gradient(to right, #333, #000); /* Gradient border */
     border-image-slice: 1;
     padding: 1rem;
 }
@@ -41,7 +41,7 @@ button {
 }
 
 button:hover {
-    background-color: rgba(50, 50, 50, 0.8); 
+    background-color: rgb(59 7 100); 
 }
 
 
