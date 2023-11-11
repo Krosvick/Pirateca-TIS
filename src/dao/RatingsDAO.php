@@ -11,6 +11,7 @@ use PDO;
 class RatingsDAO extends DAO {
 
     public function __construct() {
-        $this->db = Database::getInstance();
+        $this->table = 'ratings';
+        parent::__construct();
     }
 }
