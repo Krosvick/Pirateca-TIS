@@ -9,7 +9,7 @@ class Rating{
 
     private RatingsDAO $ratingsDAO;
 
-    public function __construct($timestamp, $rating){
+    public function __construct(){
         $this->ratingsDAO = new RatingsDAO();
     }
 
