@@ -1,42 +1,25 @@
-  <header>
-    <!-- header inner -->
-    <div class="header">
-       <div class="container-fluid">
-          <div class="row">
-             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
-                <div class="full">
-                   <div class="center-desk">
-                      <div class="logo">
-                         <a href="index.php"><img src="images/PLACEHOLDER.png" alt="#" /></a>
-                      </div>
-                   </div>
-                </div>
-             </div>
-             <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
-                <nav class="navigation navbar navbar-expand-md navbar-dark ">
-                   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
-                   <span class="navbar-toggler-icon"></span>
-                   </button>
-                   <div class="collapse navbar-collapse" id="navbarsExample04">
-                      <ul class="navbar-nav mr-auto">
-                         <li class="nav-item active">
-                            <a class="nav-link" href="index.html">Inicio</a>
-                         </li>
-                         <li class="nav-item">
-                            <a class="nav-link" href="about.html">Acerca de</a>
-                         </li>
-                         <li class="nav-item">
-                            <a class="nav-link" href="glasses.html">Peliculas Gustadas</a>
-                         </li>
-                         <li class="nav-item d_none login_btn">
-                            <a class="nav-link" href="/">Perfil</a>
-                         </li>
-                         <li class="nav-item">
-                            <a class="nav-link" href="/testing">Testing</a>
-                         </li>
-                         <li class="nav-item d_none sea_icon">
-                            <a class="nav-link" href="/"><i class="fa fa-shopping-bag" aria-hidden="true"></i><i class="fa fa-search" aria-hidden="true"></i></a>
-                         </li>
-                      </ul>
-                   </div>
-              </nav>
+<!DOCTYPE html>
+
+
+
+<html>
+<head>
+   <meta charset="UTF-8">
+   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet">
+   <link rel="stylesheet" href="style_nav.css">
+</head>
+<body>
+    <nav class="bg-white shadow">
+        <div class="max-w-screen-xl mx-auto px-4 py-2 flex items-center justify-between">
+            <div>
+                <img src="C:\xampp\htdocs\Sufrimiento-TIS\src\views\images\PLACEHOLDER.png" alt="Logo" class="h-8">
+            </div>
+            <div>
+                <button class="text-white hover:text-purple-800 bg-purple-700 hover:bg-purple-600 px-4 py-2 rounded transition duration-300">Home</button>
+                <button class="text-purple-800 hover:text-gray-900 hover:bg-gray-100 px-4 py-2 rounded transition duration-300">Liked Posts</button>
+                <button class="text-purple-800 hover:text-gray-900 hover:bg-gray-100 px-4 py-2 rounded transition duration-300">Search</button>
+            </div>
+        </div>
+    </nav>
+</body>
+</html>
