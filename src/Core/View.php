@@ -8,7 +8,7 @@ class View
 
     public function __construct()
     {
-        $this->viewPath = base_path("views/");
+        $this->viewPath = base_path("src/views/");
     }
 
     public function render($view, $data = [])

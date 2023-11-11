@@ -1,4 +1,4 @@
 <?php
 
-$router->get('/', 'indexController@index');
+$router->addRoute('/', 'indexController@index');
 
