@@ -136,4 +136,12 @@ abstract class DAO {
         $relations = json_decode($json, true);
         $this->Relations = $relations[$this->table];
     }
+
+    public function deleteAll() {
+        try {
+            $this->connection->query("DELETE FROM {$this->table}");
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
 }
