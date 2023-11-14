@@ -10,7 +10,7 @@
       <!-- Your content -->
    
 
-    <h1> Not found. Lol.</h1>
+    <h1> Error 404, not found.</h1>
 
     </div>
   </main>
