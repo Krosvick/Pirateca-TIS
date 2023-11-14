@@ -13,7 +13,7 @@ class IndexController extends BaseController
     public function index()
     {
         $test_user = new User();
-        dd($test_user);
+        //dd($test_user);
         $test_user->user_id = 2;
         $test_movies = new Movie();
         $user_movies = $test_movies->find_movies($test_user->get_recommended_movies(6));
