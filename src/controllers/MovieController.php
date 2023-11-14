@@ -27,6 +27,7 @@ class MovieController {
 
     public function showMovie($id) {
         $movie = $this->movieDAO->find($id);
+        return $this->render("partials/movie_page", $movie);
         // Implement code to display the movie details in the View
     }
 
