@@ -25,6 +25,8 @@
         </form>
     </div>
     <!-- commentary -->
+
+    <!-- funcion foreach para los comentarios -->
     <div class="max-w-screen-md mx-auto mt-8">
         <!-- Single Review Component -->
         <div class="bg-white shadow-md rounded-lg p-4 mb-4 flex items-start">
@@ -35,7 +37,6 @@
             </div>
         </div>
 
-        <!-- Another Review Component -->
         <div class="bg-white shadow-md rounded-lg p-4 mb-4 flex items-start">
             <img src="user-profile-pic-2.jpg" alt="Profile Pic" class="h-12 w-12 rounded-full mr-4">
             <div>

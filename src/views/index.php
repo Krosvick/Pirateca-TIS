@@ -7,69 +7,26 @@
 
    
       <!-- banner -->
-      <section class="banner_main">
-         <div class="titulo"><h1>Pirateca</h1></div>
-         <div id="banner1" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-               <li data-target="#banner1" data-slide-to="0" class="active"></li>
-               <li data-target="#banner1" data-slide-to="1"></li>
-               <li data-target="#banner1" data-slide-to="2"></li>
-               <li data-target="#banner1" data-slide-to="3"></li>
-            </ol>
-            <div class="carousel-inner">
-               <div class="carousel-item active">
-                  <div class="container">
-                     <div class="carousel-caption">
-                        <div class="text-bg">
-                           <h1>Titulo Pelicula</h1>
-                           <figure><img id="borderimg" src="images/drive.png" alt="#"/></figure>
-                           <a class="read_more" href="#">Mirar sinopsis</a>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <div class="carousel-item">
-                  <div class="container">
-                     <div class="carousel-caption">
-                        <div class="text-bg">
-                           <h1>Titulo Pelicula</h1>
-                           <figure><img id="borderimg" src="images/blade2049.png" alt="#"/></figure>
-                           <a class="read_more" href="#">Mirar sinopsis</a>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <div class="carousel-item">
-                  <div class="container">
-                     <div class="carousel-caption">
-                        <div class="text-bg">
-                           <h1>Titulo Pelicula</h1>
-                           <figure><img id="borderimg" src="images/spacemovie.jpg" alt="#"/></figure>
-                           <a class="read_more" href="#">Mirar sinopsis</a>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <div class="carousel-item">
-                  <div class="container">
-                     <div class="carousel-caption">
-                        <div class="text-bg">
-                           <h1>Titulo Pelicula</h1>
-                           <figure><img id="borderimg" src="images/barrandero.png" alt="#"/></figure>
-                           <a class="read_more" href="#">Mirar sinopsis</a>
-                        </div>
-                     </div>
-                  </div>
-               </div>
+      <main>
+         <div>
+         <!-- Your content -->
+         <!-- "?=" is the same as "echo $variable" -->
+            <div class="flex justify-left mt-5 mx-5">
+               <h1 class="text-3xl font-bold pb-5 inline">Recomendado para</h1>
+               <h1 class="inline text-3xl pl-5 italic">ti</h1>
             </div>
-            <a class="carousel-control-prev" href="#banner1" role="button" data-slide="prev">
-            <i class="fa fa-arrow-left" aria-hidden="true"></i>
-            </a>
-            <a class="carousel-control-next" href="#banner1" role="button" data-slide="next">
-            <i class="fa fa-arrow-right" aria-hidden="true"></i>
-            </a>
+            <div class="flex flex-row items-center h-auto snap-x snap-mandatory overflow-x-auto">
+               <?php foreach ($user_movies as $result): ?>
+               <div class="flex justify-center h-screen min-w-full w-full snap-center relative my-5">
+                  <img src="<?= $result["poster_path"] ? "https://image.tmdb.org/t/p/w500".$result['poster_path'] : '/views/images/scplogo.png' ?>" alt="poster" class="h-full w-4/6 rounded-2xl hover:drop-shadow-md lg:w-1/4">
+                  <a href="/another_test?id=<?= $result['id']?>" class="absolute bottom-0 h-10 w-1/2 bg-slate-900 border-t-2 border-x-2 border-zinc-300 rounded text-white text-center lg:w-1/4">
+                     <?= $result['original_title'] ?>
+                  </a>
+               </div>
+               <?php endforeach; ?>
+            </div>
          </div>
-      </section>
+       </main>
       <!-- end banner -->
 
 
@@ -77,34 +34,8 @@
      <?php require('partials/footer.php') ?>
       <!-- end footer -->
 
-      
-      <!-- Javascript files-->
-      <script src="js/jquery.min.js"></script>
-      <script src="js/popper.min.js"></script>
-      <script src="js/bootstrap.bundle.min.js"></script>
-      <script src="js/jquery-3.0.0.min.js"></script>
       <!-- sidebar -->
       <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
       <script src="js/custom.js"></script>
-      <script>
-         // This example adds a marker to indicate the position of Bondi Beach in Sydney,
-         // Australia.
-         function initMap() {
-           var map = new google.maps.Map(document.getElementById('map'), {
-             zoom: 11,
-             center: {lat: 40.645037, lng: -73.880224},
-             });
-         
-         var image = 'images/maps-and-flags.png';
-         var beachMarker = new google.maps.Marker({
-             position: {lat: 40.645037, lng: -73.880224},
-             map: map,
-             icon: image
-           });
-         }
-      </script>
-      <!-- google map js -->
-      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8eaHt9Dh5H57Zh0xVTqxVdBFCvFMqFjQ&callback=initMap"></script>
-      <!-- end google map js --> 
    </body>
 </html>
