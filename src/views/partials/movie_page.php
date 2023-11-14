@@ -7,14 +7,15 @@
     <meta charset="UTF-8">
     <title>Titulo pelicula</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles-movie.css">
+    <link rel="stylesheet" href="src/views/partials/styles-movie.css">
 </head>
 <body>
     <!-- movie descripction-->
     <div class="p-8 text-white">
         <form class="bg-gradient-to-r from-purple-900 via-purple-700 to-purple-900 max-w-4xl mx-auto my-8 px-10 py-8 text-white shadow-lg rounded-lg flex items-center">
             <div class="poster mr-8">
-                <img src="drive.png" alt="Movie Poster" class="max-w-full">
+                <!-- HERE SHOULD BE CHANGED TO DYNAMIC FUNCTIONS -->
+                <img src="src/views/partials/drive.png" alt="Movie Poster" class="max-w-full">
             </div>
             <div class="details">
                 <h1 class="text-4xl text-white font-bold mb-4">DRIVE</h1>
@@ -27,10 +28,11 @@
     <!-- commentary -->
 
     <!-- funcion foreach para los comentarios -->
+    <!-- HERE SHOULD BE CHANGED TO DYNAMIC FUNCTIONS -->
     <div class="max-w-screen-md mx-auto mt-8">
         <!-- Single Review Component -->
         <div class="bg-white shadow-md rounded-lg p-4 mb-4 flex items-start">
-            <img src="user-profile-pic-1.jpg" alt="Profile Pic" class="h-12 w-12 rounded-full mr-4">
+            <img src="src/views/partials/user-profile-pic-1.jpg" alt="Profile Pic" class="h-12 w-12 rounded-full mr-4">
             <div>
                 <h2 class="text-lg font-semibold mb-1">User 1</h2>
                 <p class="text-gray-700">This movie was fantastic! The storyline was captivating, and the acting was superb.</p>
@@ -38,7 +40,7 @@
         </div>
 
         <div class="bg-white shadow-md rounded-lg p-4 mb-4 flex items-start">
-            <img src="user-profile-pic-2.jpg" alt="Profile Pic" class="h-12 w-12 rounded-full mr-4">
+            <img src="src/views/partials/user-profile-pic-2.jpg" alt="Profile Pic" class="h-12 w-12 rounded-full mr-4">
             <div>
                 <h2 class="text-lg font-semibold mb-1">User 2</h2>
                 <p class="text-gray-700">Enjoyed watching this movie. The cinematography was excellent!</p>
