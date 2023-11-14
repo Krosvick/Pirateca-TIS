@@ -13,6 +13,7 @@ class IndexController extends BaseController
     public function index()
     {
         $test_user = new User();
+        dd($test_user);
         $test_user->user_id = 2;
         $test_movies = new Movie();
         $user_movies = $test_movies->find_movies($test_user->get_recommended_movies(6));
@@ -60,6 +61,6 @@ class IndexController extends BaseController
             'result2' => $result2,
             'user_movies' => $user_movies
         ];
-        return $this->render("testing_page", $data);
+        return $this->render("partials/movie_page", $data);
     }
 }
