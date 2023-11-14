@@ -5,12 +5,15 @@ namespace Controllers;
 use Models\Movie;
 use Models\User;
 use DAO\moviesDAO;
+use Core\BaseController;
 
-class MovieController {
+class MovieController extends BaseController {
     private $movieDAO;
     private $client;
 
     public function __construct() {
+        //call the parent constructor to get access to the properties and methods of the BaseController class
+        parent::__construct();
         $this->movieDAO = new moviesDAO();
         
     }
@@ -27,8 +30,11 @@ class MovieController {
 
     public function showMovie($id) {
         $movie = $this->movieDAO->find($id);
-        return $this->render("partials/movie_page", $movie);
-        // Implement code to display the movie details in the View
+        $data = [
+            'Movie' => $movie
+        ];
+        return $this->render("partials/movie_page", $data);
+        
     }
 
     public function createMovie($originalTitle, $overview, $genres, $belongsToCollection, $adult, $originalLanguage, $releaseDate) {

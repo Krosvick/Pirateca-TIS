@@ -85,10 +85,13 @@ class Router
             if (class_exists($controller)) {
                 $controllerObject = new $controller($params);
                 $action = $this->toCamelCase($params['action']);
-                dd($action);
 
                 if (is_callable([$controllerObject, $action])) {
-                    $controllerObject->$action();
+                    if (isset($params['id'])) {
+                        $controllerObject->$action($params['id']);
+                    } else {
+                        $controllerObject->$action();
+                    }
                 } else {
                     $this->response->abort(404);
                 }
