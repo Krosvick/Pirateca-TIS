@@ -26,12 +26,12 @@ class Router
 
         // Extract dynamic segments from the URL
         $segments = [];
-        $pattern = preg_replace('/{([a-z]+)}/', '([^/]+)', $url);
+        $pattern = preg_replace_callback('/{([a-z]+)}/', function ($matches) use (&$segments) {
+            $segments[] = $matches[1];
+            return '([^/]+)';
+        }, $url);
+
         $pattern = "#^$pattern$#";
-        if (preg_match($pattern, $url, $matches)) {
-            array_shift($matches);
-            $segments = $matches;
-        }
 
         // Add route with controller, action, and segments as params
         $this->routes[$url] = [
@@ -48,20 +48,24 @@ class Router
     }
 
     public function matchRoute($url)
-{
-    foreach ($this->routes as $route => $params) {
-        // Check if the route has dynamic segments
-        $pattern = preg_replace('/{[a-z]+}/', '([^/]+)', $route);
-        $pattern = "#^$pattern$#";
-        if (preg_match($pattern, $url, $matches)) {
-            // Extract values for dynamic segments
-            array_shift($matches);
-            $this->params = array_merge($params, array_combine($params['segments'], $matches));
-            return true;
+    {
+        foreach ($this->routes as $route => $params) {
+            // Check if the route has dynamic segments
+            $pattern = preg_replace_callback('/{[a-z]+}/', function ($matches) {
+                return '([^/]+)';
+            }, $route);
+            $pattern = "#^$pattern$#";
+
+            if (preg_match($pattern, $url, $matches)) {
+                // Extract values for dynamic segments
+                array_shift($matches);
+                $this->params = array_merge($params, array_combine($params['segments'], $matches));
+                return true;
+            }
         }
+
+        return false;
     }
-    return false;
-}
 
 
     public function getParams()
@@ -81,6 +85,7 @@ class Router
             if (class_exists($controller)) {
                 $controllerObject = new $controller($params);
                 $action = $this->toCamelCase($params['action']);
+                dd($action);
 
                 if (is_callable([$controllerObject, $action])) {
                     $controllerObject->$action();
