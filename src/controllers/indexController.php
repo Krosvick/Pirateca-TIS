@@ -19,6 +19,11 @@ class IndexController extends BaseController
 
         $client = new Client();
         foreach($user_movies as $movie){
+            /*
+
+             this code should be in model or dao
+            
+             */
             $poster_url = 'https://image.tmdb.org/t/p/original'.$movie['poster_path'];
             try{
                 $response = $client->request('GET', $poster_url);
