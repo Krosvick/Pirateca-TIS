@@ -30,6 +30,9 @@ class MovieController extends BaseController {
 
     public function showMovie($id) {
         $movie = $this->movieDAO->find($id);
+        if(!$movie){
+            $this->response->abort(404);
+        }
         $data = [
             'Movie' => $movie
         ];
