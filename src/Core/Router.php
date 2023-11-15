@@ -12,7 +12,6 @@ class Router
     protected $params = [];
     protected $request;
     protected $response;
-    protected $router;
     public function __construct(Request $request, Response $response)
     {
         $this->request = $request;
