@@ -6,11 +6,13 @@ namespace Core;
 abstract class BaseController
 {
     protected $routeParams;
+    protected $response;
     protected $view;
 
     public function __construct($routeParams = null)
     {
         $this->routeParams = $routeParams;
+        $this->response = new Response();
         $this->view = new View(); // Set the view path here
     }
 
