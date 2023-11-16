@@ -10,12 +10,13 @@ use Core\BaseController;
 class MovieController extends BaseController {
     private $movieDAO;
     private $client;
+    private $movieModel;
 
     public function __construct() {
         //call the parent constructor to get access to the properties and methods of the BaseController class
         parent::__construct();
         $this->movieDAO = new moviesDAO();
-        
+        $this->movieModel = new Movie();
     }
 
     public function listMovies() {
@@ -29,7 +30,7 @@ class MovieController extends BaseController {
     }
 
     public function showMovie($id) {
-        $movie = $this->movieDAO->find($id);
+        $movie = $this->movieModel->find_movie($id);
         if(!$movie){
             $this->response->abort(404);
         }
