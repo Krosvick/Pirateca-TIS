@@ -7,6 +7,7 @@
 //register: insert a new row in the database
 //update: update a record from the database with the given data
 //delete: delete a row from the database, if the table has relations, we also delete the related rows
+
 namespace Core;
 use PDO;
 use Exception;
@@ -24,6 +25,16 @@ abstract class DAO {
         } 
     }
 
+
+    /**
+     * 
+     * @param int $limit  limit search
+     * @param int $offset  starting point for search
+     * 
+     * @return array<array>
+     */
+
+
     public function get_some($limit = 10, $offset = 0) {
         try {
             $sql = "SELECT * FROM {$this->table} LIMIT :limit OFFSET :offset";
@@ -38,6 +49,11 @@ abstract class DAO {
             die($e->getMessage());
         }
     }
+  
+    /**
+    * 
+    * @return array<array>
+    */
 
     public function get_all() {
         try {
@@ -49,6 +65,12 @@ abstract class DAO {
             die($e->getMessage());
         }
     }
+
+     /**
+      * @param int $id   
+      *
+      * @return array
+      */
 
     public function find($id) {
         try {
@@ -63,6 +85,13 @@ abstract class DAO {
             die($e->getMessage());
         }
     }
+
+    /**
+     * 
+     * @param string $data
+     * 
+     * @return void
+     */
 
     public function register($data) {
         try {
@@ -84,6 +113,16 @@ abstract class DAO {
             die($e->getMessage());
         }
     }
+
+     /**
+      * 
+      *@param int $id
+      *@param string $data
+      *@param array $fields
+      *
+      *@return void
+      */
+
     public function update($id, $data, $fields = []) {
         try {
             if (empty($fields)) {
@@ -109,6 +148,13 @@ abstract class DAO {
             return false; // Error
         }
     }
+
+     /**
+      * @param int $id
+      * 
+      * @return void
+      */
+
     public function delete($id) {
         try {
             $this->connection->query("DELETE FROM {$this->table} WHERE id = :id", [
@@ -120,6 +166,15 @@ abstract class DAO {
             die($e->getMessage());
         }
     }
+
+    /**
+     * 
+     * @param int $id
+     * @param array<string> $tables
+     * 
+     * @return void
+     */
+
     private function cascadeDelete($id, ...$tables)
     {
         foreach ($tables as $table) {
@@ -136,6 +191,10 @@ abstract class DAO {
         $relations = json_decode($json, true);
         $this->Relations = $relations[$this->table];
     }
+
+     /**
+     * @return void
+     */
 
     public function deleteAll() {
         try {
