@@ -18,13 +18,19 @@
         <form class="bg-gradient-to-r from-purple-900 via-purple-700 to-purple-900 max-w-4xl mx-auto my-8 px-10 py-8 text-white shadow-lg rounded-lg flex items-center">
             <div class="poster mr-8">
                 <!-- HERE SHOULD BE CHANGED TO DYNAMIC FUNCTIONS -->
-                <img src="https://image.tmdb.org/t/p/w500<?php echo $data['Movie']['poster_path']?>" alt="Movie Poster" class="w-64 rounded-lg shadow-lg">
+                <img src="https://image.tmdb.org/t/p/original<?php echo $data['Movie']['poster_path']?>" alt="Movie Poster" class="max-w-full">
             </div>
             <div class="details">
                 <h1 class="text-4xl text-white font-bold mb-4"><?php echo $data['Movie']['original_title']?></h1>
                 <p class="text-lg text-gray-100 mb-2"><?php echo $data['Movie']['overview']?></p>
-                <p class="text-sm text-gray-100">Release: 2011</p>
-                <p class="text-sm text-gray-100">Director: Nicolas Winding Refn</p>
+                <p class="text-sm text-gray-100">Release: <?php 
+                    $date = $data['Movie']['release_date'];
+                    $year = substr($date, 0, 4);
+                    echo $year;
+                ?></p>
+                <p class="text-sm text-gray-100">Director: <?php 
+                    echo $data['Movie']['director'];
+                ?></p>
             </div>
         </form>
     </div>
