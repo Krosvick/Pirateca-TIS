@@ -30,7 +30,7 @@ class Movie{
     }
 
     /**
-     * @param $id   a movie id
+     * @param $id  a movie id
      * 
      * @return array<array>   an especific movie data array
      */
@@ -134,7 +134,7 @@ class Movie{
     }
 
     /**
-     * @param array $movie
+     * @param array $movie a movie data array
      * 
      * @return void
      */
