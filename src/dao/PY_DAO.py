@@ -14,7 +14,6 @@ class Database:
     statement = None
 
     def __init__(self):
-
         self._connection = mysql.connector.connect(
             host=os.getenv("DB_HOST"),
             user=os.getenv("DB_USERNAME"),
@@ -31,8 +30,7 @@ class Database:
 
 class DAO():
     _connection = None
-    _table = None
-    _relations = []
+    _table = "Ratings" #hardcoded for now can be changed later adding a table parameter to the constructor
 
     def __init__(self):
         try:
@@ -48,3 +46,6 @@ class DAO():
             return rows
         except Exception as e:
             print(e)
+
+test = DAO()
+print(test.get_all())
