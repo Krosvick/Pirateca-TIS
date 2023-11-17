@@ -28,4 +28,23 @@ class Database:
             cls._instance = cls()
         return cls._instance
 
-print("DAO initialized")
+
+class DAO():
+    _connection = None
+    _table = None
+    _relations = []
+
+    def __init__(self):
+        try:
+            self._connection = Database.get_instance()
+        except Exception as e:
+            print(e)
+
+    def get_all(self):
+        try:
+            cursor = self._connection.cursor()
+            cursor.execute(f"SELECT * FROM {self._table}")
+            rows = cursor.fetchall()
+            return rows
+        except Exception as e:
+            print(e)
