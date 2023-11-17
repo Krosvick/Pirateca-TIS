@@ -1,6 +1,7 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import pandas as pd
 from urllib.parse import urlparse, parse_qs
+import requests
 import json
 import time
 import threading
@@ -75,11 +76,18 @@ def generate_model_periodically():
         
         # Wait for 20 seconds before regenerating the model
         time.sleep(6000)
+        dao_response = requests.get("http://localhost:8000/src/dao/RatingsDAO.php")
+        data_from_dao = dao_response.json()
+        SimpleAPI.ratings_df = pd.DataFrame(data_from_dao)
 
 
 if __name__ == '__main__':
     #hard code here, connect with dao later
-    SimpleAPI.ratings_df = pd.read_csv('datasets/ratings_small_cleaned.csv')  # Initialize ratings_df
+    #SimpleAPI.ratings_df = pd.read_csv('datasets/ratings_small_cleaned.csv')  # Initialize ratings_df
+    dao_response = requests.get("http://localhost:8000/src/dao/RatingsDAO.php")
+    data_from_dao = dao_response.json()
+    SimpleAPI.ratings_df = pd.DataFrame(data_from_dao)
+    
     model_thread = threading.Thread(target=generate_model_periodically)
     model_thread.daemon = True
     model_thread.start()
