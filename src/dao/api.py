@@ -9,7 +9,6 @@ import sys
 sys.path.append('src')
 from models.Algorithm import Algorithm
 
-
 class SimpleAPI(BaseHTTPRequestHandler):
     """
         Handle GET requests to the API.
@@ -79,6 +78,7 @@ def generate_model_periodically():
 
 
 if __name__ == '__main__':
+    #hard code here, connect with dao later
     SimpleAPI.ratings_df = pd.read_csv('datasets/ratings_small_cleaned.csv')  # Initialize ratings_df
     model_thread = threading.Thread(target=generate_model_periodically)
     model_thread.daemon = True
