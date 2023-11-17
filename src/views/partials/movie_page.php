@@ -18,7 +18,7 @@
         <form class="bg-gradient-to-r from-purple-900 via-purple-700 to-purple-900 max-w-4xl mx-auto my-8 px-10 py-8 text-white shadow-lg rounded-lg flex items-center">
             <div class="poster mr-8">
                 <!-- HERE SHOULD BE CHANGED TO DYNAMIC FUNCTIONS -->
-                <img src="https://image.tmdb.org/t/p/original<?php echo $data['Movie']['poster_path']?>" alt="Movie Poster" class="max-w-full">
+                <img src="https://image.tmdb.org/t/p/w780<?php echo $data['Movie']['poster_path']?>" alt="Movie Poster" class="max-w-full min-fit">
             </div>
             <div class="details">
                 <h1 class="text-4xl text-white font-bold mb-4"><?php echo $data['Movie']['original_title']?></h1>

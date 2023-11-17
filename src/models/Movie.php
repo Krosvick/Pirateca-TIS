@@ -29,6 +29,12 @@ class Movie{
         return $this->movies_list;
     }
 
+    /**
+     * @param $id  a movie id
+     * 
+     * @return array<array>   an especific movie data array
+     */
+
     public function find_movie($id){
         $movie = $this->moviesDAO->find($id);
         if ($movie != null){
@@ -38,10 +44,20 @@ class Movie{
         return $movie;
     }
 
+
+    /**
+     * 
+     * @param array $movie  a movie data array
+     * 
+     * @return string a movie poster url
+     */
+
+
     public function moviePosterFallback($movie){
         $client = new Client();
         try{
             $response = $client->request('GET', 'https://image.tmdb.org/t/p/original'.$movie['poster_path']);
+            return $movie['poster_path'];
         }catch(\Exception $e){
             if($e->getCode() == 404){
                 $new_poster_request = $client->request('GET', 'https://api.themoviedb.org/3/movie/'.$movie['id'].'/images?language=en', [
@@ -59,12 +75,19 @@ class Movie{
                 }
                 else{
                     #if the movie doesn't have a poster, we will use a default image
-                    $moviePoster = '';
+                    $moviePoster = 'https://www.movienewz.com/img/films/poster-holder.jpg';
                 }
             }
         }
         return $moviePoster;
     }
+
+
+    /**
+     * @param array $movie a movie array
+     * 
+     * @return string return a movie director
+     */
 
     public function MovieDirectorRetrieval($movie){
         $client = new Client();
@@ -80,19 +103,42 @@ class Movie{
         return $movie_director;
     }
 
+
+    /**
+     * @param string $title a movie title
+     * 
+     * @return array<array> return a list of movies based on tittle
+     */
+
     public function search_movie($title){
         $movies = $this->moviesDAO->search($title); //need search function in moviesDAO or something similar
         return $movies;
     }
+
+    /**
+     * @return array<array> retrieve all movies
+     */
 
     public function get_all(){
         $movies = $this->moviesDAO->get_all();
         return $movies;
     }
 
+    /**
+     * @param int $id a movie id
+     * 
+     * @return void
+     */
+
     public function delete_movie($id){
         $this->moviesDAO->delete($id);
     }
+
+    /**
+     * @param array $movie a movie data array
+     * 
+     * @return void
+     */
 
     public function add_movie($movie){
         $this->moviesDAO->add($movie);
