@@ -15,12 +15,12 @@ class RatingsDAO extends DAO {
         parent::__construct();
     }
 
-    public function get_all_as_json() {
+    public function get_all_data() {
         try {
             $sql = "SELECT * FROM {$this->table}";
             $stmt = $this->connection->query($sql);
             $rows = $stmt->get();
-            return json_encode($rows); // Return data as JSON
+            return $rows;
         } catch (Exception $e) {
             die($e->getMessage());
         }
