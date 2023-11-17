@@ -16,4 +16,4 @@
   </main>
 
 
-<?php require 'partial_testing/footer.php'; ?>
+<?php require 'partials/footer.php'; ?>

@@ -42,6 +42,7 @@ class Movie{
         $client = new Client();
         try{
             $response = $client->request('GET', 'https://image.tmdb.org/t/p/original'.$movie['poster_path']);
+            return $movie['poster_path'];
         }catch(\Exception $e){
             if($e->getCode() == 404){
                 $new_poster_request = $client->request('GET', 'https://api.themoviedb.org/3/movie/'.$movie['id'].'/images?language=en', [
@@ -59,7 +60,7 @@ class Movie{
                 }
                 else{
                     #if the movie doesn't have a poster, we will use a default image
-                    $moviePoster = '';
+                    $moviePoster = 'https://www.movienewz.com/img/films/poster-holder.jpg';
                 }
             }
         }
