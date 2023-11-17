@@ -15,17 +15,12 @@ class Database:
     statement = None
 
     def __init__(self):
-        if platform.system() == 'Windows':
-            ssl_ca = 'path_to_cacert.pem'
-        else:
-            ssl_ca = '/etc/ssl/certs/ca-certificates.crt'  # default path in Linux
 
         self._connection = mysql.connector.connect(
             host=os.getenv("DB_HOST"),
             user=os.getenv("DB_USERNAME"),
             password=os.getenv("DB_PASSWORD"),
             database=os.getenv("DB_NAME"),
-            ssl_ca=ssl_ca
         )
 
     @classmethod
