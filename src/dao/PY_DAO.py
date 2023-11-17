@@ -7,7 +7,6 @@ This file will be called by the algorithm and will be the only one to access the
 
 import mysql.connector
 import os
-import platform
 
 class Database:
     _instance = None
