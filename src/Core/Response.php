@@ -6,9 +6,9 @@ class Response
 {
     protected $view;
 
-    public function __construct()
+    public function __construct($base_url = NULL)
     {
-        $this->view = new View();
+        $this->view = new View($base_url);
     }
     public function redirect($url)
     {
@@ -21,6 +21,11 @@ class Response
         http_response_code($code);
         $this->view->render($code);
         die();
+    }
+
+    public function render($view, $data = [])
+    {
+        $this->view->render($view, $data);
     }
 
 }
