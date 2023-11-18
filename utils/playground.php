@@ -14,6 +14,7 @@ require BASE_PATH . 'functions.php';
 use DAO\MoviesDAO;
 use DAO\UsersDAO;
 use DAO\RatingsDAO;
+use Models\Rating;
 
 
 function parseCSV($file, $needed_columns) {
@@ -128,11 +129,6 @@ function rename_collumns($ratings_file){
     return $ratings_file;
 }
 
-$ratings_file = parseCSV(BASE_PATH . 'datasets/ratings_small_cleaned.csv', ['userId', 'movieId', 'rating']);
-$ratings_file = get_collumns($ratings_file, ['userId', 'movieId', 'rating']);
-$ratings_file = rename_collumns($ratings_file);
-create_ratings($ratings_file);
-
-
-
+$rating = new Rating();
+$post = $rating->post_all_ratings();
 
