@@ -10,13 +10,18 @@ use GuzzleHttp\Client;
 
 class IndexController extends BaseController
 {
+    private $user;
+    private $movieModel;
+    
+
     public function index()
     {
-        $test_user = new User();
-        //dd($test_user);
-        $test_user->user_id = 2;
-        $test_movies = new Movie();
-        $user_movies = $test_movies->find_movies($test_user->get_recommended_movies(6));
+        //the client should be logged before this, hard code for now
+        $this->user = new User();
+        $this->user->user_id = 2;
+        $this->movieModel = new Movie();
+        
+        $user_movies = $this->movieModel->find_movies($this->user->get_recommended_movies(6));
 
         $client = new Client();
         foreach($user_movies as $movie){

@@ -34,7 +34,7 @@ class MoviePageController extends BaseController
 
         $ratings = $this->ratingModel->search_by_movie_id($id);
         $data['Ratings'] = $ratings;
-        
+
         //data should be constructed as 2 part array, movie and ratings
         //due to the model, data and dao interaction, this page will be the most complex yet
 
