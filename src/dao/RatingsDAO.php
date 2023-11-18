@@ -25,5 +25,21 @@ class RatingsDAO extends DAO {
             die($e->getMessage());
         }
     }
-    
+
+    public function get_by_movie($movie_id) {
+        try {
+            $sql = "SELECT * FROM {$this->table} WHERE movie_id = :movie_id LIMIT :limit";
+            $params = array(
+                'movie_id' => [$movie_id, PDO::PARAM_INT],
+                'limit' => [10, PDO::PARAM_INT]
+            );
+            $stmt = $this->connection->query($sql, $params);
+            $rows = $stmt->get();
+            return $rows;
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
+
+
 }

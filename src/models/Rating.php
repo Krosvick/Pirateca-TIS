@@ -4,13 +4,19 @@ namespace Models;
 
 use Models\User;
 use Models\Movie;
+use DAO\RatingsDAO;
 
 class Rating{
 
-    private RatingsDAO $ratingsDAO;
+    private $ratingsDAO;
 
     public function __construct(){
         $this->ratingsDAO = new RatingsDAO();
+    }
+
+    public function search_by_movie_id($movie_id){
+        $ratings = $this->ratingsDAO->get_by_movie($movie_id);
+        return $ratings;
     }
 
     private function add_rating($user_id, $rating, $movie_id, $commentary){

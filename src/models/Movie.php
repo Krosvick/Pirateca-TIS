@@ -1,6 +1,7 @@
 <?php
 
 namespace Models;
+
 use DAO\moviesDAO;
 use GuzzleHttp\Client;
 
