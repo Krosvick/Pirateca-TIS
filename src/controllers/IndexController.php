@@ -23,6 +23,7 @@ class IndexController extends BaseController
 
         $user_movies = $this->movieModel->find_movies($this->user->get_recommended_movies(6));
 
+        //dao shouldnt be here, get some should be aleatory
         $peliculas = new moviesDAO();
         $result = $peliculas->get_some(3, 0);
         $result2 = $peliculas->find(6);
