@@ -5,6 +5,7 @@ namespace Models;
 use Models\User;
 use Models\Movie;
 use DAO\RatingsDAO;
+use GuzzleHttp\Client;
 
 class Rating{
 
@@ -38,5 +39,17 @@ class Rating{
         $ratings = $this->ratingsDAO->get_all();
         return $ratings;
     }
+
+    public function post_all_ratings(){
+        $client = new Client();
+        $ratings = $this->get_all();
+        $response = $client->request('POST', 'localhost:8001/ratings', [
+            'json' => $ratings
+            
+        ]);
+        $response = json_decode($response->getBody(), true);
+        return $response;
+    }
+
     
 }
