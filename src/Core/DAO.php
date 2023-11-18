@@ -101,9 +101,9 @@ abstract class DAO {
 
     /**
      * 
-     * @param string $data
+     * @param array $data
      * 
-     * @return void
+     * @return Database
      */
 
     public function register($data) {
@@ -122,6 +122,7 @@ abstract class DAO {
             $sql = substr($sql, 0, -2);
             $sql .= ")";
             $stmt = $this->connection->query($sql, $params);
+            return $stmt;
         } catch (Exception $e) {
             die($e->getMessage());
         }
@@ -130,10 +131,10 @@ abstract class DAO {
      /**
       * 
       *@param int $id
-      *@param string $data
+      *@param array $data
       *@param array $fields
       *
-      *@return void
+      *@return bool
       */
 
     public function update($id, $data, $fields = []) {
