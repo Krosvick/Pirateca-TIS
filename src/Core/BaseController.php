@@ -7,13 +7,11 @@ abstract class BaseController
 {
     protected $routeParams;
     protected $response;
-    protected $view;
 
-    public function __construct($routeParams = null)
+    public function __construct($base_url, $routeParams)
     {
         $this->routeParams = $routeParams;
-        $this->response = new Response();
-        $this->view = new View(); // Set the view path here
+        $this->response = new Response($base_url);
     }
 
     protected function before()
@@ -28,7 +26,7 @@ abstract class BaseController
 
     protected function render($view, $data = [])
     {
-        $this->view->render($view, $data);
+        $this->response->render($view, $data);
     }
 
     protected function redirect($url, $statusCode = 302)
