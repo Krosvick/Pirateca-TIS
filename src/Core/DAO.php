@@ -81,10 +81,12 @@ abstract class DAO {
     }
     public function dummytest_fulltext($busqueda){
         try {
-            $sql = "SELECT * FROM movies WHERE MATCH (original_title) AGAINST (:busqueda IN NATURAL LANGUAGE MODE)";
+            #search against :busqueda* 
+            #in boolean mode the * is used to search for words that start with the given word
+            $sql = "SELECT * FROM movies WHERE MATCH (original_title) AGAINST (:busqueda IN BOOLEAN MODE)";
 
             $params = array(
-                "busqueda" => [$busqueda, PDO::PARAM_STR]
+                "busqueda" => [$busqueda . "*", PDO::PARAM_STR]
             );
 
             $stmt = $this->connection->query($sql, $params);
