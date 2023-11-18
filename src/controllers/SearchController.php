@@ -22,10 +22,11 @@ class SearchController extends BaseController
             if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['enviar'])) {
                 $busqueda = $_POST['busqueda'];
 
-                $movie = new MoviesDAO();
-                $movie = $movie->dummytest($busqueda);
+                $movieDAO = new MoviesDAO();
+                $movie = $movieDAO->dummytest_fulltext($busqueda);
 
                 $data = [
+                    'movieDAO' => $movieDAO,
                     'Movie' => $movie
                 ];
 

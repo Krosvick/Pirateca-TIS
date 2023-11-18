@@ -14,9 +14,8 @@
 if(isset($_POST['enviar'])){
     $busqueda = $_POST['busqueda'];
     //$busqueda = "Driv";
-    $movie = $movie->dummytest($busqueda);
-    //dd($movie);
-    foreach($movie as $row){
+    $movies = $movieDAO->dummytest_fulltext($busqueda);
+    foreach($movies as $row){
         echo $row['original_title']. '<br>';
     }
 }
