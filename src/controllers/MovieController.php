@@ -8,7 +8,7 @@ use DAO\moviesDAO;
 use Core\BaseController;
 
 class MovieController extends BaseController {
-    private $movieDAO;
+    private $movieDAO; //THIS SHOULDNT BE HERE IN THE FUTURE
     private $client;
     private $movieModel;
 
@@ -27,18 +27,6 @@ class MovieController extends BaseController {
     public function list_movies_for_user(User $user){
         $user_recommended_movies = $user->get_recommended_movies(10);
         return $user_recommended_movies;
-    }
-
-    public function showMovie($id) {
-        $movie = $this->movieModel->find_movie($id);
-        if(!$movie){
-            $this->response->abort(404);
-        }
-        $data = [
-            'Movie' => $movie
-        ];
-        return $this->render("partials/movie_page", $data);
-        
     }
 
     public function createMovie($originalTitle, $overview, $genres, $belongsToCollection, $adult, $originalLanguage, $releaseDate) {

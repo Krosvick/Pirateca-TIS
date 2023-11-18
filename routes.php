@@ -1,6 +1,6 @@
 <?php
 
 $router->addRoute('/', 'indexController@index');
-$router->addRoute('/movie/{id}', 'movieController@showMovie');
+$router->addRoute('/movie/{id}', 'MoviePageController@MoviePage');
 $router->addRoute('/test', 'searchController@hello');
 

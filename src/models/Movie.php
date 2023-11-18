@@ -1,6 +1,7 @@
 <?php
 
 namespace Models;
+
 use DAO\moviesDAO;
 use GuzzleHttp\Client;
 
@@ -55,6 +56,7 @@ class Movie{
 
     public function moviePosterFallback($movie){
         $client = new Client();
+        $moviePoster = $movie['poster_path'];
         try{
             $response = $client->request('GET', 'https://image.tmdb.org/t/p/original'.$movie['poster_path']);
             return $movie['poster_path'];
