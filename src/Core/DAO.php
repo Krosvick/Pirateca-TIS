@@ -79,6 +79,21 @@ abstract class DAO {
             die($e->getMessage());
         }
     }
+    public function dummytest_fulltext($busqueda){
+        try {
+            $sql = "SELECT * FROM movies WHERE MATCH (original_title) AGAINST (:busqueda IN NATURAL LANGUAGE MODE)";
+
+            $params = array(
+                "busqueda" => [$busqueda, PDO::PARAM_STR]
+            );
+
+            $stmt = $this->connection->query($sql, $params);
+            $row = $stmt->get();
+            return $row;
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
      /**
       * @param int $id   
       *
