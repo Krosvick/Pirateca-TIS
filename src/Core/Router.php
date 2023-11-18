@@ -82,7 +82,7 @@ class Router
 
             $controller = $this->getNamespace() . $this->toStudlyCaps($params['controller']);
             if (class_exists($controller)) {
-                $controllerObject = new $controller($params);
+                $controllerObject = new $controller($this->request->getBaseUrl(), $params);
                 $action = $this->toCamelCase($params['action']);
 
                 if (is_callable([$controllerObject, $action])) {
