@@ -66,6 +66,19 @@ abstract class DAO {
         }
     }
 
+    public function dummytest($busqueda){
+        try {
+            $sql = "SELECT * FROM movies WHERE original_title LIKE '%$busqueda%'";
+           // $params = array(
+            //    "id" => [$id, PDO::PARAM_INT]
+            //);
+            $stmt = $this->connection->query($sql, $params);
+            $row = $stmt->get();
+            return $row;
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
      /**
       * @param int $id   
       *
@@ -167,6 +180,9 @@ abstract class DAO {
         }
     }
 
+  
+
+
     /**
      * 
      * @param int $id
@@ -203,4 +219,6 @@ abstract class DAO {
             die($e->getMessage());
         }
     }
+
+  
 }
