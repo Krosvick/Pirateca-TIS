@@ -1,6 +1,4 @@
 
-<?php require('partials/head.php') ?>
-
       <!-- header -->
       <?php require('partials/nav.php')?>
         <!-- end header -->

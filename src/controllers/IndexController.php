@@ -61,6 +61,6 @@ class IndexController extends BaseController
             'result2' => $result2,
             'user_movies' => $user_movies
         ];
-        return $this->render("partials/movie_page", $data);
+        return $this->render("index.php", $data);
     }
 }
