@@ -15,9 +15,9 @@ class MoviePageController extends BaseController
     private $movieModel;
     private $ratingModel;
 
-    public function __construct() {
+    public function __construct($base_url, $routeParams) {
         //call the parent constructor to get access to the properties and methods of the BaseController class
-        parent::__construct();
+        parent::__construct(...func_get_args());
         $this->movieDAO = new moviesDAO();
         $this->movieModel = new Movie();
         $this->ratingModel = new Rating();

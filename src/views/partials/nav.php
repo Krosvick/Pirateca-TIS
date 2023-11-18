@@ -12,7 +12,7 @@
     <nav class="bg-white shadow">
         <div class="max-w-screen-xl mx-auto px-4 py-2 flex items-center justify-between">
             <div>
-                <img src="public/images/logo.png" alt="Logo" class="h-8">
+                <img src="<?= $base_url ?>public/images/logo.png" alt="Logo" class="h-8">
             </div>
             <div>
                 <button class="text-white hover:text-purple-800 bg-purple-700 hover:bg-purple-600 px-4 py-2 rounded transition duration-300">Home</button>
