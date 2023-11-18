@@ -15,6 +15,7 @@ require 'functions.php';
 
 $request = new Request();
 $response = new Response();
+$request->setBaseUrl("/");
 $router = new Router($request, $response);
 require base_path('routes.php');
 
