@@ -1,6 +1,5 @@
 <?php
 
-namespace Core;
 
 function dd($value)
 {

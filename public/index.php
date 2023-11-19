@@ -4,13 +4,12 @@
 use Core\Router;
 use Core\Response;
 use Core\Request;
-use function Core\base_path;
 
 
 const BASE_PATH = __DIR__ . '/../';
 
 require BASE_PATH . '/vendor/autoload.php';
-require BASE_PATH . 'src/Core/functions.php';
+require 'functions.php';
 
 $dotenv = Dotenv\Dotenv::createImmutable(BASE_PATH);
 $dotenv->load();
