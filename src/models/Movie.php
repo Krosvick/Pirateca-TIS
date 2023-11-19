@@ -4,6 +4,7 @@ namespace Models;
 
 use DAO\moviesDAO;
 use GuzzleHttp\Client;
+use function Core\dd;
 
 
 class Movie{
@@ -20,7 +21,7 @@ class Movie{
         $movies = array();
         foreach($id_list as $body){
             foreach($body as $movie){
-                $movie = $this->find_movie($movie['id']);
+                $movie = $this->find_movie($movie['movieId']);
                 if ($movie != null){
                     array_push($movies, $movie);
                 }
