@@ -25,15 +25,14 @@ class MoviePageController extends BaseController
 
     public function MoviePage($id) {
         $movie = $this->movieModel->find_movie($id);
+        $ratings = $this->ratingModel->search_by_movie_id($id);
         if(!$movie){
             $this->response->abort(404);
         }
         $data = [
-            'Movie' => $movie
+            'Movie' => $movie,
+            'Ratings' => $ratings
         ];
-
-        $ratings = $this->ratingModel->search_by_movie_id($id);
-        $data['Ratings'] = $ratings;
 
         //data should be constructed as 2 part array, movie and ratings
         //due to the model, data and dao interaction, this page will be the most complex yet

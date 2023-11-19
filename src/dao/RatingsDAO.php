@@ -28,7 +28,11 @@ class RatingsDAO extends DAO {
 
     public function get_by_movie($movie_id) {
         try {
-            $sql = "SELECT * FROM {$this->table} WHERE movie_id = :movie_id LIMIT :limit";
+            $sql = "SELECT {$this->table}.rating, {$this->table}.review, users.username
+                    FROM {$this->table}
+                    JOIN users ON {$this->table}.user_id = users.id 
+                    WHERE {$this->table}.movie_id = :movie_id 
+                    LIMIT :limit";
             $params = array(
                 'movie_id' => [$movie_id, PDO::PARAM_INT],
                 'limit' => [10, PDO::PARAM_INT]
