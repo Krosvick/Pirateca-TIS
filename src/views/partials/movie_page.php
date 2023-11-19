@@ -10,7 +10,7 @@
     <meta charset="UTF-8">
     <title><?php echo $data['Movie']['original_title'] ?></title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/src/views/partials/styles-movie.css">
+    <link rel="stylesheet" href="/css/styles-movie.css">
 </head>
 <body>
     <!-- movie descripction-->

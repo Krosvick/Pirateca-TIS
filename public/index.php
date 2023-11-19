@@ -13,9 +13,10 @@ require 'functions.php';
 
 $dotenv = Dotenv\Dotenv::createImmutable(BASE_PATH);
 $dotenv->load();
+
 $request = new Request();
 $response = new Response();
-$request->setBaseUrl("/");
+$request->setBaseUrl(BASE_PATH);
 $router = new Router($request, $response);
 require base_path('routes.php');
 
