@@ -4,7 +4,7 @@
 <head>
    <meta charset="UTF-8">
    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet">
-   <link rel="stylesheet" href="styles-movie.css">
+   <link rel="stylesheet" href="/css/styles-movie.css">
 </head>
 <body>
     <nav class="bg-white shadow">
