@@ -1,18 +1,18 @@
 <?php
 
-require __DIR__ . '/vendor/autoload.php';
 
 use Core\Router;
 use Core\Response;
 use Core\Request;
 
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-$dotenv->load();
 
-const BASE_PATH = __DIR__.'/';
+const BASE_PATH = __DIR__ . '/../';
 
+require BASE_PATH . '/vendor/autoload.php';
 require 'functions.php';
 
+$dotenv = Dotenv\Dotenv::createImmutable(BASE_PATH);
+$dotenv->load();
 $request = new Request();
 $response = new Response();
 $request->setBaseUrl("/");

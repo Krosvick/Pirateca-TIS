@@ -11,31 +11,29 @@ use GuzzleHttp\Client;
 
 class SearchController extends BaseController
 {
-        public function __construct($base_url, $routeParams) {
+    private $movieModel;
+    
+        public function __construct() {
             //call the parent constructor to get access to the properties and methods of the BaseController class
-            parent::__construct(...func_get_args());
-        
+            //parent::__construct();
+            
         }
 
         public function search(){
-
+            $busqueda = "";
             if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['enviar'])) {
                 $busqueda = $_POST['busqueda'];
-
-                $movieDAO = new MoviesDAO();
-                $movie = $movieDAO->dummytest_fulltext($busqueda);
-
-                $data = [
-                    'movieDAO' => $movieDAO,
-                    'Movie' => $movie
-                ];
-
+                $this->movieModel = new Movie();
+               // Cambiar parametro $search por $busqueda, por algun motivo guarda el ultimo submit de la vista
+                $movie = $this->movieModel->search("ariel");
+                
             }
-            //require 'src\views\partials\test.php';}
-            return $this->render("partials/test", $data);
 
+            require 'src\views\partials\test.php';
         }
-}
+        //return $this->render("partials/test", $data);
+        }       
+
 
  
 

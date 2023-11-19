@@ -9,18 +9,8 @@
     <input type="submit" name="enviar" value="Submit">
 </form>
 
-<?php
+   <?php foreach ($movie as $result): ?>    
+    <img src="<?= $result["poster_path"] ? "https://image.tmdb.org/t/p/w500".$result['poster_path'] : '/views/images/PLACEHOLDER.png' ?>" alt="poster" class="h-full w-4/6 rounded-2xl hover:drop-shadow-md lg:w-1/4">
+    <?php endforeach; ?>
+    
 
-if(isset($_POST['enviar'])){
-    $busqueda = $_POST['busqueda'];
-    //$busqueda = "Driv";
-    $movies = $movieDAO->dummytest_fulltext($busqueda);
-    foreach($movies as $row){
-        echo $row['original_title']. '<br>';
-    }
-}
-else{
-    echo "escribe algo";
-}
-
-?>
