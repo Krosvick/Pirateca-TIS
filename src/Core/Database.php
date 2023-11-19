@@ -59,6 +59,14 @@ class Database
         return $this->statement->fetch();
     }
 
+    public function getSome($limit = 10, $offset = 0)
+    {
+        #method to return a certain quantity of the statement
+        $results = $this->statement->fetchAll();
+        $results = array_slice($results, $offset, $limit);
+        return $results;
+    }
+
     public function findOrFail()
     {
         $result = $this->find();

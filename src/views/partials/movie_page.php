@@ -1,5 +1,5 @@
 <!-- arreglar el tema del directorio -->
-<?php require('src/views/partials/nav.php')?>
+<?php require('nav.php')?>
 
 <?php 
     #dd($base_url);
@@ -10,7 +10,7 @@
     <meta charset="UTF-8">
     <title><?php echo $data['Movie']['original_title'] ?></title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="<?= $base_url?>src/views/css/styles-movie.css">
+    <link rel="stylesheet" href="/src/views/partials/styles-movie.css">
 </head>
 <body>
     <!-- movie descripction-->
@@ -64,8 +64,8 @@
                     }
                 }
             }
-            //$starsGiven = ['User'][user]
-            $starsGiven = 3; //aca ira el rate del user
+            $starsGiven = ['User']['user_rating']
+            
             ?>
                 <div class="flex items-center mb-4">
                     <img class="w-10 h-10 me-4 rounded-full" src="https://cdn.discordapp.com/attachments/324358291561906186/1172908205068800160/image.png?ex=656206e3&is=654f91e3&hm=ca8e71b36e8f7c2afb64674c51780e94bca641beb6adb0a7ede617da1e3a5d1c&" alt="">
@@ -77,7 +77,7 @@
                     <?php displaystar($starsGiven); ?>
                 </div>
                 
-                <p class="mb-2 text-gray-500 dark:text-gray-400">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+                <p class="mb-2 text-gray-500 dark:text-gray-400">user_rating</p>
               
                 
             </article>

@@ -68,12 +68,29 @@ abstract class DAO {
 
     public function dummytest($busqueda){
         try {
-            $sql = "SELECT * FROM movies WHERE original_title LIKE '%$busqueda%'";
-           // $params = array(
-            //    "id" => [$id, PDO::PARAM_INT]
-            //);
+            $sql = "SELECT * FROM movies WHERE original_title LIKE CONCAT('%', :busqueda, '%')";
+            $params = array(
+                "busqueda" => [$busqueda, PDO::PARAM_STR]
+            );
             $stmt = $this->connection->query($sql, $params);
-            $row = $stmt->get();
+            $row = $stmt->getSome();
+            return $row;
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
+    public function dummytest_fulltext($busqueda){
+        try {
+            #search against :busqueda* 
+            #in boolean mode the * is used to search for words that start with the given word
+            $sql = "SELECT * FROM movies WHERE MATCH (original_title) AGAINST (:busqueda IN BOOLEAN MODE)";
+
+            $params = array(
+                "busqueda" => [$busqueda . "*", PDO::PARAM_STR]
+            );
+
+            $stmt = $this->connection->query($sql, $params);
+            $row = $stmt->getSome();
             return $row;
         } catch (Exception $e) {
             die($e->getMessage());

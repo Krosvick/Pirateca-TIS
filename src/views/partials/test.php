@@ -1,4 +1,4 @@
-<?php require 'src\views\partials\nav.php'?>
+<?php require ('nav.php')?>
 
 
 <h1>Aqui va una prueba</h1>

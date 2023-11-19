@@ -34,10 +34,6 @@ class IndexController extends BaseController
             'result2' => $result2,
             'user_movies' => $user_movies
         ];
-<<<<<<< HEAD
-        return $this->render("index.php", $data);
-=======
         return $this->render("index", $data);
->>>>>>> 274a9e492932883a78860c9e3a94f12b3af8c199
     }
 }
