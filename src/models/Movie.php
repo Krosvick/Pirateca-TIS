@@ -46,6 +46,17 @@ class Movie{
     }
 
 
+    
+    public function search($busqueda){
+        $movies = $this->moviesDAO->dummytest($busqueda);
+        foreach($movies as $key => $movie){
+            if ($movie != null){
+            $movies[$key]['poster_path'] = $this->moviePosterFallback($movie);
+        }
+        }
+        return $movies; 
+    }
+
     /**
      * 
      * @param array $movie  a movie data array
