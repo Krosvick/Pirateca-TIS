@@ -46,7 +46,7 @@ class Movie{
     }
 
 
-    
+    // THIS SHIT IS TO SLOW
     public function search($busqueda){
         $movies = $this->moviesDAO->dummytest($busqueda);
         foreach($movies as $key => $movie){
