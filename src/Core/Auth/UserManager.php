@@ -38,14 +38,14 @@ class UserManager implements UserManagerInterface
         return (array_key_exists($key, $_SESSION) && unserialize($_SESSION[$key]) !== false);
     }
 
-    public function isGranted(array $roles): bool
+    public function isGranted(string $roles): bool
     {
         if (!is_null($userToken = $this->getUserToken())) {
             return false;
         }
 
         if ($userToken->getUser() instanceof UserInterface) {
-            return (!empty(array_intersect($roles, $userToken->getUser()->getRoles())));
+            return $userToken->getUser()->getRoles() === $roles;
         }
 
         return false;
