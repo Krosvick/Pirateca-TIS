@@ -32,15 +32,21 @@
                     echo $data['Movie']['director'];
                 ?></p>
             </div>
-
-            <!-- prov button -->
-            <!-- on click commentary.php should pop up-->
-            <div>
-                <button class="boton" type="submit" class="text-white bg-stone-800 hover:bg-white hover:text-blue-60 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Rate Movie</button>
-            </div>
         </form>
+
+        <!-- prov button -->
+        <!-- on click commentary.php should pop up-->
+        <div>
+            <button type="button" value="toggle" class="text-purple-700 hover:text-white border border-purple-700 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-purple-400 dark:text-purple-400 dark:hover:text-white dark:hover:bg-purple-500 dark:focus:ring-purple-900">Rate Movie</button>
+        </div>
     </div>
-    <!-- commentary -->
+    
+    <!-- rate and commentary -->
+    <div>
+        <?php
+            require('commentary.php')
+        ?>
+    </div>
 
     <!-- funcion foreach para los comentarios -->
     <!-- HERE SHOULD BE CHANGED TO DYNAMIC FUNCTIONS -->
@@ -94,3 +100,10 @@
     </div>
 </body>
 </html>
+
+<script>
+    function toggleDiv() {
+      var div = document.getElementById("toggleDiv");
+      div.classList.toggle("hidden");
+    }
+</script>
