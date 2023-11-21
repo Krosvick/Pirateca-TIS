@@ -21,6 +21,7 @@ body {
     background-color: rgb(59 7 100); 
 }
 
-
-
+.hidden {
+    display: none;
+  }
 
