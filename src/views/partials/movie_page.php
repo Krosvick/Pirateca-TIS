@@ -32,6 +32,12 @@
                     echo $data['Movie']['director'];
                 ?></p>
             </div>
+
+            <!-- prov button -->
+            <!-- on click commentary.php should pop up-->
+            <div>
+                <button class?="boton" type="submit" class="text-white bg-stone-800 hover:bg-white hover:text-blue-60 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Rate Movie</button>
+            </div>
         </form>
     </div>
     <!-- commentary -->
