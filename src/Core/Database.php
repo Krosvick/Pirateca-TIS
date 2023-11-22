@@ -50,19 +50,20 @@ class Database
         return $this;
     }
 
-    public function get(){
-        return $this->statement->fetchAll();
-    }
-
-    public function find()
+    public function get($className = null)
     {
-        return $this->statement->fetch();
+        return $this->statement->fetchAll(PDO::FETCH_CLASS, $className);
     }
 
-    public function getSome($limit = 10, $offset = 0)
+    public function find($className = null)
+    {
+        return $this->statement->fetch(PDO::FETCH_CLASS, $className);
+    }
+
+    public function getSome($limit = 10, $offset = 0, $className = null)
     {
         #method to return a certain quantity of the statement
-        $results = $this->statement->fetchAll();
+        $results = $this->get($className);
         $results = array_slice($results, $offset, $limit);
         return $results;
     }
