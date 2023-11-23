@@ -102,14 +102,14 @@ abstract class DAO {
       * @return array
       */
 
-    public function find($id) {
+    public function find($id, $className = null) {
         try {
             $sql = "SELECT * FROM {$this->table} WHERE id = :id";
             $params = array(
                 "id" => [$id, PDO::PARAM_INT]
             );
             $stmt = $this->connection->query($sql, $params);
-            $row = $stmt->find();
+            $row = $stmt->find($className);
             return $row;
         } catch (Exception $e) {
             die($e->getMessage());
