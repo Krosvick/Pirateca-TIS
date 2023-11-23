@@ -2,10 +2,15 @@
 
 
 namespace Core\Auth;
+use DAO\UsersDAO;
 
 class User implements UserInterface
 {
 
+    /**
+     * @var int
+     */
+    private $userId;
     /**
      * @var string
      */
@@ -26,6 +31,22 @@ class User implements UserInterface
      */
     private $enabled = true;
 
+    /**
+     * @return null|int
+     */
+    public static function getPrimaryKey(): string
+    {
+        return 'id';
+    }
+    public static function findOne(int $id): ?User
+    {
+        $userDAO = new UsersDAO();
+        $user = $userDAO->find($id, self::class);
+        if($user){
+            return $user;
+        }
+        return null;
+    }
     /**
      * @return null|string
      */

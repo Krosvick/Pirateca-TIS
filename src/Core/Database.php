@@ -55,7 +55,7 @@ class Database
         return $this->statement->fetchAll(PDO::FETCH_CLASS, $className);
     }
 
-    public function find($className = null)
+    public function find($className = null): ?object
     {
         return $this->statement->fetch(PDO::FETCH_CLASS, $className);
     }
