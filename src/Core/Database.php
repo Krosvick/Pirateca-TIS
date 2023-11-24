@@ -41,7 +41,6 @@ class Database
             foreach ($params as $key => $value) {
                 $this->statement->bindValue($key, $value[0], $value[1]);
             }
-
             $this->statement->execute();
         }catch(\PDOException $e){
             die($e->getMessage());
@@ -57,7 +56,7 @@ class Database
 
     public function find($className = null): ?object
     {
-        return $this->statement->fetchObject($className);
+        return $this->statement->fetchAll(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, $className)[0] ?? null;
     }
 
     public function getSome($limit = 10, $offset = 0, $className = null)
