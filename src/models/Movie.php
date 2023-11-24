@@ -9,6 +9,18 @@ use function Core\dd;
 
 class Movie{
 
+    private $id;
+    private $title;
+    private $overview;
+    private $poster_path;
+    private $genres;
+    private $belongs_to_collection;
+    private bool $adult;
+    private $original_language;
+    private $release_date;
+    private $deleted_at;
+    private $updated_at;
+    private $director;
     private MoviesDAO $moviesDAO;
     public $movies_list;
 
