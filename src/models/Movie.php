@@ -49,7 +49,7 @@ class Movie{
 
     // THIS SHIT IS TO SLOW
     public function search($busqueda){
-        $movies = $this->moviesDAO->dummytest($busqueda);
+        $movies = $this->moviesDAO->dummytest_fulltext($busqueda);
         foreach($movies as $key => $movie){
             if ($movie != null){
             $movies[$key]['poster_path'] = $this->moviePosterFallback($movie);
