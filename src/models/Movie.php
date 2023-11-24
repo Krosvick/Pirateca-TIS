@@ -4,7 +4,6 @@ namespace Models;
 
 use DAO\moviesDAO;
 use GuzzleHttp\Client;
-use function Core\dd;
 
 
 class Movie{
@@ -12,7 +11,7 @@ class Movie{
     private $id;
     private $title;
     private $overview;
-    private $poster_path;
+    public $poster_path;
     private $genres;
     private $belongs_to_collection;
     private bool $adult;
@@ -20,7 +19,7 @@ class Movie{
     private $release_date;
     private $deleted_at;
     private $updated_at;
-    private $director;
+    public $director;
     private MoviesDAO $moviesDAO;
     public $movies_list;
 
@@ -50,10 +49,12 @@ class Movie{
      */
 
     public function find_movie($id){
-        $movie = $this->moviesDAO->find($id);
+        #second parameter of find is the class
+        $movie = $this->moviesDAO->find($id, 'Models\Movie');
         if ($movie != null){
-            $movie['poster_path'] = $this->moviePosterFallback($movie);
-            $movie['director'] = $this->MovieDirectorRetrieval($movie);
+            $movie = (object) $movie;
+            $movie->poster_path = $this->moviePosterFallback($movie);
+            $movie->director = $this->MovieDirectorRetrieval($movie);
         }
         return $movie;
     }
@@ -78,15 +79,15 @@ class Movie{
      */
 
 
-    public function moviePosterFallback($movie){
+    public function moviePosterFallback(Movie $movie){
         $client = new Client();
-        $moviePoster = $movie['poster_path'];
+        $moviePoster = $movie->poster_path;
         try{
-            $response = $client->request('GET', 'https://image.tmdb.org/t/p/original'.$movie['poster_path']);
-            return $movie['poster_path'];
+            $response = $client->request('GET', 'https://image.tmdb.org/t/p/original'.$movie->poster_path);
+            return $movie->poster_path;
         }catch(\Exception $e){
             if($e->getCode() == 404){
-                $new_poster_request = $client->request('GET', 'https://api.themoviedb.org/3/movie/'.$movie['id'].'/images?language=en', [
+                $new_poster_request = $client->request('GET', 'https://api.themoviedb.org/3/movie/'.$movie->id.'/images?language=en', [
                     'headers' => [
                         'Authorization' => 'Bearer '. $_ENV['TMDB_API_KEY'],
                         'accept' => 'application/json',
@@ -97,7 +98,7 @@ class Movie{
                     $new_poster_url = $new_poster_response['posters'][0]['file_path'];
                     $moviePoster = $new_poster_url;
                     #update the movie poster path in the database
-                    $this->moviesDAO->update($movie['id'], $movie, ['poster_path']);
+                    $this->moviesDAO->update($movie->id, $movie, ['poster_path']);
                 }
                 else{
                     #if the movie doesn't have a poster, we will use a default image
@@ -117,7 +118,7 @@ class Movie{
 
     public function MovieDirectorRetrieval($movie){
         $client = new Client();
-        $movie_credits_request = $client->request('GET', 'https://api.themoviedb.org/3/movie/'.$movie['id'].'/credits?language=en-US', [
+        $movie_credits_request = $client->request('GET', 'https://api.themoviedb.org/3/movie/'.$movie->id.'/credits?language=en-US', [
             'headers' => [
                 'Authorization' => 'Bearer '. $_ENV['TMDB_API_KEY'],
                 'accept' => 'application/json',
@@ -125,7 +126,7 @@ class Movie{
         ]);
         $movie_credits_response = json_decode($movie_credits_request->getBody(), true);
         $movie_director = $movie_credits_response['crew'][0]['name'];
-        $this->moviesDAO->update($movie['id'], $movie, ['director']);
+        $this->moviesDAO->update($movie->id, $movie, ['director']);
         return $movie_director;
     }
 
