@@ -26,7 +26,7 @@ class Movie{
     public function __construct($id = null, $original_title = null, $overview = null, $poster_path = null, $genres = null, $belongs_to_collection = null, $adult = false, $original_language = null, $release_date = null, $deleted_at = null, $updated_at = null, $director = null)
     {
         $this->id = $id;
-        $this->title = $title;
+        $this->original_title = $original_title;
         $this->overview = $overview;
         $this->poster_path = $poster_path;
         $this->genres = $genres;
@@ -48,7 +48,7 @@ class Movie{
         $this->id = $id;
     }
     public function get_title(){
-        return $this->title;
+        return $this->original_title;
     }
     public function set_title($title){
         $this->title = $title;
