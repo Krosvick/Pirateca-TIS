@@ -2,7 +2,7 @@
 <?php require('nav.php')?>
 
 <?php 
-    #dd($Ratings[0]['username']);
+    dd($Movie);
 ?>
 
 <html lang="en">
