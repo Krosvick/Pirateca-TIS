@@ -165,7 +165,8 @@ abstract class DAO {
             foreach ($fields as $field) {
                 $paramName = ":$field";
                 $sql .= "$field = $paramName, ";
-                $params[$paramName] = [$data->$field, PDO::PARAM_STR];
+                #data-> will call get_ concatenated with the field name
+                $params[$paramName] = [$data->{"get_$field"}(), PDO::PARAM_STR];
             }
             $sql = rtrim($sql, ', ');
             $sql .= " WHERE id = :id";
