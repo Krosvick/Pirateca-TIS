@@ -19,12 +19,13 @@ class MoviePageController extends BaseController
         //call the parent constructor to get access to the properties and methods of the BaseController class
         parent::__construct(...func_get_args());
         $this->movieDAO = new moviesDAO();
-        $this->movieModel = new Movie();
         $this->ratingModel = new Rating();
     }
 
     public function MoviePage($id) {
-        $movie = $this->movieModel->find_movie($id);
+        $movie = $this->movieDAO->find($id, 'Models\Movie');
+        $movie->MovieDirectorRetrieval();
+        $movie->moviePosterFallback();
         $ratings = $this->ratingModel->search_by_movie_id($id);
         if(!$movie){
             $this->response->abort(404);
