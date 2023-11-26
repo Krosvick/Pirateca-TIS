@@ -164,8 +164,9 @@ class Movie{
     {
         $client = new Client();
         $moviePoster = $this->poster_path;
+        $url = "https://image.tmdb.org/t/p/w780".$moviePoster;
         try{
-            $response = $client->request('GET', 'https://image.tmdb.org/t/p/original'.$moviePoster);
+            $response = $client->request('GET', $url);
             return $moviePoster;
         }catch(\Exception $e){
             if($e->getCode() == 404){
@@ -178,9 +179,9 @@ class Movie{
                 $new_poster_response = json_decode($new_poster_request->getBody(), true);
                 if(count($new_poster_response['posters']) > 0){
                     $new_poster_url = $new_poster_response['posters'][0]['file_path'];
-                    $moviePoster = $new_poster_url;
+                    $this->poster_path = $new_poster_url;
                     #update the movie poster path in the database
-                    $this->moviesDAO->update($this->id, $this, ['poster_path']);
+                    $result = $this->moviesDAO->update($this->id, $this, ['poster_path']);
                 }
                 else{
                     #if the movie doesn't have a poster, we will use a default image

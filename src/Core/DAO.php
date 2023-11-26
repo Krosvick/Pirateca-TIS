@@ -149,7 +149,7 @@ abstract class DAO {
      /**
       * 
       *@param int $id
-      *@param array $data
+      *@param object $data
       *@param array $fields
       *
       *@return bool
@@ -172,9 +172,9 @@ abstract class DAO {
             $sql = rtrim($sql, ', ');
             $sql .= " WHERE id = :id";
             $params[':id'] = [$id, PDO::PARAM_INT];
-
+            
             $this->connection->query($sql, $params);
-
+            
             return true; // Success
         } catch (Exception $e) {
             // Handle the exception or log the error
