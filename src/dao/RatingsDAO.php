@@ -28,7 +28,7 @@ class RatingsDAO extends DAO {
 
     public function getByMovie(Movie $movie) {
         try {
-            $sql = "SELECT {$this->table}.rating, {$this->table}.review, users.username
+            $sql = "SELECT {$this->table}.*, users.username
                     FROM {$this->table}
                     JOIN users ON {$this->table}.user_id = users.id 
                     WHERE {$this->table}.movie_id = :movie_id 
