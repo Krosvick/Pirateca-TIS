@@ -9,10 +9,18 @@ use GuzzleHttp\Client;
 
 class Rating{
 
-    private $ratingsDAO;
+    private $id;
+    private $user_id;
+    private $movie_id;
+    private $rating;
+    private $review;
 
-    public function __construct(){
-        $this->ratingsDAO = new RatingsDAO();
+    public function __construct($id = null, $user_id = null, $movie_id = null, $rating = null, $review = null){
+        $this->id = $id;
+        $this->user_id = $user_id;
+        $this->movie_id = $movie_id;
+        $this->rating = $rating;
+        $this->review = $review;
     }
 
     public function search_by_movie_id($movie_id){
