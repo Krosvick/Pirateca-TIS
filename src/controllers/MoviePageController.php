@@ -5,6 +5,7 @@ namespace Controllers;
 use Core\BaseController;
 use DAO\moviesDAO;
 use DAO\RatingsDAO;
+use DAO\UsersDAO;
 use Models\User;
 use Models\Movie;
 use Models\Rating;
@@ -18,20 +19,42 @@ class MoviePageController extends BaseController
     #controllers can have DAOs, models should not
     private $movieDAO;
     private $ratingsDAO;
+    private $userDAO;
 
     public function __construct($base_url, $routeParams) {
         //call the parent constructor to get access to the properties and methods of the BaseController class
         parent::__construct(...func_get_args());
         $this->movieDAO = new moviesDAO();
         $this->ratingsDAO = new ratingsDAO();
+        $this->userDAO = new usersDAO();
     }
 
+    /**
+     * Retrieves the movie data from the database using the moviesDAO class and the provided movie ID.
+     * It also retrieves the ratings data using the ratingsDAO class.
+     * If the movie data is not found, it aborts the response with a 404 status code.
+     * Finally, it renders the movie page template with the retrieved movie and ratings data.
+     *
+     * @param int $id The movie ID from the route.
+     * @return void Renders the movie page template.
+     */
     public function MoviePage($id) {
         //this is a more truthful oop approach
         $this->movieModel = $this->movieDAO->find($id, 'Models\Movie');
         $this->movieModel->MovieDirectorRetrieval();
         $this->movieModel->moviePosterFallback();
-        $ratings = $this->ratingsDAO->getByMovie($this->movieModel);
+        $ratings_data = $this->ratingsDAO->getByMovie($this->movieModel);
+        $ratings = [];
+        foreach($ratings_data as $rating_data){
+            #create a rating object for each rating
+            $rating = new Rating();
+            $rating->set_id($rating_data->id);
+            $rating->set_user($this->userDAO->find($rating_data->user_id, 'Models\User'));
+            $rating->set_movie($this->movieModel);
+            $rating->set_rating($rating_data->rating);
+            $rating->set_review($rating_data->review);
+            array_push($ratings, $rating);
+        }
         if(!$this->movieModel){
             $this->response->abort(404);
         }
