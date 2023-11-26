@@ -10,15 +10,15 @@ use GuzzleHttp\Client;
 class Rating{
 
     private $id;
-    private $user_id;
-    private $movie_id;
+    private User $user;
+    private Movie $movie;
     private $rating;
     private $review;
 
-    public function __construct($id = null, $user_id = null, $movie_id = null, $rating = null, $review = null){
+    public function __construct($id = null, $user = null, $movie = null, $rating = null, $review = null){
         $this->id = $id;
-        $this->user_id = $user_id;
-        $this->movie_id = $movie_id;
+        $this->user = $user;
+        $this->movie = $movie;
         $this->rating = $rating;
         $this->review = $review;
     }
@@ -27,17 +27,17 @@ class Rating{
     public function get_id(){
         return $this->id;
     }
-    public function get_user_id(){
-        return $this->user_id;
+    public function get_user(){
+        return $this->user;
     }
-    public function set_user_id($user_id){
-        $this->user_id = $user_id;
+    public function set_user($user){
+        $this->user = $user;
     }
-    public function get_movie_id(){
-        return $this->movie_id;
+    public function get_movie(){
+        return $this->movie;
     }
-    public function set_movie_id($movie_id){
-        $this->movie_id = $movie_id;
+    public function set_movie($movie){
+        $this->movie_id = $movie;
     }
     public function get_rating(){
         return $this->rating;
