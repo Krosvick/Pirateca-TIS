@@ -49,14 +49,17 @@ class Database
         return $this;
     }
 
-    public function get($className = null)
+    //this method will return all the results of the query
+    public function get($className = null): ?array
     {
-        return $this->statement->fetchAll(PDO::FETCH_CLASS, $className);
+        return $this->statement->fetchAll(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, $className) ?? null;
     }
 
+    //this method will return only the first result of the query
     public function find($className = null): ?object
     {
-        return $this->statement->fetchAll(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, $className)[0] ?? null;
+        $this->statement->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, $className);
+        return $this->statement->fetch() ?? null;
     }
 
     public function getSome($limit = 10, $offset = 0, $className = null)
