@@ -2,7 +2,7 @@
 <?php require('nav.php')?>
 
 <?php 
-    #dd($Movie->get_title());
+    #dd($Ratings[0]->get_user()->get_username());
 ?>
 
 <html lang="en">
@@ -95,7 +95,7 @@
                 <div class="flex items-center mb-4">
                     <img class="w-10 h-10 me-4 rounded-full" src="https://cdn.discordapp.com/attachments/324358291561906186/1172908205068800160/image.png?ex=656206e3&is=654f91e3&hm=ca8e71b36e8f7c2afb64674c51780e94bca641beb6adb0a7ede617da1e3a5d1c&" alt="">
                     <div class="font-medium dark:text-white">
-                        <p class= "ml-1.5"><?= $Ratings[0]->username?></p>
+                        <p class= "ml-1.5"><?= $Ratings[0]->get_user()->get_username()?></p>
                     </div>
                 </div>
                 <div class="flex items-center mb-1 space-x-1 rtl:space-x-reverse">
