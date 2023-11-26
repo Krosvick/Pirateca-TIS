@@ -26,19 +26,15 @@ class RatingsDAO extends DAO {
         }
     }
 
-    public function getByMovie(Movie $movie) {
+    public function getByMovie(Movie $movie): array {
         try {
-            $sql = "SELECT {$this->table}.*, users.username
-                    FROM {$this->table}
-                    JOIN users ON {$this->table}.user_id = users.id 
-                    WHERE {$this->table}.movie_id = :movie_id 
-                    LIMIT :limit";
+            $sql = "SELECT * FROM {$this->table} WHERE movie_id = :movie_id LIMIT :limit";
             $params = array(
                 'movie_id' => [$movie->get_id(), PDO::PARAM_INT],
                 'limit' => [10, PDO::PARAM_INT]
             );
             $stmt = $this->connection->query($sql, $params);
-            $rows = $stmt->get('Models\Rating');
+            $rows = $stmt->get();
             return $rows;
         } catch (Exception $e) {
             die($e->getMessage());
