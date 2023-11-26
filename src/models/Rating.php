@@ -23,6 +23,34 @@ class Rating{
         $this->review = $review;
     }
 
+    //getters and setters
+    public function get_id(){
+        return $this->id;
+    }
+    public function get_user_id(){
+        return $this->user_id;
+    }
+    public function set_user_id($user_id){
+        $this->user_id = $user_id;
+    }
+    public function get_movie_id(){
+        return $this->movie_id;
+    }
+    public function set_movie_id($movie_id){
+        $this->movie_id = $movie_id;
+    }
+    public function get_rating(){
+        return $this->rating;
+    }
+    public function set_rating($rating){
+        $this->rating = $rating;
+    }
+    public function get_review(){
+        return $this->review;
+    }
+    public function set_review($review){
+        $this->review = $review;
+    }
     public function search_by_movie_id($movie_id){
         $ratings = $this->ratingsDAO->get_by_movie($movie_id);
         return $ratings;
