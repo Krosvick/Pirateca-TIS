@@ -10,8 +10,8 @@ use GuzzleHttp\Client;
 class Rating{
 
     private $id;
-    private User $user;
-    private Movie $movie;
+    private ?User $user;
+    private ?Movie $movie;
     private $rating;
     private $review;
 
@@ -27,6 +27,9 @@ class Rating{
     public function get_id(){
         return $this->id;
     }
+    public function set_id($id){
+        $this->id = $id;
+    }
     public function get_user(){
         return $this->user;
     }
@@ -37,7 +40,7 @@ class Rating{
         return $this->movie;
     }
     public function set_movie($movie){
-        $this->movie_id = $movie;
+        $this->movie = $movie;
     }
     public function get_rating(){
         return $this->rating;
