@@ -24,13 +24,13 @@
     <!-- movie descripction-->
     <div class="p-8 text-white">
         <form class="bg-gradient-to-r from-purple-900 via-purple-700 to-purple-900 max-w-4xl mx-auto my-8 px-10 py-8 text-white shadow-lg rounded-lg flex items-center">
-            <div class="flex flex-col">
+            <div class="flex flex-col justify-start">
                 <div class="poster mr-8">
                     <!-- HERE SHOULD BE CHANGED TO DYNAMIC FUNCTIONS -->
                     <img src="https://image.tmdb.org/t/p/w780<?= $Movie->get_poster_path()?>" alt="Movie Poster" class="max-w-full min-fit">
                 </div>
                 <div>
-                    <button type="button" onclick="toggleDiv()" class="text-white hover:text-purple border border-white hover:bg-white hover:text-black focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-10 py-2.5 text-center ml-4 mt-2 mb-2 dark:border-purple-400 dark:text-purple-400 dark:hover:text-white dark:hover:bg-purple-500 dark:focus:ring-purple-900">Rate Movie</button>
+                    <button type="button" onclick="toggleDiv()" class="text-white hover:text-purple border border-white hover:bg-white hover:text-black focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-8 py-2.5 text-center mt-2 mb-2 dark:border-purple-400 dark:text-purple-400 dark:hover:text-white dark:hover:bg-purple-500 dark:focus:ring-purple-900">Rate Movie</button>
                 </div>
             </div>
             <div class="details">
