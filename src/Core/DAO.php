@@ -97,12 +97,13 @@ abstract class DAO {
         }
     }
      /**
-      * @param int $id   
+      * @param int $id
+      * @param string $className
       *
-      * @return array
+      * @return object
       */
 
-    public function find($id, $className = null) {
+    public function find($id, $className): object {
         try {
             $sql = "SELECT * FROM {$this->table} WHERE id = :id";
             $params = array(
