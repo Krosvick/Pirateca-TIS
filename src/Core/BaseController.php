@@ -7,11 +7,13 @@ abstract class BaseController
 {
     protected $routeParams;
     protected $response;
+    protected $request;
 
-    public function __construct($base_url, $routeParams)
+    public function __construct($container, $routeParams)
     {
         $this->routeParams = $routeParams;
-        $this->response = new Response($base_url);
+        $this->response = $container->get(Response::class);
+        $this->request = $container->get(Request::class);
     }
 
     protected function before()
