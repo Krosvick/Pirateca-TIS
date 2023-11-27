@@ -4,6 +4,7 @@
 use Core\Router;
 use Core\Response;
 use Core\Request;
+use Core\Container;
 use Core\Application;
 
 
@@ -16,10 +17,19 @@ $dotenv = Dotenv\Dotenv::createImmutable(BASE_PATH);
 $dotenv->load();
 
 #$app = new Application(BASE_PATH);
-$request = new Request();
-$response = new Response();
-$request->setBaseUrl(BASE_PATH);
-$router = new Router($request, $response);
+$container = new Container();
+$container->set(Request::class, function () {
+    $request = new Request();
+    $request->setBaseUrl(BASE_PATH);
+    return $request;
+});
+$container->set(REsponse::class, function () {
+    return new Response();
+});
+$container->set(Router::class, function () use ($container) {
+    return new Router($container);
+});
+$router = $container->get(Router::class);
 require base_path('routes.php');
 
 try {
