@@ -3,6 +3,9 @@
       <?php require('partials/nav.php')?>
         <!-- end header -->
 
+        <?php 
+          #dd($user_movies);
+         ?>
    
       <!-- banner -->
       <main>
@@ -14,11 +17,11 @@
                <h1 class="inline text-3xl pl-5 italic">ti</h1>
             </div>
             <div class="flex flex-row items-center h-auto snap-x snap-mandatory overflow-x-auto">
-               <?php foreach ($user_movies as $result): ?>
+               <?php foreach ($user_movies as $movie): ?>
                <div class="flex justify-center h-screen min-w-full w-full snap-center relative my-5">
-                  <img src="<?= $result["poster_path"] ? "https://image.tmdb.org/t/p/w500".$result['poster_path'] : '/views/images/PLACEHOLDER.png' ?>" alt="poster" class="h-full w-4/6 rounded-2xl hover:drop-shadow-md lg:w-1/4">
-                  <a href="/movie?id=<?= $result['id']?>" class="absolute bottom-0 h-10 w-1/2 bg-slate-900 border-t-2 border-x-2 border-zinc-300 rounded text-white text-center lg:w-1/4">
-                     <?= $result['original_title'] ?>
+                  <img src="<?= $movie->get_poster_path() ? "https://image.tmdb.org/t/p/w500".$movie->get_poster_path() : '/views/images/PLACEHOLDER.png' ?>" alt="poster" class="h-full w-4/6 rounded-2xl hover:drop-shadow-md lg:w-1/4">
+                  <a href="/movie/<?= $movie->get_id()?>" class="absolute bottom-0 h-10 w-1/2 bg-slate-900 border-t-2 border-x-2 border-zinc-300 rounded text-white text-center lg:w-1/4">
+                     <?= $movie->get_title() ?>
                   </a>
                </div>
                <?php endforeach; ?>
