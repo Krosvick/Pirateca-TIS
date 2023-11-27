@@ -54,6 +54,15 @@ class SimpleAPI(BaseHTTPRequestHandler):
             self.send_header('Content-type', 'application/json')
             self.end_headers()
             self.wfile.write(json.dumps(response, cls=NpEncoder).encode('utf-8'))
+        elif parsed_url.path == '/recommendations/ids':
+            userId = int(query_params['userId'][0])
+            n = int(query_params.get('n', [10])[0])
+            top_movies = Algorithm.get_user_recommendations(userId, SimpleAPI.ratings_df, SimpleAPI.model, 10, False)
+            response = {'top_movies': top_movies}
+            self.send_response(200)
+            self.send_header('Content-type', 'application/json')
+            self.end_headers()
+            self.wfile.write(json.dumps(response, cls=NpEncoder).encode('utf-8'))
         elif parsed_url.path == '/':
             response = {'endpoints_info': endpoints_info}
             self.send_response(200)
