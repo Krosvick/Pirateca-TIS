@@ -21,7 +21,6 @@ class Movie{
     private $updated_at;
     private $director;
     private MoviesDAO $moviesDAO;
-    public $movies_list;
 
     public function __construct($id = null, $original_title = null, $overview = null, $poster_path = null, $genres = null, $belongs_to_collection = null, $adult = false, $original_language = null, $release_date = null, $deleted_at = null, $updated_at = null, $director = null)
     {

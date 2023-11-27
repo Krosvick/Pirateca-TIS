@@ -128,7 +128,7 @@ class User{
 
     public function getRecommendedMoviesIds($quantity): array{
         $client = new GuzzleHttp\Client();
-        $response = $client->request('GET', 'localhost:8001/recommendations?userId='.$this->id.'&n='.$quantity);
+        $response = $client->request('GET', 'localhost:8001/recommendations/ids?userId='.$this->id.'&n='.$quantity);
         $response = json_decode($response->getBody(), true);
         return $response;
     }
