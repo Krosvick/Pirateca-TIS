@@ -99,6 +99,9 @@ class Router
                 $action = $this->toCamelCase($params['action']);
 
                 if (is_callable([$controllerObject, $action])) {
+                    foreach ($controllerObject->getMiddleware() as $middleware) {
+                        $middleware->execute();
+                    }
                     if (isset($params['id'])) {
                         $controllerObject->$action($params['id']);
                     } else {
