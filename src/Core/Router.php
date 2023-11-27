@@ -12,10 +12,12 @@ class Router
     protected $params = [];
     protected $request;
     protected $response;
-    public function __construct(Request $request, Response $response)
+    private $container;
+    public function __construct(Container $container)
     {
-        $this->request = $request;
-        $this->response = $response;
+        $this->request = $container->get(Request::class);
+        $this->response = $container->get(Response::class);
+        $this->container = $container;
 
     }
     public function addRoute($url, $handler)
@@ -82,7 +84,7 @@ class Router
 
             $controller = $this->getNamespace() . $this->toStudlyCaps($params['controller']);
             if (class_exists($controller)) {
-                $controllerObject = new $controller($this->request->getBaseUrl(), $params);
+                $controllerObject = new $controller($this->container, $params);
                 $action = $this->toCamelCase($params['action']);
 
                 if (is_callable([$controllerObject, $action])) {
