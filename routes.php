@@ -1,7 +1,8 @@
 <?php
 
-$router->addRoute('/', 'indexController@index');
-$router->addRoute('/movie/{id}', 'MoviePageController@MoviePage');
-$router->addRoute('/test', 'searchController@search');
-$router->addRoute('/test/{search}', 'searchController@imsorry');
-$router->addRoute('/login', 'LoginController@index');
+$router->get('/', 'indexController@index');
+$router->get('/movie/{id}', 'MoviePageController@MoviePage');
+$router->get('/test', 'searchController@search');
+$router->get('/test/{search}', 'searchController@imsorry');
+$router->get('/login', 'LoginController@index');
+$router->post('/login', 'LoginController@index');

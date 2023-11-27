@@ -8,7 +8,7 @@ namespace Core;
 
 class Router
 {
-    protected $routes = [];
+    protected $routes = ['GET' => [], 'POST' => []];
     protected $params = [];
     protected $request;
     protected $response;
@@ -20,7 +20,17 @@ class Router
         $this->container = $container;
 
     }
-    public function addRoute($url, $handler)
+
+    public function get($url, $handler)
+    {
+        $this->addRoute('get',$url, $handler);
+    }
+    public function post($url, $handler)
+    {
+        $this->addRoute('post',$url, $handler);
+    }
+
+    private function addRoute($method, $url, $handler)
     {
         // Split the handler into controller and action
         list($controller, $action) = explode('@', $handler);
@@ -35,7 +45,7 @@ class Router
         $pattern = "#^$pattern$#";
 
         // Add route with controller, action, and segments as params
-        $this->routes[$url] = [
+        $this->routes[$method][$url] = [
             'controller' => $controller,
             'action' => $action,
             'segments' => $segments,
@@ -48,9 +58,9 @@ class Router
         return $this->routes;
     }
 
-    public function matchRoute($url)
+    public function matchRoute($method, $url)
     {
-        foreach ($this->routes as $route => $params) {
+        foreach ($this->routes[$method] as $route => $params) {
             // Check if the route has dynamic segments
             $pattern = preg_replace_callback('/{[a-z]+}/', function ($matches) {
                 return '([^/]+)';
@@ -77,9 +87,10 @@ class Router
     public function dispatch()
     {
         $url = $this->request->getUrl();
+        $method = $this->request->getMethod();
         $url = $this->removeQueryStringVariables($url);
 
-        if ($this->matchRoute($url)) {
+        if ($this->matchRoute($method, $url)) {
             $params = $this->params;
 
             $controller = $this->getNamespace() . $this->toStudlyCaps($params['controller']);
