@@ -12,26 +12,31 @@ class IndexController extends BaseController
 {
     private $user;
     private $movieModel;
-    
+    private $movieDAO;
+
+    public function __construct($base_url, $routeParams)
+    {
+        //call the parent constructor to get access to the properties and methods of the BaseController class
+        parent::__construct(...func_get_args());
+        $this->movieDAO = new moviesDAO();
+    }
 
     public function index()
     {
         //the client should be logged before this, hard code for now
         $this->user = new User();
-        $this->user->user_id = 2;
-        $this->movieModel = new Movie();
-
-        $user_movies = $this->movieModel->find_movies($this->user->get_recommended_movies(6));
-
-        //dao shouldnt be here, get some should be aleatory
-        $peliculas = new moviesDAO();
-        $result = $peliculas->get_some(3, 0);
-        $result2 = $peliculas->find(6);
-
+        $this->user->set_id(2);
+        $recommended_movies = $this->user->getRecommendedMoviesIds(10);
+        #the array is top_movies and then the recommended movies
+        $recommended_movies = $recommended_movies['top_movies'];
+        $user_movies = [];
+        foreach ($recommended_movies as $movie_id) {
+            $movie = $this->movieDAO->find($movie_id['movie_id'], Movie::class);
+            array_push($user_movies, $movie);
+        }
+        
         $data = [
             'title' => 'Home',
-            'result' => $result,
-            'result2' => $result2,
             'user_movies' => $user_movies
         ];
         return $this->render("index", $data);
