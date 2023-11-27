@@ -3,6 +3,7 @@
 namespace  Controllers;
 
 use Core\BaseController;
+use Core\Request;
 
 class RegisterController extends BaseController
 {
@@ -14,6 +15,9 @@ class RegisterController extends BaseController
 
     public function index()
     {
+        if($this->request->isPost()){
+            dd($this->request->getBody());
+        }
         $data = [
             'title' => 'Register'
         ];

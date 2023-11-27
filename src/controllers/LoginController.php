@@ -14,6 +14,9 @@ class LoginController extends BaseController
 
     public function index()
     {
+        if($this->request->isPost()){
+            dd($this->request->getBody());
+        }
         $data = [
             'title' => 'Login'
         ];
