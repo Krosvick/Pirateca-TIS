@@ -8,6 +8,7 @@ abstract class BaseController
     protected $routeParams;
     protected $response;
     protected $request;
+    protected array $middleware = [];
 
     public function __construct($container, $routeParams)
     {
@@ -41,6 +42,15 @@ abstract class BaseController
     {
         header('Content-Type: application/json');
         echo json_encode($data);
+    }
+
+    public function registerMiddleware($middleware)
+    {
+        $this->middleware[] = $middleware;
+    }
+    public function getMiddleware()
+    {
+        return $this->middleware;
     }
 }
 
