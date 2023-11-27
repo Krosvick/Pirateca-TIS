@@ -17,7 +17,7 @@ class Container
 
     public function set(string $class, callable $instance)
     {
-        $this->instances[$class] = $instance;
+        $this->instances[$class] = $instance($this);
     }
 
     public function make(string $class)
