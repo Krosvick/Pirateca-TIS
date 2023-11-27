@@ -3,6 +3,7 @@
 namespace  Controllers;
 
 use Core\BaseController;
+use Core\Middleware\TestMiddleware;
 use Core\Request;
 
 class RegisterController extends BaseController
@@ -11,6 +12,7 @@ class RegisterController extends BaseController
     {
         //call the parent constructor to get access to the properties and methods of the BaseController class
         parent::__construct(...func_get_args());
+        $this->registerMiddleware(new TestMiddleware($container));
     }
 
     public function index()
