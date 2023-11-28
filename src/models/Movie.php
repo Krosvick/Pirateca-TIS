@@ -2,11 +2,12 @@
 
 namespace Models;
 
+use Core\Model;
 use DAO\moviesDAO;
 use GuzzleHttp\Client;
 
 
-class Movie{
+class Movie extends Model{
 
     private $id;
     private $original_title;
@@ -20,7 +21,6 @@ class Movie{
     private $deleted_at;
     private $updated_at;
     private $director;
-    private MoviesDAO $moviesDAO;
 
     public function __construct($id = null, $original_title = null, $overview = null, $poster_path = null, $genres = null, $belongs_to_collection = null, $adult = false, $original_language = null, $release_date = null, $deleted_at = null, $updated_at = null, $director = null)
     {
@@ -36,7 +36,9 @@ class Movie{
         $this->deleted_at = $deleted_at;
         $this->updated_at = $updated_at;
         $this->director = $director;
-        $this->moviesDAO = new MoviesDAO();
+        $this->DAOs = [
+            'tableDAO' => new moviesDAO()
+        ];
     }
 
     #getters and setters
@@ -111,6 +113,28 @@ class Movie{
     }
     public function set_director($director){
         $this->director = $director;
+    }
+
+    public function rules(){
+        return [
+            'original_title' => [self::RULE_REQUIRED,[self::RULE_MAX, 'max' => 8]],
+        ];
+    }
+
+    public function attributes(){
+        return [
+            'original_title',
+            'overview',
+            'poster_path',
+            'genres',
+            'belongs_to_collection',
+            'adult',
+            'original_language',
+            'release_date',
+            'deleted_at',
+            'updated_at',
+            'director'
+        ];
     }
 
     public function find_movies($id_list){ //id_list is an array of arrays, check the example in the model user and index controller

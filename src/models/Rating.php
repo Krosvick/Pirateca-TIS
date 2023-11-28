@@ -2,12 +2,13 @@
 
 namespace Models;
 
+use Core\Model;
 use Models\User;
 use Models\Movie;
 use DAO\RatingsDAO;
 use GuzzleHttp\Client;
 
-class Rating{
+class Rating extends Model{
 
     private $id;
     private ?User $user;
