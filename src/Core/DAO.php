@@ -240,5 +240,14 @@ abstract class DAO {
         }
     }
 
-  
+    public function matchAttribute(string $attribute, $value) {
+        try{
+            $this->connection->query("SELECT * FROM {$this->table} WHERE $attribute = :value", [
+                'value' => [$value, PDO::PARAM_STR]
+            ]);
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+
+    }
 }

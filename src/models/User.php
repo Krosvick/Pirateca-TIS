@@ -2,11 +2,12 @@
 
 namespace Models;
 use Core\Database;
+use Core\Model;
 use DAO\moviesDAO;
 use DAO\UsersDAO;
 use GuzzleHttp;
 
-class User{
+class User extends Model{
 
     /**
      * @var int
