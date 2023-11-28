@@ -11,7 +11,7 @@ abstract class Model{
     const RULE_MATCH = 'match';
     const RULE_UNIQUE = 'unique';
 
-    public array $errors;
+    public array $errors = [];
     public array $DAOs;
 
     public function rules(){
@@ -24,7 +24,7 @@ abstract class Model{
 
     public function validate(){
         foreach($this->rules() as $attribute => $rules){
-            $value = $this->{$attribute};
+            $value = $this->{"get_$attribute"}();
             foreach($rules as $rule){
                 $ruleName = $rule;
                 if(!is_string($ruleName)){
@@ -91,6 +91,10 @@ abstract class Model{
 
     public function hasError($attribute){
         return $this->errors[$attribute] ?? false;
+    }
+
+    public function getAllErrors(){
+        return $this->errors;
     }
 
     public function getFirstError($attribute){
