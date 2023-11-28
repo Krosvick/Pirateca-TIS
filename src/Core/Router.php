@@ -8,7 +8,7 @@ namespace Core;
 
 class Router
 {
-    protected $routes = ['GET' => [], 'POST' => []];
+    protected $routes = ['GET' => [], 'POST' => [], 'PUT' => [], 'DELETE' => []];
     protected $params = [];
     protected $request;
     protected $response;
@@ -18,7 +18,6 @@ class Router
         $this->request = $container->get(Request::class);
         $this->response = $container->get(Response::class);
         $this->container = $container;
-
     }
 
     public function get($url, $handler)
@@ -29,7 +28,14 @@ class Router
     {
         $this->addRoute('post',$url, $handler);
     }
-
+    public function put($url, $handler)
+    {
+        $this->addRoute('put',$url, $handler);
+    }
+    public function delete($url, $handler)
+    {
+        $this->addRoute('delete',$url, $handler);
+    }
     private function addRoute($method, $url, $handler)
     {
         // Split the handler into controller and action
