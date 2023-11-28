@@ -59,6 +59,9 @@ class MoviePageController extends BaseController
         if(!$this->movieModel){
             $this->response->abort(404);
         }
+        if($this->request->isDelete()){
+            #lo borrai con el dao
+        }
         $data = [
             'Movie' => $this->movieModel,
             'Ratings' => $ratings

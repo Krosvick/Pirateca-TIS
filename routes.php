@@ -7,3 +7,4 @@ $router->get('/test/{search}', 'searchController@imsorry');
 $router->get('/login', 'LoginController@index');
 $router->post('/login', 'LoginController@index');
 $router->post('/register', 'RegisterController@index');
+$router->delete('/movie/{id}', 'MoviePageController@MoviePage');

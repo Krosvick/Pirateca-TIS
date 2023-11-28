@@ -133,13 +133,6 @@ class Movie{
      * @return array<array>   an especific movie data array
      */
 
-    public function find_movie($id){
-        #second parameter of find is the class
-        $movie = $this->moviesDAO->find($id, 'Models\Movie');
-        return $movie;
-    }
-
-
     // THIS SHIT IS TO SLOW
     public function search($busqueda){
         $movies = $this->moviesDAO->dummytest_fulltext($busqueda);
@@ -161,6 +154,10 @@ class Movie{
     #movie poster fallback is called on self
     public function moviePosterFallback()
     {
+        /*$moviePoster = $this->poster_path;
+        if($this->moviedbapi->get() == 400){
+            $moviePoster = $this->moviedbapi->getthegoodone();
+        }*/
         $client = new Client();
         $moviePoster = $this->poster_path;
         $url = "https://image.tmdb.org/t/p/w780".$moviePoster;
