@@ -48,11 +48,11 @@ class Movie extends Model{
     public function set_id($id){
         $this->id = $id;
     }
-    public function get_title(){
+    public function get_original_title(){
         return $this->original_title;
     }
-    public function set_title($title){
-        $this->title = $title;
+    public function set_original_title($title){
+        $this->original_title = $title;
     }
     public function get_overview(){
         return $this->overview;
