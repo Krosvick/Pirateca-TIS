@@ -23,7 +23,7 @@ $container->set(Request::class, function () {
     $request->setBaseUrl(BASE_PATH);
     return $request;
 });
-$container->set(REsponse::class, function () {
+$container->set(Response::class, function () {
     return new Response();
 });
 $container->set(Router::class, function () use ($container) {
