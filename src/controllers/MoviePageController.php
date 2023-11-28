@@ -42,7 +42,8 @@ class MoviePageController extends BaseController
     public function MoviePage($id) {
         //this is a more truthful oop approach
         $this->movieModel = $this->movieDAO->find($id, 'Models\Movie');
-        dd($this->movieModel->validate());
+        //this is how to validate the model, either returns true or false
+        //var_dump($this->movieModel->validate(), $this->movieModel->getAllErrors());
         $this->movieModel->MovieDirectorRetrieval();
         $this->movieModel->moviePosterFallback();
         $ratings_data = $this->ratingsDAO->getByMovie($this->movieModel);
