@@ -5,12 +5,11 @@ This file will be called by the algorithm and will be the only one to access the
 """
 
 import os
-import mysql.connector
 from dotenv import load_dotenv
+import MySQLdb
 
 load_dotenv()
 
-load_dotenv()
 
 class Database:
     _instance = None
@@ -19,27 +18,30 @@ class Database:
 
     def __init__(self):
         # Create the connection object
-        self.connection = mysql.connector.connect(
+        self.connection = MySQLdb.connect(
             host=os.getenv("DB_HOST"),
             user=os.getenv("DB_USERNAME"),
-            password=os.getenv("DB_PASSWORD"),
-            database=os.getenv("DB_NAME"),
-            ssl_ca=os.getenv("SSL_CERT"),
-            #ssl_verify_identity=True
+            passwd=os.getenv("DB_PASSWORD"),
+            db=os.getenv("DB_NAME"),
+            ssl_mode="VERIFY_IDENTITY",
+            ssl={
+                'ca': os.getenv("SSL_CERT")
+            }
         )
-
-        print(Database)
 
     @classmethod
     def get_instance(cls):
         if cls._instance is None:
             cls._instance = cls()
         return cls._instance
+    
+    def get_connection(self):
+        return self.connection
 
 
 class DAO():
     _connection = None
-    _table = "Ratings" #hardcoded for now can be changed later adding a table parameter to the constructor
+    _table = "ratings" #hardcoded for now can be changed later adding a table parameter to the constructor
 
     def __init__(self):
         try:
@@ -49,12 +51,12 @@ class DAO():
 
     def get_all(self):
         try:
-            cursor = self._connection.cursor()
+            cursor = self._connection.get_connection().cursor()
             cursor.execute(f"SELECT * FROM {self._table}")
             rows = cursor.fetchall()
             return rows
         except Exception as e:
             print(e)
 
-test = DAO()
-print(test.get_all())
+#test = DAO()
+#print(test.get_all())

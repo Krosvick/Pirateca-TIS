@@ -6,6 +6,7 @@ import json
 import time
 import threading
 import sys
+import pydao
 
 sys.path.append('src')
 from models.Algorithm import Algorithm
@@ -132,6 +133,8 @@ def generate_model_periodically():
 if __name__ == '__main__':
     #hard code here, connect with dao later
     csv_pd = pd.read_csv('datasets/ratings_small_cleaned.csv')
+    test = pydao.DAO()
+    csv_pd = pd.DataFrame(test.get_all(), columns=['user_id', 'movie_id', 'rating'])
     #remove timestamp column
     csv_pd = csv_pd.drop(columns=['timestamp'])
     SimpleAPI.ratings_df =  csv_pd #initialize the ratings_df
