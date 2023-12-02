@@ -71,4 +71,20 @@ class Application
     {
         $this->eventListeners[$eventName][] = $callback;
     }
+    public function login(User $user)
+    {
+        $this->user = $user;
+        $className = get_class($user);
+        $primaryKey = $className::primaryKey();
+        $value = $user->{$primaryKey};
+        Application::$app->session->set('user', $value);
+
+        return true;
+    }
+
+    public function logout()
+    {
+        $this->user = null;
+        self::$app->session->remove('user');
+    }
 }
