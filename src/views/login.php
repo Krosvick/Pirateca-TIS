@@ -1,32 +1,3 @@
-<?php 
-/*
-session_start();
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-    $nombre_usuario = "usuario"; 
-    $contrasena = "contraseña"; 
-
-    $input_user = $_POST['username'];
-    $input_pass = $_POST['password'];
-
-    
-    if ($input_user === $nombre_usuario && $input_contra === $contrasena) {
-        
-        $_SESSION['username'] = $nombre_usuario;
-        
-        //cambiarlo al index normal despues
-
-        header("Location: src/views/index.php");
-        exit();
-    } else {
-        $error = "Nombre de usuario o contraseña incorrectos";
-    }
-}*/
-  #dd($errors['username']);
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
