@@ -17,8 +17,10 @@ class TestMiddleware extends BaseMiddleware
     }
     public function execute()
     {
-        if($this->container->get(Request::class)->getBody()["email"] == "gundam43125@gmail.com"){
-            throw new ForbiddenException("Email is required");
+        if($this->container->get(Request::class)->isPost()){
+            if(!isset($this->container->get(Request::class)->getBody()['username'])){
+                throw new ForbiddenException("user name is required");
+            }
         }
     }
 }
