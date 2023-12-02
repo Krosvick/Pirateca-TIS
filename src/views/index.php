@@ -1,8 +1,11 @@
-
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <link rel="stylesheet" href="carousel.css">
+   </head>
       <!-- header -->
       <?php require('partials/nav.php')?>
         <!-- end header -->
-
    
       <!-- banner -->
       <main>
@@ -13,6 +16,15 @@
                <h1 class="text-3xl font-bold pb-5 inline">Recomendado para</h1>
                <h1 class="inline text-3xl pl-5 italic">ti</h1>
             </div>
+
+            <div class="pic-ctn">
+               <img src="https://picsum.photos/200/300?t=1" alt="" class="pic">
+               <img src="https://picsum.photos/200/300?t=2" alt="" class="pic">
+               <img src="https://picsum.photos/200/300?t=3" alt="" class="pic">
+               <img src="https://picsum.photos/200/300?t=4" alt="" class="pic">
+               <img src="https://picsum.photos/200/300?t=5" alt="" class="pic">
+            </div>
+
             <div class="flex flex-row items-center h-auto snap-x snap-mandatory overflow-x-auto">
                <?php foreach ($user_movies as $result): ?>
                <div class="flex justify-center h-screen min-w-full w-full snap-center relative my-5">
