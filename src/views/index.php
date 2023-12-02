@@ -1,7 +1,4 @@
 <!DOCTYPE html>
-<html lang="en">
-   <head>
-      <link rel="stylesheet" href="carousel.css">
    <head>
       <meta charset="UTF-8">
       <title>Bienvenido a Pirateca</title>
