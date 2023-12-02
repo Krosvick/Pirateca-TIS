@@ -137,6 +137,10 @@ class Movie extends Model{
         ];
     }
 
+    public static function primaryKey(){
+        return 'id';
+    }
+
     public function find_movies($id_list){ //id_list is an array of arrays, check the example in the model user and index controller
         $movies = array();
         foreach($id_list as $body){

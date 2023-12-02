@@ -112,6 +112,10 @@ class User extends Model{
         $this->role = $role;
     }
 
+    public static function primaryKey(){
+        return 'id';
+    }
+
     public function login(){
         $user = $this->userDAO->find($this->username);
         if ($user != null){

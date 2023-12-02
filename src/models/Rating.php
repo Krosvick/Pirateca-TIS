@@ -55,6 +55,10 @@ class Rating extends Model{
     public function set_review($review){
         $this->review = $review;
     }
+
+    public static function primaryKey(){
+        return 'id';
+    }
     public function search_by_movie_id($movie_id){
         $ratings = $this->ratingsDAO->get_by_movie($movie_id);
         return $ratings;
