@@ -19,7 +19,7 @@ class Response
     public function abort($code = 404, $message = '')
     {
         http_response_code($code);
-        $this->view->render('errors/', $code, ['message' => $message]);
+        $this->view->render($code, ['message' => $message], 'errors/');
         die();
     }
 

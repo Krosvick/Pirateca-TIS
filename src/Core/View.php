@@ -13,7 +13,7 @@ class View
         $this->base_url = $base_url ?? "/";
     }
 
-    public function render($path, $view, $data = [])
+    public function render($view, $data = [], $path = "")
     {
         $viewFile = $this->viewPath . $path . $view . '.php';
 
