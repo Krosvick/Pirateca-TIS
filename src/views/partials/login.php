@@ -23,6 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $error = "Nombre de usuario o contraseña incorrectos";
     }
 }*/
+  #dd($errors['username']);
 ?>
 
 
@@ -40,13 +41,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <div class="login-container">
         <h1 class="text-center text-white font-bold text-2xl"><u>Iniciar sesion</u></h2>
         <p>&nbsp</p>
-        <?php if(isset($error)) { ?>
-            <p><?php echo $error; ?></p>
+        <?php if(isset($errors)) { ?>
+          <?php foreach($errors["username"] as $error) { ?>
+            <p class="text-center text-red-600 font-bold text-xl"><?php echo $error ?></p>
+          <?php } ?>
         <?php } ?>
         <form action="" method="post">
           <div class="mb-6">
             <label for="email" class="block mb-2 text-sm font-medium text-white dark:text-white">Email</label>
-            <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@email.com" required for="usuario">
+            <input type="text" name="username" id="username" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="nombre de usuario" required for="usuario">
           </div>
           <div class="mb-6">
             <label for="password" class="block mb-2 text-sm font-medium text-white dark:text-white">Contraseña</label>
