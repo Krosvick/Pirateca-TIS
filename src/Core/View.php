@@ -13,9 +13,9 @@ class View
         $this->base_url = $base_url ?? "/";
     }
 
-    public function render($view, $data = [])
+    public function render($path, $view, $data = [])
     {
-        $viewFile = $this->viewPath . $view . '.php';
+        $viewFile = $this->viewPath . $path . $view . '.php';
 
         if (file_exists($viewFile)) {
             $data['base_url'] = $this->base_url;
