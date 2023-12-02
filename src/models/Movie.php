@@ -234,7 +234,7 @@ class Movie extends Model{
         $movie_credits_response = json_decode($movie_credits_request->getBody(), true);
         $movie_director = $movie_credits_response['crew'][0]['name'];
         $this->director = $movie_director;
-        $this->moviesDAO->update($this->id, $this, ['director']);
+        $this->DAOs['tableDAO']->update($this->id, $this, ['director']);
         return $movie_director;
     }
 

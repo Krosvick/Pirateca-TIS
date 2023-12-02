@@ -8,7 +8,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title><?= $Movie->get_title() ?></title>
+    <title><?= $Movie->get_original_title() ?></title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/styles-movie.css">
 </head>
@@ -34,7 +34,7 @@
                 </div>
             </div>
             <div class="details">
-                <h1 class="text-4xl text-white font-bold mb-4"><?= $Movie->get_title()?></h1>
+                <h1 class="text-4xl text-white font-bold mb-4"><?= $Movie->get_original_title()?></h1>
                 <p class="text-lg text-gray-100 mb-2"><?= $Movie->get_overview() ?></p>
                 <p class="text-sm text-gray-100">Release: <?php 
                     $date = $Movie->get_release_date();
