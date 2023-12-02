@@ -16,16 +16,20 @@ class Response
         exit;
     }
 
-    public function abort($code = 404)
+    public function abort($code = 404, $message = '')
     {
         http_response_code($code);
-        $this->view->render($code);
+        $this->view->render('errors/', $code, ['message' => $message]);
         die();
     }
 
     public function render($view, $data = [])
     {
         $this->view->render($view, $data);
+    }
+    public function setStatusCode ($code)
+    {
+        http_response_code($code);
     }
 
 }
