@@ -2,7 +2,7 @@
 
 namespace Core;
 
-use Core\Auth\User;
+use Models\User;
 class Application
 {
     const EVENT_BEFORE_REQUEST = 'beforeRequest';

@@ -2,6 +2,7 @@
 
 namespace Controllers;
 
+use Core\Application;
 use Core\BaseController;
 use DAO\UsersDAO;
 use Models\User;
@@ -38,6 +39,13 @@ class LoginController extends BaseController
                 ];
                 return $this->render("partials/login", $data);
             }
+            #map the user data to the user object
+            $user->loadData($user_data);
+            if(Application::$app->login($user)){
+                dd(Application::$app->user);
+                $this->response->redirect('/');
+            }
+            
         }
         $data = [
             'title' => 'Login'

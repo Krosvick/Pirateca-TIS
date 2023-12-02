@@ -77,16 +77,6 @@ class Database
         return $results;
     }
 
-    public function findOrFail()
-    {
-        $result = $this->find();
-
-        if (! $result) {
-            abort();
-        }
-
-        return $result;
-    }
     
     #cascadeDelete will possible receive more than 1 table variable and an id
     public function cascadeDelete($id, ...$tables)
