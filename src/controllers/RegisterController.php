@@ -4,21 +4,32 @@ namespace  Controllers;
 
 use Core\BaseController;
 use Core\Middleware\TestMiddleware;
-use Core\Request;
+use Models\User;
+use DAO\UsersDAO;
 
 class RegisterController extends BaseController
 {
+    private $userDAO;
     public function __construct($container, $routeParams)
     {
         //call the parent constructor to get access to the properties and methods of the BaseController class
         parent::__construct(...func_get_args());
+        $this->userDAO = new UsersDAO();
         $this->registerMiddleware(new TestMiddleware($container));
     }
 
     public function index()
     {
+        $user = new User();
         if($this->request->isPost()){
-            dd($this->request->getBody());
+            $body = (object) $this->request->getBody();
+            $user->loadData($body);
+            $user->set_hashed_password(password_hash($body->password, PASSWORD_DEFAULT));
+            $user->set_created_at(date('Y-m-d H:i:s'));
+            if($user->validate()){
+                $this->userDAO->register($user);
+                $this->response->redirect('/login');
+            }
         }
         $data = [
             'title' => 'Register'

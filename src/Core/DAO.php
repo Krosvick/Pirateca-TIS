@@ -103,7 +103,7 @@ abstract class DAO {
       * @return object
       */
 
-    public function find($id, $className): object {
+    public function find($id, $className = null): object {
         try {
             $sql = "SELECT * FROM {$this->table} WHERE id = :id";
             $params = array(
@@ -133,26 +133,21 @@ abstract class DAO {
 
     /**
      * 
-     * @param array $data
+     * @param object $data
      * 
      * @return Database
      */
 
-    public function register($data) {
+    public function register(object $data)
+    {
+        $attributes = $data->attributes();
+        #attributes[n] is where the attributes are
         try {
-            $sql = "INSERT INTO {$this->table} (";
+            $sql = "INSERT INTO {$this->table} (" . implode(', ', array_values($attributes)) . ") VALUES (:" . implode(', :', array_values($attributes)) . ")";
             $params = array();
-            foreach($data as $key => $value){
-                $sql .= $key . ', ';
+            foreach ($attributes as $key => $value) {
+                $params[$value] = [$data->{"get_$value"}(), PDO::PARAM_STR];
             }
-            $sql = substr($sql, 0, -2);
-            $sql .= ") VALUES (";
-            foreach($data as $key => $value){
-                $sql .= ':' . $key . ', ';
-                $params[$key] = [$value, PDO::PARAM_STR];
-            }
-            $sql = substr($sql, 0, -2);
-            $sql .= ")";
             $stmt = $this->connection->query($sql, $params);
             return $stmt;
         } catch (Exception $e) {
