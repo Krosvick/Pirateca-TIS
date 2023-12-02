@@ -63,10 +63,7 @@ class Database
         } else {
             $this->statement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, $className);
         }
-        if($this->statement->fetch() === false){
-            return null;
-        }
-        return $this->statement->fetch();
+        return $this->statement->fetch() ?? null;
     }
 
     public function getSome($limit = 10, $offset = 0, $className = null)

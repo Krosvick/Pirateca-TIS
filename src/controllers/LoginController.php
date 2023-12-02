@@ -26,7 +26,7 @@ class LoginController extends BaseController
             $user = new User();
             $user_data = $this->userDAO->findBy('username', $username);
             if($user_data){
-                if(!password_verify($password, $user_data['hashed_password'])){
+                if(!password_verify($password, $user_data->hashed_password)){
                     $user->addError('password', 'User name or password are not valid');
                 }
             }else{
@@ -42,7 +42,6 @@ class LoginController extends BaseController
             #map the user data to the user object
             $user->loadData($user_data);
             if(Application::$app->login($user)){
-                dd(Application::$app->user);
                 $this->response->redirect('/');
             }
             
