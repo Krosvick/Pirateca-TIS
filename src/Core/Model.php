@@ -93,11 +93,17 @@ abstract class Model{
         return $this->errors[$attribute] ?? false;
     }
 
-    public function getAllErrors(){
+    public function hasErrors(){
+        return !empty($this->errors);
+    }
+
+    public function getErrors(){
         return $this->errors;
     }
 
     public function getFirstError($attribute){
         return $this->errors[$attribute][0] ?? false;
     }
+
+    abstract public static function primaryKey();
 }
