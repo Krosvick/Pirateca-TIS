@@ -16,6 +16,7 @@ class View
     public function render($view, $data = [], $path = "")
     {
         $viewFile = $this->viewPath . $path . $view . '.php';
+        $data['viewPath'] = $this->viewPath;
 
         if (file_exists($viewFile)) {
             $data['base_url'] = $this->base_url;
