@@ -58,8 +58,15 @@ class Database
     //this method will return only the first result of the query
     public function find($className = null): ?object
     {
-        $this->statement->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, $className);
-        return $this->statement->fetch() ?? null;
+        if ($className === null) {
+            $this->statement->setFetchMode(PDO::FETCH_OBJ);
+        } else {
+            $this->statement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, $className);
+        }
+        if($this->statement->fetch() === false){
+            return null;
+        }
+        return $this->statement->fetch();
     }
 
     public function getSome($limit = 10, $offset = 0, $className = null)
