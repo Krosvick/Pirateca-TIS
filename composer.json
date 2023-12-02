@@ -10,7 +10,9 @@
             "DAO\\": "src/dao/",
             "Core\\": "src/Core/",
             "Models\\": "src/models/",
-            "Controllers\\": "src/controllers/"
+            "Controllers\\": "src/controllers/",
+            "Core\\Middleware\\": "src/Core/Middleware/",
+            "Core\\Exceptions\\": "src/Core/Exceptions/"
         }
     }
 }

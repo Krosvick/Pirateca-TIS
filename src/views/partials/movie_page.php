@@ -2,39 +2,64 @@
 <?php require('nav.php')?>
 
 <?php 
-    #dd($Ratings[0]['username']);
+    #dd($Ratings[0]->get_user()->get_username());
 ?>
 
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title><?php echo $data['Movie']['original_title'] ?></title>
+    <title><?= $Movie->get_title() ?></title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/styles-movie.css">
 </head>
 <body>
+<script>
+    function toggleDiv() {
+      var div = document.getElementById("toggleDiv");
+      div.classList.toggle("hidden");
+    }
+</script>
+
+
     <!-- movie descripction-->
     <div class="p-8 text-white">
         <form class="bg-gradient-to-r from-purple-900 via-purple-700 to-purple-900 max-w-4xl mx-auto my-8 px-10 py-8 text-white shadow-lg rounded-lg flex items-center">
-            <div class="poster mr-8">
-                <!-- HERE SHOULD BE CHANGED TO DYNAMIC FUNCTIONS -->
-                <img src="https://image.tmdb.org/t/p/w780<?php echo $data['Movie']['poster_path']?>" alt="Movie Poster" class="max-w-full min-fit">
+            <div class="flex flex-col justify-start">
+                <div class="poster mr-8">
+                    <!-- HERE SHOULD BE CHANGED TO DYNAMIC FUNCTIONS -->
+                    <img src="https://image.tmdb.org/t/p/w780<?= $Movie->get_poster_path()?>" alt="Movie Poster" class="max-w-full min-fit">
+                </div>
+                <div>
+                    <button type="button" onclick="toggleDiv()" class="text-white hover:text-purple border border-white hover:bg-white hover:text-black focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-8 py-2.5 text-center mt-2 mb-2 dark:border-purple-400 dark:text-purple-400 dark:hover:text-white dark:hover:bg-purple-500 dark:focus:ring-purple-900">Rate Movie</button>
+                </div>
             </div>
             <div class="details">
-                <h1 class="text-4xl text-white font-bold mb-4"><?php echo $data['Movie']['original_title']?></h1>
-                <p class="text-lg text-gray-100 mb-2"><?php echo $data['Movie']['overview']?></p>
+                <h1 class="text-4xl text-white font-bold mb-4"><?= $Movie->get_title()?></h1>
+                <p class="text-lg text-gray-100 mb-2"><?= $Movie->get_overview() ?></p>
                 <p class="text-sm text-gray-100">Release: <?php 
-                    $date = $data['Movie']['release_date'];
+                    $date = $Movie->get_release_date();
                     $year = substr($date, 0, 4);
                     echo $year;
                 ?></p>
-                <p class="text-sm text-gray-100">Director: <?php 
-                    echo $data['Movie']['director'];
+                <p class="text-sm text-gray-100">Director: <?=
+                    $Movie->get_director();
                 ?></p>
             </div>
         </form>
+
+        <!-- prov button -->
+        <!-- on click commentary.php should pop up-->
+        
     </div>
-    <!-- commentary -->
+    
+    <!-- rate and commentary -->
+
+    <!-- comment -->
+
+        <?php
+            require('commentary.php')
+        ?>
+    
 
     <!-- funcion foreach para los comentarios -->
     <!-- HERE SHOULD BE CHANGED TO DYNAMIC FUNCTIONS -->
@@ -64,13 +89,13 @@
                     }
                 }
             }
-            $starsGiven = $Ratings[0]['rating'];
+            $starsGiven = $Ratings[0]->get_rating();
             
             ?>
                 <div class="flex items-center mb-4">
                     <img class="w-10 h-10 me-4 rounded-full" src="https://cdn.discordapp.com/attachments/324358291561906186/1172908205068800160/image.png?ex=656206e3&is=654f91e3&hm=ca8e71b36e8f7c2afb64674c51780e94bca641beb6adb0a7ede617da1e3a5d1c&" alt="">
                     <div class="font-medium dark:text-white">
-                        <p class= "ml-1.5"><?= $Ratings[0]['username']?></p>
+                        <p class= "ml-1.5"><?= $Ratings[0]->get_user()->get_username()?></p>
                     </div>
                 </div>
                 <div class="flex items-center mb-1 space-x-1 rtl:space-x-reverse">
@@ -88,3 +113,4 @@
     </div>
 </body>
 </html>
+

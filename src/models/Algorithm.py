@@ -61,7 +61,7 @@ class Algorithm():
 
         return biased_svd_model
     
-    def get_user_recommendations(user_id, df, loaded_model, top_N=30, to_json=False): #all file input is in csv format, user_id and top_N are integers
+    def get_user_recommendations(user_id, df, loaded_model, top_N=30, include_rating=True): #all file input is in csv format, user_id and top_N are integers
         movie_ids = df['movieId'].unique()
 
         # Create a list of movie IDs that the user has not rated
@@ -83,9 +83,11 @@ class Algorithm():
         """
         #i need to serialize this list of tuples into a json file
         result = []
-        for movie_id, estimated_rating in top_recommendations:
-            result.append({'movieId': movie_id, 'estimated_rating': estimated_rating})
-        
+        for movie_id, rating in top_recommendations:
+            if include_rating:
+                result.append({'movie_id': movie_id, 'rating': rating})
+            else:
+                result.append({'movie_id': movie_id})
         return result
     
     def get_liked_movies(userId, df, movies):

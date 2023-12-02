@@ -6,6 +6,7 @@ import json
 import time
 import threading
 import sys
+import pydao
 
 sys.path.append('src')
 from models.Algorithm import Algorithm
@@ -49,6 +50,15 @@ class SimpleAPI(BaseHTTPRequestHandler):
             userId = int(query_params['userId'][0])
             n = int(query_params.get('n', [10])[0])
             top_movies = Algorithm.get_user_recommendations(userId, SimpleAPI.ratings_df, SimpleAPI.model, 10)
+            response = {'top_movies': top_movies}
+            self.send_response(200)
+            self.send_header('Content-type', 'application/json')
+            self.end_headers()
+            self.wfile.write(json.dumps(response, cls=NpEncoder).encode('utf-8'))
+        elif parsed_url.path == '/recommendations/ids':
+            userId = int(query_params['userId'][0])
+            n = int(query_params.get('n', [10])[0])
+            top_movies = Algorithm.get_user_recommendations(userId, SimpleAPI.ratings_df, SimpleAPI.model, 10, False)
             response = {'top_movies': top_movies}
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
@@ -123,6 +133,13 @@ def generate_model_periodically():
 if __name__ == '__main__':
     #hard code here, connect with dao later
     csv_pd = pd.read_csv('datasets/ratings_small_cleaned.csv')
+    
+    """
+    test = pydao.DAO()
+    #fix next line
+    csv_pd = pd.DataFrame(test.get_all(), columns=['user_id', 'movie_id', 'rating'])
+    """
+    
     #remove timestamp column
     csv_pd = csv_pd.drop(columns=['timestamp'])
     SimpleAPI.ratings_df =  csv_pd #initialize the ratings_df

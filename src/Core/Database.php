@@ -41,7 +41,6 @@ class Database
             foreach ($params as $key => $value) {
                 $this->statement->bindValue($key, $value[0], $value[1]);
             }
-
             $this->statement->execute();
         }catch(\PDOException $e){
             die($e->getMessage());
@@ -50,33 +49,34 @@ class Database
         return $this;
     }
 
-    public function get(){
-        return $this->statement->fetchAll();
+    //this method will return all the results of the query
+    public function get($className = null): ?array
+    {
+        return $this->statement->fetchAll(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, $className) ?? null;
     }
 
-    public function find()
+    //this method will return only the first result of the query
+    public function find($className = null): ?object
     {
+        if ($className === null) {
+            $this->statement->setFetchMode(PDO::FETCH_OBJ);
+        } else {
+            $this->statement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, $className);
+        }
+        if($this->statement->fetch() === false){
+            return null;
+        }
         return $this->statement->fetch();
     }
 
-    public function getSome($limit = 10, $offset = 0)
+    public function getSome($limit = 10, $offset = 0, $className = null)
     {
         #method to return a certain quantity of the statement
-        $results = $this->statement->fetchAll();
+        $results = $this->get($className);
         $results = array_slice($results, $offset, $limit);
         return $results;
     }
 
-    public function findOrFail()
-    {
-        $result = $this->find();
-
-        if (! $result) {
-            abort();
-        }
-
-        return $result;
-    }
     
     #cascadeDelete will possible receive more than 1 table variable and an id
     public function cascadeDelete($id, ...$tables)

@@ -4,6 +4,8 @@
 use Core\Router;
 use Core\Response;
 use Core\Request;
+use Core\Container;
+use Core\Application;
 
 
 const BASE_PATH = __DIR__ . '/../';
@@ -14,15 +16,6 @@ require 'functions.php';
 $dotenv = Dotenv\Dotenv::createImmutable(BASE_PATH);
 $dotenv->load();
 
-$request = new Request();
-$response = new Response();
-$request->setBaseUrl(BASE_PATH);
-$router = new Router($request, $response);
+$app = new Application(BASE_PATH);
 require base_path('routes.php');
-
-try {
-    $router->dispatch();
-} catch (Exception $e) {
-    echo $e->getMessage();
-}
-
+$app->run();

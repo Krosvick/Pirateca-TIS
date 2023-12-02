@@ -97,22 +97,37 @@ abstract class DAO {
         }
     }
      /**
-      * @param int $id   
+      * @param int $id
+      * @param string $className
       *
-      * @return array
+      * @return object
       */
 
-    public function find($id) {
+    public function find($id, $className): object {
         try {
             $sql = "SELECT * FROM {$this->table} WHERE id = :id";
             $params = array(
                 "id" => [$id, PDO::PARAM_INT]
             );
             $stmt = $this->connection->query($sql, $params);
-            $row = $stmt->find();
+            $row = $stmt->find($className);
             return $row;
         } catch (Exception $e) {
             die($e->getMessage());
+        }
+    }
+
+    public function findBy($attribute, $value, $className = null): ?object {
+        try {
+            $sql = "SELECT * FROM {$this->table} WHERE $attribute = :value";
+            $params = array(
+                "value" => [$value, PDO::PARAM_STR]
+            );
+            $stmt = $this->connection->query($sql, $params);
+            $row = $stmt->find($className);
+            return $row;
+        } catch (Exception $e) {
+            return null;
         }
     }
 
@@ -148,7 +163,7 @@ abstract class DAO {
      /**
       * 
       *@param int $id
-      *@param array $data
+      *@param object $data
       *@param array $fields
       *
       *@return bool
@@ -165,14 +180,15 @@ abstract class DAO {
             foreach ($fields as $field) {
                 $paramName = ":$field";
                 $sql .= "$field = $paramName, ";
-                $params[$paramName] = [$data[$field], PDO::PARAM_STR];
+                #data-> will call get_ concatenated with the field name
+                $params[$paramName] = [$data->{"get_$field"}(), PDO::PARAM_STR];
             }
             $sql = rtrim($sql, ', ');
             $sql .= " WHERE id = :id";
             $params[':id'] = [$id, PDO::PARAM_INT];
-
+            
             $this->connection->query($sql, $params);
-
+            
             return true; // Success
         } catch (Exception $e) {
             // Handle the exception or log the error
@@ -238,5 +254,14 @@ abstract class DAO {
         }
     }
 
-  
+    public function matchAttribute(string $attribute, $value) {
+        try{
+            $this->connection->query("SELECT * FROM {$this->table} WHERE $attribute = :value", [
+                'value' => [$value, PDO::PARAM_STR]
+            ]);
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+
+    }
 }

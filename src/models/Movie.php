@@ -2,19 +2,143 @@
 
 namespace Models;
 
+use Core\Model;
 use DAO\moviesDAO;
 use GuzzleHttp\Client;
-use function Core\dd;
 
 
-class Movie{
+class Movie extends Model{
 
-    private MoviesDAO $moviesDAO;
-    public $movies_list;
+    private $id;
+    private $original_title;
+    private $overview;
+    private $poster_path;
+    private $genres;
+    private $belongs_to_collection;
+    private bool $adult;
+    private $original_language;
+    private $release_date;
+    private $deleted_at;
+    private $updated_at;
+    private $director;
 
-    public function __construct(){
-        $this->moviesDAO = new MoviesDAO();
-        $this->movies_list = $this->moviesDAO->get_some();
+    public function __construct($id = null, $original_title = null, $overview = null, $poster_path = null, $genres = null, $belongs_to_collection = null, $adult = false, $original_language = null, $release_date = null, $deleted_at = null, $updated_at = null, $director = null)
+    {
+        $this->id = $id;
+        $this->original_title = $original_title;
+        $this->overview = $overview;
+        $this->poster_path = $poster_path;
+        $this->genres = $genres;
+        $this->belongs_to_collection = $belongs_to_collection;
+        $this->adult = $adult == 1 ? true : false;
+        $this->original_language = $original_language;
+        $this->release_date = $release_date;
+        $this->deleted_at = $deleted_at;
+        $this->updated_at = $updated_at;
+        $this->director = $director;
+        $this->DAOs = [
+            'tableDAO' => new moviesDAO()
+        ];
+    }
+
+    #getters and setters
+    public function get_id(){
+        return $this->id;
+    }
+    public function set_id($id){
+        $this->id = $id;
+    }
+    public function get_original_title(){
+        return $this->original_title;
+    }
+    public function set_original_title($title){
+        $this->original_title = $title;
+    }
+    public function get_overview(){
+        return $this->overview;
+    }
+    public function set_overview($overview){
+        $this->overview = $overview;
+    }
+    public function get_poster_path(){
+        return $this->poster_path;
+    }
+    public function set_poster_path($poster_path){
+        $this->poster_path = $poster_path;
+    }
+    public function get_genres(){
+        return $this->genres;
+    }
+    public function set_genres($genres){
+        $this->genres = $genres;
+    }
+    public function get_belongs_to_collection(){
+        return $this->belongs_to_collection;
+    }
+    public function set_belongs_to_collection($belongs_to_collection){
+        $this->belongs_to_collection = $belongs_to_collection;
+    }
+    public function get_adult(){
+        return $this->adult;
+    }
+    public function set_adult($adult){
+        $this->adult = $adult;
+    }
+    public function get_original_language(){
+        return $this->original_language;
+    }
+    public function set_original_language($original_language){
+        $this->original_language = $original_language;
+    }
+    public function get_release_date(){
+        return $this->release_date;
+    }
+    public function set_release_date($release_date){
+        $this->release_date = $release_date;
+    }
+    public function get_deleted_at(){
+        return $this->deleted_at;
+    }
+    public function set_deleted_at($deleted_at){
+        $this->deleted_at = $deleted_at;
+    }
+    public function get_updated_at(){
+        return $this->updated_at;
+    }
+    public function set_updated_at($updated_at){
+        $this->updated_at = $updated_at;
+    }
+    public function get_director(){
+        return $this->director;
+    }
+    public function set_director($director){
+        $this->director = $director;
+    }
+
+    public function rules(){
+        return [
+            'original_title' => [self::RULE_REQUIRED,[self::RULE_MAX, 'max' => 8]],
+        ];
+    }
+
+    public function attributes(){
+        return [
+            'original_title',
+            'overview',
+            'poster_path',
+            'genres',
+            'belongs_to_collection',
+            'adult',
+            'original_language',
+            'release_date',
+            'deleted_at',
+            'updated_at',
+            'director'
+        ];
+    }
+
+    public static function primaryKey(){
+        return 'id';
     }
 
     public function find_movies($id_list){ //id_list is an array of arrays, check the example in the model user and index controller
@@ -37,19 +161,9 @@ class Movie{
      * @return array<array>   an especific movie data array
      */
 
-    public function find_movie($id){
-        $movie = $this->moviesDAO->find($id);
-        if ($movie != null){
-            $movie['poster_path'] = $this->moviePosterFallback($movie);
-            $movie['director'] = $this->MovieDirectorRetrieval($movie);
-        }
-        return $movie;
-    }
-
-
     // THIS SHIT IS TO SLOW
     public function search($busqueda){
-        $movies = $this->moviesDAO->dummytest($busqueda);
+        $movies = $this->moviesDAO->dummytest_fulltext($busqueda);
         foreach($movies as $key => $movie){
             if ($movie != null){
             $movies[$key]['poster_path'] = $this->moviePosterFallback($movie);
@@ -65,16 +179,22 @@ class Movie{
      * @return string a movie poster url
      */
 
-
-    public function moviePosterFallback($movie){
+    #movie poster fallback is called on self
+    public function moviePosterFallback()
+    {
+        /*$moviePoster = $this->poster_path;
+        if($this->moviedbapi->get() == 400){
+            $moviePoster = $this->moviedbapi->getthegoodone();
+        }*/
         $client = new Client();
-        $moviePoster = $movie['poster_path'];
+        $moviePoster = $this->poster_path;
+        $url = "https://image.tmdb.org/t/p/w780".$moviePoster;
         try{
-            $response = $client->request('GET', 'https://image.tmdb.org/t/p/original'.$movie['poster_path']);
-            return $movie['poster_path'];
+            $response = $client->request('GET', $url);
+            return $moviePoster;
         }catch(\Exception $e){
             if($e->getCode() == 404){
-                $new_poster_request = $client->request('GET', 'https://api.themoviedb.org/3/movie/'.$movie['id'].'/images?language=en', [
+                $new_poster_request = $client->request('GET', 'https://api.themoviedb.org/3/movie/'.$this->id.'/images?language=en', [
                     'headers' => [
                         'Authorization' => 'Bearer '. $_ENV['TMDB_API_KEY'],
                         'accept' => 'application/json',
@@ -83,9 +203,9 @@ class Movie{
                 $new_poster_response = json_decode($new_poster_request->getBody(), true);
                 if(count($new_poster_response['posters']) > 0){
                     $new_poster_url = $new_poster_response['posters'][0]['file_path'];
-                    $moviePoster = $new_poster_url;
+                    $this->poster_path = $new_poster_url;
                     #update the movie poster path in the database
-                    $this->moviesDAO->update($movie['id'], $movie, ['poster_path']);
+                    $result = $this->moviesDAO->update($this->id, $this, ['poster_path']);
                 }
                 else{
                     #if the movie doesn't have a poster, we will use a default image
@@ -103,9 +223,9 @@ class Movie{
      * @return string return a movie director
      */
 
-    public function MovieDirectorRetrieval($movie){
+    public function MovieDirectorRetrieval(){
         $client = new Client();
-        $movie_credits_request = $client->request('GET', 'https://api.themoviedb.org/3/movie/'.$movie['id'].'/credits?language=en-US', [
+        $movie_credits_request = $client->request('GET', 'https://api.themoviedb.org/3/movie/'.$this->id.'/credits?language=en-US', [
             'headers' => [
                 'Authorization' => 'Bearer '. $_ENV['TMDB_API_KEY'],
                 'accept' => 'application/json',
@@ -113,7 +233,8 @@ class Movie{
         ]);
         $movie_credits_response = json_decode($movie_credits_request->getBody(), true);
         $movie_director = $movie_credits_response['crew'][0]['name'];
-        $this->moviesDAO->update($movie['id'], $movie, ['director']);
+        $this->director = $movie_director;
+        $this->moviesDAO->update($this->id, $this, ['director']);
         return $movie_director;
     }
 

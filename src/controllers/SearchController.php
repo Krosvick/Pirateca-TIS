@@ -13,26 +13,32 @@ class SearchController extends BaseController
 {
     private $movieModel;
     
-        public function __construct() {
-            //call the parent constructor to get access to the properties and methods of the BaseController class
-            //parent::__construct();
-            
-        }
+    public function __construct($base_url, $routeParams) {
+        //call the parent constructor to get access to the properties and methods of the BaseController class
+        parent::__construct(...func_get_args());
+        $this->movieModel = new Movie();
+    }
 
-        public function search(){
-            $busqueda = "";
-            if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['enviar'])) {
-                $busqueda = $_POST['busqueda'];
-                $this->movieModel = new Movie();
-               // Cambiar parametro $search por $busqueda, por algun motivo guarda el ultimo submit de la vista
-                $movie = $this->movieModel->search("ariel");
-                
-            }
+    public function search(){
+        return $this->render("/partials/test");
+    }
 
-            require 'src\views\partials\test.php';
+    public function imsorry(){
+        #busqueda will get the routeparams
+        $busqueda = $this->routeParams['search'];
+        $movie = $this->movieModel->search($busqueda);
+        dd($movie);
+        if(!$movie){
+            $this->response->abort(404);
         }
-        //return $this->render("partials/test", $data);
-        }       
+        $data = [
+            'Movie' => $movie,
+            'busqueda' => $busqueda
+        ];
+        return $this->render("partials/test", $data);
+    }
+    
+}       
 
 
  

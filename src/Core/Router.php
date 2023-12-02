@@ -8,17 +8,35 @@ namespace Core;
 
 class Router
 {
-    protected $routes = [];
+    protected $routes = ['GET' => [], 'POST' => [], 'PUT' => [], 'DELETE' => []];
     protected $params = [];
     protected $request;
     protected $response;
-    public function __construct(Request $request, Response $response)
+    private $container;
+    public function __construct(Container $container)
     {
-        $this->request = $request;
-        $this->response = $response;
-
+        $this->request = $container->get(Request::class);
+        $this->response = $container->get(Response::class);
+        $this->container = $container;
     }
-    public function addRoute($url, $handler)
+
+    public function get($url, $handler)
+    {
+        $this->addRoute('get',$url, $handler);
+    }
+    public function post($url, $handler)
+    {
+        $this->addRoute('post',$url, $handler);
+    }
+    public function put($url, $handler)
+    {
+        $this->addRoute('put',$url, $handler);
+    }
+    public function delete($url, $handler)
+    {
+        $this->addRoute('delete',$url, $handler);
+    }
+    private function addRoute($method, $url, $handler)
     {
         // Split the handler into controller and action
         list($controller, $action) = explode('@', $handler);
@@ -33,7 +51,7 @@ class Router
         $pattern = "#^$pattern$#";
 
         // Add route with controller, action, and segments as params
-        $this->routes[$url] = [
+        $this->routes[$method][$url] = [
             'controller' => $controller,
             'action' => $action,
             'segments' => $segments,
@@ -46,9 +64,9 @@ class Router
         return $this->routes;
     }
 
-    public function matchRoute($url)
+    public function matchRoute($method, $url)
     {
-        foreach ($this->routes as $route => $params) {
+        foreach ($this->routes[$method] as $route => $params) {
             // Check if the route has dynamic segments
             $pattern = preg_replace_callback('/{[a-z]+}/', function ($matches) {
                 return '([^/]+)';
@@ -75,17 +93,21 @@ class Router
     public function dispatch()
     {
         $url = $this->request->getUrl();
+        $method = $this->request->getMethod();
         $url = $this->removeQueryStringVariables($url);
 
-        if ($this->matchRoute($url)) {
+        if ($this->matchRoute($method, $url)) {
             $params = $this->params;
 
             $controller = $this->getNamespace() . $this->toStudlyCaps($params['controller']);
             if (class_exists($controller)) {
-                $controllerObject = new $controller($this->request->getBaseUrl(), $params);
+                $controllerObject = new $controller($this->container, $params);
                 $action = $this->toCamelCase($params['action']);
 
                 if (is_callable([$controllerObject, $action])) {
+                    foreach ($controllerObject->getMiddleware() as $middleware) {
+                        $middleware->execute();
+                    }
                     if (isset($params['id'])) {
                         $controllerObject->$action($params['id']);
                     } else {
