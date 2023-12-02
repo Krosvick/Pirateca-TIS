@@ -105,5 +105,13 @@ abstract class Model{
         return $this->errors[$attribute][0] ?? false;
     }
 
+    public function loadData(object $data){
+        foreach($data as $key => $value){
+            if(property_exists($this, $key)){
+                $this->{"set_$key"}($value);
+            }
+        }
+    }
+
     abstract public static function primaryKey();
 }
