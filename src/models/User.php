@@ -44,7 +44,7 @@ class User extends Model{
     /**
      * @var string
      */
-    private $role;
+    private $role = 'user';
     public function __construct($id = null, $username = null, $hashed_password = null, $first_name = null, $last_name = null, $created_at = null, $updated_at = null, $deleted_at = null, $role = null){
         $this->id = $id;
         $this->username = $username;
@@ -54,7 +54,7 @@ class User extends Model{
         $this->created_at = $created_at;
         $this->updated_at = $updated_at;
         $this->deleted_at = $deleted_at;
-        $this->role = $role;
+        $this->role = $role ?? $this->role;
     }
 
     public function get_id(){
@@ -116,6 +116,19 @@ class User extends Model{
         return 'id';
     }
 
+    public function attributes(){
+        return [
+            'username',
+            'hashed_password',
+            'first_name',
+            'last_name',
+            'created_at',
+            'updated_at',
+            'deleted_at',
+            'role'
+        ];
+    }
+
     public function login(){
         $user = $this->userDAO->find($this->username);
         if ($user != null){
@@ -143,6 +156,12 @@ class User extends Model{
         $response = $client->request('GET', 'localhost:8001/user-movies?userId='.$this->user_id.'&n='.$quantity);
         $response = json_decode($response->getBody(), true);
         return $response;
+    }
+
+    public static function findOne($id){
+        $userDAO = new UsersDAO();
+        $user = $userDAO->find($id, static::class);
+        return $user;
     }
 
     //login
