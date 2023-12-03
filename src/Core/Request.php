@@ -63,7 +63,7 @@ class Request
 
     public function getUrl()
     {
-        return $this->url;
+        return filter_var($this->url, FILTER_SANITIZE_URL);
     }
 
 }
