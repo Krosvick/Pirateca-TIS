@@ -17,6 +17,7 @@ class View
     {
         $viewFile = $this->viewPath . $path . $view . '.php';
         $data['viewPath'] = $this->viewPath;
+        $data['app'] = Application::$app;
 
         if (file_exists($viewFile)) {
             $data['base_url'] = $this->base_url;
