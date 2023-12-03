@@ -6,9 +6,11 @@ use Core\BaseController;
 use Core\Middleware\TestMiddleware;
 use Models\User;
 use DAO\UsersDAO;
+use Core\Auth\PasswordTrait;
 
 class RegisterController extends BaseController
 {
+    use PasswordTrait;
     private $userDAO;
     public function __construct($container, $routeParams)
     {
@@ -24,7 +26,7 @@ class RegisterController extends BaseController
         if($this->request->isPost()){
             $body = (object) $this->request->getBody();
             $user->loadData($body);
-            $user->set_hashed_password(password_hash($body->password, PASSWORD_DEFAULT));
+            $user->set_hashed_password($this->cryptPassword($body->password));
             $user->set_created_at(date('Y-m-d H:i:s'));
             if($user->validate()){
                 $this->userDAO->register($user);
