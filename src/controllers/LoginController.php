@@ -49,6 +49,6 @@ class LoginController extends BaseController
         $data = [
             'title' => 'Login'
         ];
-        return $this->render("partials/login", $data);
+        return $this->render("login", $data);
     }
 }

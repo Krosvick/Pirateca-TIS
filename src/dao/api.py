@@ -8,6 +8,7 @@ import threading
 import sys
 import pydao
 
+
 sys.path.append('src')
 from models.Algorithm import Algorithm
 
@@ -101,6 +102,17 @@ class SimpleAPI(BaseHTTPRequestHandler):
             self.send_header('Content-type', 'application/json')
             self.end_headers()
             self.wfile.write(json.dumps(response).encode('utf-8'))
+
+    def obtain_ratings():
+        test = pydao.DAO()
+        rows = []
+        for row in test.get_all():
+            user_id = row[4]
+            movie_id = row[3]
+            rating = float(row[1])
+            rows.append({'userId': user_id, 'movieId': movie_id, 'rating': rating})
+    
+        return pd.DataFrame(rows) #initialize the ratings_df
             
 import numpy as np
 
@@ -118,7 +130,7 @@ class NpEncoder(json.JSONEncoder):
 def generate_model_periodically():
     while True:
         if SimpleAPI.ratings_df is not None:  # Check if ratings_df is defined
-            ratings_df = SimpleAPI.ratings_df  # Access ratings_df
+            ratings_df = SimpleAPI.obtain_ratings()  # Access ratings_df
             # Call the generate_model function
             SimpleAPI.model = Algorithm.generate_model(ratings_df)
             print('Model regenerated.')
@@ -126,23 +138,18 @@ def generate_model_periodically():
             print('ratings_df is not defined yet. Waiting...')
         
         # Wait for 20 seconds before regenerating the model
-        time.sleep(6000)
+        time.sleep(120)
         
 
 
 if __name__ == '__main__':
     #hard code here, connect with dao later
-    csv_pd = pd.read_csv('datasets/ratings_small_cleaned.csv')
+    #csv_pd = pd.read_csv('datasets/ratings_small_cleaned.csv')
+    #csv_pd = csv_pd.drop(columns=['timestamp'])
     
-    """
-    test = pydao.DAO()
-    #fix next line
-    csv_pd = pd.DataFrame(test.get_all(), columns=['user_id', 'movie_id', 'rating'])
-    """
     
-    #remove timestamp column
-    csv_pd = csv_pd.drop(columns=['timestamp'])
-    SimpleAPI.ratings_df =  csv_pd #initialize the ratings_df
+    
+    SimpleAPI.ratings_df =  SimpleAPI.obtain_ratings() #initialize the ratings_df
     model_thread = threading.Thread(target=generate_model_periodically)
     model_thread.daemon = True
     model_thread.start()

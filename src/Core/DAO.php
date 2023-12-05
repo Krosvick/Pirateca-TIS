@@ -251,9 +251,11 @@ abstract class DAO {
 
     public function matchAttribute(string $attribute, $value) {
         try{
-            $this->connection->query("SELECT * FROM {$this->table} WHERE $attribute = :value", [
-                'value' => [$value, PDO::PARAM_STR]
+            $stmt = $this->connection->query("SELECT * FROM {$this->table} WHERE $attribute = :{$attribute}", [
+                "{$attribute}" => [$value, PDO::PARAM_STR]
             ]);
+            $result = $stmt->find();
+            return $result;
         } catch (Exception $e) {
             die($e->getMessage());
         }

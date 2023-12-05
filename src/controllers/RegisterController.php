@@ -34,8 +34,9 @@ class RegisterController extends BaseController
             }
         }
         $data = [
-            'title' => 'Register'
+            'title' => 'Register',
+            'errors' => $user->getErrors()
         ];
-        return $this->render("partials/register", $data);
+        return $this->render("register", $data);
     }
 }
