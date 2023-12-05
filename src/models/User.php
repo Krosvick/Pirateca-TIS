@@ -45,6 +45,12 @@ class User extends Model{
      * @var string
      */
     private $role = 'user';
+    /**
+     * @var string
+     *
+     */
+    private $confirm_password;
+
     public function __construct($id = null, $username = null, $hashed_password = null, $first_name = null, $last_name = null, $created_at = null, $updated_at = null, $deleted_at = null, $role = null){
         $this->id = $id;
         $this->username = $username;
@@ -134,19 +140,22 @@ class User extends Model{
     
     public function rules(){
         return [
-            'username' => [self::RULE_UNIQUE]
+            'username' => [self::RULE_UNIQUE],
+            'hashed_password' => [self::RULE_REQUIRED, [self::RULE_MIN, 'min' => 8], [self::RULE_MAX, 'max' => 255], [self::RULE_MATCH, 'match' => 'confirm_password']],
         ];
     }
 
-    public function login(){
-        $user = $this->userDAO->find($this->username);
-        if ($user != null){
-            if ($user->password == $this->password){
-                $this->user_id = $user->user_id;
-                return true;
+    public function login($DAO, $username, $password)
+    {
+        $user_data = $DAO->findBy($username);
+        if ($user_data) {
+            if (!password_verify($password, $user_data->hashed_password)) {
+                $this->addError('password', 'User name or password are not valid');
             }
+        }else {
+            $this->addError('username', 'User name or password are not valid');
         }
-        return false;
+        return $user_data;
     }
 
     public function register($username, $password){
