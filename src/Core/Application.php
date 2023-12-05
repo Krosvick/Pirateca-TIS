@@ -77,7 +77,8 @@ class Application
         $className = get_class($user);
         $primaryKey = $className::primaryKey();
         $value = $user->{"get_$primaryKey"}();
-        Application::$app->session->set('user', $value);
+        Application::$app->session->set('usernumber', $value);
+        Application::$app->session->set('user', $user);
 
         return true;
     }
