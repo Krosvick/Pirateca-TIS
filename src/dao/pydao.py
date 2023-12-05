@@ -6,7 +6,7 @@ This file will be called by the algorithm and will be the only one to access the
 
 import os
 from dotenv import load_dotenv
-import MySQLdb
+import pymysql
 
 load_dotenv()
 
@@ -18,15 +18,12 @@ class Database:
 
     def __init__(self):
         # Create the connection object
-        self.connection = MySQLdb.connect(
+        self.connection = pymysql.connect(
             host=os.getenv("DB_HOST"),
             user=os.getenv("DB_USERNAME"),
-            passwd=os.getenv("DB_PASSWORD"),
-            db=os.getenv("DB_NAME"),
-            ssl_mode="VERIFY_IDENTITY",
-            ssl={
-                'ca': os.getenv("SSL_CERT")
-            }
+            password=os.getenv("DB_PASSWORD"),
+            database=os.getenv("DB_NAME"),
+            ssl_ca=os.getenv("SSL_CERT"),
         )
 
     @classmethod
@@ -67,5 +64,5 @@ class DAO():
         except Exception as e:
             print(e)
 
-#test = DAO()
-#print(test.get_all())
+test = DAO()
+print(test.get_all())
