@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-
+<head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
 <?php 
 //La carpeta 'partials' tiene como unico proposito
 //guardar porciones de codigo html y asi
 //otorgar un vista mas limpia. Se llaman usando 'require'.
 ?>
 
-<?php require('partial_testing/head.php')?>
-<?php require('partial_testing/nav.php')?>
+<?php require('partials/nav.php')?>
 
 
   <link rel="stylesheet" href="css/style_testing.css">
@@ -19,23 +20,26 @@
     </div>
   </header>
   <main>
-    <div>
-      <!-- Your content -->
-      <!-- "?=" is the same as "echo $variable" -->
-      <div class="flex justify-left mt-5 mx-5">
-        <h1 class="text-3xl font-bold pb-5 inline">Recomendado para</h1>
-        <h1 class="inline text-3xl pl-5 italic">ti</h1>
-      </div>
-      <div class="flex flex-row items-center h-auto snap-x snap-mandatory overflow-x-auto">
-        <?php foreach ($user_movies as $result): ?>
-        <div class="flex justify-center h-screen min-w-full w-full snap-center relative my-5">
-          <img src="<?= $result["poster_path"] ? "https://image.tmdb.org/t/p/w500".$result['poster_path'] : '/views/images/scplogo.png' ?>" alt="poster" class="h-full w-4/6 rounded-2xl hover:drop-shadow-md lg:w-1/4">
-          <a href="/another_test?id=<?= $result['id']?>" class="absolute bottom-0 h-10 w-1/2 bg-slate-900 border-t-2 border-x-2 border-zinc-300 rounded text-white text-center lg:w-1/4">
-              <?= $result['original_title'] ?>
-          </a>
+  <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="https://cdn.discordapp.com/attachments/324358291561906186/1175922700015906887/image.png?ex=657638db&is=6563c3db&hm=4b8eef5524c4a7f9f506508c87384c1fe7cc3d07ea418e81f0ec7ed4139ff8b9&" class="d-block w-100" alt="...">
         </div>
-      <?php endforeach; ?>
+        <div class="carousel-item">
+          <img src="https://phantom-marca.unidadeditorial.es/f20fe5f4858f02bf9eb4f7537a449972/resize/640/assets/multimedia/imagenes/2020/05/06/15887913123047.jpg" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+          <img src="https://cdn.discordapp.com/attachments/324358291561906186/1175922700015906887/image.png?ex=657638db&is=6563c3db&hm=4b8eef5524c4a7f9f506508c87384c1fe7cc3d07ea418e81f0ec7ed4139ff8b9&" class="d-block w-100" alt="...">
+        </div>
       </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
     </div>
   </main>
 
