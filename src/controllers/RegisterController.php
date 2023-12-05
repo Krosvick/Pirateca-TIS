@@ -26,6 +26,9 @@ class RegisterController extends BaseController
         if($this->request->isPost()){
             $body = (object) $this->request->getBody();
             $user->loadData($body);
+            if($body->password !== $body->confirm_password){
+                $user->addError('confirm_password', 'Passwords do not match');
+            }
             $user->set_hashed_password($this->cryptPassword($body->password));
             $user->set_created_at(date('Y-m-d H:i:s'));
             if($user->validate()){
