@@ -58,5 +58,14 @@ class DAO():
         except Exception as e:
             print(e)
 
+    def get_head(self, num_rows):
+        try:
+            cursor = self._connection.get_connection().cursor()
+            cursor.execute(f"SELECT * FROM {self._table} LIMIT {num_rows}")
+            rows = cursor.fetchall()
+            return rows
+        except Exception as e:
+            print(e)
+
 #test = DAO()
 #print(test.get_all())
