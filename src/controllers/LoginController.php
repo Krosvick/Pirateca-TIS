@@ -24,20 +24,13 @@ class LoginController extends BaseController
             $username = $body['username'];
             $password = $body['password'];
             $user = new User();
-            $user_data = $this->userDAO->findBy('username', $username);
-            if($user_data){
-                if(!password_verify($password, $user_data->hashed_password)){
-                    $user->addError('password', 'User name or password are not valid');
-                }
-            }else{
-                $user->addError('username', 'User name or password are not valid');
-            }
+            $user_data = $user->login($this->userDAO, $username, $password);
             if($user->hasErrors()){
                 $data = [
                     'title' => 'Login',
                     'errors' => $user->getErrors()
                 ];
-                return $this->render("partials/login", $data);
+                return $this->render("login", $data);
             }
             #map the user data to the user object
             $user->loadData($user_data);
