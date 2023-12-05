@@ -55,6 +55,9 @@ class User extends Model{
         $this->updated_at = $updated_at;
         $this->deleted_at = $deleted_at;
         $this->role = $role ?? $this->role;
+        $this->DAOs = [
+            'tableDAO' => new UsersDAO()
+        ];
     }
 
     public function get_id(){
@@ -126,6 +129,12 @@ class User extends Model{
             'updated_at',
             'deleted_at',
             'role'
+        ];
+    }
+    
+    public function rules(){
+        return [
+            'username' => [self::RULE_UNIQUE]
         ];
     }
 
