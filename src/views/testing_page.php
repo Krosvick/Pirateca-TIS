@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <?php 
 //La carpeta 'partials' tiene como unico proposito
@@ -20,30 +20,85 @@
     </div>
   </header>
   <main>
-  <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img src="https://cdn.discordapp.com/attachments/324358291561906186/1175922700015906887/image.png?ex=657638db&is=6563c3db&hm=4b8eef5524c4a7f9f506508c87384c1fe7cc3d07ea418e81f0ec7ed4139ff8b9&" class="d-block w-100" alt="...">
+    <!-- Carousel wrapper -->
+      <div id="carouselBasicExample" class="carousel slide carousel-fade" data-mdb-ride="carousel" data-mdb-carousel-init>
+        <!-- Indicators -->
+        <div class="carousel-indicators">
+          <button
+            type="button"
+            data-mdb-target="#carouselBasicExample"
+            data-mdb-slide-to="0"
+            class="active"
+            aria-current="true"
+            aria-label="Slide 1"
+          ></button>
+          <button
+            type="button"
+            data-mdb-target="#carouselBasicExample"
+            data-mdb-slide-to="1"
+            aria-label="Slide 2"
+          ></button>
+          <button
+            type="button"
+            data-mdb-target="#carouselBasicExample"
+            data-mdb-slide-to="2"
+            aria-label="Slide 3"
+          ></button>
         </div>
-        <div class="carousel-item">
-          <img src="https://phantom-marca.unidadeditorial.es/f20fe5f4858f02bf9eb4f7537a449972/resize/640/assets/multimedia/imagenes/2020/05/06/15887913123047.jpg" class="d-block w-100" alt="...">
+
+        <!-- Inner -->
+        <div class="carousel-inner">
+          <!-- Single item -->
+          <div class="carousel-item active">
+            <img src="images/drive.png" class="d-block w-100" alt="Sunset Over the City"/>
+            <div class="carousel-caption d-none d-md-block">
+              <h5>First slide label</h5>
+              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+            </div>
+          </div>
+
+          <!-- Single item -->
+          <div class="carousel-item">
+            <img src="https://mdbcdn.b-cdn.net/img/Photos/Slides/img%20(22).webp" class="d-block w-100" alt="Canyon at Nigh"/>
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Second slide label</h5>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+          </div>
+
+          <!-- Single item -->
+          <div class="carousel-item">
+            <img src="https://mdbcdn.b-cdn.net/img/Photos/Slides/img%20(23).webp" class="d-block w-100" alt="Cliff Above a Stormy Sea"/>
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Third slide label</h5>
+              <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+            </div>
+          </div>
         </div>
-        <div class="carousel-item">
-          <img src="https://cdn.discordapp.com/attachments/324358291561906186/1175922700015906887/image.png?ex=657638db&is=6563c3db&hm=4b8eef5524c4a7f9f506508c87384c1fe7cc3d07ea418e81f0ec7ed4139ff8b9&" class="d-block w-100" alt="...">
-        </div>
+        <!-- Inner -->
+
+        <!-- Controls -->
+        <button class="carousel-control-prev" type="button" data-mdb-target="#carouselBasicExample" data-mdb-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-mdb-target="#carouselBasicExample" data-mdb-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
       </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
-    </div>
+      <!-- Carousel wrapper -->
   </main>
 
-  
 <?php require('partials/footer.php')?>
+
+<script>
+  import {
+    Carousel,
+    initTE,
+  } from "tw-elements";
+
+  initTE({ Carousel });
+</script>
 
 </html>
