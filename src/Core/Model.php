@@ -46,11 +46,9 @@ abstract class Model{
                     $this->addErrorByRule($attribute, self::RULE_MATCH, $rule);
                 }
                 if($ruleName === self::RULE_UNIQUE){
-                    $className = $rule['class'];
                     $uniqueAttribute = $rule['attribute'] ?? $attribute;
                     $DAO = $this->DAOs['tableDAO'];
-                    $statement = $DAO->matchAttribute($uniqueAttribute, $value);
-                    $record = $statement->fetchObject();
+                    $record = $DAO->matchAttribute($uniqueAttribute, $value);
                     if($record){
                         $this->addErrorByRule($attribute, self::RULE_UNIQUE, ['field' => $attribute]);
                     }
