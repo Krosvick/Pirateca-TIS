@@ -25,5 +25,5 @@ surprise==0.1
 threadpoolctl==3.2.0
 tzdata==2023.3
 urllib3==2.1.0
-dotenv==1.0.0
+dotenv==0.0.5
 MySQL-python==1.2.5
