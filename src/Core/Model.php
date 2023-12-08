@@ -46,8 +46,8 @@ abstract class Model{
                 if($ruleName === self::RULE_MATCH && $value !== $this->{$rule['match']}){
                     $this->addErrorByRule($attribute, self::RULE_MATCH, $rule);
                 }
-                if($ruleName === self::RULE_PASSWORD_MATCH && !password_verify($this->{$rule['password_match']}, $value)){
-                    $this->addErrorByRule($attribute, self::RULE_PASSWORD_MATCH, $rule);
+                if($ruleName === self::RULE_PASSWORD_MATCH && !password_verify($this->{$rules['password_match']}, $value)){
+                    $this->addErrorByRule($attribute, self::RULE_PASSWORD_MATCH, $rules);
                 }
                 if($ruleName === self::RULE_UNIQUE){
                     $uniqueAttribute = $rule['attribute'] ?? $attribute;
