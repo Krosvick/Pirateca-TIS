@@ -19,13 +19,21 @@ class Response
     public function abort($code = 404, $message = '')
     {
         http_response_code($code);
-        $this->view->render($code, ['message' => $message], 'errors/');
+        $optionals = [
+            'data' => ['message' => $message],
+            'path' => 'errors',
+            'metadata' => [
+                'title' => 'Error',
+                'description' => 'Error page',
+            ],
+        ];
+        $this->view->render($code, $optionals);
         die();
     }
 
-    public function render($view, $data = [])
+    public function render($view, $optionals = [])
     {
-        $this->view->render($view, $data);
+        $this->view->render($view, $optionals);
     }
     public function setStatusCode ($code)
     {
