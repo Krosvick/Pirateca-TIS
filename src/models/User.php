@@ -45,11 +45,6 @@ class User extends Model{
      * @var string
      */
     private $role = 'user';
-    /**
-     * @var string
-     *
-     */
-    private $confirm_password;
 
     public function __construct($id = null, $username = null, $hashed_password = null, $first_name = null, $last_name = null, $created_at = null, $updated_at = null, $deleted_at = null, $role = null){
         $this->id = $id;
@@ -141,7 +136,8 @@ class User extends Model{
     public function rules(){
         return [
             'username' => [self::RULE_UNIQUE],
-            'hashed_password' => [self::RULE_REQUIRED, [self::RULE_MIN, 'min' => 8], [self::RULE_MAX, 'max' => 255], [self::RULE_MATCH, 'match' => 'confirm_password']],
+            'password' => [self::RULE_REQUIRED, [self::RULE_MIN, 'min' => 8], [self::RULE_MAX, 'max' => 255]],
+            'hashed_password' => [self::RULE_PASSWORD_MATCH, 'password_match' => 'confirm_password'],
         ];
     }
 
