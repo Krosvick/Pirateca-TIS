@@ -27,9 +27,9 @@ abstract class BaseController
         // This method can be overridden in child classes for post-action logic
     }
 
-    protected function render($view, $data = [])
+    protected function render($view, $optionals = [])
     {
-        $this->response->render($view, $data);
+        $this->response->render($view, $optionals);
     }
 
     protected function redirect($url, $statusCode = 302)
