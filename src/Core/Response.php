@@ -30,8 +30,13 @@ class Response
      */
     public function redirect($url)
     {
+        if (Application::$app->user) {
+            $user = Application::$app->user;
+            unset($user->DAOs);
+            Application::$app->user = $user;
+        }
         header('Location: ' . $url);
-        exit;
+        exit();
     }
 
     /**
