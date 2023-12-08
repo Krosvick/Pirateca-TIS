@@ -68,21 +68,17 @@ class Database
             return $this->statement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, $className) ?? null;
         }
 
-        /**
-         * Fetch the first result of a query and return it as an object.
-         *
-         * @param string|null $className The class name to use for the fetched object.
-         * @return object|null An object representing the first result of the query, or null if there are no results.
-         */
-        public function find($className = null): ?object
-        {
-            if ($className === null) {
-                $this->statement->setFetchMode(PDO::FETCH_OBJ);
-            } else {
-                $this->statement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, $className);
-            }
-            return $this->statement->fetch() ?? null;
+    //this method will return only the first result of the query
+    public function find($className = null): ?object
+    {
+        if ($className === null) {
+            $this->statement->setFetchMode(PDO::FETCH_OBJ);
+        } else {
+            $this->statement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, $className);
         }
+        $return = $this->statement->fetch();
+        return $return ? $return : null;
+    }
 
         /**
          * Fetch a certain quantity of results from a query based on a limit and offset.

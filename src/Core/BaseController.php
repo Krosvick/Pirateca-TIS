@@ -27,16 +27,9 @@ abstract class BaseController
         // This method can be overridden in child classes for post-action logic
     }
 
-    /**
-     * Renders a view with optional data.
-     *
-     * @param string $view The name of the view file to render.
-     * @param array $data Optional data to pass to the view.
-     * @return void
-     */
-    protected function render($view, $data = [])
+    protected function render($view, $optionals = [])
     {
-        $this->response->render($view, $data);
+        $this->response->render($view, $optionals);
     }
 
     /**

@@ -9,6 +9,7 @@ abstract class Model{
     const RULE_MIN = 'min';
     const RULE_MAX = 'max';
     const RULE_MATCH = 'match';
+    const RULE_PASSWORD_MATCH = 'password_match';
     const RULE_UNIQUE = 'unique';
 
     public array $errors = [];
@@ -30,18 +31,10 @@ abstract class Model{
         return [];
     }
 
-    /**
-     * Validates the attributes of the model based on the defined rules.
-     *
-     * @return bool Returns true if there are no validation errors, indicating that the model data is valid.
-     *              Returns false if there are validation errors, indicating that the model data is invalid.
-     *              The validation errors can be accessed using the getErrors() method.
-     */
-    public function validate()
-    {
-        foreach ($this->rules() as $attribute => $rules) {
-            $value = $this->{"get_$attribute"}();
-            foreach ($rules as $rule) {
+    public function validate(){
+        foreach($this->rules() as $attribute => $rules){
+            $value = $this->{$attribute} ?? $this->{"get_$attribute"}();
+            foreach($rules as $rule){
                 $ruleName = $rule;
                 if (!is_string($ruleName)) {
                     $ruleName = $rule[0];
@@ -61,7 +54,10 @@ abstract class Model{
                 if ($ruleName === self::RULE_MATCH && $value !== $this->{$rule['match']}) {
                     $this->addErrorByRule($attribute, self::RULE_MATCH, $rule);
                 }
-                if ($ruleName === self::RULE_UNIQUE) {
+                if($ruleName === self::RULE_PASSWORD_MATCH && !password_verify($this->{$rules['password_match']}, $value)){
+                    $this->addErrorByRule($attribute, self::RULE_PASSWORD_MATCH, $rules);
+                }
+                if($ruleName === self::RULE_UNIQUE){
                     $uniqueAttribute = $rule['attribute'] ?? $attribute;
                     $DAO = $this->DAOs['tableDAO'];
                     $record = $DAO->matchAttribute($uniqueAttribute, $value);
@@ -96,16 +92,17 @@ abstract class Model{
       * @return array The array of error messages. Each error message is associated with a specific rule defined in the `Model` class.
       */
      public function errorMessages()
-     {
-         return [
-             self::RULE_REQUIRED => 'This field is required',
-             self::RULE_EMAIL => 'This field must be a valid email address',
-             self::RULE_MIN => 'The minimum length of this field must be {min}',
-             self::RULE_MAX => 'The maximum length of this field must be {max}',
-             self::RULE_MATCH => 'This field must be the same as {match}',
-             self::RULE_UNIQUE => 'A record with this {field} already exists',
-         ];
-     }
+    {
+        return [
+            self::RULE_REQUIRED => 'This field is required',
+            self::RULE_EMAIL => 'This field must be valid email address',
+            self::RULE_MIN => 'Min length of this field must be {min}',
+            self::RULE_MAX => 'Max length of this field must be {max}',
+            self::RULE_MATCH => 'This field must be the same as {match}',
+            self::RULE_PASSWORD_MATCH => 'Password must match',
+            self::RULE_UNIQUE => 'Record with with this {field} already exists',
+        ];
+    }
 
     public function errorMessage($rule){
         return $this->errorMessages()[$rule];
@@ -165,6 +162,9 @@ abstract class Model{
         foreach($data as $key => $value){
             if(property_exists($this, $key)){
                 $this->{"set_$key"}($value);
+            }
+            else{
+                $this->{$key} = $value;
             }
         }
     }

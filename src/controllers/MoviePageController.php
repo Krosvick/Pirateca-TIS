@@ -68,8 +68,17 @@ class MoviePageController extends BaseController
             'Movie' => $this->movieModel,
             'Ratings' => $ratings
         ];
+        $metadata = [
+            'title' => $this->movieModel->get_original_title(),
+            'description' => 'Movie page',
+            'cssFiles' => ['styles-movie.css'],
+        ];
+        $optionals = [
+            'data' => $data,
+            'metadata' => $metadata,
+        ];
 
-        return $this->render("partials/movie_page", $data);
+        return $this->render("movie_page", $optionals);
         
     }
 

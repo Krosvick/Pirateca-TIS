@@ -44,29 +44,23 @@ class Response
     public function abort($code = 404, $message = '')
     {
         http_response_code($code);
-        $this->view->render($code, ['message' => $message], 'errors/');
+        $optionals = [
+            'data' => ['message' => $message],
+            'path' => 'errors',
+            'metadata' => [
+                'title' => 'Error',
+                'description' => 'Error page',
+            ],
+        ];
+        $this->view->render($code, $optionals);
         die();
     }
 
-    /**
-     * Renders a view with optional data.
-     *
-     * @param string $view The name of the view to render.
-     * @param array $data Optional data to pass to the view.
-     * @return void
-     */
-    public function render($view, $data = [])
+    public function render($view, $optionals = [])
     {
-        $this->view->render($view, $data);
+        $this->view->render($view, $optionals);
     }
-
-    /**
-     * Sets the HTTP response code for the current request.
-     *
-     * @param int $code The HTTP response code to be set.
-     * @return void
-     */
-    public function setStatusCode($code)
+    public function setStatusCode ($code)
     {
         http_response_code($code);
     }
