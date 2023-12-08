@@ -41,6 +41,17 @@ class RegisterController extends BaseController
             'title' => 'Register',
             'errors' => $user->getErrors()
         ];
-        return $this->render("register", $data);
+        $metadata = [
+            'title' => 'Register',
+            'description' => 'Register page',
+            'cssFiles' => [
+                'styles_login.css',
+            ],
+        ];
+        $optionals = [
+            'data' => $data,
+            'metadata' => $metadata,
+        ];
+        return $this->render("register", $optionals);
     }
 }
