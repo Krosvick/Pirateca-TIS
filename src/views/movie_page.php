@@ -1,17 +1,11 @@
 <!-- arreglar el tema del directorio -->
-<?php require('nav.php')?>
+<?php require('partials/nav.php')?>
 
 <?php 
     #dd($Ratings[0]->get_user()->get_username());
 ?>
 
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title><?= $Movie->get_original_title() ?></title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/css/styles-movie.css">
-</head>
 <body>
 <script>
     function toggleDiv() {
@@ -57,7 +51,7 @@
     <!-- comment -->
 
         <?php
-            require('commentary.php')
+            require('partials/commentary.php')
         ?>
     
 
