@@ -143,7 +143,7 @@ class User extends Model{
 
     public function login($DAO, $username, $password)
     {
-        $user_data = $DAO->findBy($username);
+        $user_data = $DAO->findBy($username, 'username');
         if ($user_data) {
             if (!password_verify($password, $user_data->hashed_password)) {
                 $this->addError('password', 'User name or password are not valid');
