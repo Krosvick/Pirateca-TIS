@@ -13,6 +13,14 @@ class Router
     protected $request;
     protected $response;
     private $container;
+   
+    /**
+     * Router constructor.
+     *
+     * Initializes the request, response, and container properties of the class.
+     *
+     * @param Container $container An instance of the Container class.
+     */
     public function __construct(Container $container)
     {
         $this->request = $container->get(Request::class);
@@ -20,22 +28,59 @@ class Router
         $this->container = $container;
     }
 
+
+    /**
+     * Adds a route to the `routes` array for the HTTP GET method.
+     *
+     * @param string $url The URL pattern for the route.
+     * @param string $handler The handler for the route, in the format `Controller@method`.
+     * @return void
+     */
     public function get($url, $handler)
     {
-        $this->addRoute('get',$url, $handler);
+        $this->addRoute('get', $url, $handler);
     }
+    /**
+     * Adds a route for the HTTP POST method.
+     *
+     * @param string $url The URL pattern for the route.
+     * @param string $handler The handler for the route, in the format `Controller@action`.
+     * @return void
+     */
     public function post($url, $handler)
     {
-        $this->addRoute('post',$url, $handler);
+        $this->addRoute('post', $url, $handler);
     }
+    /**
+     * Adds a route for the HTTP PUT method.
+     *
+     * @param string $url The URL pattern for the route.
+     * @param string $handler The handler for the route, in the format "Controller@method".
+     * @return void
+     */
     public function put($url, $handler)
     {
-        $this->addRoute('put',$url, $handler);
+        $this->addRoute('put', $url, $handler);
     }
+    /**
+     * Adds a route for the DELETE HTTP method to the list of routes.
+     *
+     * @param string $url The URL pattern for the route.
+     * @param string $handler The handler for the route, in the format 'Controller@action'.
+     * @return void
+     */
     public function delete($url, $handler)
     {
-        $this->addRoute('delete',$url, $handler);
+        $this->addRoute('delete', $url, $handler);
     }
+    /**
+     * Adds a new route to the `routes` array.
+     *
+     * @param string $method The HTTP method of the route (e.g., 'GET', 'POST', 'PUT', 'DELETE').
+     * @param string $url The URL of the route.
+     * @param string $handler The handler for the route, in the format 'controller@action'.
+     * @return void
+     */
     private function addRoute($method, $url, $handler)
     {
         // Split the handler into controller and action
@@ -59,11 +104,25 @@ class Router
     }
 
 
+    /**
+     * Returns the routes array.
+     *
+     * @return array The routes array, which contains the routes for different HTTP methods.
+     */
     public function getRoutes()
     {
         return $this->routes;
     }
-
+    /**
+     * Matches a given URL and HTTP method to a route in the `routes` array.
+     * If a match is found, it extracts the values for dynamic segments in the URL
+     * and stores them in the `params` property.
+     *
+     * @param string $method The HTTP method of the request (e.g., 'GET', 'POST', 'PUT', 'DELETE').
+     * @param string $url The URL of the request.
+     * @return bool Returns true if a route is matched and the values for dynamic segments are extracted,
+     *              false if no route is matched.
+     */
     public function matchRoute($method, $url)
     {
         foreach ($this->routes[$method] as $route => $params) {
@@ -85,11 +144,21 @@ class Router
     }
 
 
+    /**
+     * Returns the value of the $params property.
+     *
+     * @return array The value of the $params property, which is an array containing the controller, action, and segments for the current route.
+     */
     public function getParams()
     {
         return $this->params;
     }
 
+    /**
+     * Dispatches the request to the appropriate controller and action based on the URL and HTTP method.
+     *
+     * @return void
+     */
     public function dispatch()
     {
         $url = $this->request->getUrl();

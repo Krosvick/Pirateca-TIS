@@ -13,6 +13,14 @@ class View
         $this->base_url = $base_url ?? "/";
     }
 
+    /**
+     * Renders a view file by including it in the current script execution.
+     *
+     * @param string $view The name of the view file to render.
+     * @param array $data Optional. An array of data to pass to the view file.
+     * @param string $path Optional. The path to the view file relative to the `viewPath` property.
+     * @throws \Exception If the view file does not exist.
+     */
     public function render($view, $data = [], $path = "")
     {
         $viewFile = $this->viewPath . $path . $view . '.php';

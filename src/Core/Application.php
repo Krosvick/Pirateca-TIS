@@ -1,5 +1,6 @@
 <?php
 
+/** AID dont delete */
 namespace Core;
 
 use Models\User;
@@ -46,10 +47,20 @@ class Application
         }
     }
 
+    /**
+     * Checks if the user is a guest.
+     *
+     * @return bool Returns true if the user is a guest, false otherwise.
+     */
     public static function isGuest()
     {
         return !self::$app->user;
     }
+    /**
+     * Runs the application.
+     *
+     * @return void
+     */
     public function run()
     {
         $this->triggerEvent(self::EVENT_BEFORE_REQUEST);
@@ -67,10 +78,26 @@ class Application
         }
     }
 
+    /**
+     * Adds a callback function to the event listeners array for a given event name.
+     *
+     * @param string $eventName The name of the event to listen for.
+     * @param callable $callback The callback function to be executed when the event is triggered.
+     * @return void
+     */
     public function on($eventName, $callback)
     {
         $this->eventListeners[$eventName][] = $callback;
     }
+    /**
+     * Logs in a user.
+     *
+     * This method is responsible for logging in a user by setting the `user` property of the `Application` instance,
+     * storing the user's primary key value in the session, and storing the user object itself in the session.
+     *
+     * @param User Object to be logged in.
+     * @return bool ¿Login was successful? then "True".
+     */
     public function login(User $user)
     {
         $this->user = $user;
@@ -83,6 +110,11 @@ class Application
         return true;
     }
 
+    /**
+     * Logs out the user by setting the 'user' property to null and removing the 'user' key from the session.
+     *
+     * @return void
+     */
     public function logout()
     {
         $this->user = null;

@@ -14,42 +14,58 @@ abstract class Model{
     public array $errors = [];
     public array $DAOs;
 
+    /**
+     *
+     * @return array The rules for the Model.
+     */
     public function rules(){
         return [] ;
     }
 
+    /**
+     *
+     * @return array The empty array.
+     */
     public function attributes(){
         return [];
     }
 
-    public function validate(){
-        foreach($this->rules() as $attribute => $rules){
+    /**
+     * Validates the attributes of the model based on the defined rules.
+     *
+     * @return bool Returns true if there are no validation errors, indicating that the model data is valid.
+     *              Returns false if there are validation errors, indicating that the model data is invalid.
+     *              The validation errors can be accessed using the getErrors() method.
+     */
+    public function validate()
+    {
+        foreach ($this->rules() as $attribute => $rules) {
             $value = $this->{"get_$attribute"}();
-            foreach($rules as $rule){
+            foreach ($rules as $rule) {
                 $ruleName = $rule;
-                if(!is_string($ruleName)){
+                if (!is_string($ruleName)) {
                     $ruleName = $rule[0];
                 }
-                if($ruleName === self::RULE_REQUIRED && !$value){
+                if ($ruleName === self::RULE_REQUIRED && !$value) {
                     $this->addErrorByRule($attribute, self::RULE_REQUIRED);
                 }
-                if($ruleName === self::RULE_EMAIL && !filter_var($value, FILTER_VALIDATE_EMAIL)){
+                if ($ruleName === self::RULE_EMAIL && !filter_var($value, FILTER_VALIDATE_EMAIL)) {
                     $this->addErrorByRule($attribute, self::RULE_EMAIL);
                 }
-                if($ruleName === self::RULE_MIN && strlen($value) < $rule['min']){
+                if ($ruleName === self::RULE_MIN && strlen($value) < $rule['min']) {
                     $this->addErrorByRule($attribute, self::RULE_MIN, $rule);
                 }
-                if($ruleName === self::RULE_MAX && strlen($value) > $rule['max']){
+                if ($ruleName === self::RULE_MAX && strlen($value) > $rule['max']) {
                     $this->addErrorByRule($attribute, self::RULE_MAX, $rule);
                 }
-                if($ruleName === self::RULE_MATCH && $value !== $this->{$rule['match']}){
+                if ($ruleName === self::RULE_MATCH && $value !== $this->{$rule['match']}) {
                     $this->addErrorByRule($attribute, self::RULE_MATCH, $rule);
                 }
-                if($ruleName === self::RULE_UNIQUE){
+                if ($ruleName === self::RULE_UNIQUE) {
                     $uniqueAttribute = $rule['attribute'] ?? $attribute;
                     $DAO = $this->DAOs['tableDAO'];
                     $record = $DAO->matchAttribute($uniqueAttribute, $value);
-                    if($record){
+                    if ($record) {
                         $this->addErrorByRule($attribute, self::RULE_UNIQUE, ['field' => $attribute]);
                     }
                 }
@@ -58,7 +74,15 @@ abstract class Model{
         return empty($this->errors);
     }
 
-    public function addErrorByRule(string $attribute, string $rule, $params = []){
+    /**
+     * Adds an error message to the `errors` array based on a given attribute, rule, and optional parameters.
+     *
+     * @param string $attribute The attribute name for which the error message is being added.
+     * @param string $rule The rule name for which the error message is being added.
+     * @param array $params Optional parameters that can be used to replace placeholders in the error message.
+     * @return void
+     */
+    public function addErrorByRule(string $attribute, string $rule, $params = []) {
         $message = $this->errorMessages()[$rule] ?? '';
         foreach($params as $key => $value){
             $message = str_replace("{{$key}}", $value, $message);
@@ -66,17 +90,22 @@ abstract class Model{
         $this->errors[$attribute][] = $message;
     }
     
+     /**
+      * Returns an array of error messages based on predefined rules.
+      *
+      * @return array The array of error messages. Each error message is associated with a specific rule defined in the `Model` class.
+      */
      public function errorMessages()
-    {
-        return [
-            self::RULE_REQUIRED => 'This field is required',
-            self::RULE_EMAIL => 'This field must be valid email address',
-            self::RULE_MIN => 'Min length of this field must be {min}',
-            self::RULE_MAX => 'Max length of this field must be {max}',
-            self::RULE_MATCH => 'This field must be the same as {match}',
-            self::RULE_UNIQUE => 'Record with with this {field} already exists',
-        ];
-    }
+     {
+         return [
+             self::RULE_REQUIRED => 'This field is required',
+             self::RULE_EMAIL => 'This field must be a valid email address',
+             self::RULE_MIN => 'The minimum length of this field must be {min}',
+             self::RULE_MAX => 'The maximum length of this field must be {max}',
+             self::RULE_MATCH => 'This field must be the same as {match}',
+             self::RULE_UNIQUE => 'A record with this {field} already exists',
+         ];
+     }
 
     public function errorMessage($rule){
         return $this->errorMessages()[$rule];
@@ -87,22 +116,51 @@ abstract class Model{
         $this->errors[$attribute][] = $message;
     }
 
+    /**
+     * Checks if there are any errors associated with a specific attribute.
+     *
+     * @param string $attribute The name of the attribute to check for errors.
+     * @return string|false Returns the error message associated with the attribute if there is an error, otherwise returns false.
+     */
     public function hasError($attribute){
         return $this->errors[$attribute] ?? false;
     }
-
-    public function hasErrors(){
+    /**
+     * Checks if there are any errors associated with the model.
+     *
+     * @return bool Returns a boolean value indicating whether there are errors associated with the model or not.
+     *              Returns true if there are errors, false if there are no errors.
+     */
+    public function hasErrors()
+    {
         return !empty($this->errors);
     }
 
+    /**
+     * Returns the errors associated with the model.
+     *
+     * @return array The errors associated with the model.
+     */
     public function getErrors(){
         return $this->errors;
     }
 
+    /**
+     * Retrieves the first error message associated with a specific attribute from the errors array.
+     *
+     * @param string $attribute The name of the attribute to retrieve the error message for.
+     * @return string|false The first error message associated with the specified attribute, or false if there are no error messages.
+     */
     public function getFirstError($attribute){
         return $this->errors[$attribute][0] ?? false;
     }
 
+    /**
+     * Loads data into the properties of the current object.
+     *
+     * @param object $data The data object containing the properties and their values to be loaded into the current object.
+     * @return void
+     */
     public function loadData(object $data){
         foreach($data as $key => $value){
             if(property_exists($this, $key)){

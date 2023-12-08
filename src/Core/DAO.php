@@ -66,6 +66,12 @@ abstract class DAO {
         }
     }
 
+    /**
+     * Perform a database query to search for rows in the "movies" table where the "original_title" column contains a specific value.
+     *
+     * @param string $busqueda The search term to be used in the query.
+     * @return array The result set containing the rows from the "movies" table that match the search term.
+     */
     public function dummytest($busqueda){
         try {
             $sql = "SELECT * FROM movies WHERE original_title LIKE CONCAT('%', :busqueda, '%')";
@@ -79,6 +85,12 @@ abstract class DAO {
             die($e->getMessage());
         }
     }
+    /**
+     * Perform a full-text search on the "movies" table based on a search term.
+     *
+     * @param string $busqueda The search term to be used in the query.
+     * @return array The result set containing the rows from the "movies" table that match the search term.
+     */
     public function dummytest_fulltext($busqueda){
         try {
             #search against :busqueda* 
@@ -229,6 +241,13 @@ abstract class DAO {
         }
     }
 
+    /**
+     * Retrieves the relations of a table from a JSON file.
+     *
+     * This method reads the contents of the 'referential_integrity.json' file and stores the relations of a table in an array.
+     *
+     * @return void
+     */
     private function getRelations(){
         #this will read a json file called referential integrity in this sane directory
         #it will find the relations of the table and store them in an array
@@ -249,6 +268,13 @@ abstract class DAO {
         }
     }
 
+    /**
+     * A method that performs a database query to search for rows in a table where a specific attribute matches a given value.
+     *
+     * @param string $attribute The name of the attribute to match.
+     * @param mixed $value The value to match against the attribute.
+     * @return object The result set containing the rows from the table where the attribute matches the given value.
+     */
     public function matchAttribute(string $attribute, $value) {
         try{
             $stmt = $this->connection->query("SELECT * FROM {$this->table} WHERE $attribute = :{$attribute}", [
@@ -259,6 +285,5 @@ abstract class DAO {
         } catch (Exception $e) {
             die($e->getMessage());
         }
-
     }
 }
