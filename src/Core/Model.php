@@ -9,6 +9,7 @@ abstract class Model{
     const RULE_MIN = 'min';
     const RULE_MAX = 'max';
     const RULE_MATCH = 'match';
+    const RULE_PASSWORD_MATCH = 'password_match';
     const RULE_UNIQUE = 'unique';
 
     public array $errors = [];
@@ -24,7 +25,7 @@ abstract class Model{
 
     public function validate(){
         foreach($this->rules() as $attribute => $rules){
-            $value = $this->{"get_$attribute"}();
+            $value = $this->{$attribute} ?? $this->{"get_$attribute"}();
             foreach($rules as $rule){
                 $ruleName = $rule;
                 if(!is_string($ruleName)){
@@ -44,6 +45,9 @@ abstract class Model{
                 }
                 if($ruleName === self::RULE_MATCH && $value !== $this->{$rule['match']}){
                     $this->addErrorByRule($attribute, self::RULE_MATCH, $rule);
+                }
+                if($ruleName === self::RULE_PASSWORD_MATCH && !password_verify($this->{$rule['password_match']}, $value)){
+                    $this->addErrorByRule($attribute, self::RULE_PASSWORD_MATCH, $rule);
                 }
                 if($ruleName === self::RULE_UNIQUE){
                     $uniqueAttribute = $rule['attribute'] ?? $attribute;
@@ -74,6 +78,7 @@ abstract class Model{
             self::RULE_MIN => 'Min length of this field must be {min}',
             self::RULE_MAX => 'Max length of this field must be {max}',
             self::RULE_MATCH => 'This field must be the same as {match}',
+            self::RULE_PASSWORD_MATCH => 'Password must match',
             self::RULE_UNIQUE => 'Record with with this {field} already exists',
         ];
     }
@@ -107,6 +112,9 @@ abstract class Model{
         foreach($data as $key => $value){
             if(property_exists($this, $key)){
                 $this->{"set_$key"}($value);
+            }
+            else{
+                $this->{$key} = $value;
             }
         }
     }
