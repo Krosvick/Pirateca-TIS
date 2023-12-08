@@ -13,10 +13,10 @@
                 <img src="/images/logo.png" alt="Logo" class="h-8">
             </div>
             <div>
-                <button class="text-white hover:text-purple-800 bg-purple-700 hover:bg-purple-600 px-4 py-2 rounded transition duration-300" onclick="window.location.href='login.php'">Login</button>
-                <button class="text-purple-800 hover:text-gray-900 hover:bg-gray-100 px-4 py-2 rounded transition duration-300" onclick="window.location.href='index.php'">Home</button>
-                <button class="text-purple-800 hover:text-gray-900 hover:bg-gray-100 px-4 py-2 rounded transition duration-300" onclick="window.location.href='search.php'">Search</button>
-                <button class="text-purple-800 hover:text-gray-900 hover:bg-gray-100 px-4 py-2 rounded transition duration-300" onclick="window.location.href='likedmovies.php'">Liked Posts</button>
+                <button class="text-white hover:text-purple-800 bg-purple-700 hover:bg-purple-600 px-4 py-2 rounded transition duration-300" onclick="window.location.href='login'">Login</button>
+                <button class="text-purple-800 hover:text-gray-900 hover:bg-gray-100 px-4 py-2 rounded transition duration-300" onclick="window.location.href='index'">Home</button>
+                <button class="text-purple-800 hover:text-gray-900 hover:bg-gray-100 px-4 py-2 rounded transition duration-300" onclick="window.location.href='search'">Search</button>
+                <button class="text-purple-800 hover:text-gray-900 hover:bg-gray-100 px-4 py-2 rounded transition duration-300" onclick="window.location.href='likedmovies'">Liked Posts</button>
             </div>
         </div>
     </nav>
