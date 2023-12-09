@@ -13,10 +13,17 @@ use PDO;
 
     class UsersDAO extends DAO{
         
-        public function __construct() {
+        /**
+         * UsersDAO constructor.
+         *
+         * This constructor initializes the 'table' property to 'users' and calls the parent constructor.
+         */
+        public function __construct()
+        {
             $this->table = 'users';
             parent::__construct();
         }
+        
 
     }
 

@@ -15,6 +15,11 @@ class RatingsDAO extends DAO {
         parent::__construct();
     }
 
+    /**
+     * Retrieves all the data from the `ratings` table.
+     *
+     * @return array An array of rows containing all the data from the `ratings` table.
+     */
     public function get_all_data() {
         try {
             $sql = "SELECT * FROM {$this->table}";
@@ -26,6 +31,12 @@ class RatingsDAO extends DAO {
         }
     }
 
+    /**
+     * Retrieves ratings data from the database based on a given movie object.
+     *
+     * @param Movie $movie A Movie object representing the movie for which ratings are to be retrieved.
+     * @return array An array of rows containing the ratings data for the given movie.
+     */
     public function getByMovie(Movie $movie): array {
         try {
             $sql = "SELECT * FROM {$this->table} WHERE movie_id = :movie_id LIMIT :limit";
