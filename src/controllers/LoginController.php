@@ -36,12 +36,21 @@ class LoginController extends BaseController
             $user->loadData($user_data);
             if(Application::$app->login($user)){
                 $this->response->redirect('/');
+                return;
             }
             
         }
         $data = [
             'title' => 'Login'
         ];
-        return $this->render("login", $data);
+        $metadata = [
+            'title' => 'Login',
+            'description' => 'Login page',
+        ];
+        $optionals = [
+            'data' => $data,
+            'metadata' => $metadata
+        ];
+        return $this->render("login", $optionals);
     }
 }

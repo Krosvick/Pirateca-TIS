@@ -2,14 +2,16 @@
 
 namespace Controllers;
 
-use models\user;
-use dao\userdao;
+use DAO\UsersDAO;
+use Core\BaseController;
 
-class UserController {
+class UserController extends BaseController{
     private $userDAO;
 
-    public function __construct() {
-        $this->userDAO = new UserDAO();
+    public function __construct($container, $routeParams) {
+        //call the parent constructor to get access to the properties and methods of the BaseController class
+        parent::__construct(...func_get_args());
+        $this->userDAO = new UsersDAO();
     }
 
     public function registerUser($username, $password, $email, $role) {

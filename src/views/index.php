@@ -1,12 +1,6 @@
 <!DOCTYPE html>
 <html>
 
-   <head>
-      <meta charset="UTF-8">
-      <title>Bienvenido a Pirateca</title>
-      <link rel="stylesheet" href="/css/carousel.css">
-      <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet">
-   </head>
    <!-- header -->
    <?php require('partials/nav.php')?>
    <!-- end header -->
@@ -33,6 +27,7 @@
                      </a>
                   </li>
                </ul>
+               <?php endforeach; ?>
             </div> 
          </section>    
       </div>
