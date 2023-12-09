@@ -39,7 +39,7 @@ class Application
         $this->router = $this->container->get(Router::class);
         $this->session = $this->container->get(Session::class);
         $this->db = Database::getInstance();
-        $primaryValue = $this->session->get('user');
+        $primaryValue = $this->session->get('usernumber');
         if ($primaryValue) {
             $this->user = User::findOne($primaryValue);
         } else {
@@ -106,7 +106,6 @@ class Application
         $value = $user->{"get_$primaryKey"}();
         Application::$app->session->set('usernumber', $value);
         Application::$app->session->set('user', $user);
-
         return true;
     }
 

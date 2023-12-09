@@ -129,11 +129,11 @@ abstract class DAO {
         }
     }
 
-    public function findBy($attribute, $value, $className = null): ?object {
+    public function findBy($value, $attribute, $className = null): ?object {
         try {
-            $sql = "SELECT * FROM {$this->table} WHERE $attribute = :value";
+            $sql = "SELECT * FROM {$this->table} WHERE $attribute = :{$value}";
             $params = array(
-                "value" => [$value, PDO::PARAM_STR]
+                "{$value}" => [$value, PDO::PARAM_STR]
             );
             $stmt = $this->connection->query($sql, $params);
             $row = $stmt->find($className);
