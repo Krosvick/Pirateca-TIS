@@ -44,7 +44,7 @@
                     <div class="col-span-2 mb-4">
                         <p class="text-gray-700 font-bold mb-2">Movies Liked</p>
                         <p class="border border-gray-300 rounded-md py-2 px-3">
-                            <?php ['user']['liked']; ?>; ?>
+                            <?php ['user']['liked']; ?>
                         </p>
                     </div>
                 </div>
