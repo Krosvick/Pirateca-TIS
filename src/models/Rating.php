@@ -16,84 +16,216 @@ class Rating extends Model{
     private $rating;
     private $review;
 
-    public function __construct($id = null, $user = null, $movie = null, $rating = null, $review = null){
+   
+    /**
+     * Rating constructor.
+     *
+     * Initializes the properties of the Rating object with the provided values.
+     *
+     * @param int|null $id The ID of the rating.
+     * @param User|null $user The user associated with the rating.
+     * @param Movie|null $movie The movie associated with the rating.
+     * @param float|null $rating The rating value.
+     * @param string|null $review The review comment.
+     */
+    public function __construct($id = null, $user = null, $movie = null, $rating = null, $review = null)
+    {
         $this->id = $id;
         $this->user = $user;
         $this->movie = $movie;
         $this->rating = $rating;
         $this->review = $review;
     }
+    
 
-    //getters and setters
-    public function get_id(){
+ 
+    /**
+     * Get the ID of the rating.
+     *
+     * @return int The ID of the rating.
+     */
+    public function get_id()
+    {
         return $this->id;
     }
-    public function set_id($id){
+
+    /**
+     * Set the ID of the rating.
+     *
+     * @param int $id The ID of the rating.
+     */
+    public function set_id($id)
+    {
         $this->id = $id;
     }
-    public function get_user(){
+
+    /**
+     * Get the user associated with the rating.
+     *
+     * @return string The user associated with the rating.
+     */
+    public function get_user()
+    {
         return $this->user;
     }
-    public function set_user($user){
+
+    /**
+     * Set the user associated with the rating.
+     *
+     * @param string $user The user associated with the rating.
+     */
+    public function set_user($user)
+    {
         $this->user = $user;
     }
-    public function get_movie(){
+
+    /**
+     * Get the movie associated with the rating.
+     *
+     * @return string The movie associated with the rating.
+     */
+    public function get_movie()
+    {
         return $this->movie;
     }
-    public function set_movie($movie){
+
+    /**
+     * Set the movie associated with the rating.
+     *
+     * @param string $movie The movie associated with the rating.
+     */
+    public function set_movie($movie)
+    {
         $this->movie = $movie;
     }
-    public function get_rating(){
+
+    /**
+     * Get the rating value.
+     *
+     * @return float The rating value.
+     */
+    public function get_rating()
+    {
         return $this->rating;
     }
-    public function set_rating($rating){
+
+    /**
+     * Set the rating value.
+     *
+     * @param float $rating The rating value.
+     */
+    public function set_rating($rating)
+    {
         $this->rating = $rating;
     }
-    public function get_review(){
+
+    /**
+     * Get the review comment.
+     *
+     * @return string The review comment.
+     */
+    public function get_review()
+    {
         return $this->review;
     }
-    public function set_review($review){
+
+    /**
+     * Set the review comment.
+     *
+     * @param string $review The review comment.
+     */
+    public function set_review($review)
+    {
         $this->review = $review;
     }
 
-    public static function primaryKey(){
+    /**
+     * Get the primary key of the Rating model.
+     *
+     * @return string The primary key of the Rating model.
+     */
+    public static function primaryKey()
+    {
         return 'id';
     }
-    public function search_by_movie_id($movie_id){
+
+    /**
+     * Search for ratings by movie ID.
+     *
+     * @param int $movie_id The ID of the movie to search for ratings.
+     * @return array An array of ratings for the specified movie.
+     */
+    public function search_by_movie_id($movie_id)
+    {
         $ratings = $this->ratingsDAO->get_by_movie($movie_id);
         return $ratings;
     }
 
-    private function add_rating($user_id, $rating, $movie_id, $commentary){
+    /**
+     * Add a new rating.
+     *
+     * @param int $user_id The ID of the user associated with the rating.
+     * @param float $rating The rating value.
+     * @param int $movie_id The ID of the movie associated with the rating.
+     * @param string $commentary The commentary for the rating.
+     */
+    private function add_rating($user_id, $rating, $movie_id, $commentary)
+    {
         //add timestamp function here
         $rating = new Rating($user_id, $rating, $movie_id, $commentary);
         $this->ratingsDAO->add($rating);
     }
 
-    private function delete_review($user_id, $movie_id){
+    /**
+     * Delete a rating.
+     *
+     * @param int $user_id The ID of the user associated with the rating.
+     * @param int $movie_id The ID of the movie associated with the rating.
+     */
+    private function delete_review($user_id, $movie_id)
+    {
         $this->ratingsDAO->delete($user_id, $movie_id);
     }
 
-    private function show_movie_ratings($movie_id){
+    /**
+     * Show ratings for a specific movie.
+     *
+     * @param int $movie_id The ID of the movie to show ratings for.
+     * @return array An array of ratings for the specified movie.
+     */
+    private function show_movie_ratings($movie_id)
+    {
         $ratings = $this->ratingsDAO->get_by_movie($movie_id);
         return $ratings;
     }
 
-    private function get_all(){
+    /**
+     * Get all ratings.
+     *
+     * @return array An array of all ratings.
+     */
+    private function get_all()
+    {
         $ratings = $this->ratingsDAO->get_all();
         return $ratings;
     }
 
-    public function post_all_ratings(){
+    /**
+     * Post all ratings to a remote server.
+     *
+     * @return mixed The response from the remote server.
+     */
+    public function post_all_ratings()
+    {
         $client = new Client();
         $ratings = $this->get_all();
         $response = $client->request('POST', 'localhost:8001/ratings', [
             'json' => $ratings
-            
         ]);
         $response = json_decode($response->getBody(), true);
         return $response;
     }
+
 
     
 }

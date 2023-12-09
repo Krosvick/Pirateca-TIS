@@ -22,6 +22,22 @@ class Movie extends Model{
     private $updated_at;
     private $director;
 
+    /**
+     * Class constructor for the Movie class.
+     *
+     * @param int|null $id The ID of the movie (optional)
+     * @param string|null $original_title The original title of the movie (optional)
+     * @param string|null $overview A brief overview of the movie (optional)
+     * @param string|null $poster_path The path to the movie's poster image (optional)
+     * @param array|null $genres An array of genres that the movie belongs to (optional)
+     * @param string|null $belongs_to_collection The collection that the movie belongs to (optional)
+     * @param bool $adult A boolean indicating if the movie is for adults only (optional, default is false)
+     * @param string|null $original_language The original language of the movie (optional)
+     * @param string|null $release_date The release date of the movie (optional)
+     * @param string|null $deleted_at The date when the movie was deleted (optional)
+     * @param string|null $updated_at The date when the movie was last updated (optional)
+     * @param string|null $director The director of the movie (optional)
+     */
     public function __construct($id = null, $original_title = null, $overview = null, $poster_path = null, $genres = null, $belongs_to_collection = null, $adult = false, $original_language = null, $release_date = null, $deleted_at = null, $updated_at = null, $director = null)
     {
         $this->id = $id;
@@ -42,85 +58,240 @@ class Movie extends Model{
     }
 
     #getters and setters
+    /**
+     * Get the ID of the movie.
+     *
+     * @return int The ID of the movie.
+     */
     public function get_id(){
         return $this->id;
     }
+
+    /**
+     * Set the ID of the movie.
+     *
+     * @param int $id The ID of the movie.
+     */
     public function set_id($id){
         $this->id = $id;
     }
+
+    /**
+     * Get the original title of the movie.
+     *
+     * @return string The original title of the movie.
+     */
     public function get_original_title(){
         return $this->original_title;
     }
+
+    /**
+     * Set the original title of the movie.
+     *
+     * @param string $title The original title of the movie.
+     */
     public function set_original_title($title){
         $this->original_title = $title;
     }
+
+    /**
+     * Get the overview of the movie.
+     *
+     * @return string The overview of the movie.
+     */
     public function get_overview(){
         return $this->overview;
     }
+
+    /**
+     * Set the overview of the movie.
+     *
+     * @param string $overview The overview of the movie.
+     */
     public function set_overview($overview){
         $this->overview = $overview;
     }
+
+    /**
+     * Get the poster path of the movie.
+     *
+     * @return string The poster path of the movie.
+     */
     public function get_poster_path(){
         return $this->poster_path;
     }
+
+    /**
+     * Set the poster path of the movie.
+     *
+     * @param string $poster_path The poster path of the movie.
+     */
     public function set_poster_path($poster_path){
         $this->poster_path = $poster_path;
     }
+
+    /**
+     * Get the genres of the movie.
+     *
+     * @return array The genres of the movie.
+     */
     public function get_genres(){
         return $this->genres;
     }
+
+    /**
+     * Set the genres of the movie.
+     *
+     * @param array $genres The genres of the movie.
+     */
     public function set_genres($genres){
         $this->genres = $genres;
     }
+
+    /**
+     * Get the collection that the movie belongs to.
+     *
+     * @return string The collection that the movie belongs to.
+     */
     public function get_belongs_to_collection(){
         return $this->belongs_to_collection;
     }
+
+    /**
+     * Set the collection that the movie belongs to.
+     *
+     * @param string $belongs_to_collection The collection that the movie belongs to.
+     */
     public function set_belongs_to_collection($belongs_to_collection){
         $this->belongs_to_collection = $belongs_to_collection;
     }
+
+    /**
+     * Check if the movie is for adults only.
+     *
+     * @return bool True if the movie is for adults only, false otherwise.
+     */
     public function get_adult(){
         return $this->adult;
     }
+
+    /**
+     * Set whether the movie is for adults only.
+     *
+     * @param bool $adult True if the movie is for adults only, false otherwise.
+     */
     public function set_adult($adult){
         $this->adult = $adult;
     }
+
+    /**
+     * Get the original language of the movie.
+     *
+     * @return string The original language of the movie.
+     */
     public function get_original_language(){
         return $this->original_language;
     }
+
+    /**
+     * Set the original language of the movie.
+     *
+     * @param string $original_language The original language of the movie.
+     */
     public function set_original_language($original_language){
         $this->original_language = $original_language;
     }
+
+    /**
+     * Get the release date of the movie.
+     *
+     * @return string The release date of the movie.
+     */
     public function get_release_date(){
         return $this->release_date;
     }
+
+    /**
+     * Set the release date of the movie.
+     *
+     * @param string $release_date The release date of the movie.
+     */
     public function set_release_date($release_date){
         $this->release_date = $release_date;
     }
+
+    /**
+     * Get the deleted date of the movie.
+     *
+     * @return string The deleted date of the movie.
+     */
     public function get_deleted_at(){
         return $this->deleted_at;
     }
+
+    /**
+     * Set the deleted date of the movie.
+     *
+     * @param string $deleted_at The deleted date of the movie.
+     */
     public function set_deleted_at($deleted_at){
         $this->deleted_at = $deleted_at;
     }
+
+    /**
+     * Get the updated date of the movie.
+     *
+     * @return string The updated date of the movie.
+     */
     public function get_updated_at(){
         return $this->updated_at;
     }
+
+    /**
+     * Set the updated date of the movie.
+     *
+     * @param string $updated_at The updated date of the movie.
+     */
     public function set_updated_at($updated_at){
         $this->updated_at = $updated_at;
     }
+
+    /**
+     * Get the director of the movie.
+     *
+     * @return string The director of the movie.
+     */
     public function get_director(){
         return $this->director;
     }
+
+    /**
+     * Set the director of the movie.
+     *
+     * @param string $director The director of the movie.
+     */
     public function set_director($director){
         $this->director = $director;
     }
+    
 
+
+    /**
+     * Get the validation rules for the 'original_title' attribute.
+     *
+     * @return array The validation rules for the 'original_title' attribute.
+     */
     public function rules(){
         return [
             'original_title' => [self::RULE_REQUIRED,[self::RULE_MAX, 'max' => 8]],
         ];
     }
 
+    /**
+     * Get all the attributes of the 'Movie' class.
+     *
+     * @return array All the attributes of the 'Movie' class.
+     */
     public function attributes(){
         return [
             'original_title',
@@ -136,17 +307,31 @@ class Movie extends Model{
             'director'
         ];
     }
+    
 
-    public static function primaryKey(){
+    /**
+     * Get the primary key of the movie.
+     *
+     * @return string The primary key of the movie.
+     */
+    public static function primaryKey()
+    {
         return 'id';
     }
 
-    public function find_movies($id_list){ //id_list is an array of arrays, check the example in the model user and index controller
+    /**
+     * Find movies based on the given list of movie IDs.
+     *
+     * @param array $id_list An array of arrays containing movie IDs.
+     * @return array An array of movies.
+     */
+    public function find_movies($id_list)
+    {
         $movies = array();
-        foreach($id_list as $body){
-            foreach($body as $movie){
+        foreach ($id_list as $body) {
+            foreach ($body as $movie) {
                 $movie = $this->find_movie($movie['movieId']);
-                if ($movie != null){
+                if ($movie != null) {
                     array_push($movies, $movie);
                 }
             }
@@ -154,6 +339,7 @@ class Movie extends Model{
         $this->movies_list = $movies;
         return $this->movies_list;
     }
+
 
     /**
      * @param $id  a movie id
