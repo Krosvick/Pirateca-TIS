@@ -61,11 +61,24 @@ class Response
         die();
     }
 
+    /**
+     * Renders a view using the View instance.
+     *
+     * @param string $view The name of the view to render.
+     * @param array $optionals Optional data and parameters to pass to the view.
+     * @return void
+     */
     public function render($view, $optionals = [])
     {
         $this->view->render($view, $optionals);
     }
-    public function setStatusCode ($code)
+    /**
+     * Sets the HTTP response code for the current request.
+     *
+     * @param int $code The HTTP response code to set.
+     * @return void
+     */
+    public function setStatusCode($code)
     {
         http_response_code($code);
     }

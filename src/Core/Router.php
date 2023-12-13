@@ -195,6 +195,12 @@ class Router
 
 
 
+    /**
+     * Removes query string variables from a given URL.
+     *
+     * @param string $url The URL from which to remove query string variables.
+     * @return string The modified URL with any query string variables removed.
+     */
     protected function removeQueryStringVariables($url)
     {
         if ($url != '') {
@@ -204,21 +210,37 @@ class Router
             } else {
                 $url = '';
             }
-
         }
         return $url;
     }
 
+    /**
+     * Converts a string to studly caps format.
+     *
+     * @param string $string The string to be converted.
+     * @return string The input string converted to studly caps format.
+     */
     protected function toStudlyCaps($string)
     {
         return str_replace(' ', '', ucwords(str_replace('-', ' ', $string)));
     }
 
+    /**
+     * Converts a string to camel case by making the first letter lowercase.
+     *
+     * @param string $string The string to be converted to camel case.
+     * @return string The string in camel case format.
+     */
     protected function toCamelCase($string)
     {
         return lcfirst($this->toStudlyCaps($string));
     }
 
+    /**
+     * Returns the namespace string 'Controllers\\'.
+     *
+     * @return string The namespace string 'Controllers\\'.
+     */
     public function getNamespace()
     {
         $namespace = 'Controllers\\';
@@ -226,6 +248,11 @@ class Router
         return $namespace;
     }
 
+    /**
+     * Returns the URL of the previous page visited by the user.
+     *
+     * @return string The URL of the previous page.
+     */
     public function previousUrl()
     {
         return $_SERVER['HTTP_REFERER'];

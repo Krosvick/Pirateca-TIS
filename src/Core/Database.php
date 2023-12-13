@@ -68,7 +68,12 @@ class Database
             return $this->statement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, $className) ?? null;
         }
 
-    //this method will return only the first result of the query
+    /**
+     * Retrieves a single row from the database and returns it as an object of the specified class, or as a generic object if no class is specified.
+     *
+     * @param string|null $className The name of the class to use for the fetched object.
+     * @return object|null An object representing a single row from the database, or null if no row is found.
+     */
     public function find($className = null): ?object
     {
         if ($className === null) {

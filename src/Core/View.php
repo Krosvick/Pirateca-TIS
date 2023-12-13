@@ -13,6 +13,17 @@ class View
         $this->base_url = $base_url ?? "/";
     }
 
+    /**
+     * Renders a view file by including its content and outputting it to the browser.
+     *
+     * @param string $view The name of the view file to be rendered.
+     * @param array $optionals An optional array of additional parameters.
+     *                         - 'path' (string): The path to the view file.
+     *                         - 'data' (array): Additional data to be passed to the view file.
+     *                         - 'metadata' (array): Metadata for the view file, such as CSS and JS files.
+     * @throws \Exception If the view file is not found.
+     * @return void
+     */
     public function render($view, $optionals = [])
     {
         if (isset($optionals['path'])) {
@@ -43,6 +54,12 @@ class View
         }
     }
 
+    /**
+     * Renders the header file of a view by including its content and outputting it to the browser.
+     *
+     * @param array $metadata An array containing metadata for the view file, such as CSS and JS files.
+     * @return void
+     */
     protected function renderHeader($metadata)
     {
         if (isset($metadata['cssFiles'])) {

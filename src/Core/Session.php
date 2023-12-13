@@ -26,10 +26,11 @@ class Session
     
 
     /**
-     * Sets a flash message.
+     * Sets a flash message in the session.
      *
      * @param string $key The key used to identify the flash message.
      * @param mixed $message The value of the flash message.
+     * @return void
      */
     public function setFlash($key, $message)
     {
@@ -39,22 +40,24 @@ class Session
         ];
     }
 
+   
     /**
-     * Retrieves the value of a flash message.
+     * Retrieves the value of a flash message from the session.
      *
-     * @param string $key The key used to identify the flash message.
-     * @return mixed The value of the flash message, or false if it does not exist.
+     * @param string $key The key used to identify the flash message in the session.
+     * @return mixed The value of the flash message corresponding to the input key, or `false` if it does not exist.
      */
     public function getFlash($key)
     {
         return $_SESSION[self::FLASH_KEY][$key]['value'] ?? false;
     }
-
+ 
     /**
-     * Sets a session variable.
+     * Sets a session variable with the given key and value.
      *
      * @param string $key The key used to identify the session variable.
-     * @param mixed $value The value of the session variable.
+     * @param mixed $value The value to be assigned to the session variable.
+     * @return void
      */
     public function set($key, $value)
     {
@@ -76,22 +79,36 @@ class Session
      * Removes a session variable.
      *
      * @param string $key The key used to identify the session variable.
+     * @return void
      */
     public function remove($key)
     {
         unset($_SESSION[$key]);
     }
 
+  
     /**
-     * Destructor method that removes flash messages before the session is destroyed.
+     * Destructor method for the Session class.
+     *
+     * This method is automatically called when the Session object is destroyed.
+     * It removes flash messages from the session by calling the removeFlashMessages() method.
+     *
+     * @return void
      */
     public function __destruct()
     {
         $this->removeFlashMessages();
     }
+    
 
+   
     /**
-     * Removes flash messages with the 'remove' flag set to true.
+     * Removes flash messages from the session.
+     *
+     * This method removes flash messages from the session by iterating over the flash messages array
+     * and unsetting any flash message with the 'remove' flag set to true.
+     *
+     * @return void
      */
     private function removeFlashMessages()
     {
