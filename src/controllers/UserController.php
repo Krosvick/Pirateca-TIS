@@ -78,4 +78,12 @@ class UserController extends BaseController{
 
         // Implement code to handle the deletion process, e.g., redirect to a confirmation page
     }
+
+    public function readUser($userId) {
+
+
+        $this->userDAO->get_first_name($userId);
+
+        
+    }
 }

@@ -8,9 +8,13 @@
 <html lang="en">
 <body>
 <script>
-    function toggleDiv() {
-      var div = document.getElementById("toggleDiv");
-      div.classList.toggle("hidden");
+    function myFunction() {
+    var x = document.getElementById("myDIV");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
     }
 </script>
 
@@ -107,4 +111,6 @@
     </div>
 </body>
 </html>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
 
