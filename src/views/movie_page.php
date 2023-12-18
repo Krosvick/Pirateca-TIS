@@ -7,16 +7,16 @@
 
 <html lang="en">
 <body>
-<script>
-    function myFunction() {
-    var x = document.getElementById("myDIV");
-    if (x.style.display === "none") {
-        x.style.display = "block";
-    } else {
-        x.style.display = "none";
-    }
-    }
-</script>
+    <script>
+        function myFunction() {
+        var x = document.getElementById("myDIV");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+        }
+    </script>
 
 
     <!-- movie descripction-->
@@ -54,10 +54,7 @@
 
     <!-- comment -->
 
-        <?php
-            require('partials/commentary.php')
-        ?>
-    
+
 
     <!-- funcion foreach para los comentarios -->
     <!-- HERE SHOULD BE CHANGED TO DYNAMIC FUNCTIONS -->
@@ -69,7 +66,6 @@
             <?php
 
             //funcion para mostrar cuantas estrellas le dio el suaer a la pelicula
-            
             function displaystar($numStars) {
                 $maxStars = 5;
                 
@@ -87,21 +83,20 @@
                     }
                 }
             }
-            $starsGiven = $Ratings[0]->get_rating();
+            $starsGiven = $Ratings[1]->get_rating();
             
             ?>
                 <div class="flex items-center mb-4">
                     <img class="w-10 h-10 me-4 rounded-full" src="https://cdn.discordapp.com/attachments/324358291561906186/1172908205068800160/image.png?ex=656206e3&is=654f91e3&hm=ca8e71b36e8f7c2afb64674c51780e94bca641beb6adb0a7ede617da1e3a5d1c&" alt="">
                     <div class="font-medium dark:text-white">
-                        <p class= "ml-1.5"><?= $Ratings[0]->get_user()->get_username()?></p>
+                        <p class= "ml-1.5"><?= $Ratings[1]->get_user()->get_username()?></p>
                     </div>
                 </div>
                 <div class="flex items-center mb-1 space-x-1 rtl:space-x-reverse">
                     <?php displaystar($starsGiven); ?>
                 </div>
                 
-                <p class="mb-2 text-gray-500 dark:text-gray-400">user_rating</p>
-              
+                <p class="mb-2 text-gray-500 dark:text-gray-400"><?= $Ratings[1]->get_review()?></p>
                 
             </article>
         </div>
@@ -109,6 +104,18 @@
  
         <!-- Add more review components as needed -->
     </div>
+
+    <nav aria-label="Page navigation example">
+    <ul class="inline-flex -space-x-px text-base h-10">
+        <li>
+        <a href="#" class="flex items-center justify-center px-4 h-10 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Previous</a>
+        </li>
+        
+        <li>
+        <a href="#" class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Next</a>
+        </li>
+    </ul>
+    </nav>
 </body>
 </html>
 
