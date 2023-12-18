@@ -1,7 +1,7 @@
 
 /* bg */
 .bg {
-    background-image: url('../images/fondo-cine.png'); 
+    background-image: url('../images/fondocine2.png'); 
     background-size: cover;
     background-position: center;
     filter: blur(8px);
