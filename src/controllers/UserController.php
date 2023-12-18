@@ -79,6 +79,8 @@ class UserController extends BaseController{
         // Implement code to handle the deletion process, e.g., redirect to a confirmation page
     }
 
+
+    /*
     public function readUser($userId) {
 
 
@@ -86,4 +88,5 @@ class UserController extends BaseController{
 
         
     }
+    */
 }
