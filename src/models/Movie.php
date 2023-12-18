@@ -465,5 +465,18 @@ class Movie extends Model{
         $this->moviesDAO->add($movie);
     }
 
+
+    public function fetchWithPagination($page) {
+        $offset = ($page - 1) * 10;
+        
+        $sql = "SELECT * FROM {this->table} LIMIT 10 OFFSET $offset";
+        $stmt =  $this->connection->query($sql);
+        $stmt->get();
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+        return $results;
+    }
+
+
 }
 ?>
