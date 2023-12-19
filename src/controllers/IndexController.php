@@ -25,12 +25,13 @@ class IndexController extends BaseController
 
     public function index()
     {
-        //the client should be logged before this, hard code for now
+       /* //the client should be logged before this, hard code for now
         if (!$this->user) {
             $this->user = new User();
             $this->user->set_id(1);
             echo "user not logged";
         }
+        
         $recommended_movies = $this->user->getRecommendedMoviesIds(10);
         #the array is top_movies and then the recommended movies
         $recommended_movies = $recommended_movies['top_movies'];
@@ -39,7 +40,6 @@ class IndexController extends BaseController
             $movie = $this->movieDAO->find($movie_id['movie_id'], Movie::class);
             array_push($user_movies, $movie);
         }
-        
         $data = [
             'user_movies' => $user_movies
         ];
@@ -54,6 +54,14 @@ class IndexController extends BaseController
             'data' => $data,
             'metadata' => $metadata
         ];
-        return $this->render("index", $optionals);
+        return $this->render("index", $optionals);*/
+        $movies = $this->movieDAO->get_some(10, 0);
+        
+        //dd($movies);
+        //write a code to send $movies data to the view
+        $optionals = [
+            'movies' => $movies
+        ];
+        return $this->render("tset",$optionals);
     }
 }

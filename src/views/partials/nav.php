@@ -13,10 +13,10 @@
                 <img src="/images/logo.png" alt="Logo" class="h-8">
             </div>
             <div>
-                <button class="text-white hover:text-purple-800 bg-purple-700 hover:bg-purple-600 px-4 py-2 rounded transition duration-300" onclick="window.location.href='login'">Login</button>
-                <button class="text-purple-800 hover:text-gray-900 hover:bg-gray-100 px-4 py-2 rounded transition duration-300" onclick="window.location.href='index'">Home</button>
-                <button class="text-purple-800 hover:text-gray-900 hover:bg-gray-100 px-4 py-2 rounded transition duration-300" onclick="window.location.href='search'">Search</button>
-                <button class="text-purple-800 hover:text-gray-900 hover:bg-gray-100 px-4 py-2 rounded transition duration-300" onclick="window.location.href='likedmovies'">Liked Posts</button>
+                <button class="text-white hover:text-purple-800 bg-purple-700 hover:bg-purple-600 px-4 py-2 rounded transition duration-300" onclick="window.location.href='login.php'">Login</button>
+                <button class="text-purple-800 hover:text-gray-900 hover:bg-gray-100 px-4 py-2 rounded transition duration-300" onclick="window.location.href='index.php'">Home</button>
+                <button class="text-purple-800 hover:text-gray-900 hover:bg-gray-100 px-4 py-2 rounded transition duration-300" onclick="window.location.href='search.php'">Search</button>
+                <button class="text-purple-800 hover:text-gray-900 hover:bg-gray-100 px-4 py-2 rounded transition duration-300" onclick="window.location.href='likedmovies.php'">Liked Posts</button>
                 <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">Perfil <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
                     </svg>
@@ -37,6 +37,9 @@
                         </li>
                         </ul>
                     </div>
+            </div>
+            <div>
+                <img src="/images/guia.png" alt="manual" class="h-8" href="informacion.php">
             </div>
         </div>
     </nav>
