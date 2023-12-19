@@ -3,63 +3,91 @@ class Algorithm():
     def __init__(self, algorithm):
         self.algorithm = algorithm
 
-    def adapter_db_to_csv(db):
-        csv = db.to_csv('datasets/ratings_small_cleaned.csv', index=False)
-        return csv
-
-    def generate_model(df): #all file input is in csv format, remember to save the model
-        from surprise import SVD
+    def generate_model(df, chunk_size=100000): #all file input is in csv format, remember to save the model
         from numpy import arange
-
+        from surprise import SVDpp
         from surprise import Dataset 
         from surprise import Reader
         from surprise.model_selection import train_test_split
         from surprise.model_selection import RandomizedSearchCV
         from surprise.dump import dump
         from surprise import accuracy
+
         # Define the reader
         reader = Reader()
-        ratings = Dataset.load_from_df(df[['userId', 'movieId', 'rating']], reader)
 
-        # Split data into training and testing sets
-        train_ratings, test_ratings = train_test_split(ratings, test_size=.20, random_state=42)
+        # Split the dataframe into chunks
+        df = [df[i:i + chunk_size] for i in range(0, df.shape[0], chunk_size)]
 
-        # Initialize and fit the SVD model
-        svd_model = SVD(random_state=42)
-        svd_model.fit(train_ratings)
+        # Convert each chunk to a Dataset object
+        df = [Dataset.load_from_df(chunk[['userId', 'movieId', 'rating']], reader) for chunk in df]
 
-        # Perform hyperparameter tuning
         param_distributions = {
-            'n_factors': list(range(50, 160, 10)),
-            'reg_all': arange(0.02, 0.2, 0.02),
-            'n_epochs': list(range(1, 51))
+            'n_factors': list(range(20, 81, 10)), 
+            'reg_all': arange(0.005, 0.0151, 0.001),
+            'n_epochs': list(range(1, 31)),
         }
-        # ------------------------------------ LOG PERFORMANCE, MORE THAN 2 ARE NOT REQUIRED ------------------------------------
-        rs = RandomizedSearchCV(SVD, param_distributions, measures=['rmse'], return_train_measures=True, cv=5, n_iter=1)
-        rs.fit(ratings)
+        rs = RandomizedSearchCV(SVDpp, param_distributions, measures=['rmse'], return_train_measures=True, cv=5, n_iter=5, n_jobs=-1, pre_dispatch='2*n_jobs', joblib_verbose=1000)
+        del param_distributions
 
-        # Get the best hyperparameters
+        for dataset in df:
+            rs.fit(dataset)
+
+        # Get the best parameters from our random search
         best_params = rs.best_params['rmse']
-
+        del rs
         # Initialize and fit the tuned SVD model
-        tuned_svd_model = SVD(n_factors=best_params['n_factors'], reg_all=best_params['reg_all'], n_epochs=best_params['n_epochs'], random_state=42, verbose=False)
-        tuned_svd_model.fit(train_ratings)
+        tuned_svd_model = SVDpp(n_factors=best_params['n_factors'], reg_all=best_params['reg_all'], n_epochs=best_params['n_epochs'], random_state=42, verbose=True, biased=True)
 
-        # Evaluate the model on training and testing sets
-        train_predictions = tuned_svd_model.test(train_ratings.build_testset())
+        for chunk in df:
+            # Split data into training and testing sets
+            train_ratings, test_ratings = train_test_split(chunk, test_size=0.20, random_state=42)
+
+            # Fit the model incrementally on the current chunk
+            tuned_svd_model.fit(train_ratings)
+            del chunk
+
+
+        # Evaluate the model on the last chunk's test set
         test_predictions = tuned_svd_model.test(test_ratings)
+        print("Tuned SVD Model Test RMSE:", accuracy.rmse(test_predictions, verbose=False))
 
-        # Biased SVD
-        biased_svd_model = SVD(biased=True, random_state=42)
-        biased_svd_model.fit(train_ratings)
+        model_file = 'svd_model_biased_big1.pkl' #the path and name of file wich will be saved
+        dump(model_file, algo=tuned_svd_model) 
 
-        # Evaluate the model on training and testing sets
-        train_predictions = biased_svd_model.test(train_ratings.build_testset())
-        test_predictions = biased_svd_model.test(test_ratings)
-        print("Biased SVD Model Train RMSE:", accuracy.rmse(train_predictions, verbose=False))
-        print("Biased SVD Model Test RMSE:", accuracy.rmse(test_predictions, verbose=False))
+        return tuned_svd_model
+    
+    def tune_model(df, tuned_svd_model, chunk_size=100000):
+        from surprise import Dataset 
+        from surprise import Reader
+        from surprise.model_selection import train_test_split
+        from surprise import accuracy
+        from surprise.dump import dump
 
-        return biased_svd_model
+        # Define the reader
+        reader = Reader()
+
+        # Split the dataframe into chunks
+        df = [df[i:i + chunk_size] for i in range(0, df.shape[0], chunk_size)]
+
+        # Convert each chunk to a Dataset object
+        df = [Dataset.load_from_df(chunk[['userId', 'movieId', 'rating']], reader) for chunk in df]
+
+        for chunk in df:
+            # Split data into training and testing sets
+            train_ratings, test_ratings = train_test_split(chunk, test_size=0.25, random_state=42)
+
+            # Fit the model incrementally on the current chunk
+            tuned_svd_model.fit(train_ratings)
+            del chunk
+
+        # Evaluate the model on the last chunk's test set
+        test_predictions = tuned_svd_model.test(test_ratings)
+        print("Tuned SVD Model Test RMSE:", accuracy.rmse(test_predictions, verbose=True))
+        dump('svd_model_biased_big1.pkl', algo=tuned_svd_model)
+
+        return tuned_svd_model
+
     
     def get_user_recommendations(user_id, df, loaded_model, top_N=30, include_rating=True): #all file input is in csv format, user_id and top_N are integers
         movie_ids = df['movieId'].unique()
