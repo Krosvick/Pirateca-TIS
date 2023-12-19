@@ -1,26 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Bienvenido a Pirateca</title>
-        <link rel="stylesheet" href="css/testing.css">
-        <!-- link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet" -->
-    </head>
+<?php require('partials/nav.php')?>
 
     <body>
-        <section class="container">
-            <div class="slider-wrapper">
-                <div class="slider">
-                    <img id="slide-1" src="images/drive.png" />
-                    <img id="slide-2" src="images/drive.png" />
-                    <img id="slide-3" src="images/drive.png" />
-                </div>
-                <div class="slider-nav">
-                    <a href="#slide-1"></a>
-                    <a href="#slide-2"></a>
-                    <a href="#slide-3"></a>
-                </div>
-            </div>
-        </section>
+    
+    <?php foreach ($optionals["movies"] as $movie):?>    
+      
+   <h1>
+    <?= $movie->id ?>
+   </h1>
+    <img src="<?= $movie->poster_path ? "https://image.tmdb.org/t/p/w500".$movie->poster_path : '/views/images/PLACEHOLDER.png' ?>" alt="poster" class="h-full w-4/6 rounded-2xl hover:drop-shadow-md lg:w-1/4">
+
+    <?php endforeach; ?> 
+
     </body>
+
+    <!--  footer -->
+    <?php require('partials/footer.php') ?>
+    <!--  footer -->
 </html>

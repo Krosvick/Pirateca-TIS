@@ -39,11 +39,14 @@ class MoviePageController extends BaseController
      * @param int $id The movie ID from the route.
      * @return void Renders the movie page template.
      */
-    public function MoviePage($id) {
+    public function MoviePage() {
+        $id = 12;
         //this is a more truthful oop approach
         $this->movieModel = $this->movieDAO->find($id, 'Models\Movie');
+        
         //this is how to validate the model, either returns true or false
         //var_dump($this->movieModel->validate(), $this->movieModel->getAllErrors());
+        //dd($this->movieModel);
         $this->movieModel->MovieDirectorRetrieval();
         $this->movieModel->moviePosterFallback();
         $ratings_data = $this->ratingsDAO->getByMovie($this->movieModel);
@@ -58,12 +61,15 @@ class MoviePageController extends BaseController
             $rating->set_review($rating_data->review);
             array_push($ratings, $rating);
         }
+        dd($ratings);
         if(!$this->movieModel){
             $this->response->abort(404);
         }
         if($this->request->isDelete()){
             #lo borrai con el dao
+            
         }
+        
         $data = [
             'Movie' => $this->movieModel,
             'Ratings' => $ratings
@@ -79,7 +85,7 @@ class MoviePageController extends BaseController
         ];
 
         return $this->render("movie_page", $optionals);
-        
+
     }
 
 }

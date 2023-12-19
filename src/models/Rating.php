@@ -210,10 +210,11 @@ class Rating extends Model{
         return $ratings;
     }
 
+   
     /**
-     * Post all ratings to a remote server.
+     * Sends a POST request to a specific URL with the ratings data.
      *
-     * @return mixed The response from the remote server.
+     * @return array The response from the POST request, decoded as an associative array.
      */
     public function post_all_ratings()
     {
@@ -225,7 +226,6 @@ class Rating extends Model{
         $response = json_decode($response->getBody(), true);
         return $response;
     }
-
 
     
 }
