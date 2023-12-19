@@ -1,6 +1,12 @@
 
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <title>Bienvenido a Pirateca</title>
+      <link rel="stylesheet" href="css/styles_login.css">
+      <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet">
+  </head>
   <body>
     <div class="bg"></div>
     <div class="form-container">
