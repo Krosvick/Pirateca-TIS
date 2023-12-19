@@ -42,6 +42,8 @@ class MoviePageController extends BaseController
     public function MoviePage() {
         $id = 12;
         //this is a more truthful oop approach
+
+        $id = 12;
         $this->movieModel = $this->movieDAO->find($id, 'Models\Movie');
         
         //this is how to validate the model, either returns true or false
@@ -61,6 +63,7 @@ class MoviePageController extends BaseController
             $rating->set_review($rating_data->review);
             array_push($ratings, $rating);
         }
+
         if(!$this->movieModel){
             $this->response->abort(404);
         }
@@ -82,9 +85,9 @@ class MoviePageController extends BaseController
             'data' => $data,
             'metadata' => $metadata,
         ];
-        
+
         return $this->render("movie_page", $optionals);
-        
+
     }
 
 }
