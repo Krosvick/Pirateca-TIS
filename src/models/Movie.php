@@ -71,6 +71,7 @@ class Movie extends Model{
      * Set the ID of the movie.
      *
      * @param int $id The ID of the movie.
+     * @return void
      */
     public function set_id($id){
         $this->id = $id;
@@ -89,6 +90,7 @@ class Movie extends Model{
      * Set the original title of the movie.
      *
      * @param string $title The original title of the movie.
+     * @return void
      */
     public function set_original_title($title){
         $this->original_title = $title;
@@ -107,6 +109,7 @@ class Movie extends Model{
      * Set the overview of the movie.
      *
      * @param string $overview The overview of the movie.
+     * @return void
      */
     public function set_overview($overview){
         $this->overview = $overview;
@@ -125,6 +128,7 @@ class Movie extends Model{
      * Set the poster path of the movie.
      *
      * @param string $poster_path The poster path of the movie.
+     * @return void
      */
     public function set_poster_path($poster_path){
         $this->poster_path = $poster_path;
@@ -143,6 +147,7 @@ class Movie extends Model{
      * Set the genres of the movie.
      *
      * @param array $genres The genres of the movie.
+     * @return void
      */
     public function set_genres($genres){
         $this->genres = $genres;
@@ -161,6 +166,7 @@ class Movie extends Model{
      * Set the collection that the movie belongs to.
      *
      * @param string $belongs_to_collection The collection that the movie belongs to.
+     * @return void
      */
     public function set_belongs_to_collection($belongs_to_collection){
         $this->belongs_to_collection = $belongs_to_collection;
@@ -179,6 +185,7 @@ class Movie extends Model{
      * Set whether the movie is for adults only.
      *
      * @param bool $adult True if the movie is for adults only, false otherwise.
+     * @return void
      */
     public function set_adult($adult){
         $this->adult = $adult;
@@ -197,6 +204,7 @@ class Movie extends Model{
      * Set the original language of the movie.
      *
      * @param string $original_language The original language of the movie.
+     * @return void
      */
     public function set_original_language($original_language){
         $this->original_language = $original_language;
@@ -215,6 +223,7 @@ class Movie extends Model{
      * Set the release date of the movie.
      *
      * @param string $release_date The release date of the movie.
+     * @return void
      */
     public function set_release_date($release_date){
         $this->release_date = $release_date;
@@ -233,6 +242,7 @@ class Movie extends Model{
      * Set the deleted date of the movie.
      *
      * @param string $deleted_at The deleted date of the movie.
+     * @return void
      */
     public function set_deleted_at($deleted_at){
         $this->deleted_at = $deleted_at;
@@ -251,6 +261,7 @@ class Movie extends Model{
      * Set the updated date of the movie.
      *
      * @param string $updated_at The updated date of the movie.
+     * @return void
      */
     public function set_updated_at($updated_at){
         $this->updated_at = $updated_at;
@@ -269,6 +280,7 @@ class Movie extends Model{
      * Set the director of the movie.
      *
      * @param string $director The director of the movie.
+     * @return void
      */
     public function set_director($director){
         $this->director = $director;
@@ -346,8 +358,6 @@ class Movie extends Model{
      * 
      * @return array<array>   an especific movie data array
      */
-
-    // THIS SHIT IS TO SLOW
     public function search($busqueda){
         $movies = $this->moviesDAO->dummytest_fulltext($busqueda);
         foreach($movies as $key => $movie){
