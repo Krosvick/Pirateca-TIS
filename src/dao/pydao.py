@@ -7,6 +7,7 @@ This file will be called by the algorithm and will be the only one to access the
 import os
 from dotenv import load_dotenv
 import pymysql
+import time
 
 load_dotenv()
 
@@ -48,10 +49,32 @@ class DAO():
 
     def get_all(self):
         try:
-            cursor = self._connection.get_connection().cursor()
-            cursor.execute(f"SELECT * FROM {self._table}")
-            rows = cursor.fetchall()
-            return rows
+            limit = config.LIMIT
+            offset = config.OFFSET
+            all_rows = []
+            time3 = time.time()
+            while True:
+                print(offset)
+                cursor = self._connection.get_connection().cursor()
+                cursor.execute(f"SELECT * FROM {self._table} LIMIT {limit} OFFSET {offset}")
+                rows = cursor.fetchall()
+
+                if not rows:
+                    break
+
+                all_rows.extend(rows)
+                offset += limit
+            
+            # Write the new offset back to the config.py file
+            #HARDCODED FILE PATH
+            with open('src/dao/config.py', 'w') as f:
+                f.write(f'LIMIT = {limit}\nOFFSET = {offset}\n')
+            print(limit, offset)
+
+            time4 = time.time()
+            print('Data fetched in ' + str(time4 - time3) + ' seconds.')
+            return all_rows
+        
         except Exception as e:
             print(e)
 
@@ -63,6 +86,3 @@ class DAO():
             return rows
         except Exception as e:
             print(e)
-
-test = DAO()
-print(test.get_all())

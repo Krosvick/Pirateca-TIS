@@ -7,6 +7,9 @@ import time
 import threading
 import sys
 import pydao
+from surprise.dump import dump
+import os
+
 
 
 sys.path.append('src')
@@ -103,7 +106,7 @@ class SimpleAPI(BaseHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(json.dumps(response).encode('utf-8'))
 
-    def obtain_ratings():
+    def obtain_ratings(): #this is the adapter function
         test = pydao.DAO()
         rows = []
         for row in test.get_all():
@@ -132,23 +135,21 @@ def generate_model_periodically():
         if SimpleAPI.ratings_df is not None:  # Check if ratings_df is defined
             ratings_df = SimpleAPI.obtain_ratings()  # Access ratings_df
             # Call the generate_model function
+            time1 = time.time()
             SimpleAPI.model = Algorithm.generate_model(ratings_df)
-            print('Model regenerated.')
+            time2 = time.time()
+            print('Model regenerated in ' + str(time2 - time1) + ' seconds.')
         else:
-            print('ratings_df is not defined yet. Waiting...')
-        
+            try:
+                dump.load('svd_model_biased_big.pkl')[1]
+            except FileNotFoundError:
+                print('No model found. Please wait for the model to be generated.')
+            
         # Wait for 20 seconds before regenerating the model
-        time.sleep(120)
-        
+        time.sleep(12000000) #change to trigger
 
 
 if __name__ == '__main__':
-    #hard code here, connect with dao later
-    #csv_pd = pd.read_csv('datasets/ratings_small_cleaned.csv')
-    #csv_pd = csv_pd.drop(columns=['timestamp'])
-    
-    
-    
     SimpleAPI.ratings_df =  SimpleAPI.obtain_ratings() #initialize the ratings_df
     model_thread = threading.Thread(target=generate_model_periodically)
     model_thread.daemon = True
