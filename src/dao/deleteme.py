@@ -12,7 +12,6 @@ print('Time to read file: ', time2-time1, ' seconds')
 #drop the timestamp column
 ratings_df = ratings_df.drop(columns=['timestamp'])
 
-
 #generate model
 time1 = time.time()
 model = Algorithm.generate_model(ratings_df)

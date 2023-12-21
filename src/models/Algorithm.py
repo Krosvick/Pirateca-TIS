@@ -27,7 +27,7 @@ class Algorithm():
             'reg_all': arange(0.005, 0.0151, 0.001),
             'n_epochs': list(range(1, 31)),
         }
-        rs = RandomizedSearchCV(SVDpp, param_distributions, measures=['rmse'], return_train_measures=True, cv=5, n_iter=5, n_jobs=-1, pre_dispatch='2*n_jobs', joblib_verbose=1000)
+        rs = RandomizedSearchCV(SVDpp, param_distributions, measures=['rmse'], return_train_measures=True, cv=7, n_iter=6, n_jobs=-1, pre_dispatch='2*n_jobs', joblib_verbose=1)
         del param_distributions
 
         for dataset in df:
@@ -37,7 +37,7 @@ class Algorithm():
         best_params = rs.best_params['rmse']
         del rs
         # Initialize and fit the tuned SVD model
-        tuned_svd_model = SVDpp(n_factors=best_params['n_factors'], reg_all=best_params['reg_all'], n_epochs=best_params['n_epochs'], random_state=42, verbose=True, biased=True)
+        tuned_svd_model = SVDpp(n_factors=best_params['n_factors'], reg_all=best_params['reg_all'], n_epochs=best_params['n_epochs'], random_state=42, verbose=True)
 
         for chunk in df:
             # Split data into training and testing sets
@@ -50,10 +50,14 @@ class Algorithm():
 
         # Evaluate the model on the last chunk's test set
         test_predictions = tuned_svd_model.test(test_ratings)
-        print("Tuned SVD Model Test RMSE:", accuracy.rmse(test_predictions, verbose=False))
 
-        model_file = 'svd_model_biased_big1.pkl' #the path and name of file wich will be saved
+        model_file = 'svd_model_biased_big_test.pkl' #the path and name of file wich will be saved
         dump(model_file, algo=tuned_svd_model) 
+
+        print("Tuned SVD Model Test MAE:", accuracy.mae(test_predictions, verbose=False))
+        print("Tuned SVD Model Test RMSE:", accuracy.rmse(test_predictions, verbose=False))
+        print("Tuned SVD Model Test MSE:", accuracy.mse(test_predictions, verbose=False))
+        print("Tuned SVD Model Test FCP:", accuracy.fcp(test_predictions, verbose=False))
 
         return tuned_svd_model
     
