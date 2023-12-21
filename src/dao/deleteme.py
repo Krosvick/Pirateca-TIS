@@ -18,6 +18,11 @@ ratings_df = pd.read_csv('datasets/test_user.csv')
 ratings_df2 = pd.read_csv('datasets/processed_ratings.csv', memory_map=True)
 ratings_df = pd.concat([ratings_df2, ratings_df]) #add ratings_df to ratings_df2
 del ratings_df2 #delete unnecessary variable
+model = load('svd_model_biased_big_test.pkl')[1]
+ratings_df = pd.read_csv('datasets/test_user.csv')
+ratings_df2 = pd.read_csv('datasets/processed_ratings.csv', memory_map=True)
+ratings_df = pd.concat([ratings_df2, ratings_df]) #add ratings_df to ratings_df2
+del ratings_df2 #delete unnecessary variable
 
 # Get the list of movies the user has seen
 user_seen_movies = ratings_df[ratings_df['userId'] == 270897]['movieId'].unique()

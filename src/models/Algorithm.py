@@ -1,4 +1,5 @@
 class Algorithm():
+    import models.Algo_config as Algo_config
 
     def __init__(self, algorithm):
         self.algorithm = algorithm
@@ -61,7 +62,7 @@ class Algorithm():
 
         return tuned_svd_model
     
-    def tune_model(df, tuned_svd_model, chunk_size=100000):
+    def tune_model(df, tuned_svd_model, OFFSET = Algo_config.OFFSET,  chunk_size=100000):
         from surprise import Dataset 
         from surprise import Reader
         from surprise.model_selection import train_test_split
@@ -71,8 +72,11 @@ class Algorithm():
         # Define the reader
         reader = Reader()
 
-        # Split the dataframe into chunks
+        # Split the dataframe into chunks based on the OFFSET
+        df = df[OFFSET:]
         df = [df[i:i + chunk_size] for i in range(0, df.shape[0], chunk_size)]
+        #change the OFFSET value in the config file
+        Algorithm.Algo_config.OFFSET += (len(df) - Algorithm.Algo_config.OFFSET)
 
         # Convert each chunk to a Dataset object
         df = [Dataset.load_from_df(chunk[['userId', 'movieId', 'rating']], reader) for chunk in df]
@@ -88,7 +92,7 @@ class Algorithm():
         # Evaluate the model on the last chunk's test set
         test_predictions = tuned_svd_model.test(test_ratings)
         print("Tuned SVD Model Test RMSE:", accuracy.rmse(test_predictions, verbose=True))
-        dump('svd_model_biased_big1.pkl', algo=tuned_svd_model)
+        dump('svd_model_biased_big_test_tune.pkl', algo=tuned_svd_model)
 
         return tuned_svd_model
 
@@ -99,6 +103,7 @@ class Algorithm():
         # Create a list of movie IDs that the user has not rated
         user_rated_movies = df[df['userId'] == user_id]['movieId']
         movies_to_recommend = [movie_id for movie_id in movie_ids if movie_id not in user_rated_movies]
+        print(movies_to_recommend)
         recommendations = []
 
         for movie_id in movies_to_recommend:
@@ -111,7 +116,7 @@ class Algorithm():
 
         #top_recommendations is a list of tuples
         """
-            [(318, 4.327501001837994), (4973, 4.289579757337473), (4226, 4.288369094103607), (2692, 4.2516131662793315), (923, 4.2428413377628305), (898, 4.239507008315757), (3683, 4.237841176249015), (1254, 4.237667303613109), (1283, 4.224226310670601), (58559, 4.215303761456968)]
+        [(318, 4.327501001837994), (4973, 4.289579757337473), (4226, 4.288369094103607), (2692, 4.2516131662793315), (923, 4.2428413377628305), (898, 4.239507008315757), (3683, 4.237841176249015), (1254, 4.237667303613109), (1283, 4.224226310670601), (58559, 4.215303761456968)]
         """
         #i need to serialize this list of tuples into a json file
         result = []
