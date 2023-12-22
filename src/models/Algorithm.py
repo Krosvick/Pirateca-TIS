@@ -5,6 +5,13 @@ class Algorithm():
         self.algorithm = algorithm
 
     def generate_model(df, chunk_size=100000): #all file input is in csv format, remember to save the model
+        """
+        Input a ratings dataframe, should contain userId (int), movieId (int) and rating (float) .
+        Returns and save a SVDpp model with the best hiperparameters.
+
+        Makes the SVDpp model from 0 with pagination.
+        Predictions should be made with get_all_predictions() method due to pagination incombatibility.
+        """
         from numpy import arange
         from surprise import SVDpp
         from surprise import Dataset 
@@ -62,7 +69,11 @@ class Algorithm():
 
         return tuned_svd_model
     
-    def tune_model(df, tuned_svd_model, OFFSET = Algo_config.OFFSET,  chunk_size=100000):
+    def tune_model(ratings_df, tuned_svd_model, OFFSET = Algo_config.OFFSET,  chunk_size=100000):
+        """
+        Tune the SVD model incrementally by fitting it on chunks of the ratings dataframe.
+        """
+
         from surprise import Dataset 
         from surprise import Reader
         from surprise.model_selection import train_test_split
@@ -73,17 +84,17 @@ class Algorithm():
         reader = Reader()
 
         # Split the dataframe into chunks based on the OFFSET
-        df = df[OFFSET:]
-        df = [df[i:i + chunk_size] for i in range(0, df.shape[0], chunk_size)]
+        ratings_df = ratings_df[OFFSET:]
+        ratings_df = [ratings_df[i:i + chunk_size] for i in range(0, ratings_df.shape[0], chunk_size)]
         #change the OFFSET value in the config file
-        Algorithm.Algo_config.OFFSET += (len(df) - Algorithm.Algo_config.OFFSET)
+        Algorithm.Algo_config.OFFSET += (len(ratings_df) - Algorithm.Algo_config.OFFSET)
 
         # Convert each chunk to a Dataset object
-        df = [Dataset.load_from_df(chunk[['userId', 'movieId', 'rating']], reader) for chunk in df]
+        ratings_df = [Dataset.load_from_df(chunk[['userId', 'movieId', 'rating']], reader) for chunk in ratings_df]
 
-        for chunk in df:
+        for chunk in ratings_df:
             # Split data into training and testing sets
-            train_ratings, test_ratings = train_test_split(chunk, test_size=0.25, random_state=42)
+            train_ratings, test_ratings = train_test_split(chunk, test_size=0.5, random_state=42)
 
             # Fit the model incrementally on the current chunk
             tuned_svd_model.fit(train_ratings)
@@ -91,41 +102,36 @@ class Algorithm():
 
         # Evaluate the model on the last chunk's test set
         test_predictions = tuned_svd_model.test(test_ratings)
+
         print("Tuned SVD Model Test RMSE:", accuracy.rmse(test_predictions, verbose=True))
-        dump('svd_model_biased_big_test_tune.pkl', algo=tuned_svd_model)
+        dump('test_algorithm.pkl', algo=tuned_svd_model)
 
         return tuned_svd_model
-
     
-    def get_user_recommendations(user_id, df, loaded_model, top_N=30, include_rating=True): #all file input is in csv format, user_id and top_N are integers
-        movie_ids = df['movieId'].unique()
+    def get_user_recommendations(user_id, ratings_df, movies_df, model, predictions, top_n = 30):
+        from collections import defaultdict
 
-        # Create a list of movie IDs that the user has not rated
-        user_rated_movies = df[df['userId'] == user_id]['movieId']
-        movies_to_recommend = [movie_id for movie_id in movie_ids if movie_id not in user_rated_movies]
-        print(movies_to_recommend)
-        recommendations = []
+        # Get the list of movies the user has seen
+        user_seen_movies = ratings_df[ratings_df['userId'] == 270897]['movieId'].unique()
+        # Get the list of movies the user hasn't seen
+        unseen_movies = movies_df[~movies_df['id'].isin(user_seen_movies)]
+        # Placeholder for the true rating
+        true_rating = 0.0 
+        # Prepare the testset
+        unseen_movies_testset = [(user_id, movie_id, true_rating) for movie_id in unseen_movies['id']]
+        
+        # Make predictions only on the unseen movies
+        predictions = model.test(unseen_movies_testset)
 
-        for movie_id in movies_to_recommend:
-            estimated_rating = loaded_model.predict(user_id, movie_id).est
-            recommendations.append((movie_id, estimated_rating))
-
-        recommendations.sort(key=lambda x: x[1], reverse=True)
-
-        top_recommendations = recommendations[:top_N]
-
-        #top_recommendations is a list of tuples
-        """
-        [(318, 4.327501001837994), (4973, 4.289579757337473), (4226, 4.288369094103607), (2692, 4.2516131662793315), (923, 4.2428413377628305), (898, 4.239507008315757), (3683, 4.237841176249015), (1254, 4.237667303613109), (1283, 4.224226310670601), (58559, 4.215303761456968)]
-        """
-        #i need to serialize this list of tuples into a json file
-        result = []
-        for movie_id, rating in top_recommendations:
-            if include_rating:
-                result.append({'movie_id': movie_id, 'rating': rating})
-            else:
-                result.append({'movie_id': movie_id})
-        return result
+        recommendations = defaultdict(list)
+        for uid, iid, true_r, est, _ in predictions:
+            recommendations[uid].append((iid, est))
+        # Then sort the predictions for each user and retrieve the k highest ones.
+        for uid, user_ratings in recommendations.items():
+            user_ratings.sort(key=lambda x: x[1], reverse=True)
+            recommendations[uid] = user_ratings[:top_n]
+        
+        return recommendations[user_id]
     
     def get_liked_movies(userId, df, movies):
         user_likes = df[(df['userId'] == userId) & (df['rating'] >= 4.0)]
@@ -151,23 +157,17 @@ class Algorithm():
             print(title)
         
         return liked_movie_ids
-
-    def get_top_n_recommendations(userId, movies, ratings, n=10):
-        from surprise.model_selection import train_test_split
-        from surprise import BaselineOnly
-        predict_ratings = {}
-        train_ratings, test_ratings = train_test_split(ratings, test_size=.20, random_state = 42)
-        baseline_model = BaselineOnly(verbose = False)
-        baseline_model.fit(train_ratings)
-        predictions = baseline_model.test(test_ratings)
-        # loop for getting predictions for the user
-        for uid, iid, true_r, est, _ in predictions:
-            if (uid==userId):
-                predict_ratings[iid] = est
-        predict_ratings = sorted(predict_ratings.items(), key=lambda kv: kv[1],reverse=True)[:n]
-        top_movies = [i[0] for i in predict_ratings]
-        top_movies = [str(i) for i in top_movies]
-        print("="*10,"Recommended movies for user {} :".format(userId),"="*10)
-        print(movies[movies["id"].isin(top_movies)]["original_title"].to_string(index=False))
-        return top_movies #the ID of the top movies for the user, sorted by possible match
     
+    def get_all_predictions(ratings_df, model):
+        """
+        Get predictions for all users and all movies.
+        """
+        from collections import defaultdict
+        from surprise import Dataset, Reader
+        from surprise.dump import dump
+
+        reader = Reader()
+        data = Dataset.load_from_df(ratings_df[['userId', 'movieId', 'rating']], reader)
+        trainset = data.build_full_trainset()
+        predictions = model.test(trainset.build_testset())
+        dump('test_algorithm.pkl', algo=model, predictions=predictions)
