@@ -38,7 +38,8 @@ class SimpleAPI(BaseHTTPRequestHandler):
             None
     """
     ratings_df = pd.DataFrame(columns=['user_id', 'movie_id', 'rating'])
-    model = None
+    #hardcoded path for now
+    model = dump.load('Algorithm.pkl')[1]
 
     def do_GET(self):
         parsed_url = urlparse(self.path)
@@ -106,16 +107,20 @@ class SimpleAPI(BaseHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(json.dumps(response).encode('utf-8'))
 
-    def obtain_ratings(): #this is the adapter function
+    def obtain_new_ratings(): #this is the adapter function
         test = pydao.DAO()
         rows = []
-        for row in test.get_all():
+        for row in test.get_all_new():
             user_id = row[4]
             movie_id = row[3]
             rating = float(row[1])
             rows.append({'userId': user_id, 'movieId': movie_id, 'rating': rating})
-    
-        return pd.DataFrame(rows) #initialize the ratings_df
+        #concatenate the rows with the ratings_df saved in the api
+        if len(rows) > 0:
+            SimpleAPI.ratings_df = pd.concat([SimpleAPI.ratings_df, pd.DataFrame(rows)])
+            return pd.DataFrame(rows)
+        else:
+            return None
             
 import numpy as np
 
@@ -132,25 +137,21 @@ class NpEncoder(json.JSONEncoder):
 
 def generate_model_periodically():
     while True:
-        if SimpleAPI.ratings_df is not None:  # Check if ratings_df is defined
-            ratings_df = SimpleAPI.obtain_ratings()  # Access ratings_df
+        if SimpleAPI.obtain_new_ratings() is not None:  # Check if ratings_df is defined
             # Call the generate_model function
             time1 = time.time()
-            SimpleAPI.model = Algorithm.generate_model(ratings_df)
+            SimpleAPI.model = Algorithm.tune_model(SimpleAPI.ratings_df, SimpleAPI.model)
             time2 = time.time()
             print('Model regenerated in ' + str(time2 - time1) + ' seconds.')
         else:
-            try:
-                dump.load('svd_model_biased_big.pkl')[1]
-            except FileNotFoundError:
-                print('No model found. Please wait for the model to be generated.')
-            
-        # Wait for 20 seconds before regenerating the model
-        time.sleep(12000000) #change to trigger
+            print('No new ratings.')
+        
+        time.sleep(100) #change to trigger
+        SimpleAPI.ratings_df = SimpleAPI.obtain_new_ratings()  # Update ratings_df
 
 
 if __name__ == '__main__':
-    SimpleAPI.ratings_df =  SimpleAPI.obtain_ratings() #initialize the ratings_df
+    SimpleAPI.ratings_df =  SimpleAPI.obtain_new_ratings() #initialize the ratings_df
     model_thread = threading.Thread(target=generate_model_periodically)
     model_thread.daemon = True
     model_thread.start()

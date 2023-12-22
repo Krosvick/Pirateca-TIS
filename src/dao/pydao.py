@@ -8,6 +8,9 @@ import os
 from dotenv import load_dotenv
 import pymysql
 import time
+import sys
+sys.path.append('src')
+import dao.py_config as py_config
 
 load_dotenv()
 
@@ -47,10 +50,10 @@ class DAO():
         except Exception as e:
             print(e)
 
-    def get_all(self):
+    def get_all_new(self):
         try:
-            limit = config.LIMIT
-            offset = config.OFFSET
+            limit = 100000
+            offset = py_config.OFFSET
             all_rows = []
             time3 = time.time()
             while True:
@@ -63,13 +66,14 @@ class DAO():
                     break
 
                 all_rows.extend(rows)
-                offset += limit
+                #dinamically change the offset using the lenght of the rows getted
+                offset += len(rows)
             
             # Write the new offset back to the config.py file
             #HARDCODED FILE PATH
-            with open('src/dao/config.py', 'w') as f:
-                f.write(f'LIMIT = {limit}\nOFFSET = {offset}\n')
-            print(limit, offset)
+            with open('src/dao/py_config.py', 'w') as f:
+                f.write(f'OFFSET = {offset}')
+            print('New offset: ' + str(offset))
 
             time4 = time.time()
             print('Data fetched in ' + str(time4 - time3) + ' seconds.')

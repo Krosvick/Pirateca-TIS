@@ -1,4 +1,6 @@
 class Algorithm():
+    import sys
+    sys.path.append('src')
     import models.Algo_config as Algo_config
 
     def __init__(self, algorithm):
@@ -73,7 +75,6 @@ class Algorithm():
         """
         Tune the SVD model incrementally by fitting it on chunks of the ratings dataframe.
         """
-
         from surprise import Dataset 
         from surprise import Reader
         from surprise.model_selection import train_test_split
@@ -82,12 +83,18 @@ class Algorithm():
 
         # Define the reader
         reader = Reader()
-
+        #save a new offset var before changing the ratings_df len
+        OFFSET1 = OFFSET + ratings_df.shape[0]
         # Split the dataframe into chunks based on the OFFSET
         ratings_df = ratings_df[OFFSET:]
         ratings_df = [ratings_df[i:i + chunk_size] for i in range(0, ratings_df.shape[0], chunk_size)]
         #change the OFFSET value in the config file
-        Algorithm.Algo_config.OFFSET += (len(ratings_df) - Algorithm.Algo_config.OFFSET)
+
+
+
+        with open('src/models/Algo_config.py', 'w') as f:
+                f.write(f'OFFSET = {OFFSET1}')
+        print('New offset: ' + str(OFFSET1))
 
         # Convert each chunk to a Dataset object
         ratings_df = [Dataset.load_from_df(chunk[['userId', 'movieId', 'rating']], reader) for chunk in ratings_df]
