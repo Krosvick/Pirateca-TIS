@@ -99,7 +99,7 @@ class SimpleAPI(BaseHTTPRequestHandler):
             #add the rating to the ratings_df using concat
             self.ratings_df = pd.concat([self.ratings_df, pd.DataFrame([[user_id, movie_id, rating]], columns=['user_id', 'movie_id', 'rating'])])
             #regenerate the model
-            SimpleAPI.model = Algorithm.generate_model(self.ratings_df)
+            SimpleAPI.model = Algorithm.tune_model(self.ratings_df, self.model)
             #return a message
             response = {'message': 'Model updated.'}
             self.send_response(200)
