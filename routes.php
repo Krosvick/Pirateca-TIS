@@ -10,4 +10,4 @@ $app->router->get('/register', 'RegisterController@index');
 $app->router->post('/register', 'RegisterController@index');
 $app->router->delete('/movie/{id}', 'MoviePageController@MoviePage');
 $app->router->get('/movie/{id}/offset/{offset}', 'MoviePageController@MoviePage');
-$app->router->get('/information', 'InformationController@index');
+$app->router->get('/information', 'InformationController@infopage');

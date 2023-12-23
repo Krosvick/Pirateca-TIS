@@ -25,7 +25,7 @@ class IndexController extends BaseController
 
     public function index()
     {
-       /* //the client should be logged before this, hard code for now
+       //the client should be logged before this, hard code for now
         if (!$this->user) {
             $this->user = new User();
             $this->user->set_id(1);
@@ -54,7 +54,9 @@ class IndexController extends BaseController
             'data' => $data,
             'metadata' => $metadata
         ];
-        return $this->render("index", $optionals);*/
+        return $this->render("index", $optionals);
+        
+        /*
         $movies = $this->movieDAO->get_some(10, 0);
         
         //dd($movies);
@@ -62,6 +64,7 @@ class IndexController extends BaseController
         $optionals = [
             'movies' => $movies
         ];
-        return $this->render("tset",$optionals);
+        //return $this->render("index",$optionals);
+        */
     }
 }

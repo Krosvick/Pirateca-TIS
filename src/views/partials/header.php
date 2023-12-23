@@ -5,8 +5,8 @@
     <?php if (isset($description)): ?>
         <meta name="description" content="<?= htmlspecialchars($description) ?>">
     <?php endif; ?>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet"/>
+    <!-- link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css" rel="stylesheet"/ -->
     <!-- Include CSS files -->
 
     <?php if (isset($cssFiles) && is_array($cssFiles)): ?>
