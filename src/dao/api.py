@@ -7,6 +7,9 @@ import time
 import threading
 import sys
 import pydao
+from surprise.dump import dump
+import os
+
 
 
 sys.path.append('src')
@@ -35,7 +38,8 @@ class SimpleAPI(BaseHTTPRequestHandler):
             None
     """
     ratings_df = pd.DataFrame(columns=['user_id', 'movie_id', 'rating'])
-    model = None
+    #hardcoded path for now
+    model = dump.load('Algorithm.pkl')[1]
 
     def do_GET(self):
         parsed_url = urlparse(self.path)
@@ -95,7 +99,7 @@ class SimpleAPI(BaseHTTPRequestHandler):
             #add the rating to the ratings_df using concat
             self.ratings_df = pd.concat([self.ratings_df, pd.DataFrame([[user_id, movie_id, rating]], columns=['user_id', 'movie_id', 'rating'])])
             #regenerate the model
-            SimpleAPI.model = Algorithm.generate_model(self.ratings_df)
+            SimpleAPI.model = Algorithm.tune_model(self.ratings_df, self.model)
             #return a message
             response = {'message': 'Model updated.'}
             self.send_response(200)
@@ -103,16 +107,20 @@ class SimpleAPI(BaseHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(json.dumps(response).encode('utf-8'))
 
-    def obtain_ratings():
+    def obtain_new_ratings(): #this is the adapter function
         test = pydao.DAO()
         rows = []
-        for row in test.get_all():
+        for row in test.get_all_new():
             user_id = row[4]
             movie_id = row[3]
             rating = float(row[1])
             rows.append({'userId': user_id, 'movieId': movie_id, 'rating': rating})
-    
-        return pd.DataFrame(rows) #initialize the ratings_df
+        #concatenate the rows with the ratings_df saved in the api
+        if len(rows) > 0:
+            SimpleAPI.ratings_df = pd.concat([SimpleAPI.ratings_df, pd.DataFrame(rows)])
+            return pd.DataFrame(rows)
+        else:
+            return None
             
 import numpy as np
 
@@ -129,27 +137,21 @@ class NpEncoder(json.JSONEncoder):
 
 def generate_model_periodically():
     while True:
-        if SimpleAPI.ratings_df is not None:  # Check if ratings_df is defined
-            ratings_df = SimpleAPI.obtain_ratings()  # Access ratings_df
+        if SimpleAPI.obtain_new_ratings() is not None:  # Check if ratings_df is defined
             # Call the generate_model function
-            SimpleAPI.model = Algorithm.generate_model(ratings_df)
-            print('Model regenerated.')
+            time1 = time.time()
+            SimpleAPI.model = Algorithm.tune_model(SimpleAPI.ratings_df, SimpleAPI.model)
+            time2 = time.time()
+            print('Model regenerated in ' + str(time2 - time1) + ' seconds.')
         else:
-            print('ratings_df is not defined yet. Waiting...')
+            print('No new ratings.')
         
-        # Wait for 20 seconds before regenerating the model
-        time.sleep(120)
-        
+        time.sleep(100) #change to trigger
+        SimpleAPI.ratings_df = SimpleAPI.obtain_new_ratings()  # Update ratings_df
 
 
 if __name__ == '__main__':
-    #hard code here, connect with dao later
-    #csv_pd = pd.read_csv('datasets/ratings_small_cleaned.csv')
-    #csv_pd = csv_pd.drop(columns=['timestamp'])
-    
-    
-    
-    SimpleAPI.ratings_df =  SimpleAPI.obtain_ratings() #initialize the ratings_df
+    SimpleAPI.ratings_df =  SimpleAPI.obtain_new_ratings() #initialize the ratings_df
     model_thread = threading.Thread(target=generate_model_periodically)
     model_thread.daemon = True
     model_thread.start()
