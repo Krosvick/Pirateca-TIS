@@ -64,6 +64,7 @@
                     <?php $crrt = 1; ?>
                     
                     <?php
+                    $Ratings = $Movie->get_ratings();
                     
                     foreach ($Ratings as $rating):
                         //echo $rating->get_rating();

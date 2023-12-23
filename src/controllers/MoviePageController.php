@@ -77,6 +77,7 @@ class MoviePageController extends BaseController
             }
         
         }
+        $this->movieModel->set_ratings($ratings);
         //dd($ratings);        
         
         
@@ -90,7 +91,6 @@ class MoviePageController extends BaseController
         
         $data = [
             'Movie' => $this->movieModel,
-            'Ratings' => $ratings,
             'page' => $page
         ];
         $metadata = [
