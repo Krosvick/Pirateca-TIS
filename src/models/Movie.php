@@ -21,6 +21,8 @@ class Movie extends Model{
     private $deleted_at;
     private $updated_at;
     private $director;
+    //ratings array
+    private array $ratings;
 
     /**
      * Class constructor for the Movie class.
@@ -284,6 +286,12 @@ class Movie extends Model{
      */
     public function set_director($director){
         $this->director = $director;
+    }
+    public function get_ratings(){
+        return $this->ratings;
+    }
+    public function set_ratings($ratings){
+        $this->ratings = $ratings;
     }
     
 
