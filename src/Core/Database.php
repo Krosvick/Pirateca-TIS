@@ -51,7 +51,7 @@ class Database
 
                 $this->statement->execute();
             } catch (\PDOException $e) {
-                die($e->getMessage());
+                echo $e;
             }
 
             return $this;

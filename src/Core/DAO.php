@@ -117,15 +117,17 @@ abstract class DAO {
 
     public function find($id, $className = null): object {
         try {
+
             $sql = "SELECT * FROM {$this->table} WHERE id = :id";
             $params = array(
                 "id" => [$id, PDO::PARAM_INT]
             );
             $stmt = $this->connection->query($sql, $params);
             $row = $stmt->find($className);
+            
             return $row;
         } catch (Exception $e) {
-            die($e->getMessage());
+
         }
     }
 

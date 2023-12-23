@@ -176,9 +176,17 @@ class Router
                 if (is_callable([$controllerObject, $action])) {
                     foreach ($controllerObject->getMiddleware() as $middleware) {
                         $middleware->execute();
-                    }
+                    } 
+                    
                     if (isset($params['id'])) {
-                        $controllerObject->$action($params['id']);
+
+                        if(isset($params['offset'])){
+                            $controllerObject->$action($params['id'],$params['offset']);
+                        }
+                        else {
+                            $controllerObject->$action($params['id']);
+                        }
+
                     } else {
                         $controllerObject->$action();
                     }

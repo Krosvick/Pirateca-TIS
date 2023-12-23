@@ -39,8 +39,8 @@ class MoviePageController extends BaseController
      * @param int $id The movie ID from the route.
      * @return void Renders the movie page template.
      */
-    public function MoviePage() {
-        $id = 12;
+    public function MoviePage($id, $offset = 0) {
+        //$id = 12;
         //this is a more truthful oop approach
         $this->movieModel = $this->movieDAO->find($id, 'Models\Movie');
         
@@ -49,19 +49,37 @@ class MoviePageController extends BaseController
         //dd($this->movieModel);
         $this->movieModel->MovieDirectorRetrieval();
         $this->movieModel->moviePosterFallback();
-        $ratings_data = $this->ratingsDAO->getByMovie($this->movieModel);
+        
+        $page = $offset;
+        /*if ($offset<0){
+            $page = 0;
+        }*/
+
+        $ratings_data = $this->ratingsDAO->getPagebyMovie($this->movieModel, $page);
+
+
+        //dd($ratings_data);
         $ratings = [];
         foreach($ratings_data as $rating_data){
             #create a rating object for each rating
-            $rating = new Rating();
-            $rating->set_id($rating_data->id);
-            $rating->set_user($this->userDAO->find($rating_data->user_id, 'Models\User'));
-            $rating->set_movie($this->movieModel);
-            $rating->set_rating($rating_data->rating);
-            $rating->set_review($rating_data->review);
-            array_push($ratings, $rating);
+            try {
+                $rating = new Rating();
+                $rating->set_id($rating_data->id);
+                $rating->set_user($this->userDAO->find($rating_data->user_id, 'Models\User'));
+                $rating->set_movie($this->movieModel);
+                $rating->set_rating($rating_data->rating);
+                $rating->set_review($rating_data->review);
+                array_push($ratings, $rating);
+            }
+            catch (Exception $e) {
+                echo ("hola");
+                continue;
+            }
+        
         }
-        dd($ratings);
+        //dd($ratings);        
+        
+        
         if(!$this->movieModel){
             $this->response->abort(404);
         }
@@ -72,7 +90,8 @@ class MoviePageController extends BaseController
         
         $data = [
             'Movie' => $this->movieModel,
-            'Ratings' => $ratings
+            'Ratings' => $ratings,
+            'page' => $page
         ];
         $metadata = [
             'title' => $this->movieModel->get_original_title(),
@@ -85,7 +104,7 @@ class MoviePageController extends BaseController
         ];
 
         return $this->render("movie_page", $optionals);
-
+        
     }
 
 }
