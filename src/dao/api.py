@@ -7,7 +7,7 @@ import time
 import threading
 import sys
 import pydao
-from surprise.dump import dump
+from surprise.dump import dump, load
 import os
 
 
@@ -37,9 +37,23 @@ class SimpleAPI(BaseHTTPRequestHandler):
         Returns:
             None
     """
-    ratings_df = pd.DataFrame(columns=['user_id', 'movie_id', 'rating'])
-    #hardcoded path for now
-    model = dump.load('Algorithm.pkl')[1]
+
+
+    """
+    Disclaimer:
+    The API works as a sv simulator, but due to latency issues, we fist read the ratings from the db
+    So the first data is hardcoded BUT it's because we are emulating something
+    we can not do unless this code works in the same server as the db (and planetscale doens't allow that)
+
+    Due to this solution, all write in the planetscale db will be also writed in the local db
+    only for it to load a first time well (also planetscale has a limit on querys)
+    
+    AFTER THE FIRST LOAD EVERYTHING WILL BE DONE IN THE PLANETSCALE DB
+    """
+    ratings_df = pd.read_csv('datasets/processed_ratings.csv', memory_map=True)
+    model = load('Algorithm.pkl')[1]
+    movies_df = pd.read_csv('datasets/movies_metadata_cleaned.csv', memory_map=True)
+    predictions = load('Algorithm.pkl')[0]
 
     def do_GET(self):
         parsed_url = urlparse(self.path)
@@ -54,7 +68,7 @@ class SimpleAPI(BaseHTTPRequestHandler):
         if parsed_url.path == '/recommendations':
             userId = int(query_params['userId'][0])
             n = int(query_params.get('n', [10])[0])
-            top_movies = Algorithm.get_user_recommendations(userId, SimpleAPI.ratings_df, SimpleAPI.model, 10)
+            top_movies = Algorithm.get_user_recommendations(userId, SimpleAPI.ratings_df, SimpleAPI.movies_df, SimpleAPI.model, SimpleAPI.predictions, 10)
             response = {'top_movies': top_movies}
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
@@ -63,7 +77,7 @@ class SimpleAPI(BaseHTTPRequestHandler):
         elif parsed_url.path == '/recommendations/ids':
             userId = int(query_params['userId'][0])
             n = int(query_params.get('n', [10])[0])
-            top_movies = Algorithm.get_user_recommendations(userId, SimpleAPI.ratings_df, SimpleAPI.model, 10, False)
+            top_movies = Algorithm.get_user_recommendations(userId, SimpleAPI.ratings_df, SimpleAPI.movies_df, SimpleAPI.model, SimpleAPI.predictions, 10)
             response = {'top_movies': top_movies}
             self.send_response(200)
             self.send_header('Content-type', 'application/json')

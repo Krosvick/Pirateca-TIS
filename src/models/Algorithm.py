@@ -94,7 +94,7 @@ class Algorithm():
 
         with open('src/models/Algo_config.py', 'w') as f:
                 f.write(f'OFFSET = {OFFSET1}')
-        print('New offset: ' + str(OFFSET1))
+        print('New algorithm offset: ' + str(OFFSET1))
 
         # Convert each chunk to a Dataset object
         ratings_df = [Dataset.load_from_df(chunk[['userId', 'movieId', 'rating']], reader) for chunk in ratings_df]
