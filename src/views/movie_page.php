@@ -115,7 +115,7 @@
 
                         <!-- Actual page -->
                         <li>
-                            <a class="z-10 flex items-center justify-center px-4 h-10 leading-tight text-purple-600 border border-purple-300 bg-purple-50 hover:bg-purple-100 hover:text-purple-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white"><?= $offset?></a>
+                            <a class="z-10 flex items-center justify-center px-4 h-10 leading-tight text-purple-600 border border-purple-300 bg-purple-50 hover:bg-purple-100 hover:text-purple-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white"><?= $page?></a>
                         </li>
 
                         <!-- Go to the next page -->
