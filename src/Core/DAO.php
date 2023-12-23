@@ -168,6 +168,22 @@ abstract class DAO {
             die($e->getMessage());
         }
     }
+    public function insert(array $data)
+    {
+        $attributes = array_keys($data);
+        #attributes[n] is where the attributes are
+        try {
+            $sql = "INSERT INTO {$this->table} (" . implode(', ', array_values($attributes)) . ") VALUES (:" . implode(', :', array_values($attributes)) . ")";
+            $params = array();
+            foreach ($attributes as $key => $value) {
+                $params[$value] = [$data[$value], PDO::PARAM_STR];
+            }
+            $stmt = $this->connection->query($sql, $params);
+            return $stmt;
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
 
      /**
       * 
