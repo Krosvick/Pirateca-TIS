@@ -57,7 +57,6 @@ class DAO():
             all_rows = []
             time3 = time.time()
             while True:
-                print(offset)
                 cursor = self._connection.get_connection().cursor()
                 cursor.execute(f"SELECT * FROM {self._table} LIMIT {limit} OFFSET {offset}")
                 rows = cursor.fetchall()
@@ -73,7 +72,7 @@ class DAO():
             #HARDCODED FILE PATH
             with open('src/dao/py_config.py', 'w') as f:
                 f.write(f'OFFSET = {offset}')
-            print('New offset: ' + str(offset))
+            print('New dao: ' + str(offset))
 
             time4 = time.time()
             print('Data fetched in ' + str(time4 - time3) + ' seconds.')
