@@ -6,25 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manual de Usuario</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles-movie.css">
 </head>
 
 <body class="bg-gray-100">
-    <div class="container mx-auto p-4">
-        <h1 class="text-2xl font-bold mb-4">Manual de Usuario</h1>
 
-        <h2 class="text-xl font-bold mb-2">Introducción</h2>
-        <p>Bienvenido al manual de usuario de nuestra página web. Aquí encontrarás información detallada sobre cómo utilizar
-            todas las funcionalidades disponibles.</p>
-
-        <h2 class="text-xl font-bold mb-2">Sección 1</h2>
-        <p>Descripción de la primera sección del manual.</p>
-
-        <h2 class="text-xl font-bold mb-2">Sección 2</h2>
-        <p>Descripción de la segunda sección del manual.</p>
-
-        <!-- Agrega más secciones según sea necesario -->
-
+    <div class="max-w-xl mx-auto bg-white shadow-md p-6 rounded-lg">
+        <h2 class="text-5xl font-bold mb-4 text-center"><u>Pirateca</u></h2>
+        <p class="text-gray-700 mb-4">
+            [Aquí iría la información sobre cómo utilizar la página web.]
+        </p>
+        <hr class="my-4 border-gray-300">
+        <h3 class="text-lg font-semibold mb-2">Contacto de los creadores:</h3>
+        <ul class="text-gray-700">
+            <li>Nombre: [Nombre del creador]</li>
+            <li>Email: [Correo electrónico]</li>
+            <!-- Agrega más información de contacto si es necesario -->
+        </ul>
     </div>
+
 </body>
 
 </html>
