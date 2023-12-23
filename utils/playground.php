@@ -91,6 +91,23 @@ function create_fake_user($user_id){
     return $user;
 }
 
+function create_fake_users_quantity($starting_id, $last_id){
+    $faker = Faker\Factory::create();
+    $users = [];
+    for ($i = $starting_id; $i <= $last_id; $i++) {
+        $user = [
+            'username' => $faker->userName,
+            'hashed_password' => password_hash($faker->password, PASSWORD_DEFAULT),
+            'first_name' => $faker->firstName,
+            'last_name' => $faker->lastName,
+            'role' => 'user',
+            'id' => $i
+        ];
+        $users[] = $user;
+    }
+    return $users;
+}
+
 //now we will create a function that will create users and insert them into the users table
 function create_users($user_ids){
     $users = new UsersDAO();
@@ -104,6 +121,17 @@ function create_users($user_ids){
         }
     }
 }
+
+$users = create_fake_users_quantity(756, 1000);
+$userDAO = new UsersDAO();
+foreach ($users as $user) {
+    try{
+    $userDAO->insert($user);
+    } catch (Exception $e) {
+        print_r("Bv");
+    }
+}
+
 
 function create_ratings($ratings_file){
     $ratings = new RatingsDAO();
@@ -129,6 +157,6 @@ function rename_collumns($ratings_file){
     return $ratings_file;
 }
 
-$rating = new Rating();
-$post = $rating->post_all_ratings();
+//$rating = new Rating();
+//$post = $rating->post_all_ratings();
 
