@@ -54,9 +54,7 @@ class Movie extends Model{
         $this->deleted_at = $deleted_at;
         $this->updated_at = $updated_at;
         $this->director = $director;
-        $this->DAOs = [
-            'tableDAO' => new moviesDAO()
-        ];
+        $this->moviesDAO = new moviesDAO();
     }
 
     #getters and setters
