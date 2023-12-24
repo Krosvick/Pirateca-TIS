@@ -168,7 +168,7 @@ def generate_model_periodically():
         else:
             print('No new ratings.')
         
-        time.sleep(10000) #change to 100 in presentation
+        time.sleep(1000000) #change to 100 in presentation
 
 if __name__ == '__main__':
     model_thread = threading.Thread(target=generate_model_periodically)

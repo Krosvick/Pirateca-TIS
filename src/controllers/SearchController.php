@@ -27,7 +27,6 @@ class SearchController extends BaseController
         #busqueda will get the routeparams
         $busqueda = $this->routeParams['search'];
         $movie = $this->movieModel->search($busqueda);
-        dd($movie);
         if(!$movie){
             $this->response->abort(404);
         }
