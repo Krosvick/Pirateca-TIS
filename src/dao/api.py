@@ -52,8 +52,13 @@ class SimpleAPI(BaseHTTPRequestHandler):
     """
     ratings_df = pd.read_csv('datasets/processed_ratings.csv', memory_map=True)
     model = load('Algorithm.pkl')[1]
-    movies_df = pd.read_csv('datasets/movies_metadata_cleaned.csv', memory_map=True)
     predictions = load('Algorithm.pkl')[0]
+    #load movies metadata but only id and title
+    movies_df = pd.read_csv('datasets/movies_metadata.csv', usecols=['id', 'title'], memory_map=True)
+
+    #singleton api init
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
 
     def do_GET(self):
         parsed_url = urlparse(self.path)
@@ -160,7 +165,7 @@ def generate_model_periodically():
         else:
             print('No new ratings.')
         
-        time.sleep(100) #change to trigger
+        time.sleep(10000) #change to 100 in presentation
         SimpleAPI.ratings_df = SimpleAPI.obtain_new_ratings()  # Update ratings_df
 
 

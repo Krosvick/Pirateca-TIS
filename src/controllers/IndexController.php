@@ -19,7 +19,7 @@ class IndexController extends BaseController
     {
         //call the parent constructor to get access to the properties and methods of the BaseController class
         parent::__construct(...func_get_args());
-        $this->user = Application::$app->session->get('user');
+        $this->user = Application::$app->user;
         $this->movieDAO = new moviesDAO();
     }
 

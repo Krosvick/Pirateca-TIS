@@ -115,11 +115,32 @@ class Algorithm():
 
         return tuned_svd_model
     
-    def get_user_recommendations(user_id, ratings_df, movies_df, model, predictions, top_n = 30):
+    def get_user_recommendations(user_id, ratings_df, movies_df, model, predictions, top_n = 30, include_rating = True):
         from collections import defaultdict
 
+        #exception control
+        if (user_id == 1) or (user_id is None):
+            #user 1 is the default user, return random movies in format [(int movieId, float estimated_rating), ...]
+            import random
+            recommendations = []
+            for i in range(0, top_n):
+                #get random id from movies_df['id']
+                random_id = random.choice(movies_df['id'].values)
+                #get random rating from 0 to 5
+                random_rating = random.uniform(0, 5)
+                recommendations.append((random_id, random_rating))
+
+            result = []
+            for movie_id, rating in recommendations:
+                if include_rating:
+                    result.append({'movie_id': movie_id, 'rating': rating})
+                else:
+                    result.append({'movie_id': movie_id})
+            
+            return result
+
         # Get the list of movies the user has seen
-        user_seen_movies = ratings_df[ratings_df['userId'] == 270897]['movieId'].unique()
+        user_seen_movies = ratings_df[ratings_df['userId'] == user_id]['movieId'].unique()
         # Get the list of movies the user hasn't seen
         unseen_movies = movies_df[~movies_df['id'].isin(user_seen_movies)]
         # Placeholder for the true rating
@@ -138,7 +159,19 @@ class Algorithm():
             user_ratings.sort(key=lambda x: x[1], reverse=True)
             recommendations[uid] = user_ratings[:top_n]
         
-        return recommendations[user_id]
+        """
+        top_recommendations is a list of tuples
+            [(318, 4.327501001837994), (4973, 4.289579757337473), (4226, 4.288369094103607), (2692, 4.2516131662793315), (923, 4.2428413377628305), (898, 4.239507008315757), (3683, 4.237841176249015), (1254, 4.237667303613109), (1283, 4.224226310670601), (58559, 4.215303761456968)]
+        i need to serialize this list of tuples into a json file
+        """
+        result = []
+        for movie_id, rating in recommendations[user_id]:
+            if include_rating:
+                result.append({'movie_id': movie_id, 'rating': rating})
+            else:
+                result.append({'movie_id': movie_id})
+        
+        return result
     
     def get_liked_movies(userId, df, movies):
         user_likes = df[(df['userId'] == userId) & (df['rating'] >= 4.0)]
