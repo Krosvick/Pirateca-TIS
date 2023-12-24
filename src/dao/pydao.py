@@ -58,7 +58,7 @@ class DAO():
             time3 = time.time()
             while True:
                 cursor = self._connection.get_connection().cursor()
-                cursor.execute(f"SELECT * FROM {self._table} LIMIT {limit} OFFSET {offset}")
+                cursor.execute(f"SELECT * FROM {self._table} ORDER BY id LIMIT {limit} OFFSET {offset}")
                 rows = cursor.fetchall()
 
                 if not rows:
