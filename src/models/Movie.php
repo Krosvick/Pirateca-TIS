@@ -365,7 +365,7 @@ class Movie extends Model{
      * @return array<array>   an especific movie data array
      */
     public function search($busqueda){
-        $movies = $this->moviesDAO->dummytest_fulltext($busqueda);
+        $movies = $this->DAOs['tableDAO']->dummytest_fulltext($busqueda);
         foreach($movies as $key => $movie){
             if ($movie != null){
             $movies[$key]['poster_path'] = $this->moviePosterFallback($movie);
