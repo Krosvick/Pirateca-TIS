@@ -36,19 +36,16 @@ class SimpleAPI(BaseHTTPRequestHandler):
         
         Returns:
             None
-    """
+        
+        Disclaimer:
+        The API works as a sv simulator, but due to latency issues, we fist read the ratings from the db
+        So the first data is hardcoded BUT it's because we are emulating something
+        we can not do unless this code works in the same server as the db (and planetscale doens't allow that)
 
-
-    """
-    Disclaimer:
-    The API works as a sv simulator, but due to latency issues, we fist read the ratings from the db
-    So the first data is hardcoded BUT it's because we are emulating something
-    we can not do unless this code works in the same server as the db (and planetscale doens't allow that)
-
-    Due to this solution, all write in the planetscale db will be also writed in the local db
-    only for it to load a first time well (also planetscale has a limit on querys)
-    
-    AFTER THE FIRST LOAD EVERYTHING WILL BE DONE IN THE PLANETSCALE DB
+        Due to this solution, all write in the planetscale db will be also writed in the local db
+        only for it to load a first time well (also planetscale has a limit on querys)
+        
+        AFTER THE FIRST LOAD EVERYTHING WILL BE DONE IN THE PLANETSCALE DB
     """
     ratings_df = pd.read_csv('datasets/processed_ratings.csv', memory_map=True)
     model = load('Algorithm.pkl')[1]
@@ -56,7 +53,7 @@ class SimpleAPI(BaseHTTPRequestHandler):
     #load movies metadata but only id and title
     movies_df = pd.read_csv('datasets/movies_metadata.csv', usecols=['id', 'title'], memory_map=True)
 
-    #singleton api init
+    #__init__ singleton
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
@@ -72,8 +69,9 @@ class SimpleAPI(BaseHTTPRequestHandler):
 
         if parsed_url.path == '/recommendations':
             userId = int(query_params['userId'][0])
+            #print every data in same "print" function to check if it's working, all df should print sample
             n = int(query_params.get('n', [10])[0])
-            top_movies = Algorithm.get_user_recommendations(userId, SimpleAPI.ratings_df, SimpleAPI.movies_df, SimpleAPI.model, SimpleAPI.predictions, 10)
+            top_movies = Algorithm.get_user_recommendations(userId, self.ratings_df, self.movies_df, self.model, self.predictions, 10)
             response = {'top_movies': top_movies}
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
@@ -82,7 +80,7 @@ class SimpleAPI(BaseHTTPRequestHandler):
         elif parsed_url.path == '/recommendations/ids':
             userId = int(query_params['userId'][0])
             n = int(query_params.get('n', [10])[0])
-            top_movies = Algorithm.get_user_recommendations(userId, SimpleAPI.ratings_df, SimpleAPI.movies_df, SimpleAPI.model, SimpleAPI.predictions, 10)
+            top_movies = Algorithm.get_user_recommendations(userId, self.ratings_df, self.movies_df, self.model, self.predictions, 10)
             response = {'top_movies': top_movies}
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
@@ -118,7 +116,7 @@ class SimpleAPI(BaseHTTPRequestHandler):
             #add the rating to the ratings_df using concat
             self.ratings_df = pd.concat([self.ratings_df, pd.DataFrame([[user_id, movie_id, rating]], columns=['user_id', 'movie_id', 'rating'])])
             #regenerate the model
-            SimpleAPI.model = Algorithm.tune_model(self.ratings_df, self.model)
+            self.model = Algorithm.tune_model(self.ratings_df, self.model)
             #return a message
             response = {'message': 'Model updated.'}
             self.send_response(200)
@@ -140,7 +138,9 @@ class SimpleAPI(BaseHTTPRequestHandler):
             return pd.DataFrame(rows)
         else:
             return None
-            
+
+
+
 import numpy as np
 
 class NpEncoder(json.JSONEncoder):
@@ -156,8 +156,11 @@ class NpEncoder(json.JSONEncoder):
 
 def generate_model_periodically():
     while True:
-        if SimpleAPI.obtain_new_ratings() is not None:  # Check if ratings_df is defined
+        ratings_df1 = SimpleAPI.obtain_new_ratings()
+
+        if ratings_df1 is not None:  # Check if ratings_df is defined
             # Call the generate_model function
+            SimpleAPI.ratings_df = pd.concat([SimpleAPI.ratings_df, pd.DataFrame(ratings_df1)])
             time1 = time.time()
             SimpleAPI.model = Algorithm.tune_model(SimpleAPI.ratings_df, SimpleAPI.model)
             time2 = time.time()
@@ -166,11 +169,8 @@ def generate_model_periodically():
             print('No new ratings.')
         
         time.sleep(10000) #change to 100 in presentation
-        SimpleAPI.ratings_df = SimpleAPI.obtain_new_ratings()  # Update ratings_df
-
 
 if __name__ == '__main__':
-    SimpleAPI.ratings_df =  SimpleAPI.obtain_new_ratings() #initialize the ratings_df
     model_thread = threading.Thread(target=generate_model_periodically)
     model_thread.daemon = True
     model_thread.start()

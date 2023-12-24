@@ -118,7 +118,7 @@ class Algorithm():
     def get_user_recommendations(user_id, ratings_df, movies_df, model, predictions, top_n = 30, include_rating = True):
         from collections import defaultdict
 
-        #exception control
+        #exception control for default user
         if (user_id == 1) or (user_id is None):
             #user 1 is the default user, return random movies in format [(int movieId, float estimated_rating), ...]
             import random

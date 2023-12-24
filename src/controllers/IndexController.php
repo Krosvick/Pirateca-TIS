@@ -19,7 +19,7 @@ class IndexController extends BaseController
     {
         //call the parent constructor to get access to the properties and methods of the BaseController class
         parent::__construct(...func_get_args());
-        $this->user = Application::$app->user;
+        $this->user = Application::$app->session->get('user');
         $this->movieDAO = new moviesDAO();
     }
 
@@ -31,7 +31,7 @@ class IndexController extends BaseController
             $this->user->set_id(1);
             echo "user not logged";
         }
-        
+
         $recommended_movies = $this->user->getRecommendedMoviesIds(10);
         #the array is top_movies and then the recommended movies
         $recommended_movies = $recommended_movies['top_movies'];
