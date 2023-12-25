@@ -320,7 +320,7 @@ class User extends Model{
     public function get_user_movies($quantity): array
     {
         $client = new GuzzleHttp\Client();
-        $response = $client->request('GET', 'localhost:8001/user-movies?userId=' . $this->user_id . '&n=' . $quantity);
+        $response = $client->request('GET', 'localhost:8001/user-movies?userId=' . $this->id . '&n=' . $quantity);
         $response = json_decode($response->getBody(), true);
         return $response;
     }

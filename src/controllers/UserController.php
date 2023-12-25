@@ -12,6 +12,7 @@ use GuzzleHttp\Client;
 
 class UserController extends BaseController{
     private $userDAO;
+    public $user;
 
     public function __construct($container, $routeParams) {
         //call the parent constructor to get access to the properties and methods of the BaseController class
@@ -94,7 +95,8 @@ class UserController extends BaseController{
         //retrieve data of the user
         //$user = $this->userDAO->find(Application::$app->session["user"] , User::class);
         //retrieve the movies of the user
-        $user_movies = Application::$app->user->get-usermovies(10);        ;
+        $user_movies = Application::$app->user->get_user_movies(10);        ;
+        dd($user_movies);
         //retrieve the comments of the user
 
         return $this->render("likedpost", $user_movies);
