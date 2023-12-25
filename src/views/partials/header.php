@@ -8,6 +8,7 @@
         <?php endif; ?>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet" />
         <link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.24/dist/full.min.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="/css/styles-movie.css">
         <script src="https://cdn.tailwindcss.com"></script>
         <!-- Include CSS files -->
 
