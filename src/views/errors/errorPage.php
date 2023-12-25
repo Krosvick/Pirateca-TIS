@@ -10,7 +10,7 @@
       <!-- Your content -->
    
 
-    <h1> Error 404, not found.</h1>
+    <h1> Error <?= $code ." " . $error_message ?> </h1>
 
     </div>
   </main>

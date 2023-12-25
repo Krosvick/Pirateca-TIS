@@ -50,14 +50,14 @@ class Response
     {
         http_response_code($code);
         $optionals = [
-            'data' => ['message' => $message],
+            'data' => ['error_message' => $message, 'code' => $code],
             'path' => 'errors',
             'metadata' => [
                 'title' => 'Error',
                 'description' => 'Error page',
             ],
         ];
-        $this->view->render($code, $optionals);
+        $this->view->render("errorPage", $optionals);
         die();
     }
 
