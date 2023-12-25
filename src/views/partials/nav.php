@@ -39,7 +39,9 @@
                     </div>
             </div>
             <div>
-                <img src="/images/guia.png" alt="manual" class="h-8" href="informacion.php">
+                <a href="information">
+                    <img src="/images/guia.png" alt="Informacion de la Pagina" class="h-8">
+                </a>
             </div>
         </div>
     </nav>
