@@ -4,6 +4,11 @@ namespace Controllers;
 
 use DAO\UsersDAO;
 use Core\BaseController;
+use DAO\moviesDAO;
+use Models\User;
+use Models\Movie;
+use Core\Application;
+use GuzzleHttp\Client;
 
 class UserController extends BaseController{
     private $userDAO;
@@ -11,6 +16,7 @@ class UserController extends BaseController{
     public function __construct($container, $routeParams) {
         //call the parent constructor to get access to the properties and methods of the BaseController class
         parent::__construct(...func_get_args());
+        $this->user = Application::$app->session->get('user');
         $this->userDAO = new UsersDAO();
     }
 
@@ -79,14 +85,33 @@ class UserController extends BaseController{
         // Implement code to handle the deletion process, e.g., redirect to a confirmation page
     }
 
+    public function ProfilePage(){
+        //exception if the user is not logged in
+        if(!$this->user){
+            echo "You are not logged in";
+            $this->response->abort(404);
+        }
+        //retrieve data of the user
+        //$user = $this->userDAO->find(Application::$app->session["user"] , User::class);
+        //retrieve the movies of the user
+        $user_movies = Application::$app->user->get-usermovies(10);        ;
+        //retrieve the comments of the user
 
-    /*
-    public function readUser($userId) {
-
-
-        $this->userDAO->get_first_name($userId);
-
-        
+        return $this->render("likedpost", $user_movies);
     }
-    */
+
+    public function liked_movies(){
+        //exception if the user is not logged in
+        if(!$this->user){
+            echo "You are not logged in";
+            $this->response->abort(404);
+        }
+        //retrieve data of the user
+        $user = $this->userDAO->find($id, User::class);
+        //retrieve the movies of the user
+        $user_movies = $this->user->getMovies($id);
+        //retrieve the comments of the user
+
+        return $this->render("register", $optionals);
+    }
 }

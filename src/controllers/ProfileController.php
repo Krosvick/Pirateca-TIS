@@ -25,20 +25,6 @@ class ProfileController extends BaseController {
         $this->movieDAO = new moviesDAO();
         $this->userDAO = new UsersDAO();
     }
-
-    public function ProfilePage(){
-        //exception if the user is not logged in
-        if(!$this->user){
-            $this->response->abort(404);
-        }
-        //retrieve data of the user
-        $user = $this->userDAO->find($id, User::class);
-        //retrieve the movies of the user
-        $user_movies = $this->user->getMovies($id);
-        //retrieve the comments of the user
-
-        return $this->render("register", $optionals);
-    }
 }
 
 
