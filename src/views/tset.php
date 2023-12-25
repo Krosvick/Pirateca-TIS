@@ -1,21 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<?php require('partials/nav.php')?>
+<?php require('partials/nav.php') ?>
 
-    <body>
-    
-    <?php foreach ($optionals["movies"] as $movie):?>    
-      
-   <h1>
-    <?= $movie->id ?>
-   </h1>
-    <img src="<?= $movie->poster_path ? "https://image.tmdb.org/t/p/w500".$movie->poster_path : '/views/images/PLACEHOLDER.png' ?>" alt="poster" class="h-full w-4/6 rounded-2xl hover:drop-shadow-md lg:w-1/4">
 
-    <?php endforeach; ?> 
+<?php foreach ($optionals["movies"] as $movie) : ?>
 
-    </body>
+    <h1>
+        <?= $movie->id ?>
+    </h1>
+    <img src="<?= $movie->poster_path ? "https://image.tmdb.org/t/p/w500" . $movie->poster_path : '/views/images/PLACEHOLDER.png' ?>" alt="poster" class="h-full w-4/6 rounded-2xl hover:drop-shadow-md lg:w-1/4">
 
-    <!--  footer -->
-    <?php require('partials/footer.php') ?>
-    <!--  footer -->
-</html>
+<?php endforeach; ?>
+
+
+<!--  footer -->
+<?php require('partials/footer.php') ?>
+<!--  footer -->

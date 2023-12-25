@@ -10,6 +10,7 @@ use Models\User;
 use Models\Movie;
 use Models\Rating;
 use GuzzleHttp\Client;
+use Exception;
 
 class MoviePageController extends BaseController
 {
@@ -50,17 +51,16 @@ class MoviePageController extends BaseController
         $this->movieModel->MovieDirectorRetrieval();
         $this->movieModel->moviePosterFallback();
         
-        $page = $offset;
         /*if ($offset<0){
             $page = 0;
         }*/
 
-        $ratings_data = $this->ratingsDAO->getPagebyMovie($this->movieModel, $page);
+        $ratings_data = $this->ratingsDAO->getPagebyMovie($this->movieModel, $offset);
 
 
         //dd($ratings_data);
         $ratings = [];
-        foreach($ratings_data as $rating_data){
+        foreach($ratings_data['rows'] as $rating_data){
             #create a rating object for each rating
             try {
                 $rating = new Rating();
@@ -91,7 +91,9 @@ class MoviePageController extends BaseController
         
         $data = [
             'Movie' => $this->movieModel,
-            'page' => $page
+            'lastId' => $ratings_data['lastId'],
+            'firstId' => $ratings_data['firstId'],
+            'lastResult' => $ratings_data['lastResults'],
         ];
         $metadata = [
             'title' => $this->movieModel->get_original_title(),

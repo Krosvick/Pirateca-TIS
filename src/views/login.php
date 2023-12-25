@@ -1,19 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Bienvenido a Pirateca</title>
-    <link rel="stylesheet" href="css/styles_login.css">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet">
-</head>
-  <body>
-    <div class="bg"></div>
-    <div class="form-container">
-      <div class="login-container">
-        <h1 class="text-center text-white font-bold text-2xl"><u>Iniciar sesion</u></h2>
+<div class="bg"></div>
+  <div class="form-container">
+    <div class="login-container">
+      <h1 class="text-center text-white font-bold text-2xl"><u>Iniciar sesion</u></h2>
         <p>&nbsp</p>
-        <?php if(isset($errors)) { ?>
-          <?php foreach($errors["username"] as $error) { ?>
+        <?php if (isset($errors)) { ?>
+          <?php foreach ($errors["username"] as $error) { ?>
             <p class="text-center text-red-600 font-bold text-xl"><?php echo $error ?></p>
           <?php } ?>
         <?php } ?>
@@ -29,9 +20,5 @@
           <button class?="boton" type="submit" class="text-white bg-stone-800 hover:bg-white hover:text-blue-60 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Ingresar</button>
           <button class="text-white hover:text-purple-800 bg-purple-700 hover:bg-purple-600 px-4 py-2 rounded transition duration-300" onclick="window.location.href='register'">Registrarse</button>
         </form>
-      </div>
-    </div>
-  </body>
-</html>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
-
+  </div>
+</div>

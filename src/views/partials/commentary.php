@@ -1,11 +1,3 @@
-<!DOCTYPE html>
-
-<head>
-<meta charset="UTF-8">
-<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet">
-</head>
-
-<body>
 <div class="max-w-4xl mx-auto my-8 px-10 py-8 rounded-lg border border-gray-300 bg-white">
     <h2 class="text-3xl font-semibold text-gray mb-6">Reseña</h2>
     <div class="flex items-center mb-6">
@@ -38,4 +30,3 @@
     <!-- on click should post -->
     <button type="button" class="text-white  bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Submit</button>
 </div>
-</body>
