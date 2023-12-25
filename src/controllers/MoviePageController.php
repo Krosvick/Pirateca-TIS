@@ -2,6 +2,7 @@
 
 namespace Controllers;
 
+use Core\Application;
 use Core\BaseController;
 use DAO\moviesDAO;
 use DAO\RatingsDAO;
@@ -57,7 +58,6 @@ class MoviePageController extends BaseController
 
         $ratings_data = $this->ratingsDAO->getPagebyMovie($this->movieModel, $offset);
 
-
         //dd($ratings_data);
         $ratings = [];
         foreach($ratings_data['rows'] as $rating_data){
@@ -69,6 +69,7 @@ class MoviePageController extends BaseController
                 $rating->set_movie($this->movieModel);
                 $rating->set_rating($rating_data->rating);
                 $rating->set_review($rating_data->review);
+                $rating->set_created_at($rating_data->created_at);
                 array_push($ratings, $rating);
             }
             catch (Exception $e) {
@@ -91,9 +92,10 @@ class MoviePageController extends BaseController
         
         $data = [
             'Movie' => $this->movieModel,
-            'lastId' => $ratings_data['lastId'],
             'firstId' => $ratings_data['firstId'],
+            'lastId' => $ratings_data['lastId'],
             'lastResult' => $ratings_data['lastResults'],
+            'totalRows' => $ratings_data['totalRows'],
         ];
         $metadata = [
             'title' => $this->movieModel->get_original_title(),
