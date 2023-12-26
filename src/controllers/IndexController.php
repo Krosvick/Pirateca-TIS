@@ -25,14 +25,14 @@ class IndexController extends BaseController
 
     public function index()
     {
-       //the client should be logged before this, hard code for now
+       //the client should be logged before this, if not it will be a guest user with id 1
         if (!$this->user) {
             $this->user = new User();
             $this->user->set_id(1);
             echo "user not logged";
         }
 
-        $recommended_movies = $this->user->getRecommendedMoviesIds(10);
+        $recommended_movies = $this->user->getRecommendedMoviesIds(30);
         #the array is top_movies and then the recommended movies
         $recommended_movies = $recommended_movies['top_movies'];
         $user_movies = [];
