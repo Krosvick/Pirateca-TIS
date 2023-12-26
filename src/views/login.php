@@ -22,6 +22,9 @@
                     <p>&nbsp</p>
                     <hr>
                     <button class="btn btn-block border-2 bg-purple-800 text-white hover:bg-white hover:text-purple-800 hover:border-purple-700">Login</button>
+                    <p>&nbsp</p>
+                    <hr>
+                    <button class="btn btn-block border-2 bg-gray-800 text-white hover:bg-white hover:text-gray-800 hover:border-gray-700" onclick="window.location.href='register'">Registrarse</button>
                 </div>
             </form>
         </div>
