@@ -10,6 +10,21 @@
         <link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.24/dist/full.min.css" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="/css/styles-movie.css">
         <script src="https://cdn.tailwindcss.com"></script>
+        <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        fontFamily: {
+                            poppins: ['Poppins', 'sans-serif'],
+                        },
+                        colors: {
+                            clifford: '#da373d',
+                        }
+                    }
+                }
+            }
+        </script>
         <!-- Include CSS files -->
 
         <?php if (isset($cssFiles) && is_array($cssFiles)): ?>
@@ -25,10 +40,9 @@
             <?php endforeach; ?>
         <?php endif; ?>
     </head>
-    <body>
+    <body class="font-poppins">
         <?= $content ?? '' ?>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
     </body>
-
 </html>

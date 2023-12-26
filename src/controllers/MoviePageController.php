@@ -64,41 +64,49 @@ class MoviePageController extends BaseController
             $this->movieModel->moviePosterFallback();
 
             $ratings_data = $this->ratingsDAO->getPagebyMovie($this->movieModel, $offset);
-
-            $ratings = [];
-            foreach($ratings_data['rows'] as $rating_data){
-                #create a rating object for each rating
-                try {
-                    $rating = new Rating();
-                    $rating->set_id($rating_data->id);
-                    $rating->set_user($this->userDAO->find($rating_data->user_id, 'Models\User'));
-                    $rating->set_movie($this->movieModel);
-                    $rating->set_rating($rating_data->rating);
-                    $rating->set_review($rating_data->review);
-                    $rating->set_created_at($rating_data->created_at);
-                    array_push($ratings, $rating);
+            
+            if(isset($ratings_data['message'])){
+                $data = [
+                    'Movie' => $this->movieModel,
+                    'message' => $ratings_data['message'],
+                    'noRatings' => true,
+                ];
+            } else {
+                $ratings = [];
+                foreach($ratings_data['rows'] as $rating_data){
+                    #create a rating object for each rating
+                    try {
+                        $rating = new Rating();
+                        $rating->set_id($rating_data->id);
+                        $rating->set_user($this->userDAO->find($rating_data->user_id, 'Models\User'));
+                        $rating->set_movie($this->movieModel);
+                        $rating->set_rating($rating_data->rating);
+                        $rating->set_review($rating_data->review);
+                        $rating->set_created_at($rating_data->created_at);
+                        array_push($ratings, $rating);
+                    }
+                    catch (Exception $e) {
+                        echo ("hola");
+                        continue;
+                    }
+                
                 }
-                catch (Exception $e) {
-                    echo ("hola");
-                    continue;
+                $this->movieModel->set_ratings($ratings);
+                //dd($ratings);        
+                
+                
+                if(!$this->movieModel){
+                    $this->response->abort(404);
                 }
-            
+                
+                $data = [
+                    'Movie' => $this->movieModel,
+                    'firstId' => $ratings_data['firstId'],
+                    'lastId' => $ratings_data['lastId'],
+                    'lastResult' => $ratings_data['lastResults'],
+                    'totalRows' => $ratings_data['totalRows'],
+                ];
             }
-            $this->movieModel->set_ratings($ratings);
-            //dd($ratings);        
-            
-            
-            if(!$this->movieModel){
-                $this->response->abort(404);
-            }
-            
-            $data = [
-                'Movie' => $this->movieModel,
-                'firstId' => $ratings_data['firstId'],
-                'lastId' => $ratings_data['lastId'],
-                'lastResult' => $ratings_data['lastResults'],
-                'totalRows' => $ratings_data['totalRows'],
-            ];
             $metadata = [
                 'title' => $this->movieModel->get_original_title(),
                 'description' => 'Movie page',

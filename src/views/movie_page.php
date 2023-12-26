@@ -11,18 +11,18 @@ require('partials/nav.php') ?>
 
 <!-- movie descripction-->
 <div class="p-8">
-    <form class="bg-gradient-to-r from-purple-900 via-purple-700 to-purple-900 max-w-4xl mx-auto my-8 px-10 py-8 shadow-lg rounded-lg flex flex-col items-center lg:flex-row">
-        <div class="flex flex-col justify-start w-full">
-            <div class="poster">
+    <div class="bg-gradient-to-r from-purple-900 via-purple-700 to-purple-900 max-w-4xl mx-auto my-8 px-10 py-8 shadow-lg rounded-lg flex flex-col gap-5 items-center lg:flex-row">
+        <div class="lg:w-1/4 h-full">
+            <div class="poster h-full">
                 <!-- HERE SHOULD BE CHANGED TO DYNAMIC FUNCTIONS -->
-                <img src="https://image.tmdb.org/t/p/w780<?= $Movie->get_poster_path() ?>" alt="Movie Poster" class="max-w-full min-fit rounded-md shadow-xl">
+                <img src="https://image.tmdb.org/t/p/w780<?= $Movie->get_poster_path() ?>" alt="Movie Poster" class="max-w-full min-fit rounded-md shadow-xl h-full">
             </div>
         </div>
-        <div class="shadow-md bg-gray-900 rounded-lg p-10 my-4 flex flex-col items-start">
+        <div class="shadow-md bg-gray-900 rounded-lg p-10 my-4 flex flex-col items-start lg:w-3/4">
             <h1 class="text-4xl font-bold mb-4">
                 <?= $Movie->get_original_title() ?>
             </h1>
-            <p class="text-lg mb-2">
+            <p class="text-md mb-2">
                 <?= $Movie->get_overview() ?>
             </p>
             <p class="text-sm">Release:
@@ -39,7 +39,7 @@ require('partials/nav.php') ?>
             </p>
             <p>&nbsp</p>
             <!-- The button to open modal -->
-            <label for="my_modal_6" class="btn">Rate this movie</label>
+            <label for="my_modal_6" class="btn mt-5">Rate this movie</label>
 
             <input type="checkbox" id="my_modal_6" class="modal-toggle" />
             <div class="modal" role="dialog">
@@ -65,14 +65,14 @@ require('partials/nav.php') ?>
             </div>
             
         </div>
-    </form>
+    </div>
 </div>
 
-<div class="max-w-4xl mx-auto my-8 px-10 py-8 text-black shadow-md border-white border-4 glass rounded-md">
+<div class="max-w-4xl mx-auto mt-8 px-10 py-8 text-black shadow-md border-white border-4 glass rounded-md h-fit">
 
     <button class="btn btn-active">
-    Reseñas
-    <div class="badge badge-secondary"><?= $totalRows?></div>
+    Reviews
+    <span class="badge badge-secondary"><?= isset($noRatings) ? '0' : $totalRows ?></span>
     </button>
 
     <?php
@@ -99,6 +99,7 @@ require('partials/nav.php') ?>
     <?php $crrt = 1; ?>
 
     <?php
+    if(!isset($noRatings) || !$noRatings){
     $Ratings = $Movie->get_ratings();
 
     foreach ($Ratings as $rating) :
@@ -134,15 +135,18 @@ require('partials/nav.php') ?>
                     <p class="mb-2 text-gray-500 dark:text-gray-400"></p>
                 </article>
             </div>
+        </div>
         <?php endforeach; ?>
-
-        </div>
-
+        
         <div class="join grid grid-cols-3">
-            <a href="/movie/<?=$Movie->get_id(); ?>/offset/0" class="join-item btn outline outline-1 bg-purple-900 text-white hover:bg-gray-900 outline-black">«</a>
+            <a href="/movie/<?=$Movie->get_id(); ?>/offset/0" class="join-item btn hover:outline hover:outline-1 bg-gray-900 text-white hover:bg-white hover:text-black hover:outline-black">«</a>
             <?php if($firstId < $lastResult): ?>
-                <a href="/movie/<?=$Movie->get_id(); ?>/offset/<?= $lastId ?>" class="join-item btn btn-outline outline-1 outline-black bg-purple-900 text-white hover:bg-gray-900">Next page</a>
-                <a href="/movie/<?=$Movie->get_id(); ?>/offset/<?= $lastResult ?>" class="join-item btn outline outline-1 bg-purple-900 text-white hover:bg-gray-900 outline-black">»</a>
-            <?php endif; ?>
-        </div>
+                <a href="/movie/<?=$Movie->get_id(); ?>/offset/<?= $lastId ?>" class="join-item btn btn-outline outline-1 outline-black bg-gray-900 text-white hover:bg-white hover:text-black">Next page</a>
+                <a href="/movie/<?=$Movie->get_id(); ?>/offset/<?= $lastResult ?>" class="join-item btn outline outline-1 bg-gray-900 text-white hover:bg-white hover:text-black outline-black">»</a>
+                <?php endif; ?>
+            </div>
+    <?php } else {
+        echo "<p class='text-2xl text-center'>No ratings found for this movie.</p>";
+    } ?>
 </div>
+<?php require('partials/footer.php') ?>
