@@ -11,14 +11,14 @@ require('partials/nav.php') ?>
 
 <!-- movie descripction-->
 <div class="p-8">
-    <form class="bg-gradient-to-r from-purple-900 via-purple-700 to-purple-900 max-w-4xl mx-auto my-8 px-10 py-8 shadow-lg rounded-lg flex flex-col items-center lg:flex-row">
-        <div class="flex flex-col justify-start w-full">
-            <div class="poster">
+    <div class="bg-gradient-to-r from-purple-900 via-purple-700 to-purple-900 max-w-4xl mx-auto my-8 px-10 py-8 shadow-lg rounded-lg flex flex-col gap-5 items-center lg:flex-row">
+        <div class="lg:w-1/4 h-full">
+            <div class="poster h-full">
                 <!-- HERE SHOULD BE CHANGED TO DYNAMIC FUNCTIONS -->
-                <img src="https://image.tmdb.org/t/p/w780<?= $Movie->get_poster_path() ?>" alt="Movie Poster" class="max-w-full min-fit rounded-md shadow-xl">
+                <img src="https://image.tmdb.org/t/p/w780<?= $Movie->get_poster_path() ?>" alt="Movie Poster" class="max-w-full min-fit rounded-md shadow-xl h-full">
             </div>
         </div>
-        <div class="shadow-md bg-gray-900 rounded-lg p-10 my-4 flex flex-col items-start">
+        <div class="shadow-md bg-gray-900 rounded-lg p-10 my-4 flex flex-col items-start lg:w-3/4">
             <h1 class="text-4xl font-bold mb-4">
                 <?= $Movie->get_original_title() ?>
             </h1>
@@ -67,7 +67,7 @@ require('partials/nav.php') ?>
             </div>
             
         </div>
-    </form>
+    </div>
 </div>
 
 <div class="max-w-4xl mx-auto mt-8 px-10 py-8 text-black shadow-md border-white border-4 glass rounded-md h-fit">
