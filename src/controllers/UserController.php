@@ -31,9 +31,11 @@ class UserController extends BaseController{
         $ratingsDAO = new RatingsDAO();
         $MoviesDAO = new MoviesDAO();
 
+        $username = $this->user->get_username();
         $user_movies = $this->user->get_liked_movies($ratingsDAO, $MoviesDAO, 10);
         $data = [
-            'user_movies' => $user_movies
+            'user_movies' => $user_movies,
+            'username' => $username
         ];
         $metadata = [
             'title' => 'Pirateca - Profile',

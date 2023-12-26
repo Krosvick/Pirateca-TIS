@@ -45,7 +45,7 @@ require('partials/nav.php') ?>
             
             <input type="checkbox" id="my_modal_6" class="modal-toggle" />
             <div class="modal" role="dialog">
-                <form method="POST">               
+                <form method="POST" action="">               
                 <div class="modal-box">
                     <h3 class="font-bold text-lg text-black center">RATE THIS MOVIE</h3>
                     <p class="py-4 text-black"></p>
@@ -59,7 +59,7 @@ require('partials/nav.php') ?>
                     <p class="py-4 text-black">Review this movie!</p>
                     <input type="text" placeholder="Write your opinion..." class="w-full px-4 py-2 rounded-lg text-gray-500 bg-white border-2 border-gray-300 outline-none">
                     <p>&nbsp</p>
-                    <button class="bg-purple-900 text-white px-4 py-2 rounded-lg ml-2" href="/">Rate</button>
+                    <button class="bg-purple-900 text-white px-4 py-2 rounded-lg ml-2" href="/#">Rate</button>
                 </div>
                 </form>
             </div>
