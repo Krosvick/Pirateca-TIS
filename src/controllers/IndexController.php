@@ -32,7 +32,7 @@ class IndexController extends BaseController
             echo "user not logged";
         }
 
-        $recommended_movies = $this->user->getRecommendedMoviesIds(10);
+        $recommended_movies = $this->user->getRecommendedMoviesIds(30);
         #the array is top_movies and then the recommended movies
         $recommended_movies = $recommended_movies['top_movies'];
         $user_movies = [];
