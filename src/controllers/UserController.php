@@ -115,4 +115,32 @@ class UserController extends BaseController{
         return $this->render("likedpost", $optionals);
     }
 
+    public function ProfilePage(){
+        if(!$this->user){
+            echo "You are not logged in";
+            $this->response->abort(404);
+        }
+
+        $user = Application::$app->session->get('user');
+        dd($user);
+
+        $data = [
+            'user' => $user
+        ];
+        $metadata = [
+            'title' => 'Pirateca - Profile',
+            'description' => 'This is the profile page of the user.',
+            'cssFiles' => [
+                '' // TODO: add css files here
+            ],
+        ];
+        $optionals = [
+            'data' => $data,
+            'metadata' => $metadata
+        ];
+
+        return $this->render('profile', $optionals);
+
+    }
+
 }
