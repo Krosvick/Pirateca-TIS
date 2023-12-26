@@ -1,7 +1,7 @@
 
 /* bg */
 .bg {
-    background-image: url('../images/fondo-cine.png'); 
+    background-image: url('../images/fondocine2.png'); 
     background-size: cover;
     background-position: center;
     filter: blur(8px);
@@ -29,8 +29,10 @@
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
     border-image-slice: 1;
     padding: 1rem;
+    align-items: baseline;
+    width: 7cm;
+    height: 10cm;
 }
-
 
 /* button */
 button {
