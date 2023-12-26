@@ -1,23 +1,29 @@
-<div class="bg-gray-200 h-screen flex items-center justify-center">
-    <div class="form-container bg-white rounded-lg shadow-lg p-8">
+
+<?php require('partials/nav.php') ?>
+<div class="bg-gray-200 h-screen flex items-center justify-center movie-container ">
+    <div class="form-container glass rounded-lg shadow-lg p-8 ">
 
         <!-- gpteado cambiar despues -->
 
-        <div class="profile-container text-center mb-6">
+        <div class="max-w-4xl mx-auto my-8 px-10 py-8 text-black shadow-md border-white border-4 rounded-md bg-white">
             <h1 class="text-2xl font-bold text-blue-600 mb-2">
-                <u><?php ['echo $user']['username']; ?></u>
+              MY PROFILE
+              <?= $user->get_username(); ?> 
             </h1>
+             <span><i class="fa fa-calendar"><?= formatDate($user->get_created_at());  // Outputs: Joined December 202
+            ?></i> 
+           
             <div class="grid grid-cols-2 gap-4">
                 <div class="mb-4">
-                    <p class="text-gray-700 font-bold mb-2">Name</p>
+                    <p class="text-gray-700 font-bold mb-2">First name</p>
                     <p class="border border-gray-300 rounded-md py-2 px-3">
-                        <?php ['echo $user']['username']; ?>
+                        <?= $user->get_first_name(); ?>
                     </p>
                 </div>
                 <div class="mb-4">
-                    <p class="text-gray-700 font-bold mb-2">Email</p>
+                    <p class="text-gray-700 font-bold mb-2">Last name</p>
                     <p class="border border-gray-300 rounded-md py-2 px-3">
-                        <?php ['user']['email']; ?>
+                        <?= $user->get_last_name(); ?>
                     </p>
                 </div>
                 <div class="mb-4">
