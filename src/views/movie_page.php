@@ -70,11 +70,11 @@ require('partials/nav.php') ?>
     </form>
 </div>
 
-<div class="max-w-4xl mx-auto my-8 px-10 py-8 text-black shadow-md border-white border-4 glass rounded-md">
+<div class="max-w-4xl mx-auto mt-8 px-10 py-8 text-black shadow-md border-white border-4 glass rounded-md h-fit">
 
     <button class="btn btn-active">
     Reseñas
-    <div class="badge badge-secondary"><?= $totalRows?></div>
+    <span class="badge badge-secondary"><?= isset($noRatings) ? '0' : $totalRows ?></span>
     </button>
 
     <?php
@@ -101,6 +101,7 @@ require('partials/nav.php') ?>
     <?php $crrt = 1; ?>
 
     <?php
+    if(!isset($noRatings) || !$noRatings){
     $Ratings = $Movie->get_ratings();
 
     foreach ($Ratings as $rating) :
@@ -138,14 +139,16 @@ require('partials/nav.php') ?>
                 </article>
             </div>
         <?php endforeach; ?>
-
         </div>
-
+        
         <div class="join grid grid-cols-3">
             <a href="/movie/<?=$Movie->get_id(); ?>/offset/0" class="join-item btn outline outline-1 bg-purple-900 text-white hover:bg-gray-900 outline-black">«</a>
             <?php if($firstId < $lastResult): ?>
                 <a href="/movie/<?=$Movie->get_id(); ?>/offset/<?= $lastId ?>" class="join-item btn btn-outline outline-1 outline-black bg-purple-900 text-white hover:bg-gray-900">Next page</a>
                 <a href="/movie/<?=$Movie->get_id(); ?>/offset/<?= $lastResult ?>" class="join-item btn outline outline-1 bg-purple-900 text-white hover:bg-gray-900 outline-black">»</a>
-            <?php endif; ?>
-        </div>
+                <?php endif; ?>
+            </div>
+    <?php } else {
+        echo "<p class='text-2xl text-center'>No ratings found for this movie.</p>";
+    } ?>
 </div>
