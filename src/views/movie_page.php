@@ -142,10 +142,10 @@ require('partials/nav.php') ?>
         <?php endforeach; ?>
         
         <div class="join grid grid-cols-3">
-            <a href="/movie/<?=$Movie->get_id(); ?>/offset/0" class="join-item btn outline outline-1 bg-purple-900 text-white hover:bg-gray-900 outline-black">«</a>
+            <a href="/movie/<?=$Movie->get_id(); ?>/offset/0" class="join-item btn outline outline-1 bg-gray-900 text-white hover:bg-white hover:text-black outline-black">«</a>
             <?php if($firstId < $lastResult): ?>
-                <a href="/movie/<?=$Movie->get_id(); ?>/offset/<?= $lastId ?>" class="join-item btn btn-outline outline-1 outline-black bg-purple-900 text-white hover:bg-gray-900">Next page</a>
-                <a href="/movie/<?=$Movie->get_id(); ?>/offset/<?= $lastResult ?>" class="join-item btn outline outline-1 bg-purple-900 text-white hover:bg-gray-900 outline-black">»</a>
+                <a href="/movie/<?=$Movie->get_id(); ?>/offset/<?= $lastId ?>" class="join-item btn btn-outline outline-1 outline-black bg-gray-900 text-white hover:bg-white hover:text-black">Next page</a>
+                <a href="/movie/<?=$Movie->get_id(); ?>/offset/<?= $lastResult ?>" class="join-item btn outline outline-1 bg-gray-900 text-white hover:bg-white hover:text-black outline-black">»</a>
                 <?php endif; ?>
             </div>
     <?php } else {
