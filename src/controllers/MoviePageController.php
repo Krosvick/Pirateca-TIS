@@ -42,73 +42,75 @@ class MoviePageController extends BaseController
      * @return void Renders the movie page template.
      */
     public function MoviePage($id, $offset = 0) {
-        //$id = 12;
-        //this is a more truthful oop approach
-        $this->movieModel = $this->movieDAO->find($id, 'Models\Movie');
-        
-        //this is how to validate the model, either returns true or false
-        //var_dump($this->movieModel->validate(), $this->movieModel->getAllErrors());
-        //dd($this->movieModel);
-        $this->movieModel->MovieDirectorRetrieval();
-        $this->movieModel->moviePosterFallback();
-        
-        /*if ($offset<0){
-            $page = 0;
-        }*/
+        dd($this->request);
 
-        $ratings_data = $this->ratingsDAO->getPagebyMovie($this->movieModel, $offset);
+        if($this->request->isPost()){
+            $body = $this->request->getBody();
+            dd($body);
+            $rating = $body->rating;
 
-        //dd($ratings_data);
-        $ratings = [];
-        foreach($ratings_data['rows'] as $rating_data){
-            #create a rating object for each rating
-            try {
-                $rating = new Rating();
-                $rating->set_id($rating_data->id);
-                $rating->set_user($this->userDAO->find($rating_data->user_id, 'Models\User'));
-                $rating->set_movie($this->movieModel);
-                $rating->set_rating($rating_data->rating);
-                $rating->set_review($rating_data->review);
-                $rating->set_created_at($rating_data->created_at);
-                array_push($ratings, $rating);
-            }
-            catch (Exception $e) {
-                echo ("hola");
-                continue;
-            }
-        
+        } else if ($this->request->isDelete()){
+            dd($this->request);
         }
-        $this->movieModel->set_ratings($ratings);
-        //dd($ratings);        
-        
-        
-        if(!$this->movieModel){
-            $this->response->abort(404);
-        }
-        if($this->request->isDelete()){
-            #lo borrai con el dao
+        else {
+            //$id = 12;
+            //this is a more truthful oop approach
+            $this->movieModel = $this->movieDAO->find($id, 'Models\Movie');
             
-        }
-        
-        $data = [
-            'Movie' => $this->movieModel,
-            'firstId' => $ratings_data['firstId'],
-            'lastId' => $ratings_data['lastId'],
-            'lastResult' => $ratings_data['lastResults'],
-            'totalRows' => $ratings_data['totalRows'],
-        ];
-        $metadata = [
-            'title' => $this->movieModel->get_original_title(),
-            'description' => 'Movie page',
-            'cssFiles' => ['styles-movie.css'],
-        ];
-        $optionals = [
-            'data' => $data,
-            'metadata' => $metadata,
-        ];
+            //this is how to validate the model, either returns true or false
+            //var_dump($this->movieModel->validate(), $this->movieModel->getAllErrors());
+            //dd($this->movieModel);
+            $this->movieModel->MovieDirectorRetrieval();
+            $this->movieModel->moviePosterFallback();
 
-        return $this->render("movie_page", $optionals);
-        
+            $ratings_data = $this->ratingsDAO->getPagebyMovie($this->movieModel, $offset);
+
+            $ratings = [];
+            foreach($ratings_data['rows'] as $rating_data){
+                #create a rating object for each rating
+                try {
+                    $rating = new Rating();
+                    $rating->set_id($rating_data->id);
+                    $rating->set_user($this->userDAO->find($rating_data->user_id, 'Models\User'));
+                    $rating->set_movie($this->movieModel);
+                    $rating->set_rating($rating_data->rating);
+                    $rating->set_review($rating_data->review);
+                    $rating->set_created_at($rating_data->created_at);
+                    array_push($ratings, $rating);
+                }
+                catch (Exception $e) {
+                    echo ("hola");
+                    continue;
+                }
+            
+            }
+            $this->movieModel->set_ratings($ratings);
+            //dd($ratings);        
+            
+            
+            if(!$this->movieModel){
+                $this->response->abort(404);
+            }
+            
+            $data = [
+                'Movie' => $this->movieModel,
+                'firstId' => $ratings_data['firstId'],
+                'lastId' => $ratings_data['lastId'],
+                'lastResult' => $ratings_data['lastResults'],
+                'totalRows' => $ratings_data['totalRows'],
+            ];
+            $metadata = [
+                'title' => $this->movieModel->get_original_title(),
+                'description' => 'Movie page',
+                'cssFiles' => ['styles-movie.css'],
+            ];
+            $optionals = [
+                'data' => $data,
+                'metadata' => $metadata,
+            ];
+
+            return $this->render("movie_page", $optionals);
+        }
     }
 
 }

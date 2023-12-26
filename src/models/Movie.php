@@ -25,21 +25,25 @@ class Movie extends Model{
     private array $ratings;
     private $moviesDAO;
 
+  
     /**
-     * Class constructor for the Movie class.
+     * Constructor method for the Movie class.
      *
-     * @param int|null $id The ID of the movie (optional)
-     * @param string|null $original_title The original title of the movie (optional)
-     * @param string|null $overview A brief overview of the movie (optional)
-     * @param string|null $poster_path The path to the movie's poster image (optional)
-     * @param array|null $genres An array of genres that the movie belongs to (optional)
-     * @param string|null $belongs_to_collection The collection that the movie belongs to (optional)
-     * @param bool $adult A boolean indicating if the movie is for adults only (optional, default is false)
-     * @param string|null $original_language The original language of the movie (optional)
-     * @param string|null $release_date The release date of the movie (optional)
-     * @param string|null $deleted_at The date when the movie was deleted (optional)
-     * @param string|null $updated_at The date when the movie was last updated (optional)
-     * @param string|null $director The director of the movie (optional)
+     * Initializes the properties of the Movie object with the provided values.
+     *
+     * @param int|null $id The ID of the movie.
+     * @param string|null $original_title The original title of the movie.
+     * @param string|null $overview A brief overview of the movie.
+     * @param string|null $poster_path The path to the movie's poster image.
+     * @param array|null $genres An array of genres that the movie belongs to.
+     * @param string|null $belongs_to_collection The name of the collection that the movie belongs to.
+     * @param bool $adult Indicates if the movie is suitable for adults only.
+     * @param string|null $original_language The original language of the movie.
+     * @param string|null $release_date The release date of the movie.
+     * @param string|null $deleted_at The date when the movie was deleted, or null if it is not deleted.
+     * @param string|null $updated_at The date when the movie was last updated, or null if it is not updated.
+     * @param string|null $director The name of the movie's director.
+     * @return void
      */
     public function __construct($id = null, $original_title = null, $overview = null, $poster_path = null, $genres = null, $belongs_to_collection = null, $adult = false, $original_language = null, $release_date = null, $deleted_at = null, $updated_at = null, $director = null)
     {
@@ -57,7 +61,6 @@ class Movie extends Model{
         $this->director = $director;
         $this->moviesDAO = new moviesDAO();
     }
-
     #getters and setters
     /**
      * Get the ID of the movie.

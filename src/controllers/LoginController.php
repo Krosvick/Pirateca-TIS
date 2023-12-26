@@ -17,6 +17,15 @@ class LoginController extends BaseController
         $this->userDAO = new UsersDAO();
     }
 
+    /**
+     * Handles the login functionality.
+     *
+     * Retrieves the username and password from the request body,
+     * calls the login() method of the User class to validate the credentials,
+     * and redirects the user to the home page if the login is successful.
+     *
+     * @return void
+     */
     public function index()
     {
         if($this->request->isPost()){

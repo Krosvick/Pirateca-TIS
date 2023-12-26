@@ -18,5 +18,6 @@ $app->router->delete('/movie/{id}', 'MoviePageController@MoviePage');
 $app->router->get('/movie/{id}/offset/{offset}', 'MoviePageController@MoviePage');
 
 $app->router->get('/information', 'InformationController@infopage');
+
 $app->router->get('/profile', 'UserController@ProfilePage');
 $app->router->get('/profile/likedpost', 'UserController@LikedMovies');

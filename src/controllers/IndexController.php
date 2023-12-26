@@ -15,6 +15,14 @@ class IndexController extends BaseController
     private $movieModel;
     private $movieDAO;
 
+
+ 
+    /**
+     * IndexController constructor.
+     *
+     * @param mixed $container The dependency injection container.
+     * @param mixed $routeParams The route parameters.
+     */
     public function __construct($container, $routeParams)
     {
         //call the parent constructor to get access to the properties and methods of the BaseController class
@@ -22,6 +30,7 @@ class IndexController extends BaseController
         $this->user = Application::$app->session->get('user');
         $this->movieDAO = new moviesDAO();
     }
+    
 
     public function index()
     {
@@ -56,16 +65,6 @@ class IndexController extends BaseController
             'metadata' => $metadata
         ];
         return $this->render("index", $optionals);
-        
-        /*
-        $movies = $this->movieDAO->get_some(10, 0);
-        
-        //dd($movies);
-        //write a code to send $movies data to the view
-        $optionals = [
-            'movies' => $movies
-        ];
-        //return $this->render("index",$optionals);
-        */
+ 
     }
 }
