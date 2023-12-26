@@ -25,3 +25,7 @@ function redirect($path)
     header("location: {$path}");
     exit();
 }
+function formatDate($dateString) {
+    $date = new DateTime($dateString);
+    return 'Joined ' . $date->format('F Y');
+}
