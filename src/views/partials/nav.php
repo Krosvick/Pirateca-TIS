@@ -21,10 +21,13 @@
                         <a href="/profile/likedpost" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Liked</a>
                     </li>
                     <li>
-                        <a class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Followers: <?php ['user']['user_followers'] ?></a>
+                        <a class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Followers: <?php  ?></a>
                     </li>
                     <li>
-                        <a class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Following: <?php ['user']['user_following'] ?></a>
+                        <a class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Following: <?php ?></a>
+                    </li>
+                    <li>
+                        <a href="/logout" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Logout</a>
                     </li>
                 </ul>
             </div>
@@ -34,5 +37,6 @@
                 <img src="/images/guia.png" alt="Informacion de la Pagina" class="h-8">
             </a>
         </div>
+        
     </div>
 </nav>

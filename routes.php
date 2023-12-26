@@ -8,6 +8,8 @@ $app->router->post('/movie/{id}', 'MoviePageController@MoviePage'); //rating
 $app->router->get('/login', 'LoginController@index');
 $app->router->post('/login', 'LoginController@index'); //logea al usuario
 
+$app->router->get('/logout', 'UserController@NukeUser');
+
 $app->router->get('/search', 'searchController@search');
 $app->router->post('/search', 'searchController@search'); //busca peliculas
 

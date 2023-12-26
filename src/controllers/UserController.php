@@ -79,4 +79,11 @@ class UserController extends BaseController{
 
     }
 
+    public function NukeUser(){
+        if($this->user){
+            Application::$app->logout();
+            header('Location: /');
+        }
+    }
+
 }
