@@ -105,4 +105,19 @@ class RatingsDAO extends DAO {
             die($e->getMessage());
         }
     }
+
+    public function get_liked_movies($user_id, $quantity) {
+        try {
+            $sql = "SELECT * FROM {$this->table} WHERE user_id = :user_id ORDER BY user_id LIMIT :quantity";
+            $params = array(
+                'user_id' => [$user_id, PDO::PARAM_INT],
+                'quantity' => [$quantity, PDO::PARAM_INT],
+            );
+            $stmt = $this->connection->query($sql, $params);
+            $rows = $stmt->get();
+            return $rows;
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
 }

@@ -5,6 +5,7 @@ namespace Controllers;
 use DAO\UsersDAO;
 use Core\BaseController;
 use DAO\moviesDAO;
+use DAO\RatingsDAO;
 use Models\User;
 use Models\Movie;
 use Core\Application;
@@ -86,34 +87,32 @@ class UserController extends BaseController{
         // Implement code to handle the deletion process, e.g., redirect to a confirmation page
     }
 
-    public function ProfilePage(){
+    public function LikedMovies(){
         //exception if the user is not logged in
         if(!$this->user){
             echo "You are not logged in";
             $this->response->abort(404);
         }
-        //retrieve data of the user
-        //$user = $this->userDAO->find(Application::$app->session["user"] , User::class);
-        //retrieve the movies of the user
-        $user_movies = Application::$app->user->get_user_movies(10);        ;
-        dd($user_movies);
-        //retrieve the comments of the user
+        $ratingsDAO = new RatingsDAO();
+        $MoviesDAO = new MoviesDAO();
 
-        return $this->render("likedpost", $user_movies);
+        $user_movies = $this->user->get_liked_movies($ratingsDAO, $MoviesDAO, 10);
+        $data = [
+            'user_movies' => $user_movies
+        ];
+        $metadata = [
+            'title' => 'Pirateca - Profile',
+            'description' => 'This is the profile page of the user.',
+            'cssFiles' => [
+                '' // TODO: add css files here
+            ],
+        ];
+        $optionals = [
+            'data' => $data,
+            'metadata' => $metadata
+        ];
+
+        return $this->render("likedpost", $optionals);
     }
 
-    public function liked_movies(){
-        //exception if the user is not logged in
-        if(!$this->user){
-            echo "You are not logged in";
-            $this->response->abort(404);
-        }
-        //retrieve data of the user
-        $user = $this->userDAO->find($id, User::class);
-        //retrieve the movies of the user
-        $user_movies = $this->user->getMovies($id);
-        //retrieve the comments of the user
-
-        return $this->render("register", $optionals);
-    }
 }
