@@ -57,7 +57,8 @@ class UserController extends BaseController{
         }
 
         $user = Application::$app->session->get('user');
-        dd($user);
+        //echo $user->get_username();
+        //dd($user);
 
         $data = [
             'user' => $user
@@ -65,9 +66,7 @@ class UserController extends BaseController{
         $metadata = [
             'title' => 'Pirateca - Profile',
             'description' => 'This is the profile page of the user.',
-            'cssFiles' => [
-                '' // TODO: add css files here
-            ],
+            'cssFiles' =>  ['styles_nav.css'],
         ];
         $optionals = [
             'data' => $data,
