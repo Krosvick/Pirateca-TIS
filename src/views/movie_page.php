@@ -37,12 +37,10 @@ require('partials/nav.php') ?>
                 $Movie->get_director();
                 ?>
             </p>
-
+            <p>&nbsp</p>
             <!-- The button to open modal -->
             <label for="my_modal_6" class="btn">Rate this movie</label>
 
-            <!-- Put this part before </body> tag -->
-            
             <input type="checkbox" id="my_modal_6" class="modal-toggle" />
             <div class="modal" role="dialog">
                 <form method="POST" action="">               
@@ -121,8 +119,8 @@ require('partials/nav.php') ?>
                 <article>
                     <div class="flex items-center mb-4">
                         <img class="w-10 h-10 me-4 rounded-full" src="https://cdn.discordapp.com/attachments/324358291561906186/1172908205068800160/image.png?ex=656206e3&is=654f91e3&hm=ca8e71b36e8f7c2afb64674c51780e94bca641beb6adb0a7ede617da1e3a5d1c&" alt="">
-                        <div class="font-medium dark:text-white">
-                            <p class="ml-1.5">
+                        <div class="font-medium text-white">
+                            <p class="ml-1.5 font-bold">
                                 <?= $rating->get_user()->get_username() ?>
                             </p>
                         </div>
@@ -132,9 +130,8 @@ require('partials/nav.php') ?>
                         <?php displaystar($starsGiven); ?>
                     </div>
 
+                    <!-- FALTA LA REVIEW DEL USAURIO -->
                     <p class="mb-2 text-gray-500 dark:text-gray-400"></p>
-
-
                 </article>
             </div>
         <?php endforeach; ?>
