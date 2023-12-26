@@ -23,8 +23,8 @@ use PDO;
             $this->table = 'users';
             parent::__construct();
         }
-        
 
+        
     }
 
     //VENTAJAS "bindParam"

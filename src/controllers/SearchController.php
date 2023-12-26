@@ -18,36 +18,26 @@ class SearchController extends BaseController
         parent::__construct(...func_get_args());
         $this->movieModel = new Movie();
     }
-
     public function search(){
-        return $this->render("/partials/test");
-    }
+        if($this->request->isPost()){ //esto es cuando se realiza busqueda con el forms de abajo
 
-    /**
-     *
-     * This method performs a search for a movie based on the 'search' parameter from the route parameters.
-     * If the movie is found, it renders a view with the movie data.
-     * If the movie is not found, it aborts the response with a 404 status code.
-     *
-     * @return mixed The rendered view with movie data or a 404 response.
-     */
-    public function imsorry()
-    {
-        #busqueda will get the routeparams
-        $busqueda = $this->routeParams['search'];
-        $movie = $this->movieModel->search($busqueda);
-        if (!$movie) {
-            $this->response->abort(404);
+            $busqueda = $this->routeParams['search'];
+            $movie = $this->movieModel->search($busqueda);
+            if(!$movie){
+                $this->response->abort(404);
+            }
+            $data = [
+                'Movie' => $movie,
+                'busqueda' => $busqueda
+            ];
+            return $this->render("partials/test", $data);
+
+
+        }else{
+
+            return $this->render("/partials/test"); //esto es para tener el forms y el boton de search
+
         }
-        $data = [
-            'Movie' => $movie,
-            'busqueda' => $busqueda
-        ];
-        return $this->render("partials/test", $data);
     }
     
-}       
-
-
- 
-
+}

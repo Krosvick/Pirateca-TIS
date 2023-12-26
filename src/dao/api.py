@@ -77,29 +77,39 @@ class SimpleAPI(BaseHTTPRequestHandler):
         }
 
         if parsed_url.path == '/recommendations':
+            time1 = time.time()
+            print(query_params, '/recommendations')
             userId = int(query_params['userId'][0])
-            n = int(query_params.get('n', [10])[0])
-            top_movies = Algorithm.get_user_recommendations(userId, self.ratings_df, self.movies_df, self.model, self.predictions, 10)
+            #print every data in same "print" function to check if it's working, all df should print sample
+            n = int(query_params['n'][0])
+            top_movies = Algorithm.get_user_recommendations(userId, self.ratings_df, self.movies_df, self.model, self.predictions, n)
             response = {'top_movies': top_movies}
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
             self.end_headers()
             self.wfile.write(json.dumps(response, cls=NpEncoder).encode('utf-8'))
+            print('Recommendations generated in ' + str(time.time() - time1) + ' seconds.')
         elif parsed_url.path == '/recommendations/ids':
+            time1 = time.time()
+            print(query_params, '/recommendations/ids')
             userId = int(query_params['userId'][0])
-            n = int(query_params.get('n', [10])[0])
-            top_movies = Algorithm.get_user_recommendations(userId, self.ratings_df, self.movies_df, self.model, self.predictions, 10)
+            n = int(query_params['n'][0])
+            top_movies = Algorithm.get_user_recommendations(userId, self.ratings_df, self.movies_df, self.model, self.predictions, n)
             response = {'top_movies': top_movies}
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
             self.end_headers()
             self.wfile.write(json.dumps(response, cls=NpEncoder).encode('utf-8'))
+            print('Recommendations generated in ' + str(time.time() - time1) + ' seconds.')
         elif parsed_url.path == '/':
+            time1 = time.time()
+            print(query_params, '/')
             response = {'endpoints_info': endpoints_info}
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
             self.end_headers()
             self.wfile.write(json.dumps(response).encode('utf-8'))
+            print('Endpoints info generated in ' + str(time.time() - time1) + ' seconds.')
         else:
             self.send_response(404)
             self.end_headers()

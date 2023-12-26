@@ -124,7 +124,7 @@ class Algorithm():
 
         return tuned_svd_model
     
-    def get_user_recommendations(user_id, ratings_df, movies_df, model, predictions, top_n=30, include_rating=True):
+    def get_user_recommendations(user_id, ratings_df, movies_df, model, predictions, top_n=10, include_rating=True):
         """
         Generate movie recommendations for a given user based on their ratings and a trained model.
 

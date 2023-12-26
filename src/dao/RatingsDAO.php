@@ -69,7 +69,7 @@ class RatingsDAO extends DAO {
             $lastResult = $firstIdStmt->statement->fetchColumn();
 
             // Query to get the rows for the current page
-            $sql = "SELECT * FROM {$this->table} WHERE movie_id = :movie_id AND id > :last_id ORDER BY id LIMIT :limit";
+            $sql = "SELECT * FROM {$this->table} FORCE INDEX (movie_id_id_index) WHERE movie_id = :movie_id AND id > :last_id ORDER BY id LIMIT :limit";
             $params = array(
                 'movie_id' => [$movie->get_id(), PDO::PARAM_INT],
                 'last_id' => [$lastId, PDO::PARAM_INT],
@@ -80,19 +80,42 @@ class RatingsDAO extends DAO {
             //from rows replace all user_id above 908 and assign them from one in the range of 1-908
             foreach($rows as $row){
                 if($row->user_id > 908){
-                    $row->user_id = rand(1, 908);
+                    $row->user_id = rand(1, 900);
                 }
             } 
             $firstId = $rows[0]->id;
 
             $lastId = end($rows)->id;
 
+            $sql = "SELECT COUNT(*) FROM {$this->table} WHERE movie_id = :movie_id";
+            $params = array(
+                'movie_id' => [$movie->get_id(), PDO::PARAM_INT]
+            );
+            $stmt = $this->connection->query($sql, $params);
+            $totalRows = $stmt->statement->fetchColumn();
+
             return [
                 'rows' => $rows,
-                'lastId' => $lastId,
                 'firstId' => $firstId,
-                'lastResults' => $lastResult
+                'lastId' => $lastId,
+                'lastResults' => $lastResult,
+                'totalRows' => $totalRows
             ];
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
+
+    public function get_liked_movies($user_id, $quantity) {
+        try {
+            $sql = "SELECT * FROM {$this->table} WHERE user_id = :user_id ORDER BY user_id LIMIT :quantity";
+            $params = array(
+                'user_id' => [$user_id, PDO::PARAM_INT],
+                'quantity' => [$quantity, PDO::PARAM_INT],
+            );
+            $stmt = $this->connection->query($sql, $params);
+            $rows = $stmt->get();
+            return $rows;
         } catch (Exception $e) {
             die($e->getMessage());
         }

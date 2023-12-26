@@ -325,6 +325,20 @@ class User extends Model{
         return $response;
     }
 
+    public function get_liked_movies($RatingsDAO, $MoviesDAO, $quantity): array
+    {
+        $ratings = $RatingsDAO->get_liked_movies($this->id, $quantity);
+        $movies = [];
+        foreach($ratings as $rating) {
+            $movie = $MoviesDAO->find($rating->movie_id, Movie::class);
+            $movie->movieposterfallback();
+            array_push($movies, $movie);
+        }
+
+        //$movies = $MoviesDAO->get_liked_movies($this->id, $quantity);
+        return $movies;
+    }
+
     /**
      * Finds a user by their ID.
      *

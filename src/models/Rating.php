@@ -15,6 +15,7 @@ class Rating extends Model{
     private ?Movie $movie;
     private $rating;
     private $review;
+    private $created_at;
 
    
     /**
@@ -28,13 +29,14 @@ class Rating extends Model{
      * @param float|null $rating The rating value.
      * @param string|null $review The review comment.
      */
-    public function __construct($id = null, $user = null, $movie = null, $rating = null, $review = null)
+    public function __construct($id = null, $user = null, $movie = null, $rating = null, $review = null, $created_at = null)
     {
         $this->id = $id;
         $this->user = $user;
         $this->movie = $movie;
         $this->rating = $rating;
         $this->review = $review;
+        $this->created_at = $created_at;
     }
     
 
@@ -138,6 +140,25 @@ class Rating extends Model{
     {
         $this->review = $review;
     }
+    /**
+     * Get the created_at value.
+     *
+     * @return string The created_at value.
+     */
+    public function get_created_at()
+    {
+        return $this->created_at;
+    }
+    /**
+     * Set the created_at value.
+     *
+     * @param string $created_at The created_at value.
+        */
+    public function set_created_at($created_at)
+    {
+        $this->created_at = $created_at;
+    }
+
 
     /**
      * Get the primary key of the Rating model.

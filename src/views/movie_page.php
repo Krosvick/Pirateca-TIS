@@ -10,45 +10,70 @@ require('partials/nav.php') ?>
 ?>
 
 <!-- movie descripction-->
-<div class="p-8 text-white">
-    <form class="bg-gradient-to-r from-purple-900 via-purple-700 to-purple-900 max-w-4xl mx-auto my-8 px-10 py-8 text-white shadow-lg rounded-lg flex items-center">
-        <div class="flex flex-col justify-start">
-            <div class="poster mr-8">
+<div class="p-8">
+    <form class="bg-gradient-to-r from-purple-900 via-purple-700 to-purple-900 max-w-4xl mx-auto my-8 px-10 py-8 shadow-lg rounded-lg flex flex-col items-center lg:flex-row">
+        <div class="flex flex-col justify-start w-full">
+            <div class="poster">
                 <!-- HERE SHOULD BE CHANGED TO DYNAMIC FUNCTIONS -->
-                <img src="https://image.tmdb.org/t/p/w780<?= $Movie->get_poster_path() ?>" alt="Movie Poster" class="max-w-full min-fit">
-            </div>
-            <div>
-                <button type="button" onclick="toggleDiv()" class="text-white hover:text-purple border border-white hover:bg-white hover:text-black focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-8 py-2.5 text-center mt-2 mb-2 dark:border-purple-400 dark:text-purple-400 dark:hover:text-white dark:hover:bg-purple-500 dark:focus:ring-purple-900">Rate Movie</button>
+                <img src="https://image.tmdb.org/t/p/w780<?= $Movie->get_poster_path() ?>" alt="Movie Poster" class="max-w-full min-fit rounded-md shadow-xl">
             </div>
         </div>
-        <div class="details">
-            <h1 class="text-4xl text-white font-bold mb-4">
+        <div class="shadow-md bg-gray-900 rounded-lg p-10 my-4 flex flex-col items-start">
+            <h1 class="text-4xl font-bold mb-4">
                 <?= $Movie->get_original_title() ?>
             </h1>
-            <p class="text-lg text-gray-100 mb-2">
+            <p class="text-lg mb-2">
                 <?= $Movie->get_overview() ?>
             </p>
-            <p class="text-sm text-gray-100">Release:
+            <p class="text-sm">Release:
                 <?php
                 $date = $Movie->get_release_date();
                 $year = substr($date, 0, 4);
                 echo $year;
                 ?>
             </p>
-            <p class="text-sm text-gray-100">Director:
+            <p class="text-sm font-bold">Director:
                 <?=
                 $Movie->get_director();
                 ?>
             </p>
+
+            <!-- The button to open modal -->
+            <label for="my_modal_6" class="btn">open modal</label>
+
+            <!-- Put this part before </body> tag -->
+            
+            <input type="checkbox" id="my_modal_6" class="modal-toggle" />
+            <div class="modal" role="dialog">
+                <form method="POST">               
+                <div class="modal-box">
+                    <h3 class="font-bold text-lg text-black center">RATE THIS MOVIE</h3>
+                    <p class="py-4 text-black"></p>
+                    <div class="rating">
+                        <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" checked/>
+                        <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
+                        <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
+                        <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
+                        <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
+                    </div>
+                    <p class="py-4 text-black">Review this movie!</p>
+                    <input type="text" placeholder="Write your opinion..." class="w-full px-4 py-2 rounded-lg text-gray-500 bg-white border-2 border-gray-300 outline-none">
+                    <p>&nbsp</p>
+                    <button class="bg-purple-900 text-white px-4 py-2 rounded-lg ml-2" href="/">Rate</button>
+                </div>
+                </form>
+            </div>
+            
         </div>
     </form>
 </div>
 
-<hr>
+<div class="max-w-4xl mx-auto my-8 px-10 py-8 text-black shadow-md border-white border-4 glass rounded-md">
 
-<div class="bg-white max-w-4xl mx-auto my-8 px-10 py-8 text-black bg-opacity-50 shadow-md border-white border-4">
-
-    <span>Reviews</u></span>
+    <button class="btn btn-active">
+    Reseñas
+    <div class="badge badge-secondary"><?= $totalRows?></div>
+    </button>
 
     <?php
     //funcion para mostrar cuantas estrellas le dio el suaer a la pelicula
@@ -90,11 +115,8 @@ require('partials/nav.php') ?>
 
             <!-- Single Review Component -->
 
-            <div class="bg-white shadow-md rounded-lg p-4 mb-4 flex items-start">
+            <div class="bg-gray-900 shadow-md rounded-lg p-4 mb-4 flex items-start">
                 <article>
-
-                    <?php print_r($page); ?>
-
                     <div class="flex items-center mb-4">
                         <img class="w-10 h-10 me-4 rounded-full" src="https://cdn.discordapp.com/attachments/324358291561906186/1172908205068800160/image.png?ex=656206e3&is=654f91e3&hm=ca8e71b36e8f7c2afb64674c51780e94bca641beb6adb0a7ede617da1e3a5d1c&" alt="">
                         <div class="font-medium dark:text-white">
@@ -117,8 +139,11 @@ require('partials/nav.php') ?>
 
         </div>
 
-        <div class="join grid grid-cols-2">
-            <button class="join-item btn btn-outline">Previous page</button>
-            <button class="join-item btn btn-outline">Next</button>
+        <div class="join grid grid-cols-3">
+            <a href="/movie/<?=$Movie->get_id(); ?>/offset/0" class="join-item btn outline outline-1 bg-purple-900 text-white hover:bg-gray-900 outline-black">«</a>
+            <?php if($firstId < $lastResult): ?>
+                <a href="/movie/<?=$Movie->get_id(); ?>/offset/<?= $lastId ?>" class="join-item btn btn-outline outline-1 outline-black bg-purple-900 text-white hover:bg-gray-900">Next page</a>
+                <a href="/movie/<?=$Movie->get_id(); ?>/offset/<?= $lastResult ?>" class="join-item btn outline outline-1 bg-purple-900 text-white hover:bg-gray-900 outline-black">»</a>
+            <?php endif; ?>
         </div>
 </div>
