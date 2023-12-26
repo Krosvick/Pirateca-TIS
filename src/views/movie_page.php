@@ -22,7 +22,7 @@ require('partials/nav.php') ?>
             <h1 class="text-4xl font-bold mb-4">
                 <?= $Movie->get_original_title() ?>
             </h1>
-            <p class="text-lg mb-2">
+            <p class="text-md mb-2">
                 <?= $Movie->get_overview() ?>
             </p>
             <p class="text-sm">Release:
@@ -39,7 +39,7 @@ require('partials/nav.php') ?>
             </p>
 
             <!-- The button to open modal -->
-            <label for="my_modal_6" class="btn">Rate this movie</label>
+            <label for="my_modal_6" class="btn mt-5">Rate this movie</label>
 
             <!-- Put this part before </body> tag -->
             
@@ -142,7 +142,7 @@ require('partials/nav.php') ?>
         <?php endforeach; ?>
         
         <div class="join grid grid-cols-3">
-            <a href="/movie/<?=$Movie->get_id(); ?>/offset/0" class="join-item btn outline outline-1 bg-gray-900 text-white hover:bg-white hover:text-black outline-black">«</a>
+            <a href="/movie/<?=$Movie->get_id(); ?>/offset/0" class="join-item btn hover:outline hover:outline-1 bg-gray-900 text-white hover:bg-white hover:text-black hover:outline-black">«</a>
             <?php if($firstId < $lastResult): ?>
                 <a href="/movie/<?=$Movie->get_id(); ?>/offset/<?= $lastId ?>" class="join-item btn btn-outline outline-1 outline-black bg-gray-900 text-white hover:bg-white hover:text-black">Next page</a>
                 <a href="/movie/<?=$Movie->get_id(); ?>/offset/<?= $lastResult ?>" class="join-item btn outline outline-1 bg-gray-900 text-white hover:bg-white hover:text-black outline-black">»</a>
