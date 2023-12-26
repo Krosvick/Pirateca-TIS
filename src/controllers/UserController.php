@@ -84,6 +84,9 @@ class UserController extends BaseController{
             Application::$app->logout();
             header('Location: /');
         }
+        else{
+            header('Location: /');
+        }
     }
 
 }
