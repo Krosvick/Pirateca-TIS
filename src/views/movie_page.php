@@ -42,20 +42,24 @@ require('partials/nav.php') ?>
             <label for="my_modal_6" class="btn">open modal</label>
 
             <!-- Put this part before </body> tag -->
+            
             <input type="checkbox" id="my_modal_6" class="modal-toggle" />
             <div class="modal" role="dialog">
                 <form method="POST">               
                 <div class="modal-box">
-                    <h3 class="font-bold text-lg text-black">RATE THIS MOVIE</h3>
+                    <h3 class="font-bold text-lg text-black center">RATE THIS MOVIE</h3>
                     <p class="py-4 text-black"></p>
                     <div class="rating">
+                        <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" checked/>
                         <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
-                        <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" checked />
                         <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
                         <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
                         <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
                     </div>
-                    <button class="bg-purple-900 text-white px-4 py-2 rounded-lg ml-2">Rate</button>
+                    <p class="py-4 text-black">Review this movie!</p>
+                    <input type="text" placeholder="Write your opinion..." class="w-full px-4 py-2 rounded-lg text-gray-500 bg-white border-2 border-gray-300 outline-none">
+                    <p>&nbsp</p>
+                    <button class="bg-purple-900 text-white px-4 py-2 rounded-lg ml-2" href="/">Rate</button>
                 </div>
                 </form>
             </div>
