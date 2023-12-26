@@ -73,7 +73,7 @@ require('partials/nav.php') ?>
 <div class="max-w-4xl mx-auto mt-8 px-10 py-8 text-black shadow-md border-white border-4 glass rounded-md h-fit">
 
     <button class="btn btn-active">
-    Reseñas
+    Reviews
     <span class="badge badge-secondary"><?= isset($noRatings) ? '0' : $totalRows ?></span>
     </button>
 
@@ -152,3 +152,4 @@ require('partials/nav.php') ?>
         echo "<p class='text-2xl text-center'>No ratings found for this movie.</p>";
     } ?>
 </div>
+<?php require('partials/footer.php') ?>
