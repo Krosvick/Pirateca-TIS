@@ -37,7 +37,27 @@ require('partials/nav.php') ?>
                 $Movie->get_director();
                 ?>
             </p>
-            <button type="button" onclick="toggleDiv()" class="btn btn-outline rounded-md text-white lg:m-5 my-5">Rate Movie</button>
+
+            <!-- The button to open modal -->
+            <label for="my_modal_6" class="btn">open modal</label>
+
+            <!-- Put this part before </body> tag -->
+            <input type="checkbox" id="my_modal_6" class="modal-toggle" />
+            <div class="modal" role="dialog" method="POST">
+                <div class="modal-box">
+                    <h3 class="font-bold text-lg text-black">RATE THIS MOVIE</h3>
+                    <p class="py-4 text-black"></p>
+                    <div class="rating">
+                        <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
+                        <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" checked />
+                        <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
+                        <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
+                        <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
+                    </div>
+                    <button class="bg-purple-900 text-white px-4 py-2 rounded-lg ml-2">Rate</button>
+                </div>
+            </div>
+            
         </div>
     </form>
 </div>
