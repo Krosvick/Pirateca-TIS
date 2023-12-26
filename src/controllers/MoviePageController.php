@@ -46,7 +46,7 @@ class MoviePageController extends BaseController
 
         if($this->request->isPost()){
             $body = $this->request->getBody();
-            dd($body);
+            //dd($body);
             $rating = $body->rating;
 
         } else if ($this->request->isDelete()){
