@@ -138,8 +138,8 @@ require('partials/nav.php') ?>
 
                 </article>
             </div>
-        <?php endforeach; ?>
         </div>
+        <?php endforeach; ?>
         
         <div class="join grid grid-cols-3">
             <a href="/movie/<?=$Movie->get_id(); ?>/offset/0" class="join-item btn outline outline-1 bg-purple-900 text-white hover:bg-gray-900 outline-black">«</a>
