@@ -2,6 +2,12 @@
 
 namespace Core;
 
+/**
+ * Abstract class Model
+ *
+ * This abstract class serves as the base class for all models in the application.
+ * It provides common functionality and properties that are shared among models.
+ */
 abstract class Model{
 
     const RULE_REQUIRED = 'required';

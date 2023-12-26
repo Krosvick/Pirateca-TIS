@@ -20,6 +20,12 @@ class RegisterController extends BaseController
         $this->registerMiddleware(new TestMiddleware($container));
     }
 
+
+    /**
+     * Handles the registration process for a user.
+     *
+     * @return mixed The rendered registration page or a redirect response.
+     */
     public function index()
     {
         $user = new User();

@@ -5,7 +5,7 @@ namespace Controllers;
 use Core\BaseController;
 
 
-class InfoControlloer extends BaseController {
+class InfoController extends BaseController {
 
     //just render the page
     public function infopage() {

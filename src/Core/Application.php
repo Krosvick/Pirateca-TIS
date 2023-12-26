@@ -4,17 +4,77 @@
 namespace Core;
 
 use Models\User;
+/**
+ * Class Application
+ *
+ * This class represents an application and defines its properties and methods.
+ */
 class Application
 {
+    /**
+     * The event name before a request is made.
+     */
     const EVENT_BEFORE_REQUEST = 'beforeRequest';
+
+    /**
+     * The event name after a request is made.
+     */
     const EVENT_AFTER_REQUEST = 'afterRequest';
+
+    /**
+     * An array of event listeners.
+     *
+     * @var array
+     */
     protected array $eventListeners = [];
+
+    /**
+     * The static instance of the Application class.
+     *
+     * @var Application
+     */
     public static Application $app;
+
+    /**
+     * The base path of the application.
+     *
+     * @var string
+     */
     public static string $BASE_PATH;
+
+    /**
+     * The container for dependencies.
+     *
+     * @var array
+     */
     private $container = [];
+
+    /**
+     * The router instance.
+     *
+     * @var Router
+     */
     public Router $router;
+
+    /**
+     * The database instance.
+     *
+     * @var Database
+     */
     public Database $db;
+
+    /**
+     * The session instance.
+     *
+     * @var Session
+     */
     public Session $session;
+
+    /**
+     * The user instance.
+     *
+     * @var User|null
+     */
     public ?User $user = null;
 
     public function __construct($rootPath)

@@ -23,11 +23,20 @@ class SearchController extends BaseController
         return $this->render("/partials/test");
     }
 
-    public function imsorry(){
+    /**
+     *
+     * This method performs a search for a movie based on the 'search' parameter from the route parameters.
+     * If the movie is found, it renders a view with the movie data.
+     * If the movie is not found, it aborts the response with a 404 status code.
+     *
+     * @return mixed The rendered view with movie data or a 404 response.
+     */
+    public function imsorry()
+    {
         #busqueda will get the routeparams
         $busqueda = $this->routeParams['search'];
         $movie = $this->movieModel->search($busqueda);
-        if(!$movie){
+        if (!$movie) {
             $this->response->abort(404);
         }
         $data = [
