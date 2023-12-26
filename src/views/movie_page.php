@@ -39,13 +39,13 @@ require('partials/nav.php') ?>
             </p>
 
             <!-- The button to open modal -->
-            <label for="my_modal_6" class="btn">open modal</label>
+            <label for="my_modal_6" class="btn">Rate this movie</label>
 
             <!-- Put this part before </body> tag -->
             
             <input type="checkbox" id="my_modal_6" class="modal-toggle" />
             <div class="modal" role="dialog">
-                <form method="post" action="">               
+                <form method="POST" action="">               
                     <div class="modal-box">
                         <h3 class="font-bold text-lg text-black center">RATE THIS MOVIE</h3>
                         <p class="py-4 text-black"></p>
@@ -59,7 +59,7 @@ require('partials/nav.php') ?>
                         <p class="py-4 text-black">Review this movie!</p>
                         <input type="text" placeholder="Write your opinion..." class="w-full px-4 py-2 rounded-lg text-gray-500 bg-white border-2 border-gray-300 outline-none">
                         <p>&nbsp</p>
-                        <button type="submit" class="bg-purple-900 text-white px-4 py-2 rounded-lg ml-2" href="/">Rate</button>
+                        <button type="submit" class="bg-purple-900 text-white px-4 py-2 rounded-lg ml-2" href="/#">Rate</button>
                     </div>
                 </form>
             </div>

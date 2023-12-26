@@ -13,9 +13,9 @@
       <div class="carousel w-full">
          <?php $i = 1;
          foreach ($user_movies as $movie): ?>
-         <div id="<?= "slide". $i?>" class="carousel-item relative w-full flex items-center justify-center">   
+         <div id="<?= "slide". $i?>" class="carousel-item relative w-full justify-center">   
             <a href="/movie/<?= $movie->get_id() ?>">   
-               <img src="<?= $movie->get_poster_path() ? "https://image.tmdb.org/t/p/w500" . $movie->get_poster_path() : '/views/images/PLACEHOLDER.png' ?>" class="w-1/2" />
+               <img src="<?= $movie->get_poster_path() ? "https://image.tmdb.org/t/p/w500" . $movie->get_poster_path() : '/views/images/PLACEHOLDER.png' ?>" class="w-11/15" />
             </a> 
             <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
                <?php if($i == 1): ?>
