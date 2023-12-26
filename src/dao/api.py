@@ -58,6 +58,15 @@ class SimpleAPI(BaseHTTPRequestHandler):
         super().__init__(*args, **kwargs)
 
     def do_GET(self):
+        """
+        Handles GET requests to the API.
+
+        Parses the URL to determine the requested endpoint and query parameters.
+        If the endpoint is recognized, it performs the corresponding action and returns a response.
+        If the endpoint is not recognized, it returns a 404 error.
+
+        :return: JSON response containing the requested data or an error message.
+        """
         parsed_url = urlparse(self.path)
         query_params = parse_qs(parsed_url.query)
 
@@ -69,7 +78,6 @@ class SimpleAPI(BaseHTTPRequestHandler):
 
         if parsed_url.path == '/recommendations':
             userId = int(query_params['userId'][0])
-            #print every data in same "print" function to check if it's working, all df should print sample
             n = int(query_params.get('n', [10])[0])
             top_movies = Algorithm.get_user_recommendations(userId, self.ratings_df, self.movies_df, self.model, self.predictions, 10)
             response = {'top_movies': top_movies}
@@ -97,34 +105,55 @@ class SimpleAPI(BaseHTTPRequestHandler):
             self.end_headers()
 
     def do_POST(self):
+        """
+        Handles the POST request to the '/ratings' endpoint.
+
+        This method receives a list of ratings in JSON format, updates the model with the new ratings, and sends a response message.
+
+        Example Usage:
+        ```
+        # POST request to '/ratings' endpoint with ratings data
+        # ratings_data is a list of dictionaries, each containing user_id, movie_id, and rating
+        response = requests.post('http://localhost:8000/ratings', json=ratings_data)
+        print(response.json())
+        # Output: {'message': 'Model updated.'}
+        ```
+
+        Inputs:
+        - self: The instance of the SimpleAPI class.
+        - self.headers['Content-Length']: The length of the content in the request headers.
+        - self.rfile: The file-like object used to read the request body.
+        - parsed_data: The parsed JSON data from the request body.
+
+        Outputs:
+        - A JSON response with a message indicating that the model has been updated.
+        """
         content_length = int(self.headers['Content-Length'])
         post_data = self.rfile.read(content_length).decode('utf-8')
         parsed_data = json.loads(post_data)
 
-        #/ratings will receive all the ratings from the db and update the model
-        #/from the data we need user_id, movie_id, rating
         if self.path == '/ratings':
-            #parsed_data[0] is a individual rating like this
-            #{'id': 1, 'rating': '2.5', 'review': None, 'movie_id': 1371, 'user_id': 1}
-            # we need to iterate over the whole list and update the model
             for rating in parsed_data:
-                #get the data
                 user_id = rating['user_id']
                 movie_id = rating['movie_id']
                 rating = rating['rating']
-            #update the model
-            #add the rating to the ratings_df using concat
+
             self.ratings_df = pd.concat([self.ratings_df, pd.DataFrame([[user_id, movie_id, rating]], columns=['user_id', 'movie_id', 'rating'])])
-            #regenerate the model
             self.model = Algorithm.tune_model(self.ratings_df, self.model)
-            #return a message
             response = {'message': 'Model updated.'}
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
             self.end_headers()
             self.wfile.write(json.dumps(response).encode('utf-8'))
 
-    def obtain_new_ratings(): #this is the adapter function
+    def obtain_new_ratings():
+        """
+        Adapter function that obtains new ratings from the database and updates the ratings_df in the SimpleAPI class.
+
+        Returns:
+        - If there are new ratings, returns a DataFrame containing the new ratings.
+        - If there are no new ratings, returns None.
+        """
         test = pydao.DAO()
         rows = []
         for row in test.get_all_new():
@@ -132,7 +161,7 @@ class SimpleAPI(BaseHTTPRequestHandler):
             movie_id = row[3]
             rating = float(row[1])
             rows.append({'userId': user_id, 'movieId': movie_id, 'rating': rating})
-        #concatenate the rows with the ratings_df saved in the api
+
         if len(rows) > 0:
             SimpleAPI.ratings_df = pd.concat([SimpleAPI.ratings_df, pd.DataFrame(rows)])
             return pd.DataFrame(rows)
@@ -146,6 +175,17 @@ import numpy as np
 class NpEncoder(json.JSONEncoder):
 
     def default(self, obj):
+        """
+        Customizes the JSON encoding process for NumPy objects.
+
+        Converts NumPy integers, floats, and arrays to their corresponding Python types before encoding them as JSON.
+
+        Args:
+            obj: The object to be encoded as JSON.
+
+        Returns:
+            The encoded JSON representation of the input object.
+        """
         if isinstance(obj, np.integer):
             return int(obj)
         if isinstance(obj, np.floating):
@@ -155,6 +195,31 @@ class NpEncoder(json.JSONEncoder):
         return super(NpEncoder, self).default(obj)
 
 def generate_model_periodically():
+    """
+    Periodically generates a recommendation model based on new ratings data.
+    
+    It continuously checks for new ratings, and if there are any, it updates the existing ratings dataframe and tunes the model using the `tune_model` function from the `Algorithm` class. The function then sleeps for a specified period of time before checking for new ratings again.
+    
+    Example Usage:
+    ```python
+    # Start generating the model periodically
+    generate_model_periodically()
+    ```
+    
+    Inputs: None
+    
+    Flow:
+    1. The function enters an infinite loop.
+    2. It calls the `obtain_new_ratings` function from the `SimpleAPI` class to get new ratings data.
+    3. If new ratings data is available, it updates the existing ratings dataframe by concatenating the new data.
+    4. It calls the `tune_model` function from the `Algorithm` class to tune the model using the updated ratings dataframe.
+    5. The function prints the time taken to regenerate the model.
+    6. If no new ratings data is available, the function prints a message indicating that.
+    7. The function sleeps for a specified period of time.
+    8. The loop continues from step 2.
+    
+    Outputs: None
+    """
     while True:
         ratings_df1 = SimpleAPI.obtain_new_ratings()
 
@@ -171,6 +236,20 @@ def generate_model_periodically():
         time.sleep(1000000) #change to 100 in presentation
 
 if __name__ == '__main__':
+    """
+    Starts a new thread that periodically generates a recommendation model based on new ratings data.
+    Then starts an HTTP server that listens for incoming requests and serves the API.
+
+    Example Usage:
+    python script.py
+
+    Inputs:
+    None
+
+    Outputs:
+    None
+    """
+
     model_thread = threading.Thread(target=generate_model_periodically)
     model_thread.daemon = True
     model_thread.start()
