@@ -153,6 +153,6 @@ use Models\Movie;
             <button type="submit" class="bg-purple-900 text-white px-4 py-2 rounded-lg ml-2" href="/#">Rate</button>
         </form>
         </div>
-        <label class="modal-backdrop" for="my_modal_7">Close</label>
     </div>
+    <label class="modal-backdrop" for="my_modal_7"></label>
 </div>

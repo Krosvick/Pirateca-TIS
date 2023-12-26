@@ -45,15 +45,18 @@ class MoviePageController extends BaseController
         //dd($this->request);
 
         if($this->request->isPost()){
+
+
             $body = $this->request->getBody();
             dd($body);
-            $rating = $body->rating;
+            $rating = $body["rating"];
+            $review = $body["review"];
+
 
         } else if ($this->request->isDelete()){
             dd($this->request);
         }
         else {
-            //$id = 12;
             //this is a more truthful oop approach
             $this->movieModel = $this->movieDAO->find($id, 'Models\Movie');
             
