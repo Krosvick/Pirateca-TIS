@@ -11,7 +11,7 @@
     <?php foreach ($user_movies as $movie): ?>
         <div class="max-w-sm rounded overflow-hidden shadow-lg m-5">
             <a href="/movie/<?= $movie->get_id() ?>">
-                <img class="w-full" src="<?= $movie->get_poster_path() ? "https://image.tmdb.org/t/p/w500" . $movie->get_poster_path() : '/views/images/PLACEHOLDER.png' ?>" alt="Movie page">
+                <img class="w-full border-4 border-t-purple-600 border-l-purple-600 border-r-purple-800 border-b-purple-800" src="<?= $movie->get_poster_path() ? "https://image.tmdb.org/t/p/w500" . $movie->get_poster_path() : '/views/images/PLACEHOLDER.png' ?>" alt="Movie page">
             </a>
             <div class="px-6 py-4 bg-slate-100 border-slate-200 h-full">
                 <div class="font-bold text-xl mb-2 text-black"><?= $movie->get_original_title() ?></div>

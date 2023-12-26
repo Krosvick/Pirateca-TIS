@@ -42,7 +42,7 @@ class MoviePageController extends BaseController
      * @return void Renders the movie page template.
      */
     public function MoviePage($id, $offset = 0) {
-        dd($this->request);
+        //dd($this->request);
 
         if($this->request->isPost()){
             $body = $this->request->getBody();
@@ -50,7 +50,7 @@ class MoviePageController extends BaseController
             $rating = $body->rating;
 
         } else if ($this->request->isDelete()){
-            dd($this->request);
+            //dd($this->request);
         }
         else {
             //$id = 12;
