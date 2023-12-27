@@ -181,7 +181,7 @@ class Algorithm():
         # Then sort the predictions for each user and retrieve the k highest ones.
         for uid, user_ratings in recommendations.items():
             user_ratings.sort(key=lambda x: x[1], reverse=True)
-            recommendations[uid] = user_ratings[:top_n]
+            recommendations[uid] = user_ratings
 
         """
         top_recommendations is a list of tuples
