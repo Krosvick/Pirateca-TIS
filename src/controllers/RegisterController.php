@@ -7,6 +7,7 @@ use Core\Middleware\TestMiddleware;
 use Models\User;
 use DAO\UsersDAO;
 use Core\Auth\PasswordTrait;
+use Core\Application;
 
 class RegisterController extends BaseController
 {
@@ -40,6 +41,7 @@ class RegisterController extends BaseController
             if($user->validate()){
                 unset($user->password);
                 $this->userDAO->register($user);
+                Application::$app->session->setFlash('success', 'Thanks for registering');
                 $this->response->redirect('/login');
             }
         }

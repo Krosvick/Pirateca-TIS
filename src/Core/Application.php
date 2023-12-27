@@ -117,6 +117,15 @@ class Application
         return !self::$app->user;
     }
     /**
+     * Checks if the user is an admin.
+     * 
+     * @return bool Returns true if the user is an admin, false otherwise.
+     */
+    public static function isAdmin()
+    {
+        return self::$app->user->get_role() === 'admin';
+    }
+    /**
      * Runs the application.
      *
      * @return void
