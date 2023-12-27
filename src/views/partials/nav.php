@@ -65,6 +65,7 @@ use Core\Application;
         </div>
       <?php endif; ?>
       <?= $content ?? '' ?>
+      <?php require('footer.php'); ?>
   </div>
   <div class="drawer-side">
     <label for="my-drawer-3" aria-label="close sidebar" class="drawer-overlay"></label>

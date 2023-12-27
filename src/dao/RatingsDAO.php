@@ -128,4 +128,19 @@ class RatingsDAO extends DAO {
             die($e->getMessage());
         }
     }
+
+    public function find_by_user_and_movie($user_id, $movie_id) {
+        try {
+            $sql = "SELECT * FROM {$this->table} WHERE user_id = :user_id AND movie_id = :movie_id";
+            $params = array(
+                'user_id' => [$user_id, PDO::PARAM_INT],
+                'movie_id' => [$movie_id, PDO::PARAM_INT],
+            );
+            $stmt = $this->connection->query($sql, $params);
+            $row = $stmt->get();
+            return $row;
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
 }

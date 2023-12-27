@@ -340,9 +340,13 @@ class User extends Model{
         $user = $userDAO->find($id, static::class);
         return $user;
     }
-    
-    //login
-    //register
-    //delete account
 
+    public function has_rated_movie($movie_id, $RatingsDAO): bool{
+        $rating = $RatingsDAO->find_by_user_and_movie($this->id, $movie_id);
+        if($rating){
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

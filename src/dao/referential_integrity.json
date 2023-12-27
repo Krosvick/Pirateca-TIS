@@ -1,6 +1,8 @@
-[
-    {
-        "users" : ["ratings"],
-        "movies": ["ratings"]
+{
+    "users" : ["ratings"],
+    "movies": {
+        "tables" : {
+            "ratings": "movie_id"
+        }
     }
-]
+}
