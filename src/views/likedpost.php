@@ -1,6 +1,3 @@
-   <!-- header -->
-   <?php require('partials/nav.php') ?>
-   <!-- end header -->
 
 <div>
     <div class="flex justify-center mt-5 mx-5">

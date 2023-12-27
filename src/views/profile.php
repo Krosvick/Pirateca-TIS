@@ -1,5 +1,4 @@
 
-<?php require('partials/nav.php') ?>
 <div class="bg-gray-200 h-screen flex items-center justify-center movie-container ">
     <div class="form-container glass rounded-lg shadow-lg p-8 ">
 
