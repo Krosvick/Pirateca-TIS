@@ -1,6 +1,7 @@
 <!-- arreglar el tema del directorio -->
 <?php
 
+use Core\Application;
 use Models\Movie;
 
 ?>
@@ -37,14 +38,12 @@ use Models\Movie;
                     $Movie->get_director();
                     ?>
                 </p>
-
-                <!-- The button to open modal -->
-                <label for="my_modal_7" class="btn mt-5">Rate this movie</label>
-
-                <!-- Put this part before </body> tag -->
-
-
-
+                <div class="flex flex-row items-center justify-between w-full">
+                    <?php 
+                        echo $hasRated === false ? '<label for="my_modal_7" class="btn mt-5">Rate this movie</label>' : '';
+                    ?>
+                    <?= Application::isAdmin() ? '<a class="btn btn-error mt-5 hover:scale-110" href="/movie/' . $Movie->get_id() . '/delete">Delete movie</a>' : '' ?>
+                </div>
             </div>
         </div>
     </div>
@@ -97,8 +96,8 @@ use Models\Movie;
 
                         <!-- Single Review Component -->
 
-                        <div class="bg-gray-900 shadow-md rounded-lg p-4 mb-4 flex items-start">
-                            <article>
+                        <div class="bg-gray-900 shadow-md rounded-lg p-4 mb-4 flex items-start w-full">
+                            <article class="w-full">
                                 <div class="flex items-center mb-4">
                                     <img class="w-10 h-10 me-4 rounded-full" src="https://img.icons8.com/nolan/64/user-default.png" alt="">
                                     <div class="font-medium text-white">
@@ -113,8 +112,11 @@ use Models\Movie;
                                     </p>
                                 </div>
 
-                                <div class="flex items-center mb-1 space-x-1 rtl:space-x-reverse">
-                                    <?php displaystar($starsGiven); ?>
+                                <div class="flex items-center mb-1 space-x-1 rtl:space-x-reverse justify-between w-full">
+                                    <div class="flex items-center">
+                                        <?php displaystar($starsGiven);?>
+                                    </div>
+                                    <?= Application::isAdmin() ? '<a class="btn btn-error mt-5 hover:scale-110" href="/movie/' . $Movie->get_id() . '/review/' . $rating->get_id() . '/delete">Nuke review</a>' : '' ?>
                                 </div>
 
 
@@ -137,8 +139,10 @@ use Models\Movie;
         </div>
     </div>
 </section>
-<?php require('partials/footer.php') ?>
 
+<?php 
+if($hasRated === false){
+echo '
 <input type="checkbox" id="my_modal_7" class="modal-toggle" />
 <div class="modal" role="dialog">
     <div class="modal-box">
@@ -159,4 +163,6 @@ use Models\Movie;
         </div>
     </div>
     <label class="modal-backdrop" for="my_modal_7"></label>
-</div>
+</div>';
+}
+?>
