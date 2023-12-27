@@ -1,7 +1,4 @@
    
-   <!-- header -->
-   <?php require('partials/nav.php') ?>
-   <!-- end header -->
    <div>
       <div class="flex justify-left mt-5 mx-5">
          <h1 class="text-3xl font-bold pb-5 inline">Recomendado para</h1>
@@ -33,7 +30,4 @@
          <?php $i++; endforeach; ?>
       </div>
 
-      <!--  footer -->
-      <?php require('partials/footer.php') ?>
-      <!-- end footer -->
    </div>

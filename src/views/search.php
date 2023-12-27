@@ -1,4 +1,3 @@
-<?php require('C:\xampp\htdocs\Sufrimiento-TIS\src\views\partials\nav.php') ?>
 <div class="max-w-lg mx-auto mt-8 p-4 rounded-lg border border-gray-300 bg-white bg-opacity-25">
     <div class="flex items-center">
         <input type="text" placeholder="Search" class="w-full px-4 py-2 rounded-lg text-gray-500 bg-white border-2 border-gray-300 outline-none">

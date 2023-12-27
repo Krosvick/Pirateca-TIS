@@ -45,7 +45,7 @@ class View
 
             // Render header
             $metadata = $optionals['metadata'] ?? [];
-            $this->renderHeader($metadata, $content);
+            $this->renderHeader($metadata, $data, $content);
 
         } else {
             throw new \Exception("View file not found: $view");
@@ -58,7 +58,7 @@ class View
      * @param array $metadata An array containing metadata for the view file, such as CSS and JS files.
      * @return void
      */
-    protected function renderHeader($metadata, $content = '')
+    protected function renderHeader($metadata, $data, $content = '')
     {
         if (isset($metadata['cssFiles'])) {
             foreach ($metadata['cssFiles'] as $key => $value) {
@@ -73,6 +73,7 @@ class View
         $headerFile = $this->viewPath . 'partials/header.php';
         if (file_exists($headerFile)) {
             extract($metadata);
+            extract($data);
             require $headerFile;
         }
     }

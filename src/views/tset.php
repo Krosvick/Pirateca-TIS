@@ -1,4 +1,3 @@
-<?php require('partials/nav.php') ?>
 
 
 <?php foreach ($optionals["movies"] as $movie) : ?>
@@ -10,7 +9,3 @@
 
 <?php endforeach; ?>
 
-
-<!--  footer -->
-<?php require('partials/footer.php') ?>
-<!--  footer -->
