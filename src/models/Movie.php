@@ -362,22 +362,7 @@ class Movie extends Model{
         return $this->movies_list;
     }
 
-
-    /**
-     * @param $id  a movie id
-     * 
-     * @return array<array>   an especific movie data array
-     */
-    public function search($busqueda){
-        $movies = $this->DAOs['tableDAO']->dummytest_fulltext($busqueda);
-        foreach($movies as $key => $movie){
-            if ($movie != null){
-            $movies[$key]['poster_path'] = $this->moviePosterFallback($movie);
-        }
-        }
-        return $movies; 
-    }
-
+    
     /**
      * 
      * @param array $movie  a movie data array
