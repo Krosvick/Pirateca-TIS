@@ -34,12 +34,22 @@ class LoginController extends BaseController
             $password = $body['password'];
             $user = new User();
             $user_data = $user->login($this->userDAO, $username, $password);
+            //dd($user->getErrors());
             if($user->hasErrors()){
                 $data = [
                     'title' => 'Login',
                     'errors' => $user->getErrors()
                 ];
-                return $this->render("login", $data);
+                $metadata = [
+                    'title' => 'Login',
+                    'description' => 'Login page',
+                ];
+                $optionals = [
+                    'data' => $data,
+                    'metadata' => $metadata
+                ];
+
+                return $this->render("login", $optionals);
             }
             #map the user data to the user object
             $user->loadData($user_data);
