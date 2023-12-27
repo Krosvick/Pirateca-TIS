@@ -32,20 +32,43 @@
         
         <div class="flex flex-col bg-gray-200 shadow-md rounded-lg p-10 mb-4 text-black justify-normal divide-y divide-stone-300">
             <h2 class="text-2xl">Profile Information</h2>
-            <p class="text-xs">&nbsp</p>
-
+            <div>
+                <p class="text-xs">&nbsp</p>
+                <p class="text-xl mx-10"> Once you are logged in, you can see your profile information in the top right corner of the Navegation Bar. Alternatively, you can se an detailed form containing the information. This form contains: </p>
+                <ol class="list-decimal mx-10">
+                <p class="text-xs">&nbsp</p>
+                
+                    <li>Username</li>
+                    <li>Number of Followers</li>
+                    <li>Number of Following people</li>
+                    <li>A button to page of your reviewed movies</li>
+                </ol>
+            </div>
         </div>
         
         <p>&nbsp</p>
         
-        <div class="flex flex-col bg-opacity-0 shadow-md rounded-lg p-10 mb-4 text-black justify-normal divide-y divide-stone-300">
-            <p class="text-black">Pirateca is a website that allows you to share your and find.</p>
+        <div class="flex flex-col bg-opacity-0 shadow-md rounded-lg p-12 mb-4 text-black justify-normal divide-y divide-stone-300">
+            <h2 class="text-2xl">How to rate an Movie</h2>
+            <div>
+                <p class="text-xs">&nbsp</p>          
+                <p class="text-xl mx-10">To review a movie, go to the movie page, by searching in seacrh bar. In the page, click on the «Rate Movie» button located bellow the movie poster. An form will apper at right side of the page.</p>
+
+                <p class="text-xs">&nbsp</p>          
+                <p class="text-xl mx-10">There are two ways to review a movie:</p>
+                
+                <ol class="list-decimal mx-10">
+                    <p class="text-xs">&nbsp</p>
+                    <li>Just selecting the amount of star</li>
+                    <li>Selecting the amount of stars and write a review in the comment box bellow</li>
+                </ol>
+            </div>
         </div>
         
         <p>&nbsp</p>
         
         <div class="flex flex-col bg-gray-200 shadow-md rounded-lg p-10 mb-4 text-black justify-normal divide-y divide-stone-300">
-            <p class="text-black">Pirateca is a website that allows you to share your and find.</p>
+            <h2 class="text-2xl">Followers/Following</h2>
         </div>
     </div>
 </div>

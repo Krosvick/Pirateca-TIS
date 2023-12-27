@@ -55,6 +55,7 @@ class LoginController extends BaseController
         $metadata = [
             'title' => 'Login',
             'description' => 'Login page',
+            'cssFiles' => ['styles_movie.css']
         ];
         $optionals = [
             'data' => $data,
