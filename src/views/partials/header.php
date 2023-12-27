@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= isset($title) ? htmlspecialchars($title) : 'My Website' ?></title>
     <?php if (isset($description)) : ?>
-        <meta name="description" content="<?= htmlspecialchars($description) ?>">
+    <meta name="description" content="<?= htmlspecialchars($description) ?>">
     <?php endif; ?>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.24/dist/full.min.css" rel="stylesheet" type="text/css" />
