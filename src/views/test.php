@@ -26,7 +26,7 @@
             <?php if ($i == $page): ?>
                 <span><?= $i ?></span>
             <?php else: ?>
-                <a href="/search/<?= $busqueda ?>/page/<?= $i ?>"><?= $i ?></a>
+                <a href="?page=?<?= $i ?>"><?= $i ?></a>
             <?php endif; ?>
         <?php endfor; ?>
     </div>
