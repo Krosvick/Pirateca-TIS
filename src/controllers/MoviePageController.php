@@ -60,6 +60,7 @@ class MoviePageController extends BaseController
                 'review' => $review,
             ];
             $this->ratingsDAO->insert($sql);
+            $this->response->redirect("/movie/$id");
 
         } else if ($this->request->isDelete()){
             dd($this->request);
