@@ -164,6 +164,7 @@ class Application
         $className = get_class($user);
         $primaryKey = $className::primaryKey();
         $value = $user->{"get_$primaryKey"}();
+        unset($user->DAOs);
         Application::$app->session->set('usernumber', $value);
         Application::$app->session->set('user', $user);
         return true;
@@ -178,5 +179,6 @@ class Application
     {
         $this->user = null;
         self::$app->session->remove('user');
+        self::$app->session->remove('usernumber');
     }
 }
