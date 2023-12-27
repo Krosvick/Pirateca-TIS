@@ -19,9 +19,11 @@
                 <li class="hidden sm:block"><a href="/login">Login</a></li>
               <?php endif; ?>
               <li class="hidden sm:block"><a>Liked</a></li>
-              <li class="form-control text-white bg-white rounded-3xl w-full lg:w-fit">
-                <input type="text" placeholder="Search" class="input input-bordered input-primary md:w-auto text-black" />
-              </li>
+              <form action="search" method="post">
+                <li class="form-control text-white bg-white rounded-3xl w-full lg:w-fit">
+                  <input type="text" placeholder="Busqueda" name="busqueda" class="input input-bordered input-primary md:w-auto text-black" />
+                </li>
+              </form>
               <div class="dropdown dropdown-end block hidden sm:block">
                 <?php if(!$app->isGuest()): ?>
                 <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
