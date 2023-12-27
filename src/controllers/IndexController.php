@@ -38,7 +38,6 @@ class IndexController extends BaseController
         if (!$this->user) {
             $this->user = new User();
             $this->user->set_id(1);
-            echo "user not logged";
         }
 
         $recommended_movies = $this->user->getRecommendedMoviesIds(30);

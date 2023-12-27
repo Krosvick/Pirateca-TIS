@@ -22,7 +22,7 @@
                 <p>&nbsp</p>
                 <div class="flex justify-right">
                 <a href="/movie/<?= $movie->get_id() ?>">   
-                    <button class="btn btn-primary bg-purple-700 text-white border-2 border-purple-800 hover:border-purple-800 hover:bg-white hover:text-black w-full">Vist Page</button>
+                    <button class="btn btn-primary bg-purple-700 text-white border-2 border-purple-800 hover:border-purple-800 hover:bg-white hover:text-black w-full">Visit Page</button>
                 </a>
                 </div>
             </div>
