@@ -174,7 +174,6 @@ class Algorithm():
 
         # Make predictions only on the unseen movies
         predictions = model.test(unseen_movies_testset)
-        print("Predictions made for user {}.".format(user_id)) ########################################################################
 
         recommendations = defaultdict(list)
         for uid, iid, true_r, est, _ in predictions:

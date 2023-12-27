@@ -1,14 +1,13 @@
 <div>
     <div class="relative flex flex-col justify-center h-screen overflow-hidden text-black">
         <div class="w-full p-6 m-auto bg-white rounded-md shadow-md ring-2 ring-gray-800/50 lg:max-w-lg">
-            <?php if (isset($errors)) { ?>
-              <?php foreach ($errors["username"] as $error) { ?>
-                <p class="text-center text-red-600 font-bold text-xl"><?php echo $error ?></p>
-              <?php } ?>
-            <?php } ?>
+            
             <h1 class="text-3xl font-semibold text-center text-gray-700">Welcome Back!</h1>
             <form class="space-y-4" action="" method="post">
                 <div>
+                    <?php if (isset($data['errors']['password']) ): ?>
+                        <div class="error text-center text-sm text-red-600 font-medium dark:text-red"><?php echo $data['errors']['password'][0]; ?></div>
+                    <?php endif; ?>
                     <label class="label">
                         <span class="text-base label-text">Username</span>
                     </label>

@@ -100,19 +100,23 @@ use Models\Movie;
                         <div class="bg-gray-900 shadow-md rounded-lg p-4 mb-4 flex items-start">
                             <article>
                                 <div class="flex items-center mb-4">
-                                    <img class="w-10 h-10 me-4 rounded-full" src="https://cdn.discordapp.com/attachments/324358291561906186/1172908205068800160/image.png?ex=656206e3&is=654f91e3&hm=ca8e71b36e8f7c2afb64674c51780e94bca641beb6adb0a7ede617da1e3a5d1c&" alt="">
+                                    <img class="w-10 h-10 me-4 rounded-full" src="https://img.icons8.com/nolan/64/user-default.png" alt="">
                                     <div class="font-medium text-white">
                                         <p class="ml-1.5 font-bold">
                                             <?= $rating->get_user()->get_username() ?>
                                         </p>
                                     </div>
                                 </div>
+                                <div class="mb-4">
+                                    <p class="text-gray-300 dark:text-gray-400 mb-2">
+                                        <?= $rating->get_review() ?>
+                                    </p>
+                                </div>
 
                                 <div class="flex items-center mb-1 space-x-1 rtl:space-x-reverse">
                                     <?php displaystar($starsGiven); ?>
                                 </div>
 
-                                <p class="mb-2 text-gray-500 dark:text-gray-400"></p>
 
 
                             </article>
@@ -148,7 +152,7 @@ use Models\Movie;
             <input type="radio" name="rating" value="4" class="mask mask-star-2 bg-orange-400" />
             <input type="radio" name="rating" value="5" class="mask mask-star-2 bg-orange-400" checked />
             <p class="py-4 text-black">Review this movie!</p>
-            <input type="text" name="review" placeholder="Write your opinion..." class="w-full px-4 py-2 rounded-lg text-gray-500 bg-white border-2 border-gray-300 outline-none">
+            <input type="text" name="review" placeholder="Write your opinion..." class="w-full px-4 py-2 rounded-lg text-gray-500 bg-white border-2 border-gray-300 outline-none textarea textarea-bordered">
             <p>&nbsp</p>
             <button type="submit" class="bg-purple-900 text-white px-4 py-2 rounded-lg ml-2" href="/#">Rate</button>
         </form>
