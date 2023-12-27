@@ -2,7 +2,7 @@
       <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
       <div class="drawer-content flex flex-col">
         <!-- Navbar -->
-        <div class="w-full navbar mx-auto py-5 shadow-lg bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-80 sticky top-0 z-50 shadow-xl shadow-indigo-500/10">
+        <div class="w-full navbar mx-auto py-5 shadow-lg bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-80 sticky top-0 z-50 shadow-xl shadow-indigo-500/10 flex justify-between">
           <div class="flex-none lg:hidden">
             <label for="my-drawer-3" aria-label="open sidebar" class="btn btn-square btn-ghost">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-6 h-6 stroke-current">
@@ -10,7 +10,7 @@
               </svg>
             </label>
           </div>
-          <a href="/" class="flex-1 px-2 mx-2"><img src="/images/logo.png" alt="Logo" class="h-8"></a>
+          <a href="/" class="px-2 mx-2 w-fit"><img src="/images/logo.png" alt="Logo" class="h-8"></a>
           <div class="flex-none lg:block">
             <ul class="menu menu-horizontal">
               <!-- Navbar menu content here -->
@@ -67,7 +67,6 @@
             </ul>
           </div>
           <li><a class="p-5" href="/">Home</a></li>
-          <li><a class="p-5">Profile</a></li>
           <li><a class="p-5">Login</a></li>
           <li><a class="p-5">Liked</a></li>
         </ul>
