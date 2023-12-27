@@ -1,5 +1,5 @@
 
-<div>
+<div class="min-size-screen">
     <div class="flex justify-center mt-5 mx-5">
         <h1 class="text-3xl font-bold pb-5 inline">Reviewed Movies</h1>
     </div>

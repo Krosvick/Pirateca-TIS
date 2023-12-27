@@ -44,7 +44,6 @@
 
 <body class="font-poppins sticky top-0 z-50">
     <?php require('nav.php') ?>
-    <?php require('footer.php') ?>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
 </body>
 
