@@ -136,7 +136,6 @@ class Router
                 // Extract values for dynamic segments
                 array_shift($matches);
                 $params = array_merge($params, array_combine($params['segments'], $matches));
-
                 $params = array_merge($params, $this->request->getBody());
                 $this->params = $params;
                 
@@ -182,19 +181,9 @@ class Router
                     foreach ($controllerObject->getMiddleware() as $middleware) {
                         $middleware->execute();
                     } 
-                    
-                    if (isset($params['id'])) {
 
-                        if(isset($params['offset'])){
-                            $controllerObject->$action($params['id'],$params['offset']);
-                        }
-                        else {
-                            $controllerObject->$action($params['id']);
-                        }
-
-                    } else {
-                        $controllerObject->$action();
-                    }
+                    unset($params['controller'], $params['action'], $params['segments']);
+                    call_user_func_array([$controllerObject, $action], array_values($params));
                 } else {
                     $this->response->abort(404);
                 }

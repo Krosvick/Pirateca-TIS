@@ -15,10 +15,14 @@
         <ul class="menu menu-horizontal">
           <!-- Navbar menu content here -->
           <li class="hidden sm:block"><a href="/">Home</a></li>
-          <?php if ($app->isGuest()) : ?>
+          <?php
+
+use Core\Application;
+          ?>
+          <?php if(Application::isGuest()): ?>
           <li class="hidden sm:block"><a href="/login">Login</a></li>
           <?php endif; ?>
-          <li class="hidden sm:block"><a href="/likedpost">Liked</a></li>
+          <li class="hidden sm:block"><a href="/profile/likedpost">Liked</a></li>
           <li class="hidden sm:block"><a href="/information">About</a></li>
           <form action="search" method="post">
             <li class="form-control text-white bg-white rounded-3xl w-full lg:w-fit">
@@ -26,7 +30,7 @@
             </li>
           </form>
           <div class="dropdown dropdown-end block hidden sm:block">
-            <?php if(!$app->isGuest()): ?>
+            <?php if(!Application::isGuest()): ?>
             <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
               <div class="w-10 rounded-full">
                 <img alt="Tailwind CSS Navbar component" src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
@@ -36,12 +40,11 @@
               <li>
                 <a href="/profile" class="justify-between">
                   Profile
-                  <span class="badge">New</span>
                 </a>
               </li>
-              <li class="hidden sm:block">Followers <?php ?> </li>
-              <li class="hidden sm:block">Following <?php ?> </li>
-              <li class="hidden sm:block"><a>Logout</a></li>
+              <li class="hidden sm:block ml-5">Followers <?php ?> </li>
+              <li class="hidden sm:block ml-5">Following <?php ?> </li>
+              <li class="hidden sm:block"><a href="/logout">Logout</a></li>
               <li class="hidden sm:block"><a>About</a></li>
             </ul>
             <?php endif; ?>
@@ -57,7 +60,7 @@
     <ul class="menu flex pt-40 p-4 w-80 min-h-full bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-60 bg-indigo-900">
       <!-- Sidebar content here -->
       <div class="dropdown dropdown-end p-3">
-        <?php if(!$app->isGuest()): ?>
+        <?php if(!Application::isGuest()): ?>
         <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
           <div class="w-10 rounded-full">
             <img alt="Tailwind CSS Navbar component" src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
@@ -67,7 +70,6 @@
           <li>
             <a class="justify-between" href="/profile">
               Profile
-              <span class="badge">New</span>
             </a>
           </li>
           <li><p class="justify-between">Followers <?php ?> </p></li>
@@ -76,12 +78,19 @@
         </ul>
       </div>
       <?php endif; ?>
-      <li><a class="p-5" href="/">Home</a></li>
-      <?php if ($app->isGuest()) : ?>
+        <li><a class="p-5" href="/">Home</a></li>
+        <?php if(Application::isGuest()): ?>
         <li><a class="p-5" href="/login">Login</a></li>
         <?php endif; ?>
-        <li class="hidden sm:block"><a href="/information">About</a></li>
-        <li class="hidden sm:block"><a href="/likedpost">Liked</a></li>
+        <li class="p-5"><a href="/information">About</a></li>
+        <li class="p-5"><a href="/profile/likedpost">Liked</a></li>
     </ul>
   </div>
 </div>
+<script>
+document.querySelector('form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    var input = document.querySelector('input[name="busqueda"]').value;
+    window.location.href = '/search/' + encodeURIComponent(input);
+});
+</script>
