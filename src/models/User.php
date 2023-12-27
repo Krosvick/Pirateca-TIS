@@ -287,17 +287,6 @@ class User extends Model{
     }
 
     /**
-     * Registers a new user.
-     *
-     * @param string $username The username of the user.
-     * @param string $password The password of the user.
-     */
-    public function register($username, $password)
-    {
-        $this->userDAO->add($username, $password);
-    }
-
-    /**
      * Retrieves a specified number of recommended movie IDs for the user.
      *
      * @param int $quantity The number of movie IDs to retrieve.
