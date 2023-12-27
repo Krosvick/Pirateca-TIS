@@ -21,6 +21,7 @@ class Movie extends Model{
     private $deleted_at;
     private $updated_at;
     private $director;
+    private $posterStatus;
     //ratings array
     private array $ratings;
     private $moviesDAO;
@@ -43,9 +44,10 @@ class Movie extends Model{
      * @param string|null $deleted_at The date when the movie was deleted, or null if it is not deleted.
      * @param string|null $updated_at The date when the movie was last updated, or null if it is not updated.
      * @param string|null $director The name of the movie's director.
+     * @param bool $posterStatus Indicates if the movie's poster is available.
      * @return void
      */
-    public function __construct($id = null, $original_title = null, $overview = null, $poster_path = null, $genres = null, $belongs_to_collection = null, $adult = false, $original_language = null, $release_date = null, $deleted_at = null, $updated_at = null, $director = null)
+    public function __construct($id = null, $original_title = null, $overview = null, $poster_path = null, $genres = null, $belongs_to_collection = null, $adult = false, $original_language = null, $release_date = null, $deleted_at = null, $updated_at = null, $director = null, $posterStatus = false)
     {
         $this->id = $id;
         $this->original_title = $original_title;
@@ -59,6 +61,7 @@ class Movie extends Model{
         $this->deleted_at = $deleted_at;
         $this->updated_at = $updated_at;
         $this->director = $director;
+        $this->posterStatus = $posterStatus;
         $this->moviesDAO = new moviesDAO();
     }
     #getters and setters
@@ -295,6 +298,18 @@ class Movie extends Model{
     public function set_ratings($ratings){
         $this->ratings = $ratings;
     }
+    public function get_poster_status(){
+        return $this->posterStatus;
+    }
+    public function set_poster_status($posterStatus){
+        if($posterStatus == 1){
+            $posterStatus = true;
+        }
+        else{
+            $posterStatus = false;
+        }
+        $this->posterStatus = $posterStatus;
+    }
     
 
 
@@ -326,7 +341,8 @@ class Movie extends Model{
             'release_date',
             'deleted_at',
             'updated_at',
-            'director'
+            'director',
+            'posterStatus'
         ];
     }
     
@@ -380,8 +396,15 @@ class Movie extends Model{
         $client = new Client();
         $moviePoster = $this->poster_path;
         $url = "https://image.tmdb.org/t/p/w780".$moviePoster;
+        if($this->posterStatus == true){
+            return $moviePoster;
+        }
         try{
             $response = $client->request('GET', $url);
+            if($response->getStatusCode() == 200){
+                $this->posterStatus = true;
+                $result = $this->moviesDAO->update($this->id, $this, ['poster_status']);
+            }
             return $moviePoster;
         }catch(\Exception $e){
             if($e->getCode() == 404){
@@ -395,8 +418,10 @@ class Movie extends Model{
                 if(count($new_poster_response['posters']) > 0){
                     $new_poster_url = $new_poster_response['posters'][0]['file_path'];
                     $this->poster_path = $new_poster_url;
+                    $this->posterStatus = true;
                     #update the movie poster path in the database
                     $result = $this->moviesDAO->update($this->id, $this, ['poster_path']);
+                    $result = $this->moviesDAO->update($this->id, $this, ['poster_status']);
                 }
                 else{
                     #if the movie doesn't have a poster, we will use a default image

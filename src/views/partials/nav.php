@@ -22,7 +22,7 @@ use Core\Application;
           <?php if(Application::isGuest()): ?>
           <li class="hidden sm:block"><a href="/login">Login</a></li>
           <?php endif; ?>
-          <li class="hidden sm:block"><a href="/likedpost">Liked</a></li>
+          <li class="hidden sm:block"><a href="/profile/likedpost">Liked</a></li>
           <li class="hidden sm:block"><a href="/information">About</a></li>
           <form action="search" method="post">
             <li class="form-control text-white bg-white rounded-3xl w-full lg:w-fit">
@@ -33,18 +33,17 @@ use Core\Application;
             <?php if(!Application::isGuest()): ?>
             <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
               <div class="w-10 rounded-full">
-                <img alt="Tailwind CSS Navbar component" src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                <img alt="Tailwind CSS Navbar component" src="https://img.icons8.com/nolan/64/user-default.png" />
               </div>
             </div>
             <ul tabindex="0" class="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-gray-900 rounded-box w-52">
               <li>
                 <a href="/profile" class="justify-between">
                   Profile
-                  <span class="badge">New</span>
                 </a>
               </li>
               <li class="hidden sm:block ml-5">Followers <?php ?> </li>
-              <li class="hidden sm:block">Following <?php ?> </li>
+              <li class="hidden sm:block ml-5">Following <?php ?> </li>
               <li class="hidden sm:block"><a href="/logout">Logout</a></li>
               <li class="hidden sm:block"><a>About</a></li>
             </ul>
@@ -71,7 +70,6 @@ use Core\Application;
           <li>
             <a class="justify-between" href="/profile">
               Profile
-              <span class="badge">New</span>
             </a>
           </li>
           <li><p class="justify-between">Followers <?php ?> </p></li>
@@ -85,7 +83,14 @@ use Core\Application;
         <li><a class="p-5" href="/login">Login</a></li>
         <?php endif; ?>
         <li class="p-5"><a href="/information">About</a></li>
-        <li class="p-5"><a href="/likedpost">Liked</a></li>
+        <li class="p-5"><a href="/profile/likedpost">Liked</a></li>
     </ul>
   </div>
 </div>
+<script>
+document.querySelector('form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    var input = document.querySelector('input[name="busqueda"]').value;
+    window.location.href = '/search/' + encodeURIComponent(input);
+});
+</script>

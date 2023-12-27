@@ -24,12 +24,19 @@ class SearchController extends BaseController
  
         
 
-    public function search($busqueda = '', $page = 1){
-        
-        if($this->request->isPost()){
-            echo $page;
-            $busqueda =  $_POST['busqueda'];
-            $page = isset($_POST['page']) ? $_POST['page'] : 1;
+    public function search($busqueda = '', $page = null){
+            if($busqueda == '') {
+                $busqueda = $this->routeParams['busqueda'];
+            }
+            if($page == null || $this->routeParams['page'] == null) {
+                $page = 1;
+            } else {
+                $page = $this->routeParams['page'];
+            }
+            //sanitize the url and fix encoding like %20 for spaces in $busqueda
+            $busqueda = urldecode($busqueda);
+            htmlspecialchars($busqueda);
+
             $movies_data = $this->movied->dummytest_fulltext_test($busqueda,$page);
             $totalPages = $movies_data['totalPages'];
            
@@ -47,6 +54,7 @@ class SearchController extends BaseController
                     $movie->set_original_language($movie_data->original_language);
                     $movie->set_release_date($movie_data->release_date);
                     $movie->set_director($movie_data->director);
+                    $movie->set_poster_status($movie_data->poster_status);
                     $movie->set_poster_path($movie->moviePosterFallback());
                     $movie->set_director($movie->MovieDirectorRetrieval());
                     array_push($movies, $movie);
@@ -57,7 +65,7 @@ class SearchController extends BaseController
                 }
                
             }
-           
+            
             if(!$movies){
                 $this->response->abort(404);
             }
@@ -81,13 +89,6 @@ class SearchController extends BaseController
 
             return $this->render("test",$optionals);
         }
-        
-        else{
-            echo $page;
-            return $this->render("test");
-        }
-        
-    }
         
 }
     
