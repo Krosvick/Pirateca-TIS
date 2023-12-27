@@ -39,6 +39,7 @@ class View
 
         if (file_exists($viewFile)) {
             ob_start();
+            extract($data);
             require $viewFile;
             $content = ob_get_clean();
 

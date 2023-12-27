@@ -31,7 +31,7 @@
                 </div>
                 <ul tabindex="0" class="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-gray-900 rounded-box w-52">
                   <li>
-                    <a class="justify-between">
+                    <a href="/profile" class="justify-between">
                       Profile
                       <span class="badge">New</span>
                     </a>
@@ -53,6 +53,7 @@
         <ul class="menu flex pt-40 p-4 w-80 min-h-full bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-60 bg-indigo-900">
           <!-- Sidebar content here -->
           <div class="dropdown dropdown-end p-3">
+            <?php if(!$app->isGuest()): ?>
             <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
               <div class="w-10 rounded-full">
                 <img alt="Tailwind CSS Navbar component" src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
@@ -60,7 +61,7 @@
             </div>
             <ul tabindex="0" class="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-gray-900 rounded-box w-52">
               <li>
-                <a class="justify-between">
+                <a class="justify-between" href="/profile">
                   Profile
                   <span class="badge">New</span>
                 </a>
@@ -70,8 +71,11 @@
               <li><a>Logout</a></li>
             </ul>
           </div>
+          <?php endif; ?>
           <li><a class="p-5" href="/">Home</a></li>
-          <li><a class="p-5">Login</a></li>
+          <?php if ($app->isGuest()) : ?>
+            <li><a class="p-5" href="/login">Login</a></li>
+          <?php endif; ?>
           <li><a class="p-5">Liked</a></li>
         </ul>
       </div>
