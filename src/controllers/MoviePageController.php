@@ -17,7 +17,7 @@ class MoviePageController extends BaseController
 {
     private $client;
     private $movieModel;
-    private $ratingModel;
+    private $user;
     #controllers can have DAOs, models should not
     private $movieDAO;
     private $ratingsDAO;
@@ -30,6 +30,7 @@ class MoviePageController extends BaseController
         $this->movieDAO = new moviesDAO();
         $this->ratingsDAO = new ratingsDAO();
         $this->userDAO = new usersDAO();
+        $this->user = Application::$app->session->get('user');
     }
 
     /**
@@ -42,83 +43,89 @@ class MoviePageController extends BaseController
      * @return void Renders the movie page template.
      */
     public function MoviePage($id, $offset = 0) {
-        //dd($this->request);
-
         if($this->request->isPost()){
+            // logic of request: Auth -> Validate -> Sanitize -> Save
+            if(!$this->user || $this->user->get_id() == 1){
+                echo "You are not logged in";
+                $this->response->abort(404);
+            }
+
             $body = $this->request->getBody();
-            //dd($body);
-            $rating = $body->rating;
+            $rating = $body["rating"];
+            $review = $body["review"];
+            $sql = [
+                'user_id' => $this->user->get_id(),
+                'movie_id' => $id,
+                'rating' => $rating,
+                'review' => $review,
+            ];
+            $this->ratingsDAO->insert($sql);
 
         } else if ($this->request->isDelete()){
-            //dd($this->request);
+            dd($this->request);
         }
-        else {
-            //$id = 12;
-            //this is a more truthful oop approach
-            $this->movieModel = $this->movieDAO->find($id, 'Models\Movie');
-            
-            //this is how to validate the model, either returns true or false
-            //var_dump($this->movieModel->validate(), $this->movieModel->getAllErrors());
-            //dd($this->movieModel);
-            $this->movieModel->MovieDirectorRetrieval();
-            $this->movieModel->moviePosterFallback();
-
-            $ratings_data = $this->ratingsDAO->getPagebyMovie($this->movieModel, $offset);
-            
-            if(isset($ratings_data['message'])){
-                $data = [
-                    'Movie' => $this->movieModel,
-                    'message' => $ratings_data['message'],
-                    'noRatings' => true,
-                ];
-            } else {
-                $ratings = [];
-                foreach($ratings_data['rows'] as $rating_data){
-                    #create a rating object for each rating
-                    try {
-                        $rating = new Rating();
-                        $rating->set_id($rating_data->id);
-                        $rating->set_user($this->userDAO->find($rating_data->user_id, 'Models\User'));
-                        $rating->set_movie($this->movieModel);
-                        $rating->set_rating($rating_data->rating);
-                        $rating->set_review($rating_data->review);
-                        $rating->set_created_at($rating_data->created_at);
-                        array_push($ratings, $rating);
-                    }
-                    catch (Exception $e) {
-                        echo ("hola");
-                        continue;
-                    }
-                
+        //this is a more truthful oop approach
+        $this->movieModel = $this->movieDAO->find($id, 'Models\Movie');
+        
+        //this is how to validate the model, either returns true or false
+        //var_dump($this->movieModel->validate(), $this->movieModel->getAllErrors());
+        //dd($this->movieModel);
+        $this->movieModel->MovieDirectorRetrieval();
+        $this->movieModel->moviePosterFallback();
+        $ratings_data = $this->ratingsDAO->getPagebyMovie($this->movieModel, $offset);
+        
+        if(isset($ratings_data['message'])){
+            $data = [
+                'Movie' => $this->movieModel,
+                'message' => $ratings_data['message'],
+                'noRatings' => true,
+            ];
+        } else {
+            $ratings = [];
+            foreach($ratings_data['rows'] as $rating_data){
+                #create a rating object for each rating
+                try {
+                    $rating = new Rating();
+                    $rating->set_id($rating_data->id);
+                    $rating->set_user($this->userDAO->find($rating_data->user_id, 'Models\User'));
+                    $rating->set_movie($this->movieModel);
+                    $rating->set_rating($rating_data->rating);
+                    $rating->set_review($rating_data->review);
+                    $rating->set_created_at($rating_data->created_at);
+                    array_push($ratings, $rating);
                 }
-                $this->movieModel->set_ratings($ratings);
-                //dd($ratings);        
-                
-                
-                if(!$this->movieModel){
-                    $this->response->abort(404);
+                catch (Exception $e) {
+                    echo ("hola");
+                    continue;
                 }
-                
-                $data = [
-                    'Movie' => $this->movieModel,
-                    'firstId' => $ratings_data['firstId'],
-                    'lastId' => $ratings_data['lastId'],
-                    'lastResult' => $ratings_data['lastResults'],
-                    'totalRows' => $ratings_data['totalRows'],
-                ];
+            
             }
-            $metadata = [
-                'title' => $this->movieModel->get_original_title(),
-                'description' => 'Movie page',
-                'cssFiles' => ['styles-movie.css'],
+            $this->movieModel->set_ratings($ratings);
+            //dd($ratings);        
+            
+            
+            if(!$this->movieModel){
+                $this->response->abort(404);
+            }
+            
+            $data = [
+                'Movie' => $this->movieModel,
+                'firstId' => $ratings_data['firstId'],
+                'lastId' => $ratings_data['lastId'],
+                'lastResult' => $ratings_data['lastResults'],
+                'totalRows' => $ratings_data['totalRows'],
             ];
-            $optionals = [
-                'data' => $data,
-                'metadata' => $metadata,
-            ];
-
-            return $this->render("movie_page", $optionals);
         }
+        $metadata = [
+            'title' => $this->movieModel->get_original_title(),
+            'description' => 'Movie page',
+            'cssFiles' => ['styles-movie.css'],
+        ];
+        $optionals = [
+            'data' => $data,
+            'metadata' => $metadata,
+        ];
+        return $this->render("movie_page", $optionals);
     }
 
 }
