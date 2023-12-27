@@ -15,7 +15,11 @@
         <ul class="menu menu-horizontal">
           <!-- Navbar menu content here -->
           <li class="hidden sm:block"><a href="/">Home</a></li>
-          <?php if ($app->isGuest()) : ?>
+          <?php
+
+use Core\Application;
+          ?>
+          <?php if(Application::isGuest()): ?>
           <li class="hidden sm:block"><a href="/login">Login</a></li>
           <?php endif; ?>
           <li class="hidden sm:block"><a href="/likedpost">Liked</a></li>
@@ -26,7 +30,7 @@
             </li>
           </form>
           <div class="dropdown dropdown-end block hidden sm:block">
-            <?php if(!$app->isGuest()): ?>
+            <?php if(!Application::isGuest()): ?>
             <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
               <div class="w-10 rounded-full">
                 <img alt="Tailwind CSS Navbar component" src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
@@ -39,9 +43,9 @@
                   <span class="badge">New</span>
                 </a>
               </li>
-              <li class="hidden sm:block">Followers <?php ?> </li>
+              <li class="hidden sm:block ml-5">Followers <?php ?> </li>
               <li class="hidden sm:block">Following <?php ?> </li>
-              <li class="hidden sm:block"><a>Logout</a></li>
+              <li class="hidden sm:block"><a href="/logout">Logout</a></li>
               <li class="hidden sm:block"><a>About</a></li>
             </ul>
             <?php endif; ?>
@@ -57,7 +61,7 @@
     <ul class="menu flex pt-40 p-4 w-80 min-h-full bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-60 bg-indigo-900">
       <!-- Sidebar content here -->
       <div class="dropdown dropdown-end p-3">
-        <?php if(!$app->isGuest()): ?>
+        <?php if(!Application::isGuest()): ?>
         <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
           <div class="w-10 rounded-full">
             <img alt="Tailwind CSS Navbar component" src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
@@ -76,12 +80,12 @@
         </ul>
       </div>
       <?php endif; ?>
-      <li><a class="p-5" href="/">Home</a></li>
-      <?php if ($app->isGuest()) : ?>
+        <li><a class="p-5" href="/">Home</a></li>
+        <?php if(Application::isGuest()): ?>
         <li><a class="p-5" href="/login">Login</a></li>
         <?php endif; ?>
-        <li class="hidden sm:block"><a href="/information">About</a></li>
-        <li class="hidden sm:block"><a href="/likedpost">Liked</a></li>
+        <li class="p-5"><a href="/information">About</a></li>
+        <li class="p-5"><a href="/likedpost">Liked</a></li>
     </ul>
   </div>
 </div>
