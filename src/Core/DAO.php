@@ -108,6 +108,53 @@ abstract class DAO {
             die($e->getMessage());
         }
     }
+    //DELTE IF NOT USED
+    public function dummytest_fulltext_test($busqueda, $page){
+        try {
+            $rowsPerPage = 5;
+            $offset = ($page - 1) * $rowsPerPage;
+    
+            $sql = "SELECT * FROM movies WHERE MATCH (original_title) AGAINST (:busqueda IN BOOLEAN MODE) LIMIT :offset, :limit";
+    
+            $params = array(
+                "busqueda" => [$busqueda . "*", PDO::PARAM_STR],
+                "offset" => [$offset, PDO::PARAM_INT],
+                "limit" => [$rowsPerPage, PDO::PARAM_INT]
+            );
+    
+            $stmt = $this->connection->query($sql, $params);
+            $rows = $stmt->getSome();
+    
+            if (empty($rows)) {
+                return [
+                    'message' => 'No movies found for this search.'
+                ];
+            }
+            
+            $firstId = $rows[0]->id;
+            $lastId = end($rows)->id;
+
+            $sql = "SELECT COUNT(*) FROM movies WHERE MATCH (original_title) AGAINST (:busqueda IN BOOLEAN MODE)";
+            $params = array(
+                'busqueda' => [$busqueda . "*", PDO::PARAM_STR]
+            );
+            $stmt = $this->connection->query($sql, $params);
+            $totalRows = $stmt->statement->fetchColumn();
+    
+            $totalPages = ceil($totalRows / $rowsPerPage);
+    
+            return [
+                'rows' => $rows,
+                'totalPages' => $totalPages,
+                'currentPage' => $page,
+                'firstId' => $firstId,
+                'lastId' => $lastId,
+            ];
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
+    // DELETE IF NOT USED
      /**
       * @param int $id
       * @param string $className

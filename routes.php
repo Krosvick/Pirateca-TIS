@@ -10,9 +10,14 @@ $app->router->post('/login', 'LoginController@index'); //logea al usuario
 
 $app->router->get('/logout', 'UserController@NukeUser');
 
-$app->router->get('/search', 'SearchController@search');
-$app->router->post('/search', 'SearchController@search'); //busca peliculas
+$app->router->get('/search/{busqueda}', 'SearchController@search');
+$app->router->post('/search/{busqueda}', 'SearchController@search'); //busca peliculas
 
+$app->router->get('/search', 'SearchController@search');
+$app->router->post('/search', 'SearchController@search');
+
+$app->router->get('/search/{busqueda}/page/{page}', 'SearchController@search');
+$app->router->post('/search/{busqueda}/page/{page}', 'SearchController@search');
 
 $app->router->get('/register', 'RegisterController@index');
 $app->router->post('/register', 'RegisterController@index'); //registra al usuario
