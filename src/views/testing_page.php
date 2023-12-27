@@ -4,8 +4,6 @@
 //otorgar un vista mas limpia. Se llaman usando 'require'.
 ?>
 
-<?php require('partials/nav.php') ?>
-
 <!-- testeo en cosas de css para quitar el bootstrap lo mas posible-->
 <section class="container">
   <div clas="slider-wrapper">
@@ -21,5 +19,3 @@
     </div>
   </div>
 </section>
-
-<?php require('partials/footer.php') ?>

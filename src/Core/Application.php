@@ -45,7 +45,7 @@ class Application
     /**
      * The container for dependencies.
      *
-     * @var array
+     * @var Container
      */
     private $container = [];
 

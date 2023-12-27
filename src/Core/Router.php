@@ -135,7 +135,11 @@ class Router
             if (preg_match($pattern, $url, $matches)) {
                 // Extract values for dynamic segments
                 array_shift($matches);
-                $this->params = array_merge($params, array_combine($params['segments'], $matches));
+                $params = array_merge($params, array_combine($params['segments'], $matches));
+
+                $params = array_merge($params, $this->request->getBody());
+                $this->params = $params;
+                
                 return true;
             }
         }
@@ -169,6 +173,7 @@ class Router
             $params = $this->params;
 
             $controller = $this->getNamespace() . $this->toStudlyCaps($params['controller']);
+
             if (class_exists($controller)) {
                 $controllerObject = new $controller($this->container, $params);
                 $action = $this->toCamelCase($params['action']);
