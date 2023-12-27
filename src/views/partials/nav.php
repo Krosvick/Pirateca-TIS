@@ -22,7 +22,9 @@ use Core\Application;
           <?php if(Application::isGuest()): ?>
           <li class="hidden sm:block"><a href="/login">Login</a></li>
           <?php endif; ?>
+          <?php if(!Application::isGuest()): ?>
           <li class="hidden sm:block"><a href="/profile/likedpost">Liked</a></li>
+          <?php endif; ?>
           <li class="hidden sm:block"><a href="/information">About</a></li>
           <form action="search" method="post">
             <li class="form-control text-white bg-white rounded-3xl w-full lg:w-fit">
@@ -42,10 +44,9 @@ use Core\Application;
                   Profile
                 </a>
               </li>
-              <li class="hidden sm:block ml-5">Followers <?php ?> </li>
-              <li class="hidden sm:block ml-5">Following <?php ?> </li>
-              <li class="hidden sm:block"><a href="/logout">Logout</a></li>
-              <li class="hidden sm:block"><a>About</a></li>
+              <li class="hidden sm:block ml-3">Followers <?php ?> </li>
+              <li class="hidden sm:block ml-3">Following <?php ?> </li>
+              <li class="hidden sm:block badge badge-error pb-5"><a href="/logout">Logout</a></li>
             </ul>
             <?php endif; ?>
           </div>
@@ -53,7 +54,17 @@ use Core\Application;
       </div>
     </div>
     <!-- Page content here -->
-    <?= $content ?? '' ?>
+      <?php if (Application::$app->session->getFlash('success')): ?>
+        <div class="alert alert-success">
+            <p><?php echo Application::$app->session->getFlash('success') ?></p>
+        </div>
+      <?php endif; ?>
+      <?php if (Application::$app->session->getFlash('error')): ?>
+        <div class="alert alert-error">
+            <p><?php echo Application::$app->session->getFlash('error') ?></p>
+        </div>
+      <?php endif; ?>
+      <?= $content ?? '' ?>
   </div>
   <div class="drawer-side">
     <label for="my-drawer-3" aria-label="close sidebar" class="drawer-overlay"></label>
