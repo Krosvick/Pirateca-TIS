@@ -15,12 +15,15 @@
             <ul class="menu menu-horizontal">
               <!-- Navbar menu content here -->
               <li class="hidden sm:block"><a href="/">Home</a></li>
-              <li class="hidden sm:block"><a>Login</a></li>
+              <?php if ($app->isGuest()) : ?>
+                <li class="hidden sm:block"><a href="/login">Login</a></li>
+              <?php endif; ?>
               <li class="hidden sm:block"><a>Liked</a></li>
               <li class="form-control text-white bg-white rounded-3xl w-full lg:w-fit">
                 <input type="text" placeholder="Search" class="input input-bordered input-primary md:w-auto text-black" />
               </li>
               <div class="dropdown dropdown-end block hidden sm:block">
+                <?php if(!$app->isGuest()): ?>
                 <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
                   <div class="w-10 rounded-full">
                     <img alt="Tailwind CSS Navbar component" src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
@@ -37,6 +40,7 @@
                   <li class="hidden sm:block">Following <?php ?> </li>
                   <li class="hidden sm:block"><a>Logout</a></li>
                 </ul>
+                <?php endif; ?>
               </div>
             </ul>
           </div>
