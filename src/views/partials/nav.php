@@ -22,7 +22,7 @@ use Core\Application;
           <?php if(Application::isGuest()): ?>
           <li class="hidden sm:block"><a href="/login">Login</a></li>
           <?php endif; ?>
-          <li class="hidden sm:block"><a href="/likedpost">Liked</a></li>
+          <li class="hidden sm:block"><a href="profile/likedpost">Liked</a></li>
           <li class="hidden sm:block"><a href="/information">About</a></li>
           <form action="search" method="post">
             <li class="form-control text-white bg-white rounded-3xl w-full lg:w-fit">
@@ -89,3 +89,10 @@ use Core\Application;
     </ul>
   </div>
 </div>
+<script>
+document.querySelector('form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    var input = document.querySelector('input[name="busqueda"]').value;
+    window.location.href = '/search/' + encodeURIComponent(input);
+});
+</script>
