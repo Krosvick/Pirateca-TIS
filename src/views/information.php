@@ -71,5 +71,26 @@
             <h2 class="text-2xl">Followers/Following</h2>
         </div>
     </div>
+    
+    <p>&nbsp</p>
+    
+    <div class="mx-8 p-6 bg-gray-600 rounded-xl h-fit shadow-md content-center divide-y divide-stone-300">
+    <h2 class="text-gray-200 text-6xl font-bold text-center"><u>Administration Guide</u></h2>
+        
+        <div class="flex flex-col bg-gray-400 shadow-md rounded-lg p-12 mb-4 text-black justify-normal">
+        <p>&nbsp</p>
+            <p class="text-2xl">To Use your Administrator Account, go to the Login section, in the Navegation and ingress your credentials in the form box (Username and Password)</p>
+            <br></br>
+            <p class="text-2xl">Once logged in, you will have access to the following functions:</p> 
+            <div>
+                <ol class="list-decimal mx-10 text-black">
+                <p class="text-xs">&nbsp</p>
+                    <li>Add an movie page. This includes its synopsis, release date, director name, and poster</li>
+                    <li>Delete a movie page</li>
+                    <li>Delete a Review from a movie page</li>
+                </ol>
+            </div>
+        </div>
+    </div>
 </div>
 
