@@ -3,7 +3,6 @@
 namespace Models;
 
 use Core\Model;
-use DAO\moviesDAO;
 use GuzzleHttp\Client;
 
 
@@ -31,7 +30,6 @@ class Movie extends Model{
     private $poster_status;
     //ratings array
     private array $ratings;
-    private $moviesDAO;
 
   
     /**
@@ -364,29 +362,6 @@ class Movie extends Model{
     {
         return 'id';
     }
-
-    /**
-     * Find movies based on the given list of movie IDs.
-     *
-     * @param array $id_list An array of arrays containing movie IDs.
-     * @return array An array of movies.
-     */
-    public function find_movies($id_list)
-    {
-        $movies = array();
-        foreach ($id_list as $body) {
-            foreach ($body as $movie) {
-                $movie = $this->find_movie($movie['movieId']);
-                if ($movie != null) {
-                    array_push($movies, $movie);
-                }
-            }
-        }
-        $this->movies_list = $movies;
-        return $this->movies_list;
-    }
-
-    
     /**
      * 
      * @param array $movie  a movie data array
@@ -395,7 +370,7 @@ class Movie extends Model{
      */
 
     #movie poster fallback is called on self
-    public function moviePosterFallback()
+    public function moviePosterFallback($moviesDAO)
     {
         /*$moviePoster = $this->poster_path;
         if($this->moviedbapi->get() == 400){
@@ -411,7 +386,7 @@ class Movie extends Model{
             $response = $client->request('GET', $url);
             if($response->getStatusCode() == 200){
                 $this->poster_status = true;
-                $result = $this->moviesDAO->update($this->id, $this, ['poster_status']);
+                $result = $moviesDAO->update($this->id, $this, ['poster_status']);
             }
             return $moviePoster;
         }catch(\Exception $e){
@@ -428,8 +403,8 @@ class Movie extends Model{
                     $this->poster_path = $new_poster_url;
                     $this->poster_status = true;
                     #update the movie poster path in the database
-                    $result = $this->moviesDAO->update($this->id, $this, ['poster_path']);
-                    $result = $this->moviesDAO->update($this->id, $this, ['poster_status']);
+                    $result = $moviesDAO->update($this->id, $this, ['poster_path']);
+                    $result = $moviesDAO->update($this->id, $this, ['poster_status']);
                 }
                 else{
                     #if the movie doesn't have a poster, we will use a default image
@@ -447,7 +422,7 @@ class Movie extends Model{
      * @return string return a movie director
      */
 
-    public function MovieDirectorRetrieval(){
+    public function MovieDirectorRetrieval($moviesDAO){
         $client = new Client();
         $movie_credits_request = $client->request('GET', 'https://api.themoviedb.org/3/movie/'.$this->id.'/credits?language=en-US', [
             'headers' => [
@@ -458,7 +433,7 @@ class Movie extends Model{
         $movie_credits_response = json_decode($movie_credits_request->getBody(), true);
         $movie_director = $movie_credits_response['crew'][0]['name'];
         $this->director = $movie_director;
-        $this->moviesDAO->update($this->id, $this, ['director']);
+        $moviesDAO->update($this->id, $this, ['director']);
         return $movie_director;
     }
 
@@ -469,8 +444,8 @@ class Movie extends Model{
      * @return array<array> return a list of movies based on tittle
      */
 
-    public function search_movie($title){
-        $movies = $this->moviesDAO->search($title); //need search function in moviesDAO or something similar
+    public function search_movie($title, $moviesDAO){
+        $movies = $moviesDAO->search($title); //need search function in moviesDAO or something similar
         return $movies;
     }
 
@@ -478,8 +453,8 @@ class Movie extends Model{
      * @return array<array> retrieve all movies
      */
 
-    public function get_all(){
-        $movies = $this->moviesDAO->get_all();
+    public function get_all($moviesDAO){
+        $movies = $moviesDAO->get_all();
         return $movies;
     }
 
