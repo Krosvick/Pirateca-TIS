@@ -29,7 +29,7 @@ $app->router->get('/addMovie', 'MovieController@createMovie');
 $app->router->post('/addMovie', 'MovieController@createMovie');
 
 
-$app->router->get('/information', 'InfoController@infopage');
+$app->router->get('/information', 'InfoController@infoPage');
 
 $app->router->get('/profile', 'UserController@ProfilePage');
 $app->router->get('/profile/likedpost', 'UserController@LikedMovies');

@@ -16,7 +16,7 @@ use Models\Movie;
             <div class="lg:w-1/4 h-full">
                 <div class="poster h-full">
                     <!-- HERE SHOULD BE CHANGED TO DYNAMIC FUNCTIONS -->
-                    <img src="https://image.tmdb.org/t/p/w780<?= $Movie->get_poster_path() ?>" alt="Movie Poster" class="max-w-full min-fit rounded-md shadow-xl h-full">
+                    <img src="https://image.tmdb.org/t/p/w780<?= $Movie->get_poster_path() ?>" alt="Movie Poster" class="max-w-full min-fit rounded-md shadow-xl h-full" onerror="this.onerror=null; this.src='/images/poster-holder.jpg';">
                 </div>
             </div>
             <div class="shadow-md bg-gray-900 rounded-lg p-10 my-4 flex flex-col items-start lg:w-3/4">
@@ -39,9 +39,7 @@ use Models\Movie;
                     ?>
                 </p>
                 <div class="flex flex-row items-center justify-between w-full">
-                    <?if(isset($hasRated) && $hasRated == false):?>
-                    <label for="my_modal_7" class="btn mt-5">Rate this movie</label>
-                    <?endif;?>
+                    <?= (!Application::isGuest()) ? (isset($hasRated) && $hasRated == false ? '<label for="my_modal_7" class="btn mt-5">Rate this movie</label>' : '') : '' ?>
                     <?= Application::isAdmin() ? '<a class="btn btn-error mt-5 hover:scale-110" href="/movie/' . $Movie->get_id() . '/delete">Delete movie</a>' : '' ?>
                 </div>
             </div>
