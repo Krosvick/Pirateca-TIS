@@ -71,7 +71,7 @@ class Application
     public Session $session;
     /**
      * 
-     * @var Controller
+     * @var BaseController
      */
     public ?BaseController $controller = null;
     /**

@@ -2,13 +2,15 @@
 
 namespace Controllers;
 
+use Core\Application;
 use Models\Movie;
 use Models\User;
 use DAO\moviesDAO;
 use Core\BaseController;
+use Core\Middleware\AdminMiddleware;
 
 class MovieController extends BaseController {
-    private $movieDAO; //THIS SHOULDNT BE HERE IN THE FUTURE
+    private $movieDAO;
     private $client;
     private $movieModel;
 
@@ -17,27 +19,7 @@ class MovieController extends BaseController {
         parent::__construct(...func_get_args());
         $this->movieDAO = new moviesDAO();
         $this->movieModel = new Movie();
-    }
-
-    /**
-     * Retrieves all movies from the moviesDAO and displays a list of movies in the View.
-     *
-     * @return void
-     */
-    public function listMovies() {
-        $movies = $this->movieDAO->get_all();
-        // Implement code to display a list of movies in the View
-    }
-
-    /**
-     * Retrieves a list of recommended movies for a given user.
-     *
-     * @param User $user The user object for which to retrieve recommended movies.
-     * @return array The list of recommended movies for the user.
-     */
-    public function list_movies_for_user(User $user){
-        $user_recommended_movies = $user->get_recommended_movies(10);
-        return $user_recommended_movies;
+        $this->registerMiddleware(new AdminMiddleware(['createMovie']));
     }
 
     /**
@@ -52,23 +34,38 @@ class MovieController extends BaseController {
      * @param string $releaseDate The release date of the movie.
      * @return void
      */
-    public function createMovie($originalTitle, $overview, $genres, $belongsToCollection, $adult, $originalLanguage, $releaseDate) {
-        $movie = new Movie(null, $originalTitle, $overview, $genres, $belongsToCollection, $adult, $originalLanguage, $releaseDate);
-        $this->movieDAO->register($movie);
-        // Implement code to handle the creation process
+    public function createMovie(){
+        if($this->request->isPost()){
+            // logic of request: Auth -> Validate -> Sanitize -> Save
+            $body = (object) $this->request->getBody();
+            $body->poster_status = 1 ? $body->poster_status = "1" : $body->poster_status = 0;
+            $body->adult = 1 ? $body->adult = "1" : $body->adult = 0;
+            $movie = new Movie();
+            $movie->loadData($body);
+            if(!$movie->validate()){
+                $this->response->abort(404, "Movie data is not valid");
+            }
+            try {
+            $stmt = $this->movieDAO->register($movie);
+            $stmt = $stmt->get();
+            } catch (\Throwable $th) {
+                $this->response->abort(404, "Movie already exists");
+            }
+            Application::$app->session->setFlash('success', 'The movie was created successfully');
+            $this->response->redirect('/');
+        }
+        $data = [
+            'Movie' => $this->movieModel,
+        ];
+        $metadata = [
+            'title' => 'Create Movie',
+            'description' => 'This is the create movie page.', 
+        ];
+        $optionals = [
+            'data' => $data,
+            'metadata' => $metadata,
+        ];
+        $this->render('createMovie', $optionals);
     }
-
-    public function updateMovie($id, $originalTitle, $overview, $genres, $belongsToCollection, $adult, $originalLanguage, $releaseDate) {
-        $movie = new Movie($id, $originalTitle, $overview, $genres, $belongsToCollection, $adult, $originalLanguage, $releaseDate);
-        $this->movieDAO->update($id, $movie);
-        // Implement code to handle the update process
-    }
-
-    public function deleteMovie($id) {
-        $this->movieDAO->delete($id);
-        // Implement code to handle the deletion process
-    }
-
-
 }
 ?>

@@ -26,6 +26,9 @@ use Core\Application;
           <li class="hidden sm:block"><a href="/profile/likedpost">Liked</a></li>
           <?php endif; ?>
           <li class="hidden sm:block"><a href="/information">About</a></li>
+          <?php if(Application::isAdmin()): ?>
+          <li class="hidden sm:block"><a href="/addMovie">Add Movie</a></li>
+          <?php endif; ?>
           <form action="search" method="post">
             <li class="form-control text-white bg-white rounded-3xl w-full lg:w-fit">
               <input type="text" placeholder="Busqueda" name="busqueda" class="input input-bordered input-primary md:w-auto text-black" />

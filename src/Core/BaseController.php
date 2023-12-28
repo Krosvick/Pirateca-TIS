@@ -9,6 +9,7 @@ abstract class BaseController
     protected $response;
     protected $request;
     protected array $middleware = [];
+    public $action = '';
 
     public function __construct($container, $routeParams)
     {
