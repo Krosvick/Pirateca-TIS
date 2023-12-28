@@ -14,7 +14,7 @@ class InfoController extends BaseController {
 
     }
     //just render the page
-    public function infopage() {
+    public function infoPage() {
         $data = [
             'title' => 'Info'
         ];

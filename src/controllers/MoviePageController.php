@@ -42,7 +42,7 @@ class MoviePageController extends BaseController
      * @param int $id The movie ID from the route.
      * @return void Renders the movie page template.
      */
-    public function MoviePage($id, $offset = 0) {
+    public function moviePage($id, $offset = 0) {
         if($this->request->isPost()){
             // logic of request: Auth -> Validate -> Sanitize -> Save
             if(!$this->user || $this->user->get_id() == 1){
@@ -137,12 +137,12 @@ class MoviePageController extends BaseController
         return $this->render("movie_page", $optionals);
     }
 
-    public function DeleteMovie($id){
+    public function deleteMovie($id){
         $this->movieDAO->delete($id);
         $this->response->redirect("/");
     }
 
-    public function DeleteReview($idMovie, $idReview){
+    public function deleteReview($idMovie, $idReview){
         $this->ratingsDAO->delete($idReview);
         $this->response->redirect("/movie/$idMovie");
     }

@@ -10,6 +10,7 @@ use Models\User;
 use Models\Movie;
 use Core\Application;
 use GuzzleHttp\Client;
+use Core\Middleware\AuthMiddleware;
 
 class UserController extends BaseController{
     private $userDAO;
@@ -20,14 +21,11 @@ class UserController extends BaseController{
         parent::__construct(...func_get_args());
         $this->user = Application::$app->session->get('user');
         $this->userDAO = new UsersDAO();
+        $this->registerMiddleware(new AuthMiddleware(['likedMovies']));
     }
 
-    public function LikedMovies(){
+    public function likedMovies(){
         //exception if the user is not logged in
-        if(!$this->user){
-            echo "You are not logged in";
-            $this->response->abort(404);
-        }
         $ratingsDAO = new RatingsDAO();
         $MoviesDAO = new MoviesDAO();
 
@@ -52,11 +50,7 @@ class UserController extends BaseController{
         return $this->render("likedpost", $optionals);
     }
 
-    public function ProfilePage(){
-        if(!$this->user){
-            echo "You are not logged in";
-            $this->response->abort(404);
-        }
+    public function profilePage(){
 
         $user = Application::$app->session->get('user');
         //echo $user->get_username();

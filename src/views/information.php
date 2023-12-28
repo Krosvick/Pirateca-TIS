@@ -1,4 +1,4 @@
-<div class="max-w-full w-full p-8">
+<div class="min-w-screen min-h-screen max-w-full w-full p-8">
     <div class="mx-8 p-6 bg-white rounded-xl h-fit shadow-md content-center divide-y divide-stone-300">
         <h1 class="text-black text-6xl font-bold text-center">ABOUT PIRATECA</h1>
         
