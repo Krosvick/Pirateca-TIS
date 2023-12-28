@@ -46,7 +46,15 @@ use Core\Application;
                     <button class="bg-gray-500 text-white hover:bg-white hover:text-gray-500 border border-gray-300 rounded-md py-2 px-3 w-full">Reviewed Movies</button>
                     </p>
                     </a>
-                    <a href="/follow/<?= $userProfileData->get_id(); ?>">
+                    <?php
+                    if(!Application::isGuest() && 
+                       !Application::$app->user->is_following($userProfileData->get_id()) && 
+                       Application::$app->user->get_id() !== $userProfileData->get_id()): 
+                    ?>
+                        <a href="/follow/<?= $userProfileData->get_id(); ?>">
+                            <button class="bg-gray-500 text-white hover:bg-white hover:text-gray-500 border border-gray-300 rounded-md py-2 px-3 w-full">Follow</button>
+                        </a>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
