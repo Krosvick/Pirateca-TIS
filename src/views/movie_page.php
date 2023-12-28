@@ -141,7 +141,7 @@ use Models\Movie;
 </section>
 
 <?php 
-if(!isset($hasRated)){
+if(isset($hasRated) && $hasRated == false){
 echo '
 <input type="checkbox" id="my_modal_7" class="modal-toggle" />
 <div class="modal" role="dialog">

@@ -25,6 +25,9 @@ $app->router->post('/register', 'RegisterController@index'); //registra al usuar
 $app->router->get('/movie/{id}/delete', 'MoviePageController@DeleteMovie');
 $app->router->get('/movie/{idmovie}/review/{idreview}/delete', 'MoviePageController@DeleteReview');
 $app->router->get('/movie/{id}/offset/{offset}', 'MoviePageController@MoviePage');
+$app->router->get('/addMovie', 'MovieController@createMovie');
+$app->router->post('/addMovie', 'MovieController@createMovie');
+
 
 $app->router->get('/information', 'InfoController@infopage');
 
