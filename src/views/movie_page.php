@@ -105,11 +105,15 @@ use Models\Movie;
                                             </a>
                                         </div>
                                     </div>
-                                    <?php if(!Application::isGuest() && !$user->is_following($rating->get_user()->get_id())): ?>
+                                    <?php 
+                                    if(!Application::isGuest() && 
+                                       !$user->is_following($rating->get_user()->get_id()) && 
+                                       Application::$app->user->get_id() !== $rating->get_user()->get_id()): 
+                                    ?>
                                         <a class="btn" href="/follow/<?= $rating->get_user()->get_id() ?>">
                                             Follow
                                         </a>
-                                    <?php else: ?>
+                                    <?php elseif(Application::$app->user->get_id() !== $rating->get_user()->get_id()): ?>
                                         <p class="badge">Followed</p>
                                     <?php endif; ?>
                                 </div>
