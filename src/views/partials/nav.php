@@ -10,7 +10,7 @@
           </svg>
         </label>
       </div>
-      <a href="/" class="px-2 mx-2 w-fit"><img src="/images/logo.png" alt="Logo" class="h-8"></a>
+      <a href="/" class="px-2 mx-2 w-fit"><img src="/images/logo.png" alt="Logo" class="h-8 scale-150"></a>
       <div class="flex-none lg:block">
         <ul class="menu menu-horizontal">
           <!-- Navbar menu content here -->
