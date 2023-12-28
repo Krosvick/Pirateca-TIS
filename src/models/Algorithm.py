@@ -183,7 +183,6 @@ class Algorithm():
         for uid, user_ratings in recommendations.items():
             user_ratings.sort(key=lambda x: x[1], reverse=True)
             #delete all recommendations where the rating is the same for at least, 2 movies
-            user_ratings = [t for t in user_ratings if t[1] != user_ratings[0][1]]
             recommendations[uid] = user_ratings[:top_n]
 
         """

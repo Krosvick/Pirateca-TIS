@@ -40,7 +40,7 @@ class IndexController extends BaseController
             $this->user->set_id(1);
         }
 
-        $recommended_movies = $this->user->getRecommendedMoviesIds(30);
+        $recommended_movies = $this->user->getRecommendedMoviesIds(10);
         #the array is top_movies and then the recommended movies
         $recommended_movies = $recommended_movies['top_movies'];
         $user_movies = [];
