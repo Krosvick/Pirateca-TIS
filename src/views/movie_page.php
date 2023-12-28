@@ -124,7 +124,8 @@ use Models\Movie;
                                         <a class="btn" href="/follow/<?= $rating->get_user()->get_id() ?>">
                                             Follow
                                         </a>
-                                    <?php elseif(Application::$app->user->get_id() !== $rating->get_user()->get_id()): ?>
+                                    <?php elseif(isset(Application::$app->user) && Application::$app->user->get_id() !== $rating->get_user()->get_id()): 
+                                    ?>
                                         <p class="badge">Followed</p>
                                     <?php endif; ?>
                                 </div>
