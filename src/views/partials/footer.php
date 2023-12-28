@@ -7,7 +7,7 @@
     <!-- End Col -->
 
     <div class="mt-3">
-      <p class="text-black-500">We are the Priateca team!</p>
+      <p class="text-black-500">We are the Pirateca team!</p>
       <p class="text-black-500 text-sl">2023</p>
     </div>
 
