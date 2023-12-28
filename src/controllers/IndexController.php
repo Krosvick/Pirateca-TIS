@@ -47,7 +47,7 @@ class IndexController extends BaseController
         foreach ($recommended_movies as $movie_id) {
             $movie = $this->movieDAO->find($movie_id['movie_id'], Movie::class);
             if($movie !== null) {
-                $movie->movieposterfallback();
+                $movie->movieposterfallback($this->movieDAO);
                 array_push($user_movies, $movie);
             }
         }
