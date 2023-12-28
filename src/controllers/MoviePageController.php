@@ -31,7 +31,7 @@ class MoviePageController extends BaseController
         $this->movieDAO = new moviesDAO();
         $this->ratingsDAO = new ratingsDAO();
         $this->userDAO = new usersDAO();
-        $this->user = Application::$app->user;
+        $this->user = Application::$app->user ?? null;
         $this->registerMiddleware(new AdminMiddleware(['deleteMovie', 'deleteReview']));
     }
 

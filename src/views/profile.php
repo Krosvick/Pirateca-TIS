@@ -8,10 +8,10 @@ use Core\Application;
 
 
         <div class="max-w-4xl mx-auto my-8 px-10 py-8 text-black shadow-md border-white border-4 rounded-md bg-white flex items-center flex-col">
-            <?php if(Application::$app->user->is_following($userProfileData->get_id())): ?>
+            <?php if(isset(Application::$app->user) && Application::$app->user->is_following($userProfileData->get_id())): ?>
                 <p class="badge badge-primary badge-outline font-bold">Following</p>
             <?php endif; ?>
-            <?php if($userProfileData->is_following(Application::$app->user->get_id())): ?>
+            <?php if(isset(Application::$app->user) && $userProfileData->is_following(Application::$app->user->get_id())): ?>
                 <p class="badge badge-success gap-2 text-white">Follows you</p>
             <?php endif; ?>
             <h1 class="text-2xl font-bold text-blue-600 mb-2">

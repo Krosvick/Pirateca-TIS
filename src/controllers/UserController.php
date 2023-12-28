@@ -57,7 +57,7 @@ class UserController extends BaseController{
             $userData = $this->user;
         }else{
             $userData = $this->userDAO->find($id, User::class);
-            $user_movies = $userData->get_liked_movies($ratingsDAO, $MoviesDAO, 10);
+            $user_movies = $userData->get_liked_movies($ratingsDAO, $MoviesDAO, 15);
             $username = $userData->get_username();
         }
         $data = [
