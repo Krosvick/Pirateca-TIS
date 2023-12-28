@@ -1,7 +1,7 @@
    <div class="min-w-screen min-h-screen">
       <div class="flex justify-left mt-5 mx-5">
-         <h1 class="text-3xl font-bold pb-5 inline">Recomendado para</h1>
-         <h1 class="inline text-3xl pl-5 italic">ti</h1>
+         <h1 class="text-3xl font-bold pb-5 inline">Recommended for</h1>
+         <h1 class="inline text-3xl pl-5 italic">you</h1>
       </div>
 
 
