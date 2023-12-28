@@ -1,3 +1,7 @@
+<?php
+
+use Core\Application;
+?>
 
 <div class="bg-gray-200 h-screen flex items-center justify-center movie-container ">
     <div class="form-container glass rounded-lg shadow-lg p-8 ">
@@ -23,13 +27,13 @@
                 <div class="mb-4">
                     <p class="text-gray-700 font-bold mb-2">Followers</p>
                     <p class="border border-gray-300 rounded-md py-2 px-3">
-                        <?php ['user']['user_followers']; ?>
+                        <?= $userProfileData->get_follower_count() ?>
                     </p>
                 </div>
                 <div class="mb-4">
                     <p class="text-gray-700 font-bold mb-2">Following</p>
                     <p class="border border-gray-300 rounded-md py-2 px-3">
-                        <?php ['user']['user_following']; ?>
+                        <?= $userProfileData->get_following_count() ?>
                     </p>
                 </div>
                 <div class="col-span-2 mb-4">

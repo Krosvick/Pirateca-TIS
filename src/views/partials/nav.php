@@ -48,8 +48,8 @@
                   Profile
                 </a>
               </li>
-              <li class="hidden sm:block px mx">Followers <?php ?> </li>
-              <li class="hidden sm:block px mx">Following <?php ?> </li>
+              <li class="hidden sm:block px mx">Followers <?=Application::$app->user->get_follower_count() ?> </li>
+              <li class="hidden sm:block px mx">Following <?=Application::$app->user->get_following_count() ?> </li>
               <li class="hidden sm:block px mx">
                 <a href="/logout">Logout</a>
               </li>
@@ -91,8 +91,8 @@
               Profile
             </a>
           </li>
-          <li><p class="justify-between">Followers <?php ?> </p></li>
-          <li><p>Following <?php ?> </p></li>
+          <li><p class="justify-between">Followers <?=Application::$app->user->get_follower_count() ?> </p></li>
+          <li><p>Following <?=Application::$app->user->get_following_count()?> </p></li>
           <li><a href="/logout">Logout</a></li>
         </ul>
       </div>

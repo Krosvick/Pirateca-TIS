@@ -52,6 +52,14 @@ class User extends Model{
      * @var string
      */
     private $role = 'user';
+    /**
+     * @var array
+     */
+    private $followers = [];
+    /**
+     * @var array
+     */
+    private $following = [];
 
     public function __construct($id = null, $username = null, $hashed_password = null, $first_name = null, $last_name = null, $created_at = null, $updated_at = null, $deleted_at = null, $role = null){
         $this->id = $id;
@@ -229,6 +237,39 @@ class User extends Model{
     public function set_role($role){
         $this->role = $role;
     }
+    /**
+     * Get the user followers.
+     * 
+     * @return array The user followers.
+     */
+    public function get_followers(){
+        return $this->followers;
+    }
+    /**
+     * Set the user followers.
+     * 
+     * @param array $followers The user followers.
+     */
+    public function set_followers($followers){
+        $this->followers = $followers;
+    }
+
+    /**
+     * Get the user following.
+     * 
+     * @return array The user following.
+     */
+    public function get_following(){
+        return $this->following;
+    }
+    /**
+     * Set the user following.
+     * 
+     * @param array $following The user following.
+     */
+    public function set_following($following){
+        $this->following = $following;
+    }
 
     /**
      * Get the primary key for the User class.
@@ -344,7 +385,22 @@ class User extends Model{
     public static function findOne($id)
     {
         $userDAO = new UsersDAO();
-        $user = $userDAO->find($id, static::class);
+        $userData = $userDAO->find($id);
+        $userFollowing = $userDAO->get_following($id);
+        $userFollowers = $userDAO->get_followers($id);
+        //iterate through the followers and get the user objects
+        $user = new User();
+        $user->set_id($userData->id);
+        $user->set_username($userData->username);
+        $user->set_hashed_password($userData->hashed_password);
+        $user->set_first_name($userData->first_name);
+        $user->set_last_name($userData->last_name);
+        $user->set_created_at($userData->created_at);
+        $user->set_updated_at($userData->updated_at);
+        $user->set_deleted_at($userData->deleted_at);
+        $user->set_role($userData->role);
+        $user->set_followers($userFollowers);
+        $user->set_following($userFollowing);
         return $user;
     }
 
@@ -355,5 +411,23 @@ class User extends Model{
         } else {
             return false;
         }
+    }
+    public function is_following($user_id){
+        $following = $this->get_following();
+        if($following){
+            foreach($following as $followed_id){
+                if($followed_id == $user_id){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public function get_follower_count(){
+        return count($this->get_followers());
+    }
+    public function get_following_count(){
+        return count($this->get_following());
     }
 }

@@ -11,25 +11,57 @@ use Models\User;
 use Exception;
 use PDO;
 
-    class UsersDAO extends DAO{
+class UsersDAO extends DAO{
         
         /**
          * UsersDAO constructor.
          *
          * This constructor initializes the 'table' property to 'users' and calls the parent constructor.
          */
-        public function __construct()
-        {
-            $this->table = 'users';
-            parent::__construct();
-        }
-
-        
+    public function __construct()
+    {
+        $this->table = 'users';
+        parent::__construct();
     }
 
-    //VENTAJAS "bindParam"
-    //Control del role de dato: Puedes especificar explícitamente el role de dato que se espera para cada valor vinculado. Por ejemplo, PDO::PARAM_STR para cadenas de caracteres o PDO::PARAM_INT para enteros.
+        
 
-//Vinculación por referencia: Puedes vincular valores por referencia, lo que significa que los valores de las variables se pueden actualizar y reflejarán esos cambios en la consulta.
+    public function add_follower($follower_id, $user_id){
+        $sql = "INSERT INTO followers (follower_id, followed_id) VALUES (:follower_id, :followed_id)";
+        $params = array(
+            'followed_id' => [$follower_id, PDO::PARAM_INT],
+            'follower_id' => [$user_id, PDO::PARAM_INT]
+        );
+        $stmt = $this->connection->query($sql, $params);
+        $rows = $stmt->get();
+        return $rows;
+    }
 
-//Mayor flexibilidad: Puedes reutilizar la consulta preparada con diferentes valores sin necesidad de redefinirla.
+    public function get_following($user_id){
+        $sql = "SELECT * FROM followers WHERE follower_id = :follower_id";
+        $params = array(
+            'follower_id' => [$user_id, PDO::PARAM_INT]
+        );
+        $stmt = $this->connection->query($sql, $params);
+        $rows = $stmt->get();
+        $following = array();
+        foreach($rows as $row){
+            $following[] = $row->followed_id;
+        }
+        return $following;
+    }
+    
+    public function get_followers($user_id){
+        $sql = "SELECT * FROM followers WHERE followed_id = :followed_id";
+        $params = array(
+            'followed_id' => [$user_id, PDO::PARAM_INT]
+        );
+        $stmt = $this->connection->query($sql, $params);
+        $rows = $stmt->get();
+        $followers = array();
+        foreach($rows as $row){
+            $followers[] = $row->follower_id;
+        }
+        return $followers;
+    }
+}

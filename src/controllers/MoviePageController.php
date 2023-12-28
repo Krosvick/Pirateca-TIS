@@ -31,7 +31,7 @@ class MoviePageController extends BaseController
         $this->movieDAO = new moviesDAO();
         $this->ratingsDAO = new ratingsDAO();
         $this->userDAO = new usersDAO();
-        $this->user = Application::$app->session->get('user');
+        $this->user = Application::$app->user;
         $this->registerMiddleware(new AdminMiddleware(['deleteMovie', 'deleteReview']));
     }
 
@@ -120,6 +120,7 @@ class MoviePageController extends BaseController
 
             $data = [
                 'Movie' => $this->movieModel,
+                'user' => $this->user ?? null,
                 'firstId' => $ratings_data['firstId'],
                 'lastId' => $ratings_data['lastId'],
                 'lastResult' => $ratings_data['lastResults'],
