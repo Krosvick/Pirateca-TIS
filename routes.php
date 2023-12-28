@@ -34,5 +34,5 @@ $app->router->get('/information', 'InfoController@infoPage');
 $app->router->get('/profile', 'UserController@ProfilePage');
 $app->router->get('/profile/likedpost', 'UserController@LikedMovies');
 
-// $app->router->get('/profile/{id}', 'UserController@ProfileUserPage');
-// $app->router->get('/profile/{id}/likedpost', 'UserController@LikedMoviesUser');
+$app->router->get('/profile/{id}', 'UserController@ProfilePage');
+$app->router->get('/profile/{id}/likedpost', 'UserController@LikedMovies');

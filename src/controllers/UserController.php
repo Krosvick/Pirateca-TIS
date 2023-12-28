@@ -19,21 +19,31 @@ class UserController extends BaseController{
     public function __construct($container, $routeParams) {
         //call the parent constructor to get access to the properties and methods of the BaseController class
         parent::__construct(...func_get_args());
-        $this->user = Application::$app->session->get('user');
+        $this->user = Application::$app->session->get('user') ?? null;
         $this->userDAO = new UsersDAO();
-        $this->registerMiddleware(new AuthMiddleware(['likedMovies']));
     }
 
-    public function likedMovies(){
+    public function likedMovies($id){
         //exception if the user is not logged in
         $ratingsDAO = new RatingsDAO();
         $MoviesDAO = new MoviesDAO();
 
-        $username = $this->user->get_username();
-        $user_movies = $this->user->get_liked_movies($ratingsDAO, $MoviesDAO, 10);
+        $isLogged = !Application::isGuest();
+        $loggedUserId = $isLogged ? $this->user->get_id() : null;
+
+        if($isLogged && $loggedUserId == $id){
+            $username = $this->user->get_username();
+            $user_movies = $this->user->get_liked_movies($ratingsDAO, $MoviesDAO, 10);
+            $userData = $this->user;
+        }else{
+            $userData = $this->userDAO->find($id, User::class);
+            $user_movies = $userData->get_liked_movies($ratingsDAO, $MoviesDAO, 10);
+            $username = $userData->get_username();
+        }
         $data = [
             'user_movies' => $user_movies,
-            'username' => $username
+            'username' => $username,
+            'userData' => $userData,
         ];
         $metadata = [
             'title' => 'Pirateca - Profile',
@@ -50,14 +60,14 @@ class UserController extends BaseController{
         return $this->render("likedpost", $optionals);
     }
 
-    public function profilePage(){
+    public function profilePage($id){
 
-        $user = Application::$app->session->get('user');
-        //echo $user->get_username();
-        //dd($user);
+        $userProfileData = $this->userDAO->find($id, User::class);
+        
 
         $data = [
-            'user' => $user
+            'loggedUser' => $this->user,
+            'userProfileData' => $userProfileData,
         ];
         $metadata = [
             'title' => 'Pirateca - Profile',
