@@ -39,8 +39,19 @@ use Models\Movie;
                     ?>
                 </p>
                 <div class="flex flex-row items-center justify-between w-full">
-                    <?= (!Application::isGuest()) ? (isset($hasRated) && $hasRated == false ? '<label for="my_modal_7" class="btn mt-5">Rate this movie</label>' : '') : '' ?>
-                    <?= Application::isAdmin() ? '<a class="btn btn-error mt-5 hover:scale-110" href="/movie/' . $Movie->get_id() . '/delete">Delete movie</a>' : '' ?>
+                    <?php
+                    if (!Application::isGuest()) {
+                        if (isset($hasRated) && $hasRated == true) {
+                            echo '';
+                        }else{
+                        echo '<label for="my_modal_7" class="btn mt-5">Rate this movie</label>';
+                        }
+                    }
+
+                    if (Application::isAdmin()) {
+                        echo '<a class="btn btn-error mt-5 hover:scale-110" href="/movie/' . $Movie->get_id() . '/delete">Delete movie</a>';
+                    }
+                    ?>
                 </div>
             </div>
         </div>
@@ -152,7 +163,9 @@ use Models\Movie;
 </section>
 
 <?php 
-if(isset($hasRated) && $hasRated == false){
+if(isset($hasRated) && $hasRated == true){
+    echo '';
+}else{
 echo '
 <input type="checkbox" id="my_modal_7" class="modal-toggle" />
 <div class="modal" role="dialog">

@@ -122,7 +122,7 @@ function create_users($user_ids){
     }
 }
 
-$users = create_fake_users_quantity(756, 1000);
+$users = create_fake_users_quantity(912, 269984);
 $userDAO = new UsersDAO();
 foreach ($users as $user) {
     try{
