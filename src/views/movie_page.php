@@ -39,9 +39,7 @@ use Models\Movie;
                     ?>
                 </p>
                 <div class="flex flex-row items-center justify-between w-full">
-                    <?if(isset($hasRated) && $hasRated == false):?>
-                    <label for="my_modal_7" class="btn mt-5">Rate this movie</label>
-                    <?endif;?>
+                    <?= ($hasRated == false && !Application::isGuest()) ? '<label for="my_modal_7" class="btn mt-5">Rate this movie</label>' : '' ?>
                     <?= Application::isAdmin() ? '<a class="btn btn-error mt-5 hover:scale-110" href="/movie/' . $Movie->get_id() . '/delete">Delete movie</a>' : '' ?>
                 </div>
             </div>
