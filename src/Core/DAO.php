@@ -132,7 +132,6 @@ abstract class DAO {
             die($e->getMessage());
         }
     }
-    // DELETE IF NOT USED
      /**
       * @param int $id
       * @param string $className

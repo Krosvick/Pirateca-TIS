@@ -362,6 +362,14 @@ class User extends Model{
         return $response;
     }
 
+    /**
+     * Retrieves the movies that a user has liked based on their ratings.
+     *
+     * @param RatingsDAO $RatingsDAO An instance of the RatingsDAO class.
+     * @param MoviesDAO $MoviesDAO An instance of the MoviesDAO class.
+     * @param int $quantity The number of liked movies to retrieve.
+     * @return array An array of movie objects representing the movies that the user has liked.
+     */
     public function get_liked_movies($RatingsDAO, $MoviesDAO, $quantity): array
     {
         $ratings = $RatingsDAO->get_liked_movies($this->id, $quantity);
@@ -404,6 +412,13 @@ class User extends Model{
         return $user;
     }
 
+    /**
+     * Checks if a user has rated a specific movie.
+     *
+     * @param int $movie_id The ID of the movie to check if the user has rated.
+     * @param RatingsDAO $RatingsDAO An object of the RatingsDAO class used to retrieve the rating information.
+     * @return bool Returns true if the user has rated the movie, false otherwise.
+     */
     public function has_rated_movie($movie_id, $RatingsDAO): bool{
         $rating = $RatingsDAO->find_by_user_and_movie($this->id, $movie_id);
         if($rating){
@@ -412,6 +427,12 @@ class User extends Model{
             return false;
         }
     }
+    /**
+     * Checks if the current user is following a given user.
+     *
+     * @param int $user_id The ID of the user to check if the current user is following.
+     * @return bool Returns true if the current user is following the given user, false otherwise.
+     */
     public function is_following($user_id){
         $following = $this->get_following();
         if($following){
@@ -424,9 +445,19 @@ class User extends Model{
         return false;
     }
 
+    /**
+     * Returns the number of followers a user has.
+     *
+     * @return int The number of followers.
+     */
     public function get_follower_count(){
         return count($this->get_followers());
     }
+    /**
+     * Returns the count of the `following` array property of the `User` class.
+     *
+     * @return int The count of the `following` array property.
+     */
     public function get_following_count(){
         return count($this->get_following());
     }

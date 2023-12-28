@@ -145,13 +145,19 @@ class Application
             $this->container->get(Response::class)->abort(500, $e->getMessage());
         }
     }
+     /**
+      * Triggers a specific event by calling all the callback functions associated with that event.
+      *
+      * @param string $eventName The name of the event to trigger.
+      * @return void
+      */
      public function triggerEvent($eventName)
-    {
-        $callbacks = $this->eventListeners[$eventName] ?? [];
-        foreach ($callbacks as $callback) {
-            call_user_func($callback);
-        }
-    }
+     {
+         $callbacks = $this->eventListeners[$eventName] ?? [];
+         foreach ($callbacks as $callback) {
+             call_user_func($callback);
+         }
+     }
 
     /**
      * Adds a callback function to the event listeners array for a given event name.

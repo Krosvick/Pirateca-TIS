@@ -80,8 +80,14 @@ class UserController extends BaseController{
         return $this->render("likedpost", $optionals);
     }
 
-    public function profilePage($id){
-
+    /**
+     * Retrieves user profile data from the database and renders the 'profile' view.
+     *
+     * @param int $id The ID of the user profile to retrieve.
+     * @return void
+     */
+    public function profilePage($id)
+    {
         $userProfileData = User::findOne($id);
 
         $data = [
@@ -117,10 +123,14 @@ class UserController extends BaseController{
             header('Location: /');
         }
     }
+
     /**
-     * Follow method
-     * 
-     * Follows a user by adding a row to the followers table.
+     * Follows a user and redirects to their profile page.
+     *
+     * This method adds a follower to a user and redirects to the profile page of the user being followed.
+     *
+     * @param int $id The ID of the user to be followed.
+     * @return void
      */
     public function follow($id){
         $this->userDAO->add_follower($id, $this->user->get_id());

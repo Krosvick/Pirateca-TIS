@@ -114,6 +114,13 @@ class RatingsDAO extends DAO {
         }
     }
 
+    /**
+     * Retrieves a specified number of liked movies for a given user from the `ratings` table in the database.
+     *
+     * @param int $user_id The ID of the user for whom the liked movies are to be retrieved.
+     * @param int $quantity The number of liked movies to retrieve.
+     * @return array An array of rows containing the liked movies for the given user.
+     */
     public function get_liked_movies($user_id, $quantity) {
         try {
             $sql = "SELECT * FROM {$this->table} WHERE user_id = :user_id ORDER BY user_id LIMIT :quantity";
@@ -129,6 +136,13 @@ class RatingsDAO extends DAO {
         }
     }
 
+    /**
+     * This method retrieves a row from the `ratings` table in the database based on the given `user_id` and `movie_id`.
+     *
+     * @param int $user_id The ID of the user.
+     * @param int $movie_id The ID of the movie.
+     * @return array The result row from the `ratings` table that matches the given `user_id` and `movie_id`.
+     */
     public function find_by_user_and_movie($user_id, $movie_id) {
         try {
             $sql = "SELECT * FROM {$this->table} WHERE user_id = :user_id AND movie_id = :movie_id";
