@@ -61,6 +61,7 @@ class RatingsDAO extends DAO {
     public function getPagebyMovie(Movie $movie, $lastId): array {
         try {
             $rowsPerPage = 10;
+            $lastId = (int) $lastId;
 
             // Query to get the rows for the current page
             $sql = "SELECT * FROM {$this->table} FORCE INDEX (movie_id_id_index) WHERE movie_id = :movie_id AND id > :last_id ORDER BY id LIMIT :limit";
@@ -72,19 +73,22 @@ class RatingsDAO extends DAO {
             $stmt = $this->connection->query($sql, $params);
             $rows = $stmt->get();
 
-            // If there are no rows, return an appropriate response
+            if (empty($rows)) {
+                return [
+                    'message' => 'No ratings found for this movie.'
+                ];
+            }// If there are no rows, return an appropriate response
+            
+            //from rows remove all the rows where user_id is above 906
+            $rows = array_filter($rows, function($row) {
+                return $row->user_id <= 908;
+            });
             if (empty($rows)) {
                 return [
                     'message' => 'No ratings found for this movie.'
                 ];
             }
-
-            //from rows replace all user_id above 908 and assign them from one in the range of 1-900
-            foreach($rows as $row){
-                if($row->user_id > 908){
-                    $row->user_id = rand(1, 900);
-                }
-            } 
+            
             $firstId = $rows[0]->id;
             $lastId = end($rows)->id;
 
