@@ -80,49 +80,6 @@ abstract class DAO {
     }
 
     /**
-     * Perform a database query to search for rows in the "movies" table where the "original_title" column contains a specific value.
-     *
-     * @param string $busqueda The search term to be used in the query.
-     * @return array The result set containing the rows from the "movies" table that match the search term.
-     */
-    public function dummytest($busqueda){
-        try {
-            $sql = "SELECT * FROM movies WHERE original_title LIKE CONCAT('%', :busqueda, '%')";
-            $params = array(
-                "busqueda" => [$busqueda, PDO::PARAM_STR]
-            );
-            $stmt = $this->connection->query($sql, $params);
-            $row = $stmt->getSome();
-            return $row;
-        } catch (Exception $e) {
-            die($e->getMessage());
-        }
-    }
-    /**
-     * Perform a full-text search on the "movies" table based on a search term.
-     *
-     * @param string $busqueda The search term to be used in the query.
-     * @return array The result set containing the rows from the "movies" table that match the search term.
-     */
-    public function dummytest_fulltext($busqueda){
-        try {
-            #search against :busqueda* 
-            #in boolean mode the * is used to search for words that start with the given word
-            $sql = "SELECT * FROM movies WHERE MATCH (original_title) AGAINST (:busqueda IN BOOLEAN MODE)";
-
-            $params = array(
-                "busqueda" => [$busqueda . "*", PDO::PARAM_STR]
-            );
-
-            $stmt = $this->connection->query($sql, $params);
-            $row = $stmt->getSome();
-            return $row;
-        } catch (Exception $e) {
-            die($e->getMessage());
-        }
-    }
-    //DELTE IF NOT USED
-    /**
      * Performs a full-text search on the "movies" table using the "MATCH AGAINST" syntax in a SQL query.
      * Retrieves a paginated list of rows that match the search query and returns the result along with some additional information.
      *
@@ -130,7 +87,7 @@ abstract class DAO {
      * @param int $page The page number for pagination.
      * @return array An array containing the paginated list of rows, the total number of pages, the current page number, and the IDs of the first and last rows.
      */
-    public function dummytest_fulltext_test($busqueda, $page){
+    public function fulltext_search($busqueda, $page){
         try {
             $rowsPerPage = 5;
             $offset = ($page - 1) * $rowsPerPage;

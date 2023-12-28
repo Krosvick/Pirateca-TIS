@@ -55,7 +55,7 @@ class SearchController extends BaseController
         $busqueda = urldecode($busqueda);
         htmlspecialchars($busqueda);
 
-        $movies_data = $this->movied->dummytest_fulltext_test($busqueda,$page);
+        $movies_data = $this->movied->fulltext_search($busqueda,$page);
         $totalPages = $movies_data['totalPages'];
        
         $movies = [];
