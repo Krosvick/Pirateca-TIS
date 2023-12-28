@@ -14,17 +14,12 @@
            
             <div class="grid grid-cols-2 gap-4">
                 <div class="mb-4">
-                    <p class="text-gray-700 font-bold mb-2">First name</p>
+                    <p class="text-gray-700 font-bold mb-2">Username</p>
                     <p class="border border-gray-300 rounded-md py-2 px-3">
-                        <?= $user->get_first_name(); ?>
+                        <?= $user->get_username(); ?>
                     </p>
                 </div>
-                <div class="mb-4">
-                    <p class="text-gray-700 font-bold mb-2">Last name</p>
-                    <p class="border border-gray-300 rounded-md py-2 px-3">
-                        <?= $user->get_last_name(); ?>
-                    </p>
-                </div>
+                <br></br>
                 <div class="mb-4">
                     <p class="text-gray-700 font-bold mb-2">Followers</p>
                     <p class="border border-gray-300 rounded-md py-2 px-3">
@@ -38,10 +33,10 @@
                     </p>
                 </div>
                 <div class="col-span-2 mb-4">
-                    <p class="text-gray-700 font-bold mb-2">Movies Liked</p>
-                    <p class="border border-gray-300 rounded-md py-2 px-3">
-                        <?php ['user']['liked']; ?>
+                    <a href="profile/likedpost">
+                    <button class="bg-gray-500 text-white hover:bg-white hover:text-gray-500 border border-gray-300 rounded-md py-2 px-3 w-full">Reviewed Movies</button>
                     </p>
+                    </a>
                 </div>
             </div>
         </div>
