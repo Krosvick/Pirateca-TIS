@@ -34,6 +34,7 @@ class UserController extends BaseController{
         parent::__construct(...func_get_args());
         $this->user = Application::$app->session->get('user') ?? null;
         $this->userDAO = new UsersDAO();
+        $this->registerMiddleware(new AuthMiddleware(['logout', 'follow']));
     }
 
     /**
@@ -81,8 +82,7 @@ class UserController extends BaseController{
 
     public function profilePage($id){
 
-        $userProfileData = $this->userDAO->find($id, User::class);
-        
+        $userProfileData = User::findOne($id);
 
         $data = [
             'loggedUser' => $this->user,
@@ -116,5 +116,14 @@ class UserController extends BaseController{
         else{
             header('Location: /');
         }
+    }
+    /**
+     * Follow method
+     * 
+     * Follows a user by adding a row to the followers table.
+     */
+    public function follow($id){
+        $this->userDAO->add_follower($id, $this->user->get_id());
+        $this->response->redirect("/profile/$id");
     }
 }

@@ -96,13 +96,22 @@ use Models\Movie;
 
                         <div class="bg-gray-900 shadow-md rounded-lg p-4 mb-4 flex items-start w-full">
                             <article class="w-full">
-                                <div class="flex items-center mb-4">
-                                    <img class="w-10 h-10 me-4 rounded-full" src="https://img.icons8.com/nolan/64/user-default.png" alt="">
-                                    <div class="font-medium text-white">
-                                        <p class="ml-1.5 font-bold">
-                                            <?= $rating->get_user()->get_username() ?>
-                                        </p>
+                                <div class="flex items-center justify-between mb-4">
+                                    <div class="flex items-center">
+                                        <img class="w-10 h-10 me-4 rounded-full" src="https://img.icons8.com/nolan/64/user-default.png" alt="">
+                                        <div class="font-medium text-white">
+                                            <a class="ml-1.5 font-bold" href="/profile/<?= $rating->get_user()->get_id() ?>">
+                                                <?= $rating->get_user()->get_username() ?>
+                                            </a>
+                                        </div>
                                     </div>
+                                    <?php if(!Application::isGuest() && !$user->is_following($rating->get_user()->get_id())): ?>
+                                        <a class="btn" href="/follow/<?= $rating->get_user()->get_id() ?>">
+                                            Follow
+                                        </a>
+                                    <?php else: ?>
+                                        <p class="badge">Followed</p>
+                                    <?php endif; ?>
                                 </div>
                                 <div class="mb-4">
                                     <p class="text-gray-300 dark:text-gray-400 mb-2">
