@@ -18,7 +18,6 @@ class RegisterController extends BaseController
         //call the parent constructor to get access to the properties and methods of the BaseController class
         parent::__construct(...func_get_args());
         $this->userDAO = new UsersDAO();
-        $this->registerMiddleware(new TestMiddleware($container));
     }
 
 
