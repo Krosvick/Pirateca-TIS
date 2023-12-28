@@ -178,64 +178,15 @@ class Rating extends Model{
         return 'id';
     }
 
-    /**
-     * Search for ratings by movie ID.
-     *
-     * @param int $movie_id The ID of the movie to search for ratings.
-     * @return array An array of ratings for the specified movie.
-     */
-    public function search_by_movie_id($movie_id)
-    {
-        $ratings = $this->ratingsDAO->get_by_movie($movie_id);
-        return $ratings;
-    }
-
-    /**
-     * Add a new rating.
-     *
-     * @param int $user_id The ID of the user associated with the rating.
-     * @param float $rating The rating value.
-     * @param int $movie_id The ID of the movie associated with the rating.
-     * @param string $commentary The commentary for the rating.
-     */
-    private function add_rating($user_id, $rating, $movie_id, $commentary)
-    {
-        //add timestamp function here
-        $rating = new Rating($user_id, $rating, $movie_id, $commentary);
-        $this->ratingsDAO->add($rating);
-    }
-
-    /**
-     * Delete a rating.
-     *
-     * @param int $user_id The ID of the user associated with the rating.
-     * @param int $movie_id The ID of the movie associated with the rating.
-     */
-    private function delete_review($user_id, $movie_id)
-    {
-        $this->ratingsDAO->delete($user_id, $movie_id);
-    }
-
-    /**
-     * Show ratings for a specific movie.
-     *
-     * @param int $movie_id The ID of the movie to show ratings for.
-     * @return array An array of ratings for the specified movie.
-     */
-    private function show_movie_ratings($movie_id)
-    {
-        $ratings = $this->ratingsDAO->get_by_movie($movie_id);
-        return $ratings;
-    }
 
     /**
      * Get all ratings.
      *
      * @return array An array of all ratings.
      */
-    private function get_all()
+    private function get_all($ratingsDAO)
     {
-        $ratings = $this->ratingsDAO->get_all();
+        $ratings = $ratingsDAO->get_all();
         return $ratings;
     }
 
@@ -245,10 +196,10 @@ class Rating extends Model{
      *
      * @return array The response from the POST request, decoded as an associative array.
      */
-    public function post_all_ratings()
+    public function post_all_ratings($ratingsDAO)
     {
         $client = new Client();
-        $ratings = $this->get_all();
+        $ratings = $this->get_all($ratingsDAO);
         $response = $client->request('POST', 'localhost:8001/ratings', [
             'json' => $ratings
         ]);

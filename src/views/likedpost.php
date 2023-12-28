@@ -4,7 +4,7 @@
         <h1 class="text-3xl font-bold pb-5 inline">Reviewed Movies</h1>
     </div>
 
-<div class="flex flex-wrap justify-center">
+<div class="flex flex-wrap justify-center min-h-screen">
     <?php foreach ($user_movies as $movie): ?>
         <div class="max-w-sm rounded overflow-hidden shadow-lg m-5">
             <a href="/movie/<?= $movie->get_id() ?>">
@@ -28,4 +28,9 @@
             </div>
         </div>
     <?php endforeach; ?>
+    <?if (empty($user_movies)):?>
+        <div class="flex justify-center mt-5 mx-5">
+            <h1 class="text-3xl font-bold pb-5 inline">You have not reviewed any movies yet!</h1>
+        </div>
+    <?endif;?>
 </div>

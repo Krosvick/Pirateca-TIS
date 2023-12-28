@@ -102,7 +102,9 @@
         <li><a class="p-5" href="/login">Login</a></li>
         <?php endif; ?>
         <li class=""><a href="/information">About</a></li>
+        <?php if(!Application::isGuest()): ?>
         <li class=""><a href="/profile/<?= Application::$app->user->get_id()?>/likedpost">Liked</a></li>
+        <?php endif; ?>
     </ul>
   </div>
 </div>

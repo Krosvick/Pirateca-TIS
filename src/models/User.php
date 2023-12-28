@@ -397,6 +397,7 @@ class User extends Model{
         $userData = $userDAO->find($id);
         $userFollowing = $userDAO->get_following($id);
         $userFollowers = $userDAO->get_followers($id);
+        unset($userDAO);
         //iterate through the followers and get the user objects
         $user = new User();
         $user->set_id($userData->id);
