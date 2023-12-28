@@ -105,7 +105,7 @@ class SearchController extends BaseController
             'cssFiles' =>  ['styles-movie.css']
         ];
 
-        return $this->render("test",$optionals);
+        return $this->render("search",$optionals);
     }
         
 }
