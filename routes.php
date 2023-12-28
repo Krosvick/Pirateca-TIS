@@ -28,7 +28,6 @@ $app->router->get('/movie/{id}/offset/{offset}', 'MoviePageController@MoviePage'
 $app->router->get('/addMovie', 'MovieController@createMovie');
 $app->router->post('/addMovie', 'MovieController@createMovie');
 
-
 $app->router->get('/information', 'InfoController@infoPage');
 
 $app->router->get('/profile/{id}', 'UserController@ProfilePage');

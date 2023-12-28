@@ -196,4 +196,14 @@ class Application
         self::$app->session->remove('user');
         self::$app->session->remove('usernumber');
     }
+    /**
+     * Returns the user's id.
+     *
+     * @return int The user's id.
+     */
+
+    public static function get_user_id()   
+    {
+        return Application::$app->user->get_id();
+    }   
 }

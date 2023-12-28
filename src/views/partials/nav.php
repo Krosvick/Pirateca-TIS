@@ -17,7 +17,7 @@
           <li class="hidden sm:block"><a href="/">Home</a></li>
           <?php
 
-use Core\Application;
+          use Core\Application;
           ?>
           <?php if(Application::isGuest()): ?>
           <li class="hidden sm:block"><a href="/login">Login</a></li>
@@ -41,15 +41,19 @@ use Core\Application;
                 <img alt="Tailwind CSS Navbar component" src="https://img.icons8.com/nolan/64/user-default.png" />
               </div>
             </div>
-            <ul tabindex="0" class="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-gray-900 rounded-box w-52">
-              <li>
-                <a href="/profile" class="justify-between">
+            <ul tabindex="0" class="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content content-center bg-gray-900 rounded-box w-52">
+
+              <li class="hidden sm:block px mx" >
+                <a href="/profile/<?= Application::get_user_id();?>" class="justify-between">
                   Profile
                 </a>
               </li>
-              <li class="hidden sm:block ml-3">Followers <?php ?> </li>
-              <li class="hidden sm:block ml-3">Following <?php ?> </li>
-              <li class="hidden sm:block badge badge-error pb-5"><a href="/logout">Logout</a></li>
+              <li class="hidden sm:block px mx">Followers <?php ?> </li>
+              <li class="hidden sm:block px mx">Following <?php ?> </li>
+              <li class="hidden sm:block px mx">
+                <a href="/logout">Logout</a>
+              </li>
+
             </ul>
             <?php endif; ?>
           </div>
@@ -83,7 +87,7 @@ use Core\Application;
         </div>
         <ul tabindex="0" class="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content rounded-box w-52">
           <li>
-            <a class="justify-between" href="/profile">
+            <a class="justify-between" href="/profile/<?= Application::get_user_id();?>">
               Profile
             </a>
           </li>
