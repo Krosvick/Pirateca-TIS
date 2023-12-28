@@ -4,7 +4,6 @@ namespace Controllers;
 
 use Core\Application;
 use Models\Movie;
-use Models\User;
 use DAO\moviesDAO;
 use Core\BaseController;
 use Core\Middleware\AdminMiddleware;

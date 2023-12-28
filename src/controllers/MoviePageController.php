@@ -74,8 +74,8 @@ class MoviePageController extends BaseController
         //this is how to validate the model, either returns true or false
         //var_dump($this->movieModel->validate(), $this->movieModel->getAllErrors());
         //dd($this->movieModel);
-        $this->movieModel->MovieDirectorRetrieval();
-        $this->movieModel->moviePosterFallback();
+        $this->movieModel->MovieDirectorRetrieval($this->movieDAO);
+        $this->movieModel->moviePosterFallback($this->movieDAO);
         $ratings_data = $this->ratingsDAO->getPagebyMovie($this->movieModel, $offset);
         
         if(isset($ratings_data['message'])){
