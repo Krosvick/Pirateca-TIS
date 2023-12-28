@@ -343,7 +343,8 @@ class User extends Model{
     public function getRecommendedMoviesIds($quantity): array
     {
         $client = new GuzzleHttp\Client();
-        $response = $client->request('GET', 'localhost:8001/recommendations/ids?userId=' . $this->id . '&n=' . $quantity);
+        $url = $_ENV["API_URL"] . '/recommendations/ids?userId=' . $this->id . '&n=' . $quantity;
+        $response = $client->request('GET', $_ENV["API_URL"] . '/recommendations/ids?userId=' . $this->id . '&n=' . $quantity);
         $response = json_decode($response->getBody(), true);
         return $response;
     }
@@ -357,7 +358,7 @@ class User extends Model{
     public function get_user_movies($quantity): array
     {
         $client = new GuzzleHttp\Client();
-        $response = $client->request('GET', 'localhost:8001/user-movies?userId=' . $this->id . '&n=' . $quantity);
+        $response = $client->request('GET', $_ENV["API_URL"] . '/user-movies?userId=' . $this->id . '&n=' . $quantity);
         $response = json_decode($response->getBody(), true);
         return $response;
     }
