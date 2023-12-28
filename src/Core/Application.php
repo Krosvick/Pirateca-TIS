@@ -69,7 +69,11 @@ class Application
      * @var Session
      */
     public Session $session;
-
+    /**
+     * 
+     * @var BaseController
+     */
+    public ?BaseController $controller = null;
     /**
      * The user instance.
      *
@@ -115,6 +119,17 @@ class Application
     public static function isGuest()
     {
         return !self::$app->user;
+    }
+    /**
+     * Checks if the user is an admin.
+     * 
+     * @return bool Returns true if the user is an admin, false otherwise.
+     */
+    public static function isAdmin()
+    {
+        if (self::$app->user) {
+            return self::$app->user->get_role() === 'admin';
+        }
     }
     /**
      * Runs the application.

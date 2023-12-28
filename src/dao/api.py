@@ -8,6 +8,8 @@ import threading
 import sys
 import pydao
 from surprise.dump import dump, load
+from surprise.model_selection import train_test_split
+from surprise import Dataset, Reader
 import os
 
 
@@ -48,8 +50,7 @@ class SimpleAPI(BaseHTTPRequestHandler):
         AFTER THE FIRST LOAD EVERYTHING WILL BE DONE IN THE PLANETSCALE DB
     """
     ratings_df = pd.read_csv('datasets/processed_ratings.csv', memory_map=True)
-    model = load('Algorithm.pkl')[1]
-    predictions = load('Algorithm.pkl')[0]
+    model = load('svd_model_biased_big.pkl')[1]
     #load movies metadata but only id and title
     movies_df = pd.read_csv('datasets/movies_metadata.csv', usecols=['id', 'title'], memory_map=True)
 
@@ -82,7 +83,7 @@ class SimpleAPI(BaseHTTPRequestHandler):
             userId = int(query_params['userId'][0])
             #print every data in same "print" function to check if it's working, all df should print sample
             n = int(query_params['n'][0])
-            top_movies = Algorithm.get_user_recommendations(userId, self.ratings_df, self.movies_df, self.model, self.predictions, n)
+            top_movies = Algorithm.get_user_recommendations(userId, self.ratings_df, self.movies_df, self.model, n)
             response = {'top_movies': top_movies}
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
@@ -94,7 +95,8 @@ class SimpleAPI(BaseHTTPRequestHandler):
             print(query_params, '/recommendations/ids')
             userId = int(query_params['userId'][0])
             n = int(query_params['n'][0])
-            top_movies = Algorithm.get_user_recommendations(userId, self.ratings_df, self.movies_df, self.model, self.predictions, n)
+            top_movies = Algorithm.get_user_recommendations(userId, self.ratings_df, self.movies_df, self.model, n)
+            print(top_movies)
             response = {'top_movies': top_movies}
             self.send_response(200)
             self.send_header('Content-type', 'application/json')

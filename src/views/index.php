@@ -11,7 +11,7 @@
          foreach ($user_movies as $movie) : ?>
             <div id="<?= "slide" . $i ?>" class="carousel-item relative w-full justify-center">
                <a href="/movie/<?= $movie->get_id() ?>">
-                  <img src="<?= $movie->get_poster_path() ? "https://image.tmdb.org/t/p/w500" . $movie->get_poster_path() : '/views/images/PLACEHOLDER.png' ?>" class="w-11/15" />
+                  <img src="<?= $movie->get_poster_path() ? "https://image.tmdb.org/t/p/w500" . $movie->get_poster_path() : '/views/images/PLACEHOLDER.png' ?>" class="w-11/15" loading="lazy" onerror="this.onerror=null; this.src='/images/poster-holder.jpg';"/>
                </a>
                <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
                   <?php if ($i == 1) : ?>

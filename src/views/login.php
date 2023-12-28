@@ -24,7 +24,7 @@
                 <button class="btn btn-block border-2 bg-purple-800 text-white hover:bg-white hover:text-purple-800 hover:border-purple-700" type="submit">Login</button>
                 <p>&nbsp</p>
                 <hr>
-                <a class="btn btn-block border-2 bg-gray-800 text-white hover:bg-white hover:text-gray-800 hover:border-gray-700" href="/register">Registrarse</a>
+                <a class="btn btn-block border-2 bg-gray-800 text-white hover:bg-white hover:text-gray-800 hover:border-gray-700" href="/register">Register a new account</a>
             </form>
         </div>
     </div>

@@ -294,17 +294,6 @@ class User extends Model{
     }
 
     /**
-     * Registers a new user.
-     *
-     * @param string $username The username of the user.
-     * @param string $password The password of the user.
-     */
-    public function register($username, $password)
-    {
-        $this->userDAO->add($username, $password);
-    }
-
-    /**
      * Retrieves a specified number of recommended movie IDs for the user.
      *
      * @param int $quantity The number of movie IDs to retrieve.
@@ -358,9 +347,13 @@ class User extends Model{
         $user = $userDAO->find($id, static::class);
         return $user;
     }
-    
-    //login
-    //register
-    //delete account
 
+    public function has_rated_movie($movie_id, $RatingsDAO): bool{
+        $rating = $RatingsDAO->find_by_user_and_movie($this->id, $movie_id);
+        if($rating){
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

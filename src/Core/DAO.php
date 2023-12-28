@@ -180,10 +180,10 @@ abstract class DAO {
       * @param int $id
       * @param string $className
       *
-      * @return object
+      * @return ?object
       */
 
-    public function find($id, $className = null): object {
+    public function find($id, $className = null): ?object {
         try {
 
             $sql = "SELECT * FROM {$this->table} WHERE id = :id";
@@ -195,7 +195,7 @@ abstract class DAO {
             
             return $row;
         } catch (Exception $e) {
-
+            die($e->getMessage());
         }
     }
 
@@ -312,11 +312,18 @@ abstract class DAO {
 
     public function delete($id) {
         try {
-            $this->connection->query("DELETE FROM {$this->table} WHERE id = :id", [
-                'id' => [$id, PDO::PARAM_INT]
-            ]);
+            $sql = "DELETE FROM {$this->table} WHERE id = :id";
+            $params = array(
+                "id" => [$id, PDO::PARAM_INT]
+            );
+            $stmt = $this->connection->query($sql, $params);
             $this->getRelations();
-            $this->cascadeDelete($id, ...$this->Relations);
+            if (empty($this->Relations)) {
+                $result = $stmt->get();
+            } else {
+                $this->cascadeDelete($id, ...$this->Relations);
+                $result = $stmt->get();
+            }
         } catch (Exception $e) {
             die($e->getMessage());
         }
@@ -333,12 +340,21 @@ abstract class DAO {
      * @return void
      */
 
-    private function cascadeDelete($id, ...$tables)
+    private function cascadeDelete($idMovie, ...$tables)
     {
-        foreach ($tables as $table) {
-            $this->connection->query("UPDATE $table SET deleted_at = NOW() WHERE id = :id", [
-                'id' => $id
-            ]);
+        //i need to iterate over the keys not the values
+        try {
+            foreach ($tables['tables'] as $key => $id) {
+                $table = $key;
+                $sql = "DELETE FROM $table WHERE $id = :id";
+                $params = array(
+                    "id" => [$idMovie, PDO::PARAM_INT]
+                );
+                $stmt = $this->connection->query($sql, $params);
+                $result = $stmt->get();
+            }
+        } catch (Exception $e) {
+            die($e->getMessage());
         }
     }
 
@@ -350,11 +366,18 @@ abstract class DAO {
      * @return void
      */
     private function getRelations(){
-        #this will read a json file called referential integrity in this sane directory
+        #this will read a json file called referential integrity in this same directory
         #it will find the relations of the table and store them in an array
-        $json = file_get_contents(__DIR__ . '/referential_integrity.json');
+        $json = file_get_contents(base_path('src/dao/referential_integrity.json'));
         $relations = json_decode($json, true);
-        $this->Relations = $relations[$this->table];
+        
+        # Check if the table has any relations
+        if (isset($relations[$this->table])) {
+            $this->Relations = $relations[$this->table];
+        } else {
+            # If the table has no relations, set Relations to an empty array
+            $this->Relations = [];
+        }
     }
 
      /**

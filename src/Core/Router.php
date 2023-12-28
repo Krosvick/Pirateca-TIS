@@ -180,18 +180,18 @@ class Router
 
         if ($this->matchRoute($method, $url)) {
             $params = $this->params;
-
             $controller = $this->getNamespace() . $this->toStudlyCaps($params['controller']);
 
             if (class_exists($controller)) {
                 $controllerObject = new $controller($this->container, $params);
                 $action = $this->toCamelCase($params['action']);
+                $controllerObject->action = $action;
 
                 if (is_callable([$controllerObject, $action])) {
+                    Application::$app->controller = $controllerObject;
                     foreach ($controllerObject->getMiddleware() as $middleware) {
                         $middleware->execute();
                     } 
-
                     unset($params['controller'], $params['action'], $params['segments']);
                     call_user_func_array([$controllerObject, $action], array_values($params));
                 } else {

@@ -22,10 +22,17 @@ $app->router->post('/search/{busqueda}/page/{page}', 'SearchController@search');
 $app->router->get('/register', 'RegisterController@index');
 $app->router->post('/register', 'RegisterController@index'); //registra al usuario
 
-$app->router->delete('/movie/{id}', 'MoviePageController@MoviePage');
+$app->router->get('/movie/{id}/delete', 'MoviePageController@DeleteMovie');
+$app->router->get('/movie/{idmovie}/review/{idreview}/delete', 'MoviePageController@DeleteReview');
 $app->router->get('/movie/{id}/offset/{offset}', 'MoviePageController@MoviePage');
+$app->router->get('/addMovie', 'MovieController@createMovie');
+$app->router->post('/addMovie', 'MovieController@createMovie');
 
-$app->router->get('/information', 'InfoController@infopage');
+
+$app->router->get('/information', 'InfoController@infoPage');
 
 $app->router->get('/profile', 'UserController@ProfilePage');
 $app->router->get('/profile/likedpost', 'UserController@LikedMovies');
+
+$app->router->get('/profile/{id}', 'UserController@ProfilePage');
+$app->router->get('/profile/{id}/likedpost', 'UserController@LikedMovies');

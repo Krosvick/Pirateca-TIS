@@ -10,6 +10,7 @@ use Models\User;
 use Models\Movie;
 use Core\Application;
 use GuzzleHttp\Client;
+use Core\Middleware\AuthMiddleware;
 
 /**
  * UserController class
@@ -31,7 +32,7 @@ class UserController extends BaseController{
      */
     public function __construct($container, $routeParams) {
         parent::__construct(...func_get_args());
-        $this->user = Application::$app->session->get('user');
+        $this->user = Application::$app->session->get('user') ?? null;
         $this->userDAO = new UsersDAO();
     }
 
@@ -42,19 +43,26 @@ class UserController extends BaseController{
      *
      * @return string The rendered HTML content of the "likedpost" template.
      */
-    public function LikedMovies(){
-        if(!$this->user){
-            echo "You are not logged in";
-            $this->response->abort(404);
-        }
+    public function likedMovies($id){
         $ratingsDAO = new RatingsDAO();
         $MoviesDAO = new MoviesDAO();
 
-        $username = $this->user->get_username();
-        $user_movies = $this->user->get_liked_movies($ratingsDAO, $MoviesDAO, 10);
+        $isLogged = !Application::isGuest();
+        $loggedUserId = $isLogged ? $this->user->get_id() : null;
+
+        if($isLogged && $loggedUserId == $id){
+            $username = $this->user->get_username();
+            $user_movies = $this->user->get_liked_movies($ratingsDAO, $MoviesDAO, 10);
+            $userData = $this->user;
+        }else{
+            $userData = $this->userDAO->find($id, User::class);
+            $user_movies = $userData->get_liked_movies($ratingsDAO, $MoviesDAO, 10);
+            $username = $userData->get_username();
+        }
         $data = [
             'user_movies' => $user_movies,
-            'username' => $username
+            'username' => $username,
+            'userData' => $userData,
         ];
         $metadata = [
             'title' => 'Pirateca - Profile',
@@ -71,24 +79,14 @@ class UserController extends BaseController{
         return $this->render("likedpost", $optionals);
     }
 
-    /**
-     * ProfilePage method
-     *
-     * Checks if the user is logged in and renders the profile page.
-     *
-     * @return string The rendered HTML content of the "profile" template.
-     */
-    public function ProfilePage()
-    {
-        if (!$this->user) {
-            echo "You are not logged in";
-            $this->response->abort(404);
-        }
+    public function profilePage($id){
 
-        $user = Application::$app->session->get('user');
+        $userProfileData = $this->userDAO->find($id, User::class);
+        
 
         $data = [
-            'user' => $user
+            'loggedUser' => $this->user,
+            'userProfileData' => $userProfileData,
         ];
         $metadata = [
             'title' => 'Pirateca - Profile',

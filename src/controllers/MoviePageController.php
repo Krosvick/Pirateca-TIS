@@ -42,14 +42,13 @@ class MoviePageController extends BaseController
      * @param int $id The movie ID from the route.
      * @return void Renders the movie page template.
      */
-    public function MoviePage($id, $offset = 0) {
+    public function moviePage($id, $offset = 0) {
         if($this->request->isPost()){
             // logic of request: Auth -> Validate -> Sanitize -> Save
             if(!$this->user || $this->user->get_id() == 1){
                 echo "You are not logged in";
                 $this->response->abort(404);
             }
-
             $body = $this->request->getBody();
             $rating = $body["rating"];
             $review = $body["review"];
@@ -67,7 +66,9 @@ class MoviePageController extends BaseController
         }
         //this is a more truthful oop approach
         $this->movieModel = $this->movieDAO->find($id, 'Models\Movie');
-        
+        if(!$this->movieModel){
+            $this->response->abort(404, "Movie not found");
+        }
         //this is how to validate the model, either returns true or false
         //var_dump($this->movieModel->validate(), $this->movieModel->getAllErrors());
         //dd($this->movieModel);
@@ -108,13 +109,20 @@ class MoviePageController extends BaseController
             if(!$this->movieModel){
                 $this->response->abort(404);
             }
-            
+            if(!Application::isGuest()){
+                $hasRated = Application::$app->user->has_rated_movie($id, $this->ratingsDAO);
+            }
+            else {
+                $hasRated = false;
+            }
+
             $data = [
                 'Movie' => $this->movieModel,
                 'firstId' => $ratings_data['firstId'],
                 'lastId' => $ratings_data['lastId'],
                 'lastResult' => $ratings_data['lastResults'],
                 'totalRows' => $ratings_data['totalRows'],
+                'hasRated' => $hasRated,
             ];
         }
         $metadata = [
@@ -127,6 +135,16 @@ class MoviePageController extends BaseController
             'metadata' => $metadata,
         ];
         return $this->render("movie_page", $optionals);
+    }
+
+    public function deleteMovie($id){
+        $this->movieDAO->delete($id);
+        $this->response->redirect("/");
+    }
+
+    public function deleteReview($idMovie, $idReview){
+        $this->ratingsDAO->delete($idReview);
+        $this->response->redirect("/movie/$idMovie");
     }
 
 }

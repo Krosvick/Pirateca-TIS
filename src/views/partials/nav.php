@@ -22,8 +22,13 @@ use Core\Application;
           <?php if(Application::isGuest()): ?>
           <li class="hidden sm:block"><a href="/login">Login</a></li>
           <?php endif; ?>
+          <?php if(!Application::isGuest()): ?>
           <li class="hidden sm:block"><a href="/profile/likedpost">Liked</a></li>
+          <?php endif; ?>
           <li class="hidden sm:block"><a href="/information">About</a></li>
+          <?php if(Application::isAdmin()): ?>
+          <li class="hidden sm:block"><a href="/addMovie">Add Movie</a></li>
+          <?php endif; ?>
           <form action="search" method="post">
             <li class="form-control text-white bg-white rounded-3xl w-full lg:w-fit">
               <input type="text" placeholder="Busqueda" name="busqueda" class="input input-bordered input-primary md:w-auto text-black" />
@@ -42,10 +47,9 @@ use Core\Application;
                   Profile
                 </a>
               </li>
-              <li class="hidden sm:block ml-5">Followers <?php ?> </li>
-              <li class="hidden sm:block ml-5">Following <?php ?> </li>
-              <li class="hidden sm:block"><a href="/logout">Logout</a></li>
-              <li class="hidden sm:block"><a>About</a></li>
+              <li class="hidden sm:block ml-3">Followers <?php ?> </li>
+              <li class="hidden sm:block ml-3">Following <?php ?> </li>
+              <li class="hidden sm:block badge badge-error pb-5"><a href="/logout">Logout</a></li>
             </ul>
             <?php endif; ?>
           </div>
@@ -53,11 +57,22 @@ use Core\Application;
       </div>
     </div>
     <!-- Page content here -->
-    <?= $content ?? '' ?>
+      <?php if (Application::$app->session->getFlash('success')): ?>
+        <div class="alert alert-success">
+            <p><?php echo Application::$app->session->getFlash('success') ?></p>
+        </div>
+      <?php endif; ?>
+      <?php if (Application::$app->session->getFlash('error')): ?>
+        <div class="alert alert-error">
+            <p><?php echo Application::$app->session->getFlash('error') ?></p>
+        </div>
+      <?php endif; ?>
+      <?= $content ?? '' ?>
+      <?php require('footer.php'); ?>
   </div>
   <div class="drawer-side">
     <label for="my-drawer-3" aria-label="close sidebar" class="drawer-overlay"></label>
-    <ul class="menu flex pt-40 p-4 w-80 min-h-full bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-60 bg-indigo-900">
+    <ul class="menu flex pt-40 p-4 w-80 min-h-full bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-10 bg-gray-900">
       <!-- Sidebar content here -->
       <div class="dropdown dropdown-end p-3">
         <?php if(!Application::isGuest()): ?>
@@ -66,7 +81,7 @@ use Core\Application;
             <img alt="Tailwind CSS Navbar component" src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
           </div>
         </div>
-        <ul tabindex="0" class="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-gray-900 rounded-box w-52">
+        <ul tabindex="0" class="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content rounded-box w-52">
           <li>
             <a class="justify-between" href="/profile">
               Profile
@@ -82,8 +97,8 @@ use Core\Application;
         <?php if(Application::isGuest()): ?>
         <li><a class="p-5" href="/login">Login</a></li>
         <?php endif; ?>
-        <li class="p-5"><a href="/information">About</a></li>
-        <li class="p-5"><a href="/profile/likedpost">Liked</a></li>
+        <li class=""><a href="/information">About</a></li>
+        <li class=""><a href="/profile/likedpost">Liked</a></li>
     </ul>
   </div>
 </div>
