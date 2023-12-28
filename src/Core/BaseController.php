@@ -3,6 +3,23 @@
 namespace Core;
 
 
+/**
+ * Abstract class representing a base controller.
+ *
+ * This class contains various methods for rendering views, redirecting users, returning JSON data, and managing middleware.
+ *
+ * Example Usage:
+ * ```php
+ * $controller = new BaseController($container, $routeParams);
+ * $controller->render('home', ['title' => 'Welcome']);
+ * $controller->redirect('/login');
+ * $controller->json(['message' => 'Success']);
+ * $controller->registerMiddleware(new AuthMiddleware());
+ * $middleware = $controller->getMiddleware();
+ * ```
+ *
+ * @package YourPackage
+ */
 abstract class BaseController
 {
     protected $routeParams;
@@ -10,6 +27,14 @@ abstract class BaseController
     protected $request;
     protected array $middleware = [];
 
+    /**
+     * Constructor.
+     *
+     * Initializes the BaseController object.
+     *
+     * @param object $container An object representing the dependency injection container.
+     * @param array $routeParams An array containing the route parameters.
+     */
     public function __construct($container, $routeParams)
     {
         $this->routeParams = $routeParams;
@@ -17,11 +42,21 @@ abstract class BaseController
         $this->request = $container->get(Request::class);
     }
 
+    /**
+     * Method to be overridden in child classes for pre-action logic.
+     *
+     * This method can be overridden in child classes to add pre-action logic.
+     */
     protected function before()
     {
         // This method can be overridden in child classes for pre-action logic
     }
 
+    /**
+     * Method to be overridden in child classes for post-action logic.
+     *
+     * This method can be overridden in child classes to add post-action logic.
+     */
     protected function after()
     {
         // This method can be overridden in child classes for post-action logic
@@ -85,4 +120,3 @@ abstract class BaseController
         return $this->middleware;
     }
 }
-

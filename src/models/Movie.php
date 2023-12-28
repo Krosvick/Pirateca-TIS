@@ -7,6 +7,13 @@ use DAO\moviesDAO;
 use GuzzleHttp\Client;
 
 
+/**
+ * Class Movie
+ *
+ * Represents a movie object with various properties such as ID, title, overview, poster path, genres, etc.
+ * Provides getter and setter methods for accessing and modifying the properties.
+ * Contains methods for finding movies, retrieving movie posters, retrieving movie directors, searching for movies, getting all movies, deleting a movie, and adding a movie.
+ */
 class Movie extends Model{
 
     private $id;

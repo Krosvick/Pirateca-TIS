@@ -2,6 +2,9 @@
 
 namespace Core;
 
+/**
+ * A class called `Container` that implements a basic dependency injection container.
+ */
 class Container
 {
     /**

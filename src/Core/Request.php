@@ -2,6 +2,14 @@
 
 namespace Core;
 
+/**
+ * Class Request
+ *
+ * Handles HTTP requests.
+ *
+ * @package     YourPackage
+ * @subpackage  Request
+ */
 class Request
 {
     protected $url;

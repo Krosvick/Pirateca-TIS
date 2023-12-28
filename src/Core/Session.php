@@ -2,6 +2,13 @@
 
 namespace Core;
 
+/**
+ * Session class.
+ *
+ * The Session class is responsible for managing session variables and flash messages.
+ * It provides methods to set, get, and remove session variables, as well as set and retrieve flash messages.
+ *
+ */
 class Session
 {
     protected const FLASH_KEY = 'flash_messages';

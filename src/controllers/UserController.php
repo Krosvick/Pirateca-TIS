@@ -11,19 +11,38 @@ use Models\Movie;
 use Core\Application;
 use GuzzleHttp\Client;
 
+/**
+ * UserController class
+ *
+ * This class is responsible for handling user-related functionality in the application.
+ */
 class UserController extends BaseController{
     private $userDAO;
     public $user;
 
+    /**
+     * UserController constructor
+     *
+     * Initializes the UserController class by calling the parent constructor and setting the user and userDAO properties.
+     *
+     * @param object $container An object representing the application's container.
+     * @param array $routeParams An array containing the route parameters.
+     * @return void
+     */
     public function __construct($container, $routeParams) {
-        //call the parent constructor to get access to the properties and methods of the BaseController class
         parent::__construct(...func_get_args());
         $this->user = Application::$app->session->get('user');
         $this->userDAO = new UsersDAO();
     }
 
+    /**
+     * LikedMovies method
+     *
+     * Renders a page that displays the movies liked by a user.
+     *
+     * @return string The rendered HTML content of the "likedpost" template.
+     */
     public function LikedMovies(){
-        //exception if the user is not logged in
         if(!$this->user){
             echo "You are not logged in";
             $this->response->abort(404);
@@ -52,15 +71,21 @@ class UserController extends BaseController{
         return $this->render("likedpost", $optionals);
     }
 
-    public function ProfilePage(){
-        if(!$this->user){
+    /**
+     * ProfilePage method
+     *
+     * Checks if the user is logged in and renders the profile page.
+     *
+     * @return string The rendered HTML content of the "profile" template.
+     */
+    public function ProfilePage()
+    {
+        if (!$this->user) {
             echo "You are not logged in";
             $this->response->abort(404);
         }
 
         $user = Application::$app->session->get('user');
-        //echo $user->get_username();
-        //dd($user);
 
         $data = [
             'user' => $user
@@ -76,9 +101,15 @@ class UserController extends BaseController{
         ];
 
         return $this->render('profile', $optionals);
-
     }
 
+    /**
+     * Logout method
+     *
+     * Logs out the user by clearing the user session and redirecting the user to the homepage.
+     *
+     * @return void
+     */
     public function logout(){
         if($this->user){
             Application::$app->logout();

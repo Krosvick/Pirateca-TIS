@@ -2,6 +2,14 @@
 
 namespace Core;
 
+/**
+ * Class Response
+ *
+ * The Response class handles HTTP responses in a PHP application.
+ * It provides methods for redirecting the user to a different URL,
+ * aborting the request with an error message, rendering a view,
+ * and setting the HTTP response code.
+ */
 class Response
 {
     /**
@@ -72,6 +80,7 @@ class Response
     {
         $this->view->render($view, $optionals);
     }
+    
     /**
      * Sets the HTTP response code for the current request.
      *

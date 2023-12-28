@@ -12,6 +12,19 @@ namespace Core;
 use PDO;
 use Exception;
 
+/**
+ * This is an abstract class called `DAO` that serves as a base class for data access objects.
+ * It provides methods for performing common database operations such as retrieving records, inserting new records, updating existing records, and deleting records.
+ * The class uses an instance of the `Database` class to interact with the database.
+ *
+ *
+ * Inputs:
+ * - $limit (optional): The maximum number of records to retrieve. Default is 10.
+ * - $offset (optional): The starting point for retrieving records. Default is 0.
+ *
+ * Outputs:
+ * - An array of objects representing the retrieved records from the database.
+ */
 abstract class DAO {
     protected $connection;
     protected $table;
@@ -109,28 +122,36 @@ abstract class DAO {
         }
     }
     //DELTE IF NOT USED
+    /**
+     * Performs a full-text search on the "movies" table using the "MATCH AGAINST" syntax in a SQL query.
+     * Retrieves a paginated list of rows that match the search query and returns the result along with some additional information.
+     *
+     * @param string $busqueda The search query.
+     * @param int $page The page number for pagination.
+     * @return array An array containing the paginated list of rows, the total number of pages, the current page number, and the IDs of the first and last rows.
+     */
     public function dummytest_fulltext_test($busqueda, $page){
         try {
             $rowsPerPage = 5;
             $offset = ($page - 1) * $rowsPerPage;
-    
+
             $sql = "SELECT * FROM movies WHERE MATCH (original_title) AGAINST (:busqueda IN BOOLEAN MODE) LIMIT :offset, :limit";
-    
+
             $params = array(
                 "busqueda" => [$busqueda . "*", PDO::PARAM_STR],
                 "offset" => [$offset, PDO::PARAM_INT],
                 "limit" => [$rowsPerPage, PDO::PARAM_INT]
             );
-    
+
             $stmt = $this->connection->query($sql, $params);
             $rows = $stmt->getSome();
-    
+
             if (empty($rows)) {
                 return [
                     'message' => 'No movies found for this search.'
                 ];
             }
-            
+        
             $firstId = $rows[0]->id;
             $lastId = end($rows)->id;
 
@@ -140,9 +161,9 @@ abstract class DAO {
             );
             $stmt = $this->connection->query($sql, $params);
             $totalRows = $stmt->statement->fetchColumn();
-    
+
             $totalPages = ceil($totalRows / $rowsPerPage);
-    
+
             return [
                 'rows' => $rows,
                 'totalPages' => $totalPages,
@@ -178,6 +199,14 @@ abstract class DAO {
         }
     }
 
+    /**
+     * Retrieves a single row from the database table based on a specific attribute value.
+     *
+     * @param string $value The value to search for in the specified attribute.
+     * @param string $attribute The attribute to search for the value in.
+     * @param string|null $className The name of the class to instantiate the result as (optional).
+     * @return object|null The result of the query, either a single object matching the specified attribute value or null if no match is found.
+     */
     public function findBy($value, $attribute, $className = null): ?object {
         try {
             $sql = "SELECT * FROM {$this->table} WHERE $attribute = :{$value}";
@@ -215,6 +244,12 @@ abstract class DAO {
             die($e->getMessage());
         }
     }
+    /**
+     * Insert data into a database table using a prepared statement.
+     *
+     * @param array $data An associative array containing the data to be inserted into the table.
+     * @return mixed The result of the query execution.
+     */
     public function insert(array $data)
     {
         $attributes = array_keys($data);
@@ -231,6 +266,7 @@ abstract class DAO {
             die($e->getMessage());
         }
     }
+    
 
      /**
       * 

@@ -2,11 +2,21 @@
 
 namespace Core;
 
+/**
+ * Class View
+ *
+ * The View class is responsible for rendering view files by including their content and outputting it to the browser.
+ */
 class View
 {
     protected $viewPath;
     protected $base_url;
 
+    /**
+     * View constructor.
+     *
+     * @param string|null $base_url The base URL of the application.
+     */
     public function __construct($base_url = null)
     {
         $this->viewPath = base_path("src/views/");
@@ -56,6 +66,8 @@ class View
      * Renders the header file of a view by including its content and outputting it to the browser.
      *
      * @param array $metadata An array containing metadata for the view file, such as CSS and JS files.
+     * @param array $data The data variables to be passed to the header file.
+     * @param string $content The content of the view file.
      * @return void
      */
     protected function renderHeader($metadata, $data, $content = '')

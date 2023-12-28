@@ -8,6 +8,14 @@ use Models\Movie;
 use DAO\RatingsDAO;
 use GuzzleHttp\Client;
 
+/**
+ * Rating class represents a rating given by a user to a movie.
+ * It has properties such as id, user, movie, rating, review, and created_at.
+ * Getter and setter methods are provided for these properties.
+ * The class also has methods for searching ratings by movie ID, adding a new rating,
+ * deleting a rating, showing ratings for a specific movie, getting all ratings,
+ * and posting all ratings to a specific URL.
+ */
 class Rating extends Model{
 
     private $id;

@@ -37,6 +37,11 @@ abstract class Model{
         return [];
     }
 
+    /**
+     * Validates the attributes of the model object based on the defined rules.
+     *
+     * @return bool Returns true if all attribute validations pass, false otherwise.
+     */
     public function validate(){
         foreach($this->rules() as $attribute => $rules){
             $value = $this->{$attribute} ?? $this->{"get_$attribute"}();
@@ -110,10 +115,23 @@ abstract class Model{
         ];
     }
 
+    /**
+     * Returns the error message corresponding to a given rule.
+     *
+     * @param string $rule The rule for which the error message is needed.
+     * @return string The error message corresponding to the given rule.
+     */
     public function errorMessage($rule){
         return $this->errorMessages()[$rule];
     }
 
+    /**
+     * Adds an error message to the errors array for a specific attribute.
+     *
+     * @param string $attribute The name of the attribute for which the error message is being added.
+     * @param string $message The error message to be added.
+     * @return void
+     */
     public function addError(string $attribute, string $message)
     {
         $this->errors[$attribute][] = $message;

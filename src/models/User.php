@@ -7,6 +7,13 @@ use DAO\moviesDAO;
 use DAO\UsersDAO;
 use GuzzleHttp;
 
+/**
+ * Class User
+ *
+ * The User class represents a user in the system. It extends the Model class and provides methods for user login, registration, and retrieving recommended movies and user movies. It also includes a static method to find a user by their ID.
+ *
+ * @package YourPackage
+ */
 class User extends Model{
 
     /**
