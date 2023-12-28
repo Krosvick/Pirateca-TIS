@@ -4,6 +4,7 @@ namespace Controllers;
 
 use Core\Application;
 use Core\BaseController;
+use Core\Middleware\AdminMiddleware;
 use DAO\moviesDAO;
 use DAO\RatingsDAO;
 use DAO\UsersDAO;
@@ -31,6 +32,7 @@ class MoviePageController extends BaseController
         $this->ratingsDAO = new ratingsDAO();
         $this->userDAO = new usersDAO();
         $this->user = Application::$app->session->get('user');
+        $this->registerMiddleware(new AdminMiddleware(['deleteMovie', 'deleteReview']));
     }
 
     /**
