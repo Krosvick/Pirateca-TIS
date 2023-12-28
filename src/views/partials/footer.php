@@ -1,4 +1,4 @@
-<footer class="w-full py-5 px-4 sm:px-6 lg:px-8 mx-auto bg-gradient-to-r from-slate-900 via-slate-700 to-slate-900 mt-5">
+<footer class="w-full py-5 px-4 sm:px-6 lg:px-8 mx-auto bg-slate-950 mt-5">
   <!-- Grid -->
   <div class="text-center">
     <div>
