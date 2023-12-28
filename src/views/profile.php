@@ -3,12 +3,17 @@
 use Core\Application;
 ?>
 
-<div class="bg-gray-200 h-screen flex items-center justify-center movie-container ">
+<div class="bg-gray-200 h-screen max-w-screen flex items-center justify-center movie-container ">
     <div class="form-container glass rounded-lg shadow-lg p-8 ">
 
-        <!-- gpteado cambiar despues -->
 
-        <div class="max-w-4xl mx-auto my-8 px-10 py-8 text-black shadow-md border-white border-4 rounded-md bg-white">
+        <div class="max-w-4xl mx-auto my-8 px-10 py-8 text-black shadow-md border-white border-4 rounded-md bg-white flex items-center flex-col">
+            <?php if(Application::$app->user->is_following($userProfileData->get_id())): ?>
+                <p class="badge badge-primary badge-outline font-bold">Following</p>
+            <?php endif; ?>
+            <?php if($userProfileData->is_following(Application::$app->user->get_id())): ?>
+                <p class="badge badge-success gap-2 text-white">Follows you</p>
+            <?php endif; ?>
             <h1 class="text-2xl font-bold text-blue-600 mb-2">
               PROFILE:
               <?= $userProfileData->get_username(); ?> 
@@ -41,6 +46,7 @@ use Core\Application;
                     <button class="bg-gray-500 text-white hover:bg-white hover:text-gray-500 border border-gray-300 rounded-md py-2 px-3 w-full">Reviewed Movies</button>
                     </p>
                     </a>
+                    <a href="/follow/<?= $userProfileData->get_id(); ?>">
                 </div>
             </div>
         </div>

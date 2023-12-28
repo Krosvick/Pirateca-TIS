@@ -43,9 +43,25 @@ class SearchController extends BaseController
      * @return string The rendered view with a list of movies that match the search query.
      */
     public function search($busqueda = '', $page = null){
-        if($busqueda == '') {
-            $busqueda = $this->routeParams['busqueda'];
+        if($busqueda == '' && !isset($this->routeParams['busqueda'])) {
+            $data = [
+                'movies' => [],
+                'busqueda' => '',
+                'page' => 1,
+                'totalPages' => 1,
+            ];
+            $metadata = [
+                'title' => 'Pirateca - Profile',
+                'description' => 'This is the profile page of the user.', 
+            ];
+            $optionals = [
+                'data' => $data,
+                'metadata' => $metadata,
+                'cssFiles' =>  ['styles-movie.css']
+            ];
+            return $this->render("search",$optionals);
         }
+        $busqueda = $this->routeParams['busqueda'];
         if($page == null || $this->routeParams['page'] == null) {
             $page = 1;
         } else {
@@ -56,6 +72,25 @@ class SearchController extends BaseController
         htmlspecialchars($busqueda);
 
         $movies_data = $this->movied->fulltext_search($busqueda,$page);
+        
+        if(!isset($movies_data['totalPages'])){
+            $data = [
+                'movies' => [],
+                'busqueda' => $busqueda,
+                'page' => 1,
+                'totalPages' => 1,
+            ];
+            $metadata = [
+                'title' => 'Pirateca - Profile',
+                'description' => 'This is the profile page of the user.', 
+            ];
+            $optionals = [
+                'data' => $data,
+                'metadata' => $metadata,
+                'cssFiles' =>  ['styles-movie.css']
+            ];
+            return $this->render("search",$optionals);
+        }
         $totalPages = $movies_data['totalPages'];
        
         $movies = [];
@@ -92,8 +127,6 @@ class SearchController extends BaseController
             'busqueda' =>$busqueda,
             'page' => $page,
             'totalPages' => $totalPages,
-            'firstId' => $movies_data['firstId'],
-            'lastId' => $movies_data['lastId'],
         ];
         $metadata = [
             'title' => 'Pirateca - Profile',
