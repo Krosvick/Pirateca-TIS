@@ -1,3 +1,11 @@
+# Como accedo a la documentación?
+
+Se debe descargar un archivo .phar del siguiente link https://phpdoc.org/phpDocumentor.phar el cual debe ser colocado en la carpeta del proyecto si es que no esta ya presente. En Windows se debe ejecutar el siguiente comando:
+```bash
+php phpDocumentor.phar run -d . -t docs/api 
+``` 
+en donde "-d" es el directorio del cual se quiere que se genere la documentación y "-t" en donde se quiere que se genere la documentación.
+
 # Pirateca-TIS
 
 pip install numpy, pandas, matplotlib, seaborn, surprise, sklearn
