@@ -23,7 +23,7 @@
           <li class="hidden sm:block"><a href="/login">Login</a></li>
           <?php endif; ?>
           <?php if(!Application::isGuest()): ?>
-          <li class="hidden sm:block"><a href="/profile/likedpost">Liked</a></li>
+          <li class="hidden sm:block"><a href="/profile/<?=Application::$app->user->get_id()?>/likedpost">Liked</a></li>
           <?php endif; ?>
           <li class="hidden sm:block"><a href="/information">About</a></li>
           <?php if(Application::isAdmin()): ?>
@@ -44,7 +44,7 @@
             <ul tabindex="0" class="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content content-center bg-gray-900 rounded-box w-52">
 
               <li class="hidden sm:block px mx" >
-                <a href="/profile/<?= Application::get_user_id();?>" class="justify-between">
+                <a href="/profile/<?=Application::get_user_id();?>" class="justify-between">
                   Profile
                 </a>
               </li>
@@ -102,7 +102,7 @@
         <li><a class="p-5" href="/login">Login</a></li>
         <?php endif; ?>
         <li class=""><a href="/information">About</a></li>
-        <li class=""><a href="/profile/likedpost">Liked</a></li>
+        <li class=""><a href="/profile/<?= Application::$app->user->get_id()?>/likedpost">Liked</a></li>
     </ul>
   </div>
 </div>
