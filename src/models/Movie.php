@@ -67,7 +67,6 @@ class Movie extends Model{
         $this->updated_at = $updated_at;
         $this->director = $director;
         $this->poster_status = $poster_status;
-        $this->moviesDAO = new moviesDAO();
     }
     #getters and setters
     /**
@@ -448,34 +447,4 @@ class Movie extends Model{
         $movies = $moviesDAO->search($title); //need search function in moviesDAO or something similar
         return $movies;
     }
-
-    /**
-     * @return array<array> retrieve all movies
-     */
-
-    public function get_all($moviesDAO){
-        $movies = $moviesDAO->get_all();
-        return $movies;
-    }
-
-    /**
-     * @param int $id a movie id
-     * 
-     * @return void
-     */
-
-    public function delete_movie($id){
-        $this->moviesDAO->delete($id);
-    }
-
-    /**
-     * @param array $movie a movie data array
-     * 
-     * @return void
-     */
-
-    public function add_movie($movie){
-        $this->moviesDAO->add($movie);
-    }
-
 }

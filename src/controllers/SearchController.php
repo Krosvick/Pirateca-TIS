@@ -4,9 +4,7 @@ namespace Controllers;
 
 use Core\BaseController;
 use DAO\moviesDAO;
-use Models\User;
 use Models\Movie;
-use GuzzleHttp\Client;
 use Exception;
 
 
@@ -17,8 +15,7 @@ use Exception;
  */
 class SearchController extends BaseController
 {
-    private $movied;
-    private $moviem;
+    private $movieDAO;
     
     /**
      * SearchController constructor.
@@ -30,8 +27,7 @@ class SearchController extends BaseController
      */
     public function __construct($base_url, $routeParams) {
         parent::__construct(...func_get_args());
-        $this->movied = new moviesDAO();
-        $this->moviem = new Movie();
+        $this->movieDAO = new moviesDAO();
     }
 
  
@@ -71,7 +67,7 @@ class SearchController extends BaseController
         $busqueda = urldecode($busqueda);
         htmlspecialchars($busqueda);
 
-        $movies_data = $this->movied->fulltext_search($busqueda,$page);
+        $movies_data = $this->movieDAO->fulltext_search($busqueda,$page);
         
         if(!isset($movies_data['totalPages'])){
             $data = [
@@ -108,8 +104,8 @@ class SearchController extends BaseController
                 $movie->set_release_date($movie_data->release_date);
                 $movie->set_director($movie_data->director);
                 $movie->set_poster_status($movie_data->poster_status);
-                $movie->set_poster_path($movie->moviePosterFallback());
-                $movie->set_director($movie->MovieDirectorRetrieval());
+                $movie->set_poster_path($movie->moviePosterFallback($this->movieDAO));
+                $movie->set_director($movie->MovieDirectorRetrieval($this->movieDAO));
                 array_push($movies, $movie);
             }
             catch (Exception $e) {
