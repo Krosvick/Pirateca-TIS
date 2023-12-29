@@ -10,7 +10,6 @@ use Core\Middleware\AdminMiddleware;
 
 class MovieController extends BaseController {
     private $movieDAO;
-    private $client;
     private $movieModel;
 
     public function __construct($base_url, $routeParams) {
