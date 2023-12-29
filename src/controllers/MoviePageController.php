@@ -97,7 +97,7 @@ class MoviePageController extends BaseController
                 try {
                     $rating = new Rating();
                     $rating->set_id($rating_data->id);
-                    $rating->set_user($this->userDAO->find($rating_data->user_id, 'Models\User'));
+                    $rating->set_user($this->userDAO->find($rating_data->user_id, User::class));
                     $rating->set_movie($this->movieModel);
                     $rating->set_rating($rating_data->rating);
                     $rating->set_review($rating_data->review);
@@ -131,6 +131,7 @@ class MoviePageController extends BaseController
                 'lastResult' => $ratings_data['lastResults'],
                 'totalRows' => $ratings_data['totalRows'],
                 'hasRated' => $hasRated,
+                'offset' => $offset,
             ];
         }
         $metadata = [

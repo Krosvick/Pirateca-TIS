@@ -145,11 +145,13 @@ use Models\Movie;
                     </div>
                 <?php endforeach; ?>
 
-                <div class="join grid grid-cols-3">
-                    <a href="/movie/<?= $Movie->get_id(); ?>/offset/0" class="join-item btn hover:outline hover:outline-1 bg-gray-900 text-white hover:bg-white hover:text-black hover:outline-black">«</a>
+                <div class="join flex justify-center items-center min-w-full">
+                    <?php if ($totalRows > 10 && $offset > 0) : ?>
+                        <a href="/movie/<?= $Movie->get_id(); ?>/offset/0" class="join-item btn hover:outline hover:outline-1 bg-gray-900 text-white hover:bg-white hover:text-black hover:outline-black w-1/3">«</a>
+                    <?php endif; ?>
                     <?php if ($firstId < $lastResult) : ?>
-                        <a href="/movie/<?= $Movie->get_id(); ?>/offset/<?= $lastId ?>" class="join-item btn btn-outline outline-1 outline-black bg-gray-900 text-white hover:bg-white hover:text-black">Next page</a>
-                        <a href="/movie/<?= $Movie->get_id(); ?>/offset/<?= $lastResult ?>" class="join-item btn outline outline-1 bg-gray-900 text-white hover:bg-white hover:text-black outline-black">»</a>
+                        <a href="/movie/<?= $Movie->get_id(); ?>/offset/<?= $lastId ?>" class="join-item btn btn-outline outline-1 outline-black bg-gray-900 text-white hover:bg-white hover:text-black w-1/3">Next page</a>
+                        <a href="/movie/<?= $Movie->get_id(); ?>/offset/<?= $lastResult ?>" class="join-item btn outline outline-1 bg-gray-900 text-white hover:bg-white hover:text-black outline-black w-1/3">»</a>
                     <?php endif; ?>
                 </div>
             <?php else : ?>
@@ -172,7 +174,7 @@ echo '
         <h3 class="font-bold text-lg text-black center">RATE THIS MOVIE</h3>
         <p class="py-4 text-black"></p>
         <div class="rating w-full">
-            <form method="post" action="" class="w-full">
+            <form method="post" action="/movie/' . $Movie->get_id().'" class="w-full>
                 <input type="radio" name="rating" value="1" class="mask mask-star-2 bg-orange-400" />
                 <input type="radio" name="rating" value="2" class="mask mask-star-2 bg-orange-400" />
                 <input type="radio" name="rating" value="3" class="mask mask-star-2 bg-orange-400" />

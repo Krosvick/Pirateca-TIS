@@ -28,9 +28,11 @@
             </div>
         </div>
     <?php endforeach; ?>
-    <?if (empty($user_movies)):?>
-        <div class="flex justify-center mt-5 mx-5">
-            <h1 class="text-3xl font-bold pb-5 inline">You have not reviewed any movies yet!</h1>
-        </div>
-    <?endif;?>
+    <?php
+    if (empty($user_movies)) {
+            echo '<div class="flex justify-center mt-5 mx-5">
+                            <h1 class="text-3xl font-bold pb-5 inline">You have not reviewed any movies yet!</h1>
+                        </div>';
+    }
+    ?>
 </div>

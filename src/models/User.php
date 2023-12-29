@@ -377,7 +377,7 @@ class User extends Model{
         $movies = [];
         foreach($ratings as $rating) {
             $movie = $MoviesDAO->find($rating->movie_id, Movie::class);
-            $movie->movieposterfallback();
+            $movie->movieposterfallback($MoviesDAO);
             array_push($movies, $movie);
         }
 

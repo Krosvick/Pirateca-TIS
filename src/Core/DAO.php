@@ -148,7 +148,6 @@ abstract class DAO {
             );
             $stmt = $this->connection->query($sql, $params);
             $row = $stmt->find($className);
-            
             return $row;
         } catch (Exception $e) {
             die($e->getMessage());

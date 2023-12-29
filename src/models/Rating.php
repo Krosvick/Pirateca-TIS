@@ -72,7 +72,7 @@ class Rating extends Model{
     /**
      * Get the user associated with the rating.
      *
-     * @return string The user associated with the rating.
+     * @return User The user associated with the rating.
      */
     public function get_user()
     {
@@ -82,7 +82,7 @@ class Rating extends Model{
     /**
      * Set the user associated with the rating.
      *
-     * @param string $user The user associated with the rating.
+     * @param User $user The user associated with the rating.
      */
     public function set_user($user)
     {
@@ -92,7 +92,7 @@ class Rating extends Model{
     /**
      * Get the movie associated with the rating.
      *
-     * @return string The movie associated with the rating.
+     * @return Movie The movie associated with the rating.
      */
     public function get_movie()
     {
@@ -102,7 +102,7 @@ class Rating extends Model{
     /**
      * Set the movie associated with the rating.
      *
-     * @param string $movie The movie associated with the rating.
+     * @param Movie $movie The movie associated with the rating.
      */
     public function set_movie($movie)
     {
