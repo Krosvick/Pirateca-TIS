@@ -15,7 +15,6 @@ class IndexController extends BaseController
     private $movieModel;
     private $movieDAO;
 
-
  
     /**
      * IndexController constructor.

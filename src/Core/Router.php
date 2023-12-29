@@ -1,6 +1,8 @@
 <?php
 
 namespace Core;
+//import a folder 'functions.php' that is two folders behind
+require_once __DIR__ . '/../../public/functions.php';
 
 //routes will be added follwing the format below
 //$router->addRoute('/', 'indexController@index');
@@ -177,17 +179,19 @@ class Router
         $url = $this->request->getUrl();
         $method = $this->request->getMethod();
         $url = $this->removeQueryStringVariables($url);
-
+        dd($this->matchRoute($method, $url));
         if ($this->matchRoute($method, $url)) {
             $params = $this->params;
             $controller = $this->getNamespace() . $this->toStudlyCaps($params['controller']);
-
+           
             if (class_exists($controller)) {
                 $controllerObject = new $controller($this->container, $params);
+               
                 $action = $this->toCamelCase($params['action']);
                 $controllerObject->action = $action;
 
                 if (is_callable([$controllerObject, $action])) {
+                    
                     Application::$app->controller = $controllerObject;
                     foreach ($controllerObject->getMiddleware() as $middleware) {
                         $middleware->execute();

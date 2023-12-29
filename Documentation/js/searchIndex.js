@@ -1,40 +1,440 @@
 Search.appendIndex(
     [
                 {
+            "fqsen": "\\Controllers\\IndexController",
+            "name": "IndexController",
+            "summary": "Abstract\u0020class\u0020representing\u0020a\u0020base\u0020controller.",
+            "url": "classes/Controllers-IndexController.html"
+        },                {
+            "fqsen": "\\Controllers\\IndexController\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "IndexController\u0020constructor.",
+            "url": "classes/Controllers-IndexController.html#method___construct"
+        },                {
+            "fqsen": "\\Controllers\\IndexController\u003A\u003Aindex\u0028\u0029",
+            "name": "index",
+            "summary": "",
+            "url": "classes/Controllers-IndexController.html#method_index"
+        },                {
+            "fqsen": "\\Controllers\\IndexController\u003A\u003A\u0024user",
+            "name": "user",
+            "summary": "",
+            "url": "classes/Controllers-IndexController.html#property_user"
+        },                {
+            "fqsen": "\\Controllers\\IndexController\u003A\u003A\u0024movieModel",
+            "name": "movieModel",
+            "summary": "",
+            "url": "classes/Controllers-IndexController.html#property_movieModel"
+        },                {
+            "fqsen": "\\Controllers\\IndexController\u003A\u003A\u0024movieDAO",
+            "name": "movieDAO",
+            "summary": "",
+            "url": "classes/Controllers-IndexController.html#property_movieDAO"
+        },                {
+            "fqsen": "\\Controllers\\InfoController",
+            "name": "InfoController",
+            "summary": "Abstract\u0020class\u0020representing\u0020a\u0020base\u0020controller.",
+            "url": "classes/Controllers-InfoController.html"
+        },                {
+            "fqsen": "\\Controllers\\InfoController\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Constructor.",
+            "url": "classes/Controllers-InfoController.html#method___construct"
+        },                {
+            "fqsen": "\\Controllers\\InfoController\u003A\u003AinfoPage\u0028\u0029",
+            "name": "infoPage",
+            "summary": "",
+            "url": "classes/Controllers-InfoController.html#method_infoPage"
+        },                {
+            "fqsen": "\\Controllers\\LoginController",
+            "name": "LoginController",
+            "summary": "Abstract\u0020class\u0020representing\u0020a\u0020base\u0020controller.",
+            "url": "classes/Controllers-LoginController.html"
+        },                {
+            "fqsen": "\\Controllers\\LoginController\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Constructor.",
+            "url": "classes/Controllers-LoginController.html#method___construct"
+        },                {
+            "fqsen": "\\Controllers\\LoginController\u003A\u003Aindex\u0028\u0029",
+            "name": "index",
+            "summary": "Handles\u0020the\u0020login\u0020functionality.",
+            "url": "classes/Controllers-LoginController.html#method_index"
+        },                {
+            "fqsen": "\\Controllers\\LoginController\u003A\u003A\u0024userDAO",
+            "name": "userDAO",
+            "summary": "",
+            "url": "classes/Controllers-LoginController.html#property_userDAO"
+        },                {
+            "fqsen": "\\Controllers\\MovieController",
+            "name": "MovieController",
+            "summary": "Abstract\u0020class\u0020representing\u0020a\u0020base\u0020controller.",
+            "url": "classes/Controllers-MovieController.html"
+        },                {
+            "fqsen": "\\Controllers\\MovieController\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Constructor.",
+            "url": "classes/Controllers-MovieController.html#method___construct"
+        },                {
+            "fqsen": "\\Controllers\\MovieController\u003A\u003AcreateMovie\u0028\u0029",
+            "name": "createMovie",
+            "summary": "Creates\u0020a\u0020new\u0020Movie\u0020object\u0020with\u0020the\u0020provided\u0020parameters,\u0020registers\u0020it\u0020using\u0020the\u0020movieDAO,\u0020and\u0020performs\u0020additional\u0020actions\u0020to\u0020handle\u0020the\u0020creation\u0020process.",
+            "url": "classes/Controllers-MovieController.html#method_createMovie"
+        },                {
+            "fqsen": "\\Controllers\\MovieController\u003A\u003A\u0024movieDAO",
+            "name": "movieDAO",
+            "summary": "",
+            "url": "classes/Controllers-MovieController.html#property_movieDAO"
+        },                {
+            "fqsen": "\\Controllers\\MovieController\u003A\u003A\u0024client",
+            "name": "client",
+            "summary": "",
+            "url": "classes/Controllers-MovieController.html#property_client"
+        },                {
+            "fqsen": "\\Controllers\\MovieController\u003A\u003A\u0024movieModel",
+            "name": "movieModel",
+            "summary": "",
+            "url": "classes/Controllers-MovieController.html#property_movieModel"
+        },                {
+            "fqsen": "\\Controllers\\MoviePageController",
+            "name": "MoviePageController",
+            "summary": "Abstract\u0020class\u0020representing\u0020a\u0020base\u0020controller.",
+            "url": "classes/Controllers-MoviePageController.html"
+        },                {
+            "fqsen": "\\Controllers\\MoviePageController\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Constructor.",
+            "url": "classes/Controllers-MoviePageController.html#method___construct"
+        },                {
+            "fqsen": "\\Controllers\\MoviePageController\u003A\u003AmoviePage\u0028\u0029",
+            "name": "moviePage",
+            "summary": "Retrieves\u0020the\u0020movie\u0020data\u0020from\u0020the\u0020database\u0020using\u0020the\u0020moviesDAO\u0020class\u0020and\u0020the\u0020provided\u0020movie\u0020ID.",
+            "url": "classes/Controllers-MoviePageController.html#method_moviePage"
+        },                {
+            "fqsen": "\\Controllers\\MoviePageController\u003A\u003AdeleteMovie\u0028\u0029",
+            "name": "deleteMovie",
+            "summary": "",
+            "url": "classes/Controllers-MoviePageController.html#method_deleteMovie"
+        },                {
+            "fqsen": "\\Controllers\\MoviePageController\u003A\u003AdeleteReview\u0028\u0029",
+            "name": "deleteReview",
+            "summary": "",
+            "url": "classes/Controllers-MoviePageController.html#method_deleteReview"
+        },                {
+            "fqsen": "\\Controllers\\MoviePageController\u003A\u003A\u0024client",
+            "name": "client",
+            "summary": "",
+            "url": "classes/Controllers-MoviePageController.html#property_client"
+        },                {
+            "fqsen": "\\Controllers\\MoviePageController\u003A\u003A\u0024movieModel",
+            "name": "movieModel",
+            "summary": "",
+            "url": "classes/Controllers-MoviePageController.html#property_movieModel"
+        },                {
+            "fqsen": "\\Controllers\\MoviePageController\u003A\u003A\u0024user",
+            "name": "user",
+            "summary": "",
+            "url": "classes/Controllers-MoviePageController.html#property_user"
+        },                {
+            "fqsen": "\\Controllers\\MoviePageController\u003A\u003A\u0024movieDAO",
+            "name": "movieDAO",
+            "summary": "",
+            "url": "classes/Controllers-MoviePageController.html#property_movieDAO"
+        },                {
+            "fqsen": "\\Controllers\\MoviePageController\u003A\u003A\u0024ratingsDAO",
+            "name": "ratingsDAO",
+            "summary": "",
+            "url": "classes/Controllers-MoviePageController.html#property_ratingsDAO"
+        },                {
+            "fqsen": "\\Controllers\\MoviePageController\u003A\u003A\u0024userDAO",
+            "name": "userDAO",
+            "summary": "",
+            "url": "classes/Controllers-MoviePageController.html#property_userDAO"
+        },                {
+            "fqsen": "\\Controllers\\RegisterController",
+            "name": "RegisterController",
+            "summary": "Abstract\u0020class\u0020representing\u0020a\u0020base\u0020controller.",
+            "url": "classes/Controllers-RegisterController.html"
+        },                {
+            "fqsen": "\\Controllers\\RegisterController\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Constructor.",
+            "url": "classes/Controllers-RegisterController.html#method___construct"
+        },                {
+            "fqsen": "\\Controllers\\RegisterController\u003A\u003Aindex\u0028\u0029",
+            "name": "index",
+            "summary": "Handles\u0020the\u0020registration\u0020process\u0020for\u0020a\u0020user.",
+            "url": "classes/Controllers-RegisterController.html#method_index"
+        },                {
+            "fqsen": "\\Controllers\\RegisterController\u003A\u003A\u0024userDAO",
+            "name": "userDAO",
+            "summary": "",
+            "url": "classes/Controllers-RegisterController.html#property_userDAO"
+        },                {
+            "fqsen": "\\Controllers\\SearchController",
+            "name": "SearchController",
+            "summary": "Class\u0020SearchController",
+            "url": "classes/Controllers-SearchController.html"
+        },                {
+            "fqsen": "\\Controllers\\SearchController\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "SearchController\u0020constructor.",
+            "url": "classes/Controllers-SearchController.html#method___construct"
+        },                {
+            "fqsen": "\\Controllers\\SearchController\u003A\u003Asearch\u0028\u0029",
+            "name": "search",
+            "summary": "Search\u0020for\u0020movies\u0020based\u0020on\u0020a\u0020search\u0020query\u0020and\u0020page\u0020number.",
+            "url": "classes/Controllers-SearchController.html#method_search"
+        },                {
+            "fqsen": "\\Controllers\\SearchController\u003A\u003A\u0024movied",
+            "name": "movied",
+            "summary": "",
+            "url": "classes/Controllers-SearchController.html#property_movied"
+        },                {
+            "fqsen": "\\Controllers\\SearchController\u003A\u003A\u0024moviem",
+            "name": "moviem",
+            "summary": "",
+            "url": "classes/Controllers-SearchController.html#property_moviem"
+        },                {
+            "fqsen": "\\Controllers\\UserController",
+            "name": "UserController",
+            "summary": "UserController\u0020class",
+            "url": "classes/Controllers-UserController.html"
+        },                {
+            "fqsen": "\\Controllers\\UserController\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "UserController\u0020constructor",
+            "url": "classes/Controllers-UserController.html#method___construct"
+        },                {
+            "fqsen": "\\Controllers\\UserController\u003A\u003AlikedMovies\u0028\u0029",
+            "name": "likedMovies",
+            "summary": "LikedMovies\u0020method",
+            "url": "classes/Controllers-UserController.html#method_likedMovies"
+        },                {
+            "fqsen": "\\Controllers\\UserController\u003A\u003AprofilePage\u0028\u0029",
+            "name": "profilePage",
+            "summary": "Retrieves\u0020user\u0020profile\u0020data\u0020from\u0020the\u0020database\u0020and\u0020renders\u0020the\u0020\u0027profile\u0027\u0020view.",
+            "url": "classes/Controllers-UserController.html#method_profilePage"
+        },                {
+            "fqsen": "\\Controllers\\UserController\u003A\u003Alogout\u0028\u0029",
+            "name": "logout",
+            "summary": "Logout\u0020method",
+            "url": "classes/Controllers-UserController.html#method_logout"
+        },                {
+            "fqsen": "\\Controllers\\UserController\u003A\u003Afollow\u0028\u0029",
+            "name": "follow",
+            "summary": "Follows\u0020a\u0020user\u0020and\u0020redirects\u0020to\u0020their\u0020profile\u0020page.",
+            "url": "classes/Controllers-UserController.html#method_follow"
+        },                {
+            "fqsen": "\\Controllers\\UserController\u003A\u003A\u0024userDAO",
+            "name": "userDAO",
+            "summary": "",
+            "url": "classes/Controllers-UserController.html#property_userDAO"
+        },                {
+            "fqsen": "\\Controllers\\UserController\u003A\u003A\u0024user",
+            "name": "user",
+            "summary": "",
+            "url": "classes/Controllers-UserController.html#property_user"
+        },                {
+            "fqsen": "\\Core\\Application",
+            "name": "Application",
+            "summary": "Class\u0020Application",
+            "url": "classes/Core-Application.html"
+        },                {
+            "fqsen": "\\Core\\Application\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Core-Application.html#method___construct"
+        },                {
+            "fqsen": "\\Core\\Application\u003A\u003AisGuest\u0028\u0029",
+            "name": "isGuest",
+            "summary": "Checks\u0020if\u0020the\u0020user\u0020is\u0020a\u0020guest.",
+            "url": "classes/Core-Application.html#method_isGuest"
+        },                {
+            "fqsen": "\\Core\\Application\u003A\u003AisAdmin\u0028\u0029",
+            "name": "isAdmin",
+            "summary": "Checks\u0020if\u0020the\u0020user\u0020is\u0020an\u0020admin.",
+            "url": "classes/Core-Application.html#method_isAdmin"
+        },                {
+            "fqsen": "\\Core\\Application\u003A\u003Arun\u0028\u0029",
+            "name": "run",
+            "summary": "Runs\u0020the\u0020application.",
+            "url": "classes/Core-Application.html#method_run"
+        },                {
+            "fqsen": "\\Core\\Application\u003A\u003AtriggerEvent\u0028\u0029",
+            "name": "triggerEvent",
+            "summary": "Triggers\u0020a\u0020specific\u0020event\u0020by\u0020calling\u0020all\u0020the\u0020callback\u0020functions\u0020associated\u0020with\u0020that\u0020event.",
+            "url": "classes/Core-Application.html#method_triggerEvent"
+        },                {
+            "fqsen": "\\Core\\Application\u003A\u003Aon\u0028\u0029",
+            "name": "on",
+            "summary": "Adds\u0020a\u0020callback\u0020function\u0020to\u0020the\u0020event\u0020listeners\u0020array\u0020for\u0020a\u0020given\u0020event\u0020name.",
+            "url": "classes/Core-Application.html#method_on"
+        },                {
+            "fqsen": "\\Core\\Application\u003A\u003Alogin\u0028\u0029",
+            "name": "login",
+            "summary": "Logs\u0020in\u0020a\u0020user.",
+            "url": "classes/Core-Application.html#method_login"
+        },                {
+            "fqsen": "\\Core\\Application\u003A\u003Alogout\u0028\u0029",
+            "name": "logout",
+            "summary": "Logs\u0020out\u0020the\u0020user\u0020by\u0020setting\u0020the\u0020\u0027user\u0027\u0020property\u0020to\u0020null\u0020and\u0020removing\u0020the\u0020\u0027user\u0027\u0020key\u0020from\u0020the\u0020session.",
+            "url": "classes/Core-Application.html#method_logout"
+        },                {
+            "fqsen": "\\Core\\Application\u003A\u003Aget_user_id\u0028\u0029",
+            "name": "get_user_id",
+            "summary": "Returns\u0020the\u0020user\u0027s\u0020id.",
+            "url": "classes/Core-Application.html#method_get_user_id"
+        },                {
+            "fqsen": "\\Core\\Application\u003A\u003AEVENT_BEFORE_REQUEST",
+            "name": "EVENT_BEFORE_REQUEST",
+            "summary": "The\u0020event\u0020name\u0020before\u0020a\u0020request\u0020is\u0020made.",
+            "url": "classes/Core-Application.html#constant_EVENT_BEFORE_REQUEST"
+        },                {
+            "fqsen": "\\Core\\Application\u003A\u003AEVENT_AFTER_REQUEST",
+            "name": "EVENT_AFTER_REQUEST",
+            "summary": "The\u0020event\u0020name\u0020after\u0020a\u0020request\u0020is\u0020made.",
+            "url": "classes/Core-Application.html#constant_EVENT_AFTER_REQUEST"
+        },                {
+            "fqsen": "\\Core\\Application\u003A\u003A\u0024eventListeners",
+            "name": "eventListeners",
+            "summary": "An\u0020array\u0020of\u0020event\u0020listeners.",
+            "url": "classes/Core-Application.html#property_eventListeners"
+        },                {
+            "fqsen": "\\Core\\Application\u003A\u003A\u0024app",
+            "name": "app",
+            "summary": "The\u0020static\u0020instance\u0020of\u0020the\u0020Application\u0020class.",
+            "url": "classes/Core-Application.html#property_app"
+        },                {
+            "fqsen": "\\Core\\Application\u003A\u003A\u0024BASE_PATH",
+            "name": "BASE_PATH",
+            "summary": "The\u0020base\u0020path\u0020of\u0020the\u0020application.",
+            "url": "classes/Core-Application.html#property_BASE_PATH"
+        },                {
+            "fqsen": "\\Core\\Application\u003A\u003A\u0024container",
+            "name": "container",
+            "summary": "The\u0020container\u0020for\u0020dependencies.",
+            "url": "classes/Core-Application.html#property_container"
+        },                {
+            "fqsen": "\\Core\\Application\u003A\u003A\u0024router",
+            "name": "router",
+            "summary": "The\u0020router\u0020instance.",
+            "url": "classes/Core-Application.html#property_router"
+        },                {
+            "fqsen": "\\Core\\Application\u003A\u003A\u0024db",
+            "name": "db",
+            "summary": "The\u0020database\u0020instance.",
+            "url": "classes/Core-Application.html#property_db"
+        },                {
+            "fqsen": "\\Core\\Application\u003A\u003A\u0024session",
+            "name": "session",
+            "summary": "The\u0020session\u0020instance.",
+            "url": "classes/Core-Application.html#property_session"
+        },                {
+            "fqsen": "\\Core\\Application\u003A\u003A\u0024controller",
+            "name": "controller",
+            "summary": "",
+            "url": "classes/Core-Application.html#property_controller"
+        },                {
+            "fqsen": "\\Core\\Application\u003A\u003A\u0024user",
+            "name": "user",
+            "summary": "The\u0020user\u0020instance.",
+            "url": "classes/Core-Application.html#property_user"
+        },                {
+            "fqsen": "\\Core\\Auth\\PasswordTrait",
+            "name": "PasswordTrait",
+            "summary": "Trait\u0020PasswordTrait",
+            "url": "classes/Core-Auth-PasswordTrait.html"
+        },                {
+            "fqsen": "\\Core\\Auth\\PasswordTrait\u003A\u003AcryptPassword\u0028\u0029",
+            "name": "cryptPassword",
+            "summary": "",
+            "url": "classes/Core-Auth-PasswordTrait.html#method_cryptPassword"
+        },                {
+            "fqsen": "\\Core\\Auth\\PasswordTrait\u003A\u003AisPasswordValid\u0028\u0029",
+            "name": "isPasswordValid",
+            "summary": "",
+            "url": "classes/Core-Auth-PasswordTrait.html#method_isPasswordValid"
+        },                {
+            "fqsen": "\\Core\\Auth\\PasswordTrait\u003A\u003AsetCost\u0028\u0029",
+            "name": "setCost",
+            "summary": "",
+            "url": "classes/Core-Auth-PasswordTrait.html#method_setCost"
+        },                {
+            "fqsen": "\\Core\\Auth\\PasswordTrait\u003A\u003A\u0024cost",
+            "name": "cost",
+            "summary": "",
+            "url": "classes/Core-Auth-PasswordTrait.html#property_cost"
+        },                {
+            "fqsen": "\\Core\\Auth\\UserInterface",
+            "name": "UserInterface",
+            "summary": "Interface\u0020UserInterface",
+            "url": "classes/Core-Auth-UserInterface.html"
+        },                {
+            "fqsen": "\\Core\\Auth\\UserInterface\u003A\u003AgetUsername\u0028\u0029",
+            "name": "getUsername",
+            "summary": "",
+            "url": "classes/Core-Auth-UserInterface.html#method_getUsername"
+        },                {
+            "fqsen": "\\Core\\Auth\\UserInterface\u003A\u003AgetPassword\u0028\u0029",
+            "name": "getPassword",
+            "summary": "",
+            "url": "classes/Core-Auth-UserInterface.html#method_getPassword"
+        },                {
+            "fqsen": "\\Core\\Auth\\UserInterface\u003A\u003AgetRoles\u0028\u0029",
+            "name": "getRoles",
+            "summary": "",
+            "url": "classes/Core-Auth-UserInterface.html#method_getRoles"
+        },                {
+            "fqsen": "\\Core\\Auth\\UserInterface\u003A\u003AisEnabled\u0028\u0029",
+            "name": "isEnabled",
+            "summary": "",
+            "url": "classes/Core-Auth-UserInterface.html#method_isEnabled"
+        },                {
             "fqsen": "\\Core\\BaseController",
             "name": "BaseController",
-            "summary": "",
+            "summary": "Abstract\u0020class\u0020representing\u0020a\u0020base\u0020controller.",
             "url": "classes/Core-BaseController.html"
         },                {
             "fqsen": "\\Core\\BaseController\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "",
+            "summary": "Constructor.",
             "url": "classes/Core-BaseController.html#method___construct"
         },                {
             "fqsen": "\\Core\\BaseController\u003A\u003Abefore\u0028\u0029",
             "name": "before",
-            "summary": "",
+            "summary": "Method\u0020to\u0020be\u0020overridden\u0020in\u0020child\u0020classes\u0020for\u0020pre\u002Daction\u0020logic.",
             "url": "classes/Core-BaseController.html#method_before"
         },                {
             "fqsen": "\\Core\\BaseController\u003A\u003Aafter\u0028\u0029",
             "name": "after",
-            "summary": "",
+            "summary": "Method\u0020to\u0020be\u0020overridden\u0020in\u0020child\u0020classes\u0020for\u0020post\u002Daction\u0020logic.",
             "url": "classes/Core-BaseController.html#method_after"
         },                {
             "fqsen": "\\Core\\BaseController\u003A\u003Arender\u0028\u0029",
             "name": "render",
-            "summary": "",
+            "summary": "Renders\u0020a\u0020view.",
             "url": "classes/Core-BaseController.html#method_render"
         },                {
             "fqsen": "\\Core\\BaseController\u003A\u003Aredirect\u0028\u0029",
             "name": "redirect",
-            "summary": "",
+            "summary": "Redirects\u0020the\u0020user\u0020to\u0020a\u0020different\u0020URL\u0020using\u0020the\u0020HTTP\u0020\u0060Location\u0060\u0020header.",
             "url": "classes/Core-BaseController.html#method_redirect"
         },                {
             "fqsen": "\\Core\\BaseController\u003A\u003Ajson\u0028\u0029",
             "name": "json",
-            "summary": "",
+            "summary": "Sets\u0020the\u0020Content\u002DType\u0020header\u0020to\u0020application\/json\u0020and\u0020echoes\u0020the\u0020JSON\u002Dencoded\u0020version\u0020of\u0020the\u0020provided\u0020data.",
             "url": "classes/Core-BaseController.html#method_json"
+        },                {
+            "fqsen": "\\Core\\BaseController\u003A\u003AregisterMiddleware\u0028\u0029",
+            "name": "registerMiddleware",
+            "summary": "Adds\u0020a\u0020middleware\u0020to\u0020the\u0020array\u0020of\u0020middleware\u0020stored\u0020in\u0020the\u0020\u0060\u0024middleware\u0060\u0020property.",
+            "url": "classes/Core-BaseController.html#method_registerMiddleware"
+        },                {
+            "fqsen": "\\Core\\BaseController\u003A\u003AgetMiddleware\u0028\u0029",
+            "name": "getMiddleware",
+            "summary": "Returns\u0020the\u0020array\u0020of\u0020middleware\u0020stored\u0020in\u0020the\u0020\u0060\u0024middleware\u0060\u0020property.",
+            "url": "classes/Core-BaseController.html#method_getMiddleware"
         },                {
             "fqsen": "\\Core\\BaseController\u003A\u003A\u0024routeParams",
             "name": "routeParams",
@@ -46,14 +446,59 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Core-BaseController.html#property_response"
         },                {
-            "fqsen": "\\Core\\BaseController\u003A\u003A\u0024view",
-            "name": "view",
+            "fqsen": "\\Core\\BaseController\u003A\u003A\u0024request",
+            "name": "request",
             "summary": "",
-            "url": "classes/Core-BaseController.html#property_view"
+            "url": "classes/Core-BaseController.html#property_request"
+        },                {
+            "fqsen": "\\Core\\BaseController\u003A\u003A\u0024middleware",
+            "name": "middleware",
+            "summary": "",
+            "url": "classes/Core-BaseController.html#property_middleware"
+        },                {
+            "fqsen": "\\Core\\BaseController\u003A\u003A\u0024action",
+            "name": "action",
+            "summary": "",
+            "url": "classes/Core-BaseController.html#property_action"
+        },                {
+            "fqsen": "\\Core\\BaseMiddleware",
+            "name": "BaseMiddleware",
+            "summary": "Abstract\u0020class\u0020representing\u0020a\u0020base\u0020middleware.",
+            "url": "classes/Core-BaseMiddleware.html"
+        },                {
+            "fqsen": "\\Core\\BaseMiddleware\u003A\u003Aexecute\u0028\u0029",
+            "name": "execute",
+            "summary": "",
+            "url": "classes/Core-BaseMiddleware.html#method_execute"
+        },                {
+            "fqsen": "\\Core\\Container",
+            "name": "Container",
+            "summary": "A\u0020class\u0020called\u0020\u0060Container\u0060\u0020that\u0020implements\u0020a\u0020basic\u0020dependency\u0020injection\u0020container.",
+            "url": "classes/Core-Container.html"
+        },                {
+            "fqsen": "\\Core\\Container\u003A\u003Aget\u0028\u0029",
+            "name": "get",
+            "summary": "Retrieves\u0020an\u0020instance\u0020of\u0020the\u0020specified\u0020class.",
+            "url": "classes/Core-Container.html#method_get"
+        },                {
+            "fqsen": "\\Core\\Container\u003A\u003Aset\u0028\u0029",
+            "name": "set",
+            "summary": "Registers\u0020a\u0020new\u0020instance\u0020of\u0020a\u0020class\u0020with\u0020a\u0020given\u0020name.",
+            "url": "classes/Core-Container.html#method_set"
+        },                {
+            "fqsen": "\\Core\\Container\u003A\u003Amake\u0028\u0029",
+            "name": "make",
+            "summary": "Creates\u0020a\u0020new\u0020instance\u0020of\u0020the\u0020specified\u0020class.",
+            "url": "classes/Core-Container.html#method_make"
+        },                {
+            "fqsen": "\\Core\\Container\u003A\u003A\u0024instances",
+            "name": "instances",
+            "summary": "An\u0020array\u0020that\u0020stores\u0020the\u0020registered\u0020instances\u0020of\u0020objects.",
+            "url": "classes/Core-Container.html#property_instances"
         },                {
             "fqsen": "\\Core\\DAO",
             "name": "DAO",
-            "summary": "",
+            "summary": "This\u0020is\u0020an\u0020abstract\u0020class\u0020called\u0020\u0060DAO\u0060\u0020that\u0020serves\u0020as\u0020a\u0020base\u0020class\u0020for\u0020data\u0020access\u0020objects.",
             "url": "classes/Core-DAO.html"
         },                {
             "fqsen": "\\Core\\DAO\u003A\u003A__construct\u0028\u0029",
@@ -71,15 +516,30 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Core-DAO.html#method_get_all"
         },                {
+            "fqsen": "\\Core\\DAO\u003A\u003Afulltext_search\u0028\u0029",
+            "name": "fulltext_search",
+            "summary": "Performs\u0020a\u0020full\u002Dtext\u0020search\u0020on\u0020the\u0020\u0022movies\u0022\u0020table\u0020using\u0020the\u0020\u0022MATCH\u0020AGAINST\u0022\u0020syntax\u0020in\u0020a\u0020SQL\u0020query.",
+            "url": "classes/Core-DAO.html#method_fulltext_search"
+        },                {
             "fqsen": "\\Core\\DAO\u003A\u003Afind\u0028\u0029",
             "name": "find",
             "summary": "",
             "url": "classes/Core-DAO.html#method_find"
         },                {
+            "fqsen": "\\Core\\DAO\u003A\u003AfindBy\u0028\u0029",
+            "name": "findBy",
+            "summary": "Retrieves\u0020a\u0020single\u0020row\u0020from\u0020the\u0020database\u0020table\u0020based\u0020on\u0020a\u0020specific\u0020attribute\u0020value.",
+            "url": "classes/Core-DAO.html#method_findBy"
+        },                {
             "fqsen": "\\Core\\DAO\u003A\u003Aregister\u0028\u0029",
             "name": "register",
             "summary": "",
             "url": "classes/Core-DAO.html#method_register"
+        },                {
+            "fqsen": "\\Core\\DAO\u003A\u003Ainsert\u0028\u0029",
+            "name": "insert",
+            "summary": "Insert\u0020data\u0020into\u0020a\u0020database\u0020table\u0020using\u0020a\u0020prepared\u0020statement.",
+            "url": "classes/Core-DAO.html#method_insert"
         },                {
             "fqsen": "\\Core\\DAO\u003A\u003Aupdate\u0028\u0029",
             "name": "update",
@@ -98,13 +558,18 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Core\\DAO\u003A\u003AgetRelations\u0028\u0029",
             "name": "getRelations",
-            "summary": "",
+            "summary": "Retrieves\u0020the\u0020relations\u0020of\u0020a\u0020table\u0020from\u0020a\u0020JSON\u0020file.",
             "url": "classes/Core-DAO.html#method_getRelations"
         },                {
             "fqsen": "\\Core\\DAO\u003A\u003AdeleteAll\u0028\u0029",
             "name": "deleteAll",
             "summary": "",
             "url": "classes/Core-DAO.html#method_deleteAll"
+        },                {
+            "fqsen": "\\Core\\DAO\u003A\u003AmatchAttribute\u0028\u0029",
+            "name": "matchAttribute",
+            "summary": "A\u0020method\u0020that\u0020performs\u0020a\u0020database\u0020query\u0020to\u0020search\u0020for\u0020rows\u0020in\u0020a\u0020table\u0020where\u0020a\u0020specific\u0020attribute\u0020matches\u0020a\u0020given\u0020value.",
+            "url": "classes/Core-DAO.html#method_matchAttribute"
         },                {
             "fqsen": "\\Core\\DAO\u003A\u003A\u0024connection",
             "name": "connection",
@@ -133,52 +598,52 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Core\\Database\u003A\u003AgetInstance\u0028\u0029",
             "name": "getInstance",
-            "summary": "",
+            "summary": "Get\u0020the\u0020singleton\u0020instance\u0020of\u0020the\u0020Database\u0020class.",
             "url": "classes/Core-Database.html#method_getInstance"
         },                {
             "fqsen": "\\Core\\Database\u003A\u003Aquery\u0028\u0029",
             "name": "query",
-            "summary": "",
+            "summary": "Execute\u0020a\u0020database\u0020query\u0020with\u0020optional\u0020parameters.",
             "url": "classes/Core-Database.html#method_query"
         },                {
             "fqsen": "\\Core\\Database\u003A\u003Aget\u0028\u0029",
             "name": "get",
-            "summary": "",
+            "summary": "Fetch\u0020all\u0020the\u0020results\u0020of\u0020a\u0020query\u0020and\u0020return\u0020them\u0020as\u0020an\u0020array\u0020of\u0020objects.",
             "url": "classes/Core-Database.html#method_get"
         },                {
             "fqsen": "\\Core\\Database\u003A\u003Afind\u0028\u0029",
             "name": "find",
-            "summary": "",
+            "summary": "Retrieves\u0020a\u0020single\u0020row\u0020from\u0020the\u0020database\u0020and\u0020returns\u0020it\u0020as\u0020an\u0020object\u0020of\u0020the\u0020specified\u0020class,\u0020or\u0020as\u0020a\u0020generic\u0020object\u0020if\u0020no\u0020class\u0020is\u0020specified.",
             "url": "classes/Core-Database.html#method_find"
         },                {
-            "fqsen": "\\Core\\Database\u003A\u003AfindOrFail\u0028\u0029",
-            "name": "findOrFail",
-            "summary": "",
-            "url": "classes/Core-Database.html#method_findOrFail"
+            "fqsen": "\\Core\\Database\u003A\u003AgetSome\u0028\u0029",
+            "name": "getSome",
+            "summary": "Fetch\u0020a\u0020certain\u0020quantity\u0020of\u0020results\u0020from\u0020a\u0020query\u0020based\u0020on\u0020a\u0020limit\u0020and\u0020offset.",
+            "url": "classes/Core-Database.html#method_getSome"
         },                {
             "fqsen": "\\Core\\Database\u003A\u003AcascadeDelete\u0028\u0029",
             "name": "cascadeDelete",
-            "summary": "",
+            "summary": "Cascade\u0020delete\u0020records\u0020in\u0020multiple\u0020tables\u0020based\u0020on\u0020an\u0020ID.",
             "url": "classes/Core-Database.html#method_cascadeDelete"
         },                {
             "fqsen": "\\Core\\Database\u003A\u003ADelete\u0028\u0029",
             "name": "Delete",
-            "summary": "",
+            "summary": "Update\u0020the\u0020deleted_at\u0020column\u0020of\u0020a\u0020record\u0020in\u0020a\u0020table\u0020based\u0020on\u0020an\u0020ID.",
             "url": "classes/Core-Database.html#method_Delete"
         },                {
             "fqsen": "\\Core\\Database\u003A\u003ADeleteAll\u0028\u0029",
             "name": "DeleteAll",
-            "summary": "",
+            "summary": "Update\u0020the\u0020deleted_at\u0020column\u0020of\u0020all\u0020records\u0020in\u0020a\u0020table.",
             "url": "classes/Core-Database.html#method_DeleteAll"
         },                {
             "fqsen": "\\Core\\Database\u003A\u003ADeleteAllHard\u0028\u0029",
             "name": "DeleteAllHard",
-            "summary": "",
+            "summary": "Delete\u0020all\u0020records\u0020from\u0020a\u0020table\u0020and\u0020reset\u0020the\u0020auto\u002Dincrement\u0020value.",
             "url": "classes/Core-Database.html#method_DeleteAllHard"
         },                {
             "fqsen": "\\Core\\Database\u003A\u003AJoinFilter\u0028\u0029",
             "name": "JoinFilter",
-            "summary": "",
+            "summary": "Perform\u0020a\u0020join\u0020query\u0020with\u0020a\u0020pivot\u0020table\u0020and\u0020filter\u0020the\u0020results.",
             "url": "classes/Core-Database.html#method_JoinFilter"
         },                {
             "fqsen": "\\Core\\Database\u003A\u003A\u0024instance",
@@ -196,9 +661,204 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Core-Database.html#property_statement"
         },                {
+            "fqsen": "\\Core\\Exceptions\\ForbiddenException",
+            "name": "ForbiddenException",
+            "summary": "",
+            "url": "classes/Core-Exceptions-ForbiddenException.html"
+        },                {
+            "fqsen": "\\Core\\Exceptions\\ForbiddenException\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Class\u0020constructor\u0020for\u0020the\u0020ForbiddenException\u0020class.",
+            "url": "classes/Core-Exceptions-ForbiddenException.html#method___construct"
+        },                {
+            "fqsen": "\\Core\\Exceptions\\ForbiddenException\u003A\u003A\u0024message",
+            "name": "message",
+            "summary": "",
+            "url": "classes/Core-Exceptions-ForbiddenException.html#property_message"
+        },                {
+            "fqsen": "\\Core\\Exceptions\\ForbiddenException\u003A\u003A\u0024code",
+            "name": "code",
+            "summary": "",
+            "url": "classes/Core-Exceptions-ForbiddenException.html#property_code"
+        },                {
+            "fqsen": "\\Core\\Middleware\\AdminMiddleware",
+            "name": "AdminMiddleware",
+            "summary": "Abstract\u0020class\u0020representing\u0020a\u0020base\u0020middleware.",
+            "url": "classes/Core-Middleware-AdminMiddleware.html"
+        },                {
+            "fqsen": "\\Core\\Middleware\\AdminMiddleware\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Core-Middleware-AdminMiddleware.html#method___construct"
+        },                {
+            "fqsen": "\\Core\\Middleware\\AdminMiddleware\u003A\u003Aexecute\u0028\u0029",
+            "name": "execute",
+            "summary": "Executes\u0020the\u0020method.",
+            "url": "classes/Core-Middleware-AdminMiddleware.html#method_execute"
+        },                {
+            "fqsen": "\\Core\\Middleware\\AdminMiddleware\u003A\u003A\u0024actions",
+            "name": "actions",
+            "summary": "",
+            "url": "classes/Core-Middleware-AdminMiddleware.html#property_actions"
+        },                {
+            "fqsen": "\\Core\\Middleware\\AuthMiddleware",
+            "name": "AuthMiddleware",
+            "summary": "Abstract\u0020class\u0020representing\u0020a\u0020base\u0020middleware.",
+            "url": "classes/Core-Middleware-AuthMiddleware.html"
+        },                {
+            "fqsen": "\\Core\\Middleware\\AuthMiddleware\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Core-Middleware-AuthMiddleware.html#method___construct"
+        },                {
+            "fqsen": "\\Core\\Middleware\\AuthMiddleware\u003A\u003Aexecute\u0028\u0029",
+            "name": "execute",
+            "summary": "Executes\u0020the\u0020method.",
+            "url": "classes/Core-Middleware-AuthMiddleware.html#method_execute"
+        },                {
+            "fqsen": "\\Core\\Middleware\\AuthMiddleware\u003A\u003A\u0024actions",
+            "name": "actions",
+            "summary": "",
+            "url": "classes/Core-Middleware-AuthMiddleware.html#property_actions"
+        },                {
+            "fqsen": "\\Core\\Middleware\\TestMiddleware",
+            "name": "TestMiddleware",
+            "summary": "Abstract\u0020class\u0020representing\u0020a\u0020base\u0020middleware.",
+            "url": "classes/Core-Middleware-TestMiddleware.html"
+        },                {
+            "fqsen": "\\Core\\Middleware\\TestMiddleware\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Core-Middleware-TestMiddleware.html#method___construct"
+        },                {
+            "fqsen": "\\Core\\Middleware\\TestMiddleware\u003A\u003Aexecute\u0028\u0029",
+            "name": "execute",
+            "summary": "Executes\u0020the\u0020method.",
+            "url": "classes/Core-Middleware-TestMiddleware.html#method_execute"
+        },                {
+            "fqsen": "\\Core\\Middleware\\TestMiddleware\u003A\u003A\u0024container",
+            "name": "container",
+            "summary": "",
+            "url": "classes/Core-Middleware-TestMiddleware.html#property_container"
+        },                {
+            "fqsen": "\\Core\\Model",
+            "name": "Model",
+            "summary": "Abstract\u0020class\u0020Model",
+            "url": "classes/Core-Model.html"
+        },                {
+            "fqsen": "\\Core\\Model\u003A\u003Arules\u0028\u0029",
+            "name": "rules",
+            "summary": "",
+            "url": "classes/Core-Model.html#method_rules"
+        },                {
+            "fqsen": "\\Core\\Model\u003A\u003Aattributes\u0028\u0029",
+            "name": "attributes",
+            "summary": "",
+            "url": "classes/Core-Model.html#method_attributes"
+        },                {
+            "fqsen": "\\Core\\Model\u003A\u003Avalidate\u0028\u0029",
+            "name": "validate",
+            "summary": "Validates\u0020the\u0020attributes\u0020of\u0020the\u0020model\u0020object\u0020based\u0020on\u0020the\u0020defined\u0020rules.",
+            "url": "classes/Core-Model.html#method_validate"
+        },                {
+            "fqsen": "\\Core\\Model\u003A\u003AaddErrorByRule\u0028\u0029",
+            "name": "addErrorByRule",
+            "summary": "Adds\u0020an\u0020error\u0020message\u0020to\u0020the\u0020\u0060errors\u0060\u0020array\u0020based\u0020on\u0020a\u0020given\u0020attribute,\u0020rule,\u0020and\u0020optional\u0020parameters.",
+            "url": "classes/Core-Model.html#method_addErrorByRule"
+        },                {
+            "fqsen": "\\Core\\Model\u003A\u003AerrorMessages\u0028\u0029",
+            "name": "errorMessages",
+            "summary": "Returns\u0020an\u0020array\u0020of\u0020error\u0020messages\u0020based\u0020on\u0020predefined\u0020rules.",
+            "url": "classes/Core-Model.html#method_errorMessages"
+        },                {
+            "fqsen": "\\Core\\Model\u003A\u003AerrorMessage\u0028\u0029",
+            "name": "errorMessage",
+            "summary": "Returns\u0020the\u0020error\u0020message\u0020corresponding\u0020to\u0020a\u0020given\u0020rule.",
+            "url": "classes/Core-Model.html#method_errorMessage"
+        },                {
+            "fqsen": "\\Core\\Model\u003A\u003AaddError\u0028\u0029",
+            "name": "addError",
+            "summary": "Adds\u0020an\u0020error\u0020message\u0020to\u0020the\u0020errors\u0020array\u0020for\u0020a\u0020specific\u0020attribute.",
+            "url": "classes/Core-Model.html#method_addError"
+        },                {
+            "fqsen": "\\Core\\Model\u003A\u003AhasError\u0028\u0029",
+            "name": "hasError",
+            "summary": "Checks\u0020if\u0020there\u0020are\u0020any\u0020errors\u0020associated\u0020with\u0020a\u0020specific\u0020attribute.",
+            "url": "classes/Core-Model.html#method_hasError"
+        },                {
+            "fqsen": "\\Core\\Model\u003A\u003AhasErrors\u0028\u0029",
+            "name": "hasErrors",
+            "summary": "Checks\u0020if\u0020there\u0020are\u0020any\u0020errors\u0020associated\u0020with\u0020the\u0020model.",
+            "url": "classes/Core-Model.html#method_hasErrors"
+        },                {
+            "fqsen": "\\Core\\Model\u003A\u003AgetErrors\u0028\u0029",
+            "name": "getErrors",
+            "summary": "Returns\u0020the\u0020errors\u0020associated\u0020with\u0020the\u0020model.",
+            "url": "classes/Core-Model.html#method_getErrors"
+        },                {
+            "fqsen": "\\Core\\Model\u003A\u003AgetFirstError\u0028\u0029",
+            "name": "getFirstError",
+            "summary": "Retrieves\u0020the\u0020first\u0020error\u0020message\u0020associated\u0020with\u0020a\u0020specific\u0020attribute\u0020from\u0020the\u0020errors\u0020array.",
+            "url": "classes/Core-Model.html#method_getFirstError"
+        },                {
+            "fqsen": "\\Core\\Model\u003A\u003AloadData\u0028\u0029",
+            "name": "loadData",
+            "summary": "Loads\u0020data\u0020into\u0020the\u0020properties\u0020of\u0020the\u0020current\u0020object.",
+            "url": "classes/Core-Model.html#method_loadData"
+        },                {
+            "fqsen": "\\Core\\Model\u003A\u003AprimaryKey\u0028\u0029",
+            "name": "primaryKey",
+            "summary": "",
+            "url": "classes/Core-Model.html#method_primaryKey"
+        },                {
+            "fqsen": "\\Core\\Model\u003A\u003ARULE_REQUIRED",
+            "name": "RULE_REQUIRED",
+            "summary": "",
+            "url": "classes/Core-Model.html#constant_RULE_REQUIRED"
+        },                {
+            "fqsen": "\\Core\\Model\u003A\u003ARULE_EMAIL",
+            "name": "RULE_EMAIL",
+            "summary": "",
+            "url": "classes/Core-Model.html#constant_RULE_EMAIL"
+        },                {
+            "fqsen": "\\Core\\Model\u003A\u003ARULE_MIN",
+            "name": "RULE_MIN",
+            "summary": "",
+            "url": "classes/Core-Model.html#constant_RULE_MIN"
+        },                {
+            "fqsen": "\\Core\\Model\u003A\u003ARULE_MAX",
+            "name": "RULE_MAX",
+            "summary": "",
+            "url": "classes/Core-Model.html#constant_RULE_MAX"
+        },                {
+            "fqsen": "\\Core\\Model\u003A\u003ARULE_MATCH",
+            "name": "RULE_MATCH",
+            "summary": "",
+            "url": "classes/Core-Model.html#constant_RULE_MATCH"
+        },                {
+            "fqsen": "\\Core\\Model\u003A\u003ARULE_PASSWORD_MATCH",
+            "name": "RULE_PASSWORD_MATCH",
+            "summary": "",
+            "url": "classes/Core-Model.html#constant_RULE_PASSWORD_MATCH"
+        },                {
+            "fqsen": "\\Core\\Model\u003A\u003ARULE_UNIQUE",
+            "name": "RULE_UNIQUE",
+            "summary": "",
+            "url": "classes/Core-Model.html#constant_RULE_UNIQUE"
+        },                {
+            "fqsen": "\\Core\\Model\u003A\u003A\u0024errors",
+            "name": "errors",
+            "summary": "",
+            "url": "classes/Core-Model.html#property_errors"
+        },                {
+            "fqsen": "\\Core\\Model\u003A\u003A\u0024DAOs",
+            "name": "DAOs",
+            "summary": "",
+            "url": "classes/Core-Model.html#property_DAOs"
+        },                {
             "fqsen": "\\Core\\Request",
             "name": "Request",
-            "summary": "",
+            "summary": "Class\u0020Request",
             "url": "classes/Core-Request.html"
         },                {
             "fqsen": "\\Core\\Request\u003A\u003A__construct\u0028\u0029",
@@ -206,9 +866,54 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Core-Request.html#method___construct"
         },                {
+            "fqsen": "\\Core\\Request\u003A\u003AsetBaseUrl\u0028\u0029",
+            "name": "setBaseUrl",
+            "summary": "Sets\u0020the\u0020base\u0020URL\u0020for\u0020the\u0020request.",
+            "url": "classes/Core-Request.html#method_setBaseUrl"
+        },                {
+            "fqsen": "\\Core\\Request\u003A\u003AgetMethod\u0028\u0029",
+            "name": "getMethod",
+            "summary": "Retrieves\u0020the\u0020HTTP\u0020request\u0020method.",
+            "url": "classes/Core-Request.html#method_getMethod"
+        },                {
+            "fqsen": "\\Core\\Request\u003A\u003AisGet\u0028\u0029",
+            "name": "isGet",
+            "summary": "Checks\u0020if\u0020the\u0020request\u0020method\u0020is\u0020\u0027get\u0027.",
+            "url": "classes/Core-Request.html#method_isGet"
+        },                {
+            "fqsen": "\\Core\\Request\u003A\u003AisPost\u0028\u0029",
+            "name": "isPost",
+            "summary": "Checks\u0020if\u0020the\u0020request\u0020method\u0020is\u0020\u0027post\u0027.",
+            "url": "classes/Core-Request.html#method_isPost"
+        },                {
+            "fqsen": "\\Core\\Request\u003A\u003AisPut\u0028\u0029",
+            "name": "isPut",
+            "summary": "Checks\u0020if\u0020the\u0020request\u0020method\u0020is\u0020\u0027put\u0027.",
+            "url": "classes/Core-Request.html#method_isPut"
+        },                {
+            "fqsen": "\\Core\\Request\u003A\u003AisDelete\u0028\u0029",
+            "name": "isDelete",
+            "summary": "Checks\u0020if\u0020the\u0020request\u0020method\u0020is\u0020\u0027delete\u0027.",
+            "url": "classes/Core-Request.html#method_isDelete"
+        },                {
+            "fqsen": "\\Core\\Request\u003A\u003AisPatch\u0028\u0029",
+            "name": "isPatch",
+            "summary": "Checks\u0020if\u0020the\u0020request\u0020method\u0020is\u0020\u0027patch\u0027.",
+            "url": "classes/Core-Request.html#method_isPatch"
+        },                {
+            "fqsen": "\\Core\\Request\u003A\u003AgetBody\u0028\u0029",
+            "name": "getBody",
+            "summary": "Retrieves\u0020the\u0020sanitized\u0020request\u0020body\u0020parameters.",
+            "url": "classes/Core-Request.html#method_getBody"
+        },                {
+            "fqsen": "\\Core\\Request\u003A\u003AgetBaseUrl\u0028\u0029",
+            "name": "getBaseUrl",
+            "summary": "Retrieves\u0020the\u0020base\u0020URL\u0020for\u0020the\u0020request.",
+            "url": "classes/Core-Request.html#method_getBaseUrl"
+        },                {
             "fqsen": "\\Core\\Request\u003A\u003AgetUrl\u0028\u0029",
             "name": "getUrl",
-            "summary": "",
+            "summary": "Retrieves\u0020the\u0020sanitized\u0020URL\u0020for\u0020the\u0020request.",
             "url": "classes/Core-Request.html#method_getUrl"
         },                {
             "fqsen": "\\Core\\Request\u003A\u003A\u0024url",
@@ -216,89 +921,124 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Core-Request.html#property_url"
         },                {
+            "fqsen": "\\Core\\Request\u003A\u003A\u0024base_url",
+            "name": "base_url",
+            "summary": "",
+            "url": "classes/Core-Request.html#property_base_url"
+        },                {
             "fqsen": "\\Core\\Response",
             "name": "Response",
-            "summary": "",
+            "summary": "Class\u0020Response",
             "url": "classes/Core-Response.html"
         },                {
             "fqsen": "\\Core\\Response\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "",
+            "summary": "Create\u0020a\u0020new\u0020Response\u0020instance.",
             "url": "classes/Core-Response.html#method___construct"
         },                {
             "fqsen": "\\Core\\Response\u003A\u003Aredirect\u0028\u0029",
             "name": "redirect",
-            "summary": "",
+            "summary": "Redirect\u0020the\u0020user\u0020to\u0020a\u0020different\u0020URL.",
             "url": "classes/Core-Response.html#method_redirect"
         },                {
             "fqsen": "\\Core\\Response\u003A\u003Aabort\u0028\u0029",
             "name": "abort",
-            "summary": "",
+            "summary": "Abort\u0020the\u0020request\u0020with\u0020an\u0020error\u0020message.",
             "url": "classes/Core-Response.html#method_abort"
+        },                {
+            "fqsen": "\\Core\\Response\u003A\u003Arender\u0028\u0029",
+            "name": "render",
+            "summary": "Renders\u0020a\u0020view\u0020using\u0020the\u0020View\u0020instance.",
+            "url": "classes/Core-Response.html#method_render"
+        },                {
+            "fqsen": "\\Core\\Response\u003A\u003AsetStatusCode\u0028\u0029",
+            "name": "setStatusCode",
+            "summary": "Sets\u0020the\u0020HTTP\u0020response\u0020code\u0020for\u0020the\u0020current\u0020request.",
+            "url": "classes/Core-Response.html#method_setStatusCode"
         },                {
             "fqsen": "\\Core\\Response\u003A\u003A\u0024view",
             "name": "view",
-            "summary": "",
+            "summary": "The\u0020View\u0020instance\u0020used\u0020for\u0020rendering\u0020views.",
             "url": "classes/Core-Response.html#property_view"
         },                {
             "fqsen": "\\Core\\Router",
             "name": "Router",
-            "summary": "",
+            "summary": "Router\u0020class\u0020for\u0020handling\u0020routes\u0020and\u0020dispatching\u0020requests\u0020to\u0020controllers\u0020and\u0020actions.",
             "url": "classes/Core-Router.html"
         },                {
             "fqsen": "\\Core\\Router\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "",
+            "summary": "Router\u0020constructor.",
             "url": "classes/Core-Router.html#method___construct"
+        },                {
+            "fqsen": "\\Core\\Router\u003A\u003Aget\u0028\u0029",
+            "name": "get",
+            "summary": "Adds\u0020a\u0020route\u0020to\u0020the\u0020\u0060routes\u0060\u0020array\u0020for\u0020the\u0020HTTP\u0020GET\u0020method.",
+            "url": "classes/Core-Router.html#method_get"
+        },                {
+            "fqsen": "\\Core\\Router\u003A\u003Apost\u0028\u0029",
+            "name": "post",
+            "summary": "Adds\u0020a\u0020route\u0020for\u0020the\u0020HTTP\u0020POST\u0020method.",
+            "url": "classes/Core-Router.html#method_post"
+        },                {
+            "fqsen": "\\Core\\Router\u003A\u003Aput\u0028\u0029",
+            "name": "put",
+            "summary": "Adds\u0020a\u0020route\u0020for\u0020the\u0020HTTP\u0020PUT\u0020method.",
+            "url": "classes/Core-Router.html#method_put"
+        },                {
+            "fqsen": "\\Core\\Router\u003A\u003Adelete\u0028\u0029",
+            "name": "delete",
+            "summary": "Adds\u0020a\u0020route\u0020for\u0020the\u0020DELETE\u0020HTTP\u0020method\u0020to\u0020the\u0020list\u0020of\u0020routes.",
+            "url": "classes/Core-Router.html#method_delete"
         },                {
             "fqsen": "\\Core\\Router\u003A\u003AaddRoute\u0028\u0029",
             "name": "addRoute",
-            "summary": "",
+            "summary": "Adds\u0020a\u0020new\u0020route\u0020to\u0020the\u0020\u0060routes\u0060\u0020array.",
             "url": "classes/Core-Router.html#method_addRoute"
         },                {
             "fqsen": "\\Core\\Router\u003A\u003AgetRoutes\u0028\u0029",
             "name": "getRoutes",
-            "summary": "",
+            "summary": "Returns\u0020the\u0020routes\u0020array.",
             "url": "classes/Core-Router.html#method_getRoutes"
         },                {
             "fqsen": "\\Core\\Router\u003A\u003AmatchRoute\u0028\u0029",
             "name": "matchRoute",
-            "summary": "",
+            "summary": "Matches\u0020a\u0020given\u0020URL\u0020and\u0020HTTP\u0020method\u0020to\u0020a\u0020route\u0020in\u0020the\u0020\u0060routes\u0060\u0020array.",
             "url": "classes/Core-Router.html#method_matchRoute"
         },                {
             "fqsen": "\\Core\\Router\u003A\u003AgetParams\u0028\u0029",
             "name": "getParams",
-            "summary": "",
+            "summary": "Returns\u0020the\u0020value\u0020of\u0020the\u0020\u0024params\u0020property.",
             "url": "classes/Core-Router.html#method_getParams"
         },                {
             "fqsen": "\\Core\\Router\u003A\u003Adispatch\u0028\u0029",
             "name": "dispatch",
-            "summary": "",
+            "summary": "Dispatches\u0020the\u0020request\u0020to\u0020the\u0020appropriate\u0020controller\u0020and\u0020action\u0020based\u0020on\u0020the\u0020URL\u0020and\u0020HTTP\u0020method.",
             "url": "classes/Core-Router.html#method_dispatch"
         },                {
             "fqsen": "\\Core\\Router\u003A\u003AremoveQueryStringVariables\u0028\u0029",
             "name": "removeQueryStringVariables",
-            "summary": "",
+            "summary": "Removes\u0020query\u0020string\u0020variables\u0020from\u0020a\u0020given\u0020URL.",
             "url": "classes/Core-Router.html#method_removeQueryStringVariables"
         },                {
             "fqsen": "\\Core\\Router\u003A\u003AtoStudlyCaps\u0028\u0029",
             "name": "toStudlyCaps",
-            "summary": "",
+            "summary": "Converts\u0020a\u0020string\u0020to\u0020studly\u0020caps\u0020format.",
             "url": "classes/Core-Router.html#method_toStudlyCaps"
         },                {
             "fqsen": "\\Core\\Router\u003A\u003AtoCamelCase\u0028\u0029",
             "name": "toCamelCase",
-            "summary": "",
+            "summary": "Converts\u0020a\u0020string\u0020to\u0020camel\u0020case\u0020by\u0020making\u0020the\u0020first\u0020letter\u0020lowercase.",
             "url": "classes/Core-Router.html#method_toCamelCase"
         },                {
             "fqsen": "\\Core\\Router\u003A\u003AgetNamespace\u0028\u0029",
             "name": "getNamespace",
-            "summary": "",
+            "summary": "Returns\u0020the\u0020namespace\u0020string\u0020\u0027Controllers\\\\\u0027.",
             "url": "classes/Core-Router.html#method_getNamespace"
         },                {
             "fqsen": "\\Core\\Router\u003A\u003ApreviousUrl\u0028\u0029",
             "name": "previousUrl",
-            "summary": "",
+            "summary": "Returns\u0020the\u0020URL\u0020of\u0020the\u0020previous\u0020page\u0020visited\u0020by\u0020the\u0020user.",
             "url": "classes/Core-Router.html#method_previousUrl"
         },                {
             "fqsen": "\\Core\\Router\u003A\u003A\u0024routes",
@@ -321,34 +1061,849 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Core-Router.html#property_response"
         },                {
+            "fqsen": "\\Core\\Router\u003A\u003A\u0024container",
+            "name": "container",
+            "summary": "",
+            "url": "classes/Core-Router.html#property_container"
+        },                {
+            "fqsen": "\\Core\\Session",
+            "name": "Session",
+            "summary": "Session\u0020class.",
+            "url": "classes/Core-Session.html"
+        },                {
+            "fqsen": "\\Core\\Session\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Session\u0020constructor.",
+            "url": "classes/Core-Session.html#method___construct"
+        },                {
+            "fqsen": "\\Core\\Session\u003A\u003AsetFlash\u0028\u0029",
+            "name": "setFlash",
+            "summary": "Sets\u0020a\u0020flash\u0020message\u0020in\u0020the\u0020session.",
+            "url": "classes/Core-Session.html#method_setFlash"
+        },                {
+            "fqsen": "\\Core\\Session\u003A\u003AgetFlash\u0028\u0029",
+            "name": "getFlash",
+            "summary": "Retrieves\u0020the\u0020value\u0020of\u0020a\u0020flash\u0020message\u0020from\u0020the\u0020session.",
+            "url": "classes/Core-Session.html#method_getFlash"
+        },                {
+            "fqsen": "\\Core\\Session\u003A\u003Aset\u0028\u0029",
+            "name": "set",
+            "summary": "Sets\u0020a\u0020session\u0020variable\u0020with\u0020the\u0020given\u0020key\u0020and\u0020value.",
+            "url": "classes/Core-Session.html#method_set"
+        },                {
+            "fqsen": "\\Core\\Session\u003A\u003Aget\u0028\u0029",
+            "name": "get",
+            "summary": "Retrieves\u0020the\u0020value\u0020of\u0020a\u0020session\u0020variable.",
+            "url": "classes/Core-Session.html#method_get"
+        },                {
+            "fqsen": "\\Core\\Session\u003A\u003Aremove\u0028\u0029",
+            "name": "remove",
+            "summary": "Removes\u0020a\u0020session\u0020variable.",
+            "url": "classes/Core-Session.html#method_remove"
+        },                {
+            "fqsen": "\\Core\\Session\u003A\u003A__destruct\u0028\u0029",
+            "name": "__destruct",
+            "summary": "Destructor\u0020method\u0020for\u0020the\u0020Session\u0020class.",
+            "url": "classes/Core-Session.html#method___destruct"
+        },                {
+            "fqsen": "\\Core\\Session\u003A\u003AremoveFlashMessages\u0028\u0029",
+            "name": "removeFlashMessages",
+            "summary": "Removes\u0020flash\u0020messages\u0020from\u0020the\u0020session.",
+            "url": "classes/Core-Session.html#method_removeFlashMessages"
+        },                {
+            "fqsen": "\\Core\\Session\u003A\u003AFLASH_KEY",
+            "name": "FLASH_KEY",
+            "summary": "",
+            "url": "classes/Core-Session.html#constant_FLASH_KEY"
+        },                {
             "fqsen": "\\Core\\View",
             "name": "View",
-            "summary": "",
+            "summary": "Class\u0020View",
             "url": "classes/Core-View.html"
         },                {
             "fqsen": "\\Core\\View\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "",
+            "summary": "View\u0020constructor.",
             "url": "classes/Core-View.html#method___construct"
         },                {
             "fqsen": "\\Core\\View\u003A\u003Arender\u0028\u0029",
             "name": "render",
-            "summary": "",
+            "summary": "Renders\u0020a\u0020view\u0020file\u0020by\u0020including\u0020its\u0020content\u0020and\u0020outputting\u0020it\u0020to\u0020the\u0020browser.",
             "url": "classes/Core-View.html#method_render"
+        },                {
+            "fqsen": "\\Core\\View\u003A\u003ArenderHeader\u0028\u0029",
+            "name": "renderHeader",
+            "summary": "Renders\u0020the\u0020header\u0020file\u0020of\u0020a\u0020view\u0020by\u0020including\u0020its\u0020content\u0020and\u0020outputting\u0020it\u0020to\u0020the\u0020browser.",
+            "url": "classes/Core-View.html#method_renderHeader"
         },                {
             "fqsen": "\\Core\\View\u003A\u003A\u0024viewPath",
             "name": "viewPath",
             "summary": "",
             "url": "classes/Core-View.html#property_viewPath"
         },                {
+            "fqsen": "\\Core\\View\u003A\u003A\u0024base_url",
+            "name": "base_url",
+            "summary": "",
+            "url": "classes/Core-View.html#property_base_url"
+        },                {
+            "fqsen": "\\DAO\\MoviesDAO",
+            "name": "MoviesDAO",
+            "summary": "This\u0020is\u0020an\u0020abstract\u0020class\u0020called\u0020\u0060DAO\u0060\u0020that\u0020serves\u0020as\u0020a\u0020base\u0020class\u0020for\u0020data\u0020access\u0020objects.",
+            "url": "classes/DAO-MoviesDAO.html"
+        },                {
+            "fqsen": "\\DAO\\MoviesDAO\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Class\u0020constructor\u0020for\u0020the\u0020MoviesDAO\u0020class.",
+            "url": "classes/DAO-MoviesDAO.html#method___construct"
+        },                {
+            "fqsen": "\\DAO\\RatingsDAO",
+            "name": "RatingsDAO",
+            "summary": "This\u0020is\u0020an\u0020abstract\u0020class\u0020called\u0020\u0060DAO\u0060\u0020that\u0020serves\u0020as\u0020a\u0020base\u0020class\u0020for\u0020data\u0020access\u0020objects.",
+            "url": "classes/DAO-RatingsDAO.html"
+        },                {
+            "fqsen": "\\DAO\\RatingsDAO\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/DAO-RatingsDAO.html#method___construct"
+        },                {
+            "fqsen": "\\DAO\\RatingsDAO\u003A\u003Aget_all_data\u0028\u0029",
+            "name": "get_all_data",
+            "summary": "Retrieves\u0020all\u0020the\u0020data\u0020from\u0020the\u0020\u0060ratings\u0060\u0020table.",
+            "url": "classes/DAO-RatingsDAO.html#method_get_all_data"
+        },                {
+            "fqsen": "\\DAO\\RatingsDAO\u003A\u003AgetByMovie\u0028\u0029",
+            "name": "getByMovie",
+            "summary": "Retrieves\u0020ratings\u0020data\u0020from\u0020the\u0020database\u0020based\u0020on\u0020a\u0020given\u0020movie\u0020object.",
+            "url": "classes/DAO-RatingsDAO.html#method_getByMovie"
+        },                {
+            "fqsen": "\\DAO\\RatingsDAO\u003A\u003AgetPagebyMovie\u0028\u0029",
+            "name": "getPagebyMovie",
+            "summary": "Retrieves\u0020ratings\u0020data\u0020from\u0020the\u0020database\u0020based\u0020on\u0020a\u0020given\u0020movie\u0020object.",
+            "url": "classes/DAO-RatingsDAO.html#method_getPagebyMovie"
+        },                {
+            "fqsen": "\\DAO\\RatingsDAO\u003A\u003Aget_liked_movies\u0028\u0029",
+            "name": "get_liked_movies",
+            "summary": "Retrieves\u0020a\u0020specified\u0020number\u0020of\u0020liked\u0020movies\u0020for\u0020a\u0020given\u0020user\u0020from\u0020the\u0020\u0060ratings\u0060\u0020table\u0020in\u0020the\u0020database.",
+            "url": "classes/DAO-RatingsDAO.html#method_get_liked_movies"
+        },                {
+            "fqsen": "\\DAO\\RatingsDAO\u003A\u003Afind_by_user_and_movie\u0028\u0029",
+            "name": "find_by_user_and_movie",
+            "summary": "This\u0020method\u0020retrieves\u0020a\u0020row\u0020from\u0020the\u0020\u0060ratings\u0060\u0020table\u0020in\u0020the\u0020database\u0020based\u0020on\u0020the\u0020given\u0020\u0060user_id\u0060\u0020and\u0020\u0060movie_id\u0060.",
+            "url": "classes/DAO-RatingsDAO.html#method_find_by_user_and_movie"
+        },                {
+            "fqsen": "\\DAO\\UsersDAO",
+            "name": "UsersDAO",
+            "summary": "This\u0020is\u0020an\u0020abstract\u0020class\u0020called\u0020\u0060DAO\u0060\u0020that\u0020serves\u0020as\u0020a\u0020base\u0020class\u0020for\u0020data\u0020access\u0020objects.",
+            "url": "classes/DAO-UsersDAO.html"
+        },                {
+            "fqsen": "\\DAO\\UsersDAO\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "UsersDAO\u0020constructor.",
+            "url": "classes/DAO-UsersDAO.html#method___construct"
+        },                {
+            "fqsen": "\\DAO\\UsersDAO\u003A\u003Aadd_follower\u0028\u0029",
+            "name": "add_follower",
+            "summary": "Adds\u0020a\u0020follower\u0020to\u0020a\u0020user\u0020in\u0020the\u0020followers\u0020table.",
+            "url": "classes/DAO-UsersDAO.html#method_add_follower"
+        },                {
+            "fqsen": "\\DAO\\UsersDAO\u003A\u003Aget_following\u0028\u0029",
+            "name": "get_following",
+            "summary": "Retrieves\u0020the\u0020IDs\u0020of\u0020the\u0020users\u0020that\u0020a\u0020given\u0020user\u0020is\u0020following.",
+            "url": "classes/DAO-UsersDAO.html#method_get_following"
+        },                {
+            "fqsen": "\\DAO\\UsersDAO\u003A\u003Aget_followers\u0028\u0029",
+            "name": "get_followers",
+            "summary": "Retrieves\u0020the\u0020IDs\u0020of\u0020the\u0020users\u0020who\u0020are\u0020following\u0020a\u0020given\u0020user.",
+            "url": "classes/DAO-UsersDAO.html#method_get_followers"
+        },                {
+            "fqsen": "\\Models\\Movie",
+            "name": "Movie",
+            "summary": "Class\u0020Movie",
+            "url": "classes/Models-Movie.html"
+        },                {
+            "fqsen": "\\Models\\Movie\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Constructor\u0020method\u0020for\u0020the\u0020Movie\u0020class.",
+            "url": "classes/Models-Movie.html#method___construct"
+        },                {
+            "fqsen": "\\Models\\Movie\u003A\u003Aget_id\u0028\u0029",
+            "name": "get_id",
+            "summary": "Get\u0020the\u0020ID\u0020of\u0020the\u0020movie.",
+            "url": "classes/Models-Movie.html#method_get_id"
+        },                {
+            "fqsen": "\\Models\\Movie\u003A\u003Aset_id\u0028\u0029",
+            "name": "set_id",
+            "summary": "Set\u0020the\u0020ID\u0020of\u0020the\u0020movie.",
+            "url": "classes/Models-Movie.html#method_set_id"
+        },                {
+            "fqsen": "\\Models\\Movie\u003A\u003Aget_original_title\u0028\u0029",
+            "name": "get_original_title",
+            "summary": "Get\u0020the\u0020original\u0020title\u0020of\u0020the\u0020movie.",
+            "url": "classes/Models-Movie.html#method_get_original_title"
+        },                {
+            "fqsen": "\\Models\\Movie\u003A\u003Aset_original_title\u0028\u0029",
+            "name": "set_original_title",
+            "summary": "Set\u0020the\u0020original\u0020title\u0020of\u0020the\u0020movie.",
+            "url": "classes/Models-Movie.html#method_set_original_title"
+        },                {
+            "fqsen": "\\Models\\Movie\u003A\u003Aget_overview\u0028\u0029",
+            "name": "get_overview",
+            "summary": "Get\u0020the\u0020overview\u0020of\u0020the\u0020movie.",
+            "url": "classes/Models-Movie.html#method_get_overview"
+        },                {
+            "fqsen": "\\Models\\Movie\u003A\u003Aset_overview\u0028\u0029",
+            "name": "set_overview",
+            "summary": "Set\u0020the\u0020overview\u0020of\u0020the\u0020movie.",
+            "url": "classes/Models-Movie.html#method_set_overview"
+        },                {
+            "fqsen": "\\Models\\Movie\u003A\u003Aget_poster_path\u0028\u0029",
+            "name": "get_poster_path",
+            "summary": "Get\u0020the\u0020poster\u0020path\u0020of\u0020the\u0020movie.",
+            "url": "classes/Models-Movie.html#method_get_poster_path"
+        },                {
+            "fqsen": "\\Models\\Movie\u003A\u003Aset_poster_path\u0028\u0029",
+            "name": "set_poster_path",
+            "summary": "Set\u0020the\u0020poster\u0020path\u0020of\u0020the\u0020movie.",
+            "url": "classes/Models-Movie.html#method_set_poster_path"
+        },                {
+            "fqsen": "\\Models\\Movie\u003A\u003Aget_genres\u0028\u0029",
+            "name": "get_genres",
+            "summary": "Get\u0020the\u0020genres\u0020of\u0020the\u0020movie.",
+            "url": "classes/Models-Movie.html#method_get_genres"
+        },                {
+            "fqsen": "\\Models\\Movie\u003A\u003Aset_genres\u0028\u0029",
+            "name": "set_genres",
+            "summary": "Set\u0020the\u0020genres\u0020of\u0020the\u0020movie.",
+            "url": "classes/Models-Movie.html#method_set_genres"
+        },                {
+            "fqsen": "\\Models\\Movie\u003A\u003Aget_belongs_to_collection\u0028\u0029",
+            "name": "get_belongs_to_collection",
+            "summary": "Get\u0020the\u0020collection\u0020that\u0020the\u0020movie\u0020belongs\u0020to.",
+            "url": "classes/Models-Movie.html#method_get_belongs_to_collection"
+        },                {
+            "fqsen": "\\Models\\Movie\u003A\u003Aset_belongs_to_collection\u0028\u0029",
+            "name": "set_belongs_to_collection",
+            "summary": "Set\u0020the\u0020collection\u0020that\u0020the\u0020movie\u0020belongs\u0020to.",
+            "url": "classes/Models-Movie.html#method_set_belongs_to_collection"
+        },                {
+            "fqsen": "\\Models\\Movie\u003A\u003Aget_adult\u0028\u0029",
+            "name": "get_adult",
+            "summary": "Check\u0020if\u0020the\u0020movie\u0020is\u0020for\u0020adults\u0020only.",
+            "url": "classes/Models-Movie.html#method_get_adult"
+        },                {
+            "fqsen": "\\Models\\Movie\u003A\u003Aset_adult\u0028\u0029",
+            "name": "set_adult",
+            "summary": "Set\u0020whether\u0020the\u0020movie\u0020is\u0020for\u0020adults\u0020only.",
+            "url": "classes/Models-Movie.html#method_set_adult"
+        },                {
+            "fqsen": "\\Models\\Movie\u003A\u003Aget_original_language\u0028\u0029",
+            "name": "get_original_language",
+            "summary": "Get\u0020the\u0020original\u0020language\u0020of\u0020the\u0020movie.",
+            "url": "classes/Models-Movie.html#method_get_original_language"
+        },                {
+            "fqsen": "\\Models\\Movie\u003A\u003Aset_original_language\u0028\u0029",
+            "name": "set_original_language",
+            "summary": "Set\u0020the\u0020original\u0020language\u0020of\u0020the\u0020movie.",
+            "url": "classes/Models-Movie.html#method_set_original_language"
+        },                {
+            "fqsen": "\\Models\\Movie\u003A\u003Aget_release_date\u0028\u0029",
+            "name": "get_release_date",
+            "summary": "Get\u0020the\u0020release\u0020date\u0020of\u0020the\u0020movie.",
+            "url": "classes/Models-Movie.html#method_get_release_date"
+        },                {
+            "fqsen": "\\Models\\Movie\u003A\u003Aset_release_date\u0028\u0029",
+            "name": "set_release_date",
+            "summary": "Set\u0020the\u0020release\u0020date\u0020of\u0020the\u0020movie.",
+            "url": "classes/Models-Movie.html#method_set_release_date"
+        },                {
+            "fqsen": "\\Models\\Movie\u003A\u003Aget_deleted_at\u0028\u0029",
+            "name": "get_deleted_at",
+            "summary": "Get\u0020the\u0020deleted\u0020date\u0020of\u0020the\u0020movie.",
+            "url": "classes/Models-Movie.html#method_get_deleted_at"
+        },                {
+            "fqsen": "\\Models\\Movie\u003A\u003Aset_deleted_at\u0028\u0029",
+            "name": "set_deleted_at",
+            "summary": "Set\u0020the\u0020deleted\u0020date\u0020of\u0020the\u0020movie.",
+            "url": "classes/Models-Movie.html#method_set_deleted_at"
+        },                {
+            "fqsen": "\\Models\\Movie\u003A\u003Aget_updated_at\u0028\u0029",
+            "name": "get_updated_at",
+            "summary": "Get\u0020the\u0020updated\u0020date\u0020of\u0020the\u0020movie.",
+            "url": "classes/Models-Movie.html#method_get_updated_at"
+        },                {
+            "fqsen": "\\Models\\Movie\u003A\u003Aset_updated_at\u0028\u0029",
+            "name": "set_updated_at",
+            "summary": "Set\u0020the\u0020updated\u0020date\u0020of\u0020the\u0020movie.",
+            "url": "classes/Models-Movie.html#method_set_updated_at"
+        },                {
+            "fqsen": "\\Models\\Movie\u003A\u003Aget_director\u0028\u0029",
+            "name": "get_director",
+            "summary": "Get\u0020the\u0020director\u0020of\u0020the\u0020movie.",
+            "url": "classes/Models-Movie.html#method_get_director"
+        },                {
+            "fqsen": "\\Models\\Movie\u003A\u003Aset_director\u0028\u0029",
+            "name": "set_director",
+            "summary": "Set\u0020the\u0020director\u0020of\u0020the\u0020movie.",
+            "url": "classes/Models-Movie.html#method_set_director"
+        },                {
+            "fqsen": "\\Models\\Movie\u003A\u003Aget_ratings\u0028\u0029",
+            "name": "get_ratings",
+            "summary": "",
+            "url": "classes/Models-Movie.html#method_get_ratings"
+        },                {
+            "fqsen": "\\Models\\Movie\u003A\u003Aset_ratings\u0028\u0029",
+            "name": "set_ratings",
+            "summary": "",
+            "url": "classes/Models-Movie.html#method_set_ratings"
+        },                {
+            "fqsen": "\\Models\\Movie\u003A\u003Aget_poster_status\u0028\u0029",
+            "name": "get_poster_status",
+            "summary": "",
+            "url": "classes/Models-Movie.html#method_get_poster_status"
+        },                {
+            "fqsen": "\\Models\\Movie\u003A\u003Aset_poster_status\u0028\u0029",
+            "name": "set_poster_status",
+            "summary": "",
+            "url": "classes/Models-Movie.html#method_set_poster_status"
+        },                {
+            "fqsen": "\\Models\\Movie\u003A\u003Arules\u0028\u0029",
+            "name": "rules",
+            "summary": "Get\u0020the\u0020validation\u0020rules\u0020for\u0020the\u0020\u0027original_title\u0027\u0020attribute.",
+            "url": "classes/Models-Movie.html#method_rules"
+        },                {
+            "fqsen": "\\Models\\Movie\u003A\u003Aattributes\u0028\u0029",
+            "name": "attributes",
+            "summary": "Get\u0020all\u0020the\u0020attributes\u0020of\u0020the\u0020\u0027Movie\u0027\u0020class.",
+            "url": "classes/Models-Movie.html#method_attributes"
+        },                {
+            "fqsen": "\\Models\\Movie\u003A\u003AprimaryKey\u0028\u0029",
+            "name": "primaryKey",
+            "summary": "Get\u0020the\u0020primary\u0020key\u0020of\u0020the\u0020movie.",
+            "url": "classes/Models-Movie.html#method_primaryKey"
+        },                {
+            "fqsen": "\\Models\\Movie\u003A\u003Afind_movies\u0028\u0029",
+            "name": "find_movies",
+            "summary": "Find\u0020movies\u0020based\u0020on\u0020the\u0020given\u0020list\u0020of\u0020movie\u0020IDs.",
+            "url": "classes/Models-Movie.html#method_find_movies"
+        },                {
+            "fqsen": "\\Models\\Movie\u003A\u003AmoviePosterFallback\u0028\u0029",
+            "name": "moviePosterFallback",
+            "summary": "",
+            "url": "classes/Models-Movie.html#method_moviePosterFallback"
+        },                {
+            "fqsen": "\\Models\\Movie\u003A\u003AMovieDirectorRetrieval\u0028\u0029",
+            "name": "MovieDirectorRetrieval",
+            "summary": "",
+            "url": "classes/Models-Movie.html#method_MovieDirectorRetrieval"
+        },                {
+            "fqsen": "\\Models\\Movie\u003A\u003Asearch_movie\u0028\u0029",
+            "name": "search_movie",
+            "summary": "",
+            "url": "classes/Models-Movie.html#method_search_movie"
+        },                {
+            "fqsen": "\\Models\\Movie\u003A\u003Aget_all\u0028\u0029",
+            "name": "get_all",
+            "summary": "",
+            "url": "classes/Models-Movie.html#method_get_all"
+        },                {
+            "fqsen": "\\Models\\Movie\u003A\u003Adelete_movie\u0028\u0029",
+            "name": "delete_movie",
+            "summary": "",
+            "url": "classes/Models-Movie.html#method_delete_movie"
+        },                {
+            "fqsen": "\\Models\\Movie\u003A\u003Aadd_movie\u0028\u0029",
+            "name": "add_movie",
+            "summary": "",
+            "url": "classes/Models-Movie.html#method_add_movie"
+        },                {
+            "fqsen": "\\Models\\Movie\u003A\u003A\u0024id",
+            "name": "id",
+            "summary": "",
+            "url": "classes/Models-Movie.html#property_id"
+        },                {
+            "fqsen": "\\Models\\Movie\u003A\u003A\u0024original_title",
+            "name": "original_title",
+            "summary": "",
+            "url": "classes/Models-Movie.html#property_original_title"
+        },                {
+            "fqsen": "\\Models\\Movie\u003A\u003A\u0024overview",
+            "name": "overview",
+            "summary": "",
+            "url": "classes/Models-Movie.html#property_overview"
+        },                {
+            "fqsen": "\\Models\\Movie\u003A\u003A\u0024poster_path",
+            "name": "poster_path",
+            "summary": "",
+            "url": "classes/Models-Movie.html#property_poster_path"
+        },                {
+            "fqsen": "\\Models\\Movie\u003A\u003A\u0024genres",
+            "name": "genres",
+            "summary": "",
+            "url": "classes/Models-Movie.html#property_genres"
+        },                {
+            "fqsen": "\\Models\\Movie\u003A\u003A\u0024belongs_to_collection",
+            "name": "belongs_to_collection",
+            "summary": "",
+            "url": "classes/Models-Movie.html#property_belongs_to_collection"
+        },                {
+            "fqsen": "\\Models\\Movie\u003A\u003A\u0024adult",
+            "name": "adult",
+            "summary": "",
+            "url": "classes/Models-Movie.html#property_adult"
+        },                {
+            "fqsen": "\\Models\\Movie\u003A\u003A\u0024original_language",
+            "name": "original_language",
+            "summary": "",
+            "url": "classes/Models-Movie.html#property_original_language"
+        },                {
+            "fqsen": "\\Models\\Movie\u003A\u003A\u0024release_date",
+            "name": "release_date",
+            "summary": "",
+            "url": "classes/Models-Movie.html#property_release_date"
+        },                {
+            "fqsen": "\\Models\\Movie\u003A\u003A\u0024deleted_at",
+            "name": "deleted_at",
+            "summary": "",
+            "url": "classes/Models-Movie.html#property_deleted_at"
+        },                {
+            "fqsen": "\\Models\\Movie\u003A\u003A\u0024updated_at",
+            "name": "updated_at",
+            "summary": "",
+            "url": "classes/Models-Movie.html#property_updated_at"
+        },                {
+            "fqsen": "\\Models\\Movie\u003A\u003A\u0024director",
+            "name": "director",
+            "summary": "",
+            "url": "classes/Models-Movie.html#property_director"
+        },                {
+            "fqsen": "\\Models\\Movie\u003A\u003A\u0024poster_status",
+            "name": "poster_status",
+            "summary": "",
+            "url": "classes/Models-Movie.html#property_poster_status"
+        },                {
+            "fqsen": "\\Models\\Movie\u003A\u003A\u0024ratings",
+            "name": "ratings",
+            "summary": "",
+            "url": "classes/Models-Movie.html#property_ratings"
+        },                {
+            "fqsen": "\\Models\\Movie\u003A\u003A\u0024moviesDAO",
+            "name": "moviesDAO",
+            "summary": "",
+            "url": "classes/Models-Movie.html#property_moviesDAO"
+        },                {
+            "fqsen": "\\Models\\Rating",
+            "name": "Rating",
+            "summary": "Rating\u0020class\u0020represents\u0020a\u0020rating\u0020given\u0020by\u0020a\u0020user\u0020to\u0020a\u0020movie.",
+            "url": "classes/Models-Rating.html"
+        },                {
+            "fqsen": "\\Models\\Rating\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Rating\u0020constructor.",
+            "url": "classes/Models-Rating.html#method___construct"
+        },                {
+            "fqsen": "\\Models\\Rating\u003A\u003Aget_id\u0028\u0029",
+            "name": "get_id",
+            "summary": "Get\u0020the\u0020ID\u0020of\u0020the\u0020rating.",
+            "url": "classes/Models-Rating.html#method_get_id"
+        },                {
+            "fqsen": "\\Models\\Rating\u003A\u003Aset_id\u0028\u0029",
+            "name": "set_id",
+            "summary": "Set\u0020the\u0020ID\u0020of\u0020the\u0020rating.",
+            "url": "classes/Models-Rating.html#method_set_id"
+        },                {
+            "fqsen": "\\Models\\Rating\u003A\u003Aget_user\u0028\u0029",
+            "name": "get_user",
+            "summary": "Get\u0020the\u0020user\u0020associated\u0020with\u0020the\u0020rating.",
+            "url": "classes/Models-Rating.html#method_get_user"
+        },                {
+            "fqsen": "\\Models\\Rating\u003A\u003Aset_user\u0028\u0029",
+            "name": "set_user",
+            "summary": "Set\u0020the\u0020user\u0020associated\u0020with\u0020the\u0020rating.",
+            "url": "classes/Models-Rating.html#method_set_user"
+        },                {
+            "fqsen": "\\Models\\Rating\u003A\u003Aget_movie\u0028\u0029",
+            "name": "get_movie",
+            "summary": "Get\u0020the\u0020movie\u0020associated\u0020with\u0020the\u0020rating.",
+            "url": "classes/Models-Rating.html#method_get_movie"
+        },                {
+            "fqsen": "\\Models\\Rating\u003A\u003Aset_movie\u0028\u0029",
+            "name": "set_movie",
+            "summary": "Set\u0020the\u0020movie\u0020associated\u0020with\u0020the\u0020rating.",
+            "url": "classes/Models-Rating.html#method_set_movie"
+        },                {
+            "fqsen": "\\Models\\Rating\u003A\u003Aget_rating\u0028\u0029",
+            "name": "get_rating",
+            "summary": "Get\u0020the\u0020rating\u0020value.",
+            "url": "classes/Models-Rating.html#method_get_rating"
+        },                {
+            "fqsen": "\\Models\\Rating\u003A\u003Aset_rating\u0028\u0029",
+            "name": "set_rating",
+            "summary": "Set\u0020the\u0020rating\u0020value.",
+            "url": "classes/Models-Rating.html#method_set_rating"
+        },                {
+            "fqsen": "\\Models\\Rating\u003A\u003Aget_review\u0028\u0029",
+            "name": "get_review",
+            "summary": "Get\u0020the\u0020review\u0020comment.",
+            "url": "classes/Models-Rating.html#method_get_review"
+        },                {
+            "fqsen": "\\Models\\Rating\u003A\u003Aset_review\u0028\u0029",
+            "name": "set_review",
+            "summary": "Set\u0020the\u0020review\u0020comment.",
+            "url": "classes/Models-Rating.html#method_set_review"
+        },                {
+            "fqsen": "\\Models\\Rating\u003A\u003Aget_created_at\u0028\u0029",
+            "name": "get_created_at",
+            "summary": "Get\u0020the\u0020created_at\u0020value.",
+            "url": "classes/Models-Rating.html#method_get_created_at"
+        },                {
+            "fqsen": "\\Models\\Rating\u003A\u003Aset_created_at\u0028\u0029",
+            "name": "set_created_at",
+            "summary": "Set\u0020the\u0020created_at\u0020value.",
+            "url": "classes/Models-Rating.html#method_set_created_at"
+        },                {
+            "fqsen": "\\Models\\Rating\u003A\u003AprimaryKey\u0028\u0029",
+            "name": "primaryKey",
+            "summary": "Get\u0020the\u0020primary\u0020key\u0020of\u0020the\u0020Rating\u0020model.",
+            "url": "classes/Models-Rating.html#method_primaryKey"
+        },                {
+            "fqsen": "\\Models\\Rating\u003A\u003Asearch_by_movie_id\u0028\u0029",
+            "name": "search_by_movie_id",
+            "summary": "Search\u0020for\u0020ratings\u0020by\u0020movie\u0020ID.",
+            "url": "classes/Models-Rating.html#method_search_by_movie_id"
+        },                {
+            "fqsen": "\\Models\\Rating\u003A\u003Aadd_rating\u0028\u0029",
+            "name": "add_rating",
+            "summary": "Add\u0020a\u0020new\u0020rating.",
+            "url": "classes/Models-Rating.html#method_add_rating"
+        },                {
+            "fqsen": "\\Models\\Rating\u003A\u003Adelete_review\u0028\u0029",
+            "name": "delete_review",
+            "summary": "Delete\u0020a\u0020rating.",
+            "url": "classes/Models-Rating.html#method_delete_review"
+        },                {
+            "fqsen": "\\Models\\Rating\u003A\u003Ashow_movie_ratings\u0028\u0029",
+            "name": "show_movie_ratings",
+            "summary": "Show\u0020ratings\u0020for\u0020a\u0020specific\u0020movie.",
+            "url": "classes/Models-Rating.html#method_show_movie_ratings"
+        },                {
+            "fqsen": "\\Models\\Rating\u003A\u003Aget_all\u0028\u0029",
+            "name": "get_all",
+            "summary": "Get\u0020all\u0020ratings.",
+            "url": "classes/Models-Rating.html#method_get_all"
+        },                {
+            "fqsen": "\\Models\\Rating\u003A\u003Apost_all_ratings\u0028\u0029",
+            "name": "post_all_ratings",
+            "summary": "Sends\u0020a\u0020POST\u0020request\u0020to\u0020a\u0020specific\u0020URL\u0020with\u0020the\u0020ratings\u0020data.",
+            "url": "classes/Models-Rating.html#method_post_all_ratings"
+        },                {
+            "fqsen": "\\Models\\Rating\u003A\u003A\u0024id",
+            "name": "id",
+            "summary": "",
+            "url": "classes/Models-Rating.html#property_id"
+        },                {
+            "fqsen": "\\Models\\Rating\u003A\u003A\u0024user",
+            "name": "user",
+            "summary": "",
+            "url": "classes/Models-Rating.html#property_user"
+        },                {
+            "fqsen": "\\Models\\Rating\u003A\u003A\u0024movie",
+            "name": "movie",
+            "summary": "",
+            "url": "classes/Models-Rating.html#property_movie"
+        },                {
+            "fqsen": "\\Models\\Rating\u003A\u003A\u0024rating",
+            "name": "rating",
+            "summary": "",
+            "url": "classes/Models-Rating.html#property_rating"
+        },                {
+            "fqsen": "\\Models\\Rating\u003A\u003A\u0024review",
+            "name": "review",
+            "summary": "",
+            "url": "classes/Models-Rating.html#property_review"
+        },                {
+            "fqsen": "\\Models\\Rating\u003A\u003A\u0024created_at",
+            "name": "created_at",
+            "summary": "",
+            "url": "classes/Models-Rating.html#property_created_at"
+        },                {
+            "fqsen": "\\Models\\User",
+            "name": "User",
+            "summary": "Class\u0020User",
+            "url": "classes/Models-User.html"
+        },                {
+            "fqsen": "\\Models\\User\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Models-User.html#method___construct"
+        },                {
+            "fqsen": "\\Models\\User\u003A\u003Aget_id\u0028\u0029",
+            "name": "get_id",
+            "summary": "Get\u0020the\u0020user\u0020ID.",
+            "url": "classes/Models-User.html#method_get_id"
+        },                {
+            "fqsen": "\\Models\\User\u003A\u003Aset_id\u0028\u0029",
+            "name": "set_id",
+            "summary": "Set\u0020the\u0020user\u0020ID.",
+            "url": "classes/Models-User.html#method_set_id"
+        },                {
+            "fqsen": "\\Models\\User\u003A\u003Aget_username\u0028\u0029",
+            "name": "get_username",
+            "summary": "Get\u0020the\u0020username.",
+            "url": "classes/Models-User.html#method_get_username"
+        },                {
+            "fqsen": "\\Models\\User\u003A\u003Aset_username\u0028\u0029",
+            "name": "set_username",
+            "summary": "Set\u0020the\u0020username.",
+            "url": "classes/Models-User.html#method_set_username"
+        },                {
+            "fqsen": "\\Models\\User\u003A\u003Aget_hashed_password\u0028\u0029",
+            "name": "get_hashed_password",
+            "summary": "Get\u0020the\u0020hashed\u0020password.",
+            "url": "classes/Models-User.html#method_get_hashed_password"
+        },                {
+            "fqsen": "\\Models\\User\u003A\u003Aset_hashed_password\u0028\u0029",
+            "name": "set_hashed_password",
+            "summary": "Set\u0020the\u0020hashed\u0020password.",
+            "url": "classes/Models-User.html#method_set_hashed_password"
+        },                {
+            "fqsen": "\\Models\\User\u003A\u003Aget_first_name\u0028\u0029",
+            "name": "get_first_name",
+            "summary": "Get\u0020the\u0020first\u0020name.",
+            "url": "classes/Models-User.html#method_get_first_name"
+        },                {
+            "fqsen": "\\Models\\User\u003A\u003Aset_first_name\u0028\u0029",
+            "name": "set_first_name",
+            "summary": "Set\u0020the\u0020first\u0020name.",
+            "url": "classes/Models-User.html#method_set_first_name"
+        },                {
+            "fqsen": "\\Models\\User\u003A\u003Aget_last_name\u0028\u0029",
+            "name": "get_last_name",
+            "summary": "Get\u0020the\u0020last\u0020name.",
+            "url": "classes/Models-User.html#method_get_last_name"
+        },                {
+            "fqsen": "\\Models\\User\u003A\u003Aset_last_name\u0028\u0029",
+            "name": "set_last_name",
+            "summary": "Set\u0020the\u0020last\u0020name.",
+            "url": "classes/Models-User.html#method_set_last_name"
+        },                {
+            "fqsen": "\\Models\\User\u003A\u003Aget_created_at\u0028\u0029",
+            "name": "get_created_at",
+            "summary": "Get\u0020the\u0020created\u0020at\u0020timestamp.",
+            "url": "classes/Models-User.html#method_get_created_at"
+        },                {
+            "fqsen": "\\Models\\User\u003A\u003Aset_created_at\u0028\u0029",
+            "name": "set_created_at",
+            "summary": "Set\u0020the\u0020created\u0020at\u0020timestamp.",
+            "url": "classes/Models-User.html#method_set_created_at"
+        },                {
+            "fqsen": "\\Models\\User\u003A\u003Aget_updated_at\u0028\u0029",
+            "name": "get_updated_at",
+            "summary": "Get\u0020the\u0020updated\u0020at\u0020timestamp.",
+            "url": "classes/Models-User.html#method_get_updated_at"
+        },                {
+            "fqsen": "\\Models\\User\u003A\u003Aset_updated_at\u0028\u0029",
+            "name": "set_updated_at",
+            "summary": "Set\u0020the\u0020updated\u0020at\u0020timestamp.",
+            "url": "classes/Models-User.html#method_set_updated_at"
+        },                {
+            "fqsen": "\\Models\\User\u003A\u003Aget_deleted_at\u0028\u0029",
+            "name": "get_deleted_at",
+            "summary": "Get\u0020the\u0020deleted\u0020at\u0020timestamp.",
+            "url": "classes/Models-User.html#method_get_deleted_at"
+        },                {
+            "fqsen": "\\Models\\User\u003A\u003Aset_deleted_at\u0028\u0029",
+            "name": "set_deleted_at",
+            "summary": "Set\u0020the\u0020deleted\u0020at\u0020timestamp.",
+            "url": "classes/Models-User.html#method_set_deleted_at"
+        },                {
+            "fqsen": "\\Models\\User\u003A\u003Aget_role\u0028\u0029",
+            "name": "get_role",
+            "summary": "Get\u0020the\u0020user\u0020role.",
+            "url": "classes/Models-User.html#method_get_role"
+        },                {
+            "fqsen": "\\Models\\User\u003A\u003Aset_role\u0028\u0029",
+            "name": "set_role",
+            "summary": "Set\u0020the\u0020user\u0020role.",
+            "url": "classes/Models-User.html#method_set_role"
+        },                {
+            "fqsen": "\\Models\\User\u003A\u003Aget_followers\u0028\u0029",
+            "name": "get_followers",
+            "summary": "Get\u0020the\u0020user\u0020followers.",
+            "url": "classes/Models-User.html#method_get_followers"
+        },                {
+            "fqsen": "\\Models\\User\u003A\u003Aset_followers\u0028\u0029",
+            "name": "set_followers",
+            "summary": "Set\u0020the\u0020user\u0020followers.",
+            "url": "classes/Models-User.html#method_set_followers"
+        },                {
+            "fqsen": "\\Models\\User\u003A\u003Aget_following\u0028\u0029",
+            "name": "get_following",
+            "summary": "Get\u0020the\u0020user\u0020following.",
+            "url": "classes/Models-User.html#method_get_following"
+        },                {
+            "fqsen": "\\Models\\User\u003A\u003Aset_following\u0028\u0029",
+            "name": "set_following",
+            "summary": "Set\u0020the\u0020user\u0020following.",
+            "url": "classes/Models-User.html#method_set_following"
+        },                {
+            "fqsen": "\\Models\\User\u003A\u003AprimaryKey\u0028\u0029",
+            "name": "primaryKey",
+            "summary": "Get\u0020the\u0020primary\u0020key\u0020for\u0020the\u0020User\u0020class.",
+            "url": "classes/Models-User.html#method_primaryKey"
+        },                {
+            "fqsen": "\\Models\\User\u003A\u003Aattributes\u0028\u0029",
+            "name": "attributes",
+            "summary": "Get\u0020the\u0020attributes\u0020of\u0020the\u0020User\u0020class.",
+            "url": "classes/Models-User.html#method_attributes"
+        },                {
+            "fqsen": "\\Models\\User\u003A\u003Arules\u0028\u0029",
+            "name": "rules",
+            "summary": "Defines\u0020the\u0020validation\u0020rules\u0020for\u0020user\u0020attributes.",
+            "url": "classes/Models-User.html#method_rules"
+        },                {
+            "fqsen": "\\Models\\User\u003A\u003Alogin\u0028\u0029",
+            "name": "login",
+            "summary": "Logs\u0020in\u0020a\u0020user.",
+            "url": "classes/Models-User.html#method_login"
+        },                {
+            "fqsen": "\\Models\\User\u003A\u003AgetRecommendedMoviesIds\u0028\u0029",
+            "name": "getRecommendedMoviesIds",
+            "summary": "Retrieves\u0020a\u0020specified\u0020number\u0020of\u0020recommended\u0020movie\u0020IDs\u0020for\u0020the\u0020user.",
+            "url": "classes/Models-User.html#method_getRecommendedMoviesIds"
+        },                {
+            "fqsen": "\\Models\\User\u003A\u003Aget_user_movies\u0028\u0029",
+            "name": "get_user_movies",
+            "summary": "Retrieves\u0020a\u0020specified\u0020number\u0020of\u0020movies\u0020for\u0020the\u0020user.",
+            "url": "classes/Models-User.html#method_get_user_movies"
+        },                {
+            "fqsen": "\\Models\\User\u003A\u003Aget_liked_movies\u0028\u0029",
+            "name": "get_liked_movies",
+            "summary": "Retrieves\u0020the\u0020movies\u0020that\u0020a\u0020user\u0020has\u0020liked\u0020based\u0020on\u0020their\u0020ratings.",
+            "url": "classes/Models-User.html#method_get_liked_movies"
+        },                {
+            "fqsen": "\\Models\\User\u003A\u003AfindOne\u0028\u0029",
+            "name": "findOne",
+            "summary": "Finds\u0020a\u0020user\u0020by\u0020their\u0020ID.",
+            "url": "classes/Models-User.html#method_findOne"
+        },                {
+            "fqsen": "\\Models\\User\u003A\u003Ahas_rated_movie\u0028\u0029",
+            "name": "has_rated_movie",
+            "summary": "Checks\u0020if\u0020a\u0020user\u0020has\u0020rated\u0020a\u0020specific\u0020movie.",
+            "url": "classes/Models-User.html#method_has_rated_movie"
+        },                {
+            "fqsen": "\\Models\\User\u003A\u003Ais_following\u0028\u0029",
+            "name": "is_following",
+            "summary": "Checks\u0020if\u0020the\u0020current\u0020user\u0020is\u0020following\u0020a\u0020given\u0020user.",
+            "url": "classes/Models-User.html#method_is_following"
+        },                {
+            "fqsen": "\\Models\\User\u003A\u003Aget_follower_count\u0028\u0029",
+            "name": "get_follower_count",
+            "summary": "Returns\u0020the\u0020number\u0020of\u0020followers\u0020a\u0020user\u0020has.",
+            "url": "classes/Models-User.html#method_get_follower_count"
+        },                {
+            "fqsen": "\\Models\\User\u003A\u003Aget_following_count\u0028\u0029",
+            "name": "get_following_count",
+            "summary": "Returns\u0020the\u0020count\u0020of\u0020the\u0020\u0060following\u0060\u0020array\u0020property\u0020of\u0020the\u0020\u0060User\u0060\u0020class.",
+            "url": "classes/Models-User.html#method_get_following_count"
+        },                {
+            "fqsen": "\\Models\\User\u003A\u003A\u0024id",
+            "name": "id",
+            "summary": "",
+            "url": "classes/Models-User.html#property_id"
+        },                {
+            "fqsen": "\\Models\\User\u003A\u003A\u0024username",
+            "name": "username",
+            "summary": "",
+            "url": "classes/Models-User.html#property_username"
+        },                {
+            "fqsen": "\\Models\\User\u003A\u003A\u0024hashed_password",
+            "name": "hashed_password",
+            "summary": "",
+            "url": "classes/Models-User.html#property_hashed_password"
+        },                {
+            "fqsen": "\\Models\\User\u003A\u003A\u0024first_name",
+            "name": "first_name",
+            "summary": "",
+            "url": "classes/Models-User.html#property_first_name"
+        },                {
+            "fqsen": "\\Models\\User\u003A\u003A\u0024last_name",
+            "name": "last_name",
+            "summary": "",
+            "url": "classes/Models-User.html#property_last_name"
+        },                {
+            "fqsen": "\\Models\\User\u003A\u003A\u0024created_at",
+            "name": "created_at",
+            "summary": "",
+            "url": "classes/Models-User.html#property_created_at"
+        },                {
+            "fqsen": "\\Models\\User\u003A\u003A\u0024updated_at",
+            "name": "updated_at",
+            "summary": "",
+            "url": "classes/Models-User.html#property_updated_at"
+        },                {
+            "fqsen": "\\Models\\User\u003A\u003A\u0024deleted_at",
+            "name": "deleted_at",
+            "summary": "",
+            "url": "classes/Models-User.html#property_deleted_at"
+        },                {
+            "fqsen": "\\Models\\User\u003A\u003A\u0024role",
+            "name": "role",
+            "summary": "",
+            "url": "classes/Models-User.html#property_role"
+        },                {
+            "fqsen": "\\Models\\User\u003A\u003A\u0024followers",
+            "name": "followers",
+            "summary": "",
+            "url": "classes/Models-User.html#property_followers"
+        },                {
+            "fqsen": "\\Models\\User\u003A\u003A\u0024following",
+            "name": "following",
+            "summary": "",
+            "url": "classes/Models-User.html#property_following"
+        },                {
+            "fqsen": "\\displaystar\u0028\u0029",
+            "name": "displaystar",
+            "summary": "",
+            "url": "namespaces/default.html#function_displaystar"
+        },                {
             "fqsen": "\\",
             "name": "\\",
             "summary": "",
             "url": "namespaces/default.html"
         },                {
+            "fqsen": "\\Controllers",
+            "name": "Controllers",
+            "summary": "",
+            "url": "namespaces/controllers.html"
+        },                {
             "fqsen": "\\Core",
             "name": "Core",
             "summary": "",
             "url": "namespaces/core.html"
+        },                {
+            "fqsen": "\\Core\\Auth",
+            "name": "Auth",
+            "summary": "",
+            "url": "namespaces/core-auth.html"
+        },                {
+            "fqsen": "\\Core\\Exceptions",
+            "name": "Exceptions",
+            "summary": "",
+            "url": "namespaces/core-exceptions.html"
+        },                {
+            "fqsen": "\\Core\\Middleware",
+            "name": "Middleware",
+            "summary": "",
+            "url": "namespaces/core-middleware.html"
+        },                {
+            "fqsen": "\\DAO",
+            "name": "DAO",
+            "summary": "",
+            "url": "namespaces/dao.html"
+        },                {
+            "fqsen": "\\Models",
+            "name": "Models",
+            "summary": "",
+            "url": "namespaces/models.html"
         }            ]
 );
