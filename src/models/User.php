@@ -343,7 +343,8 @@ class User extends Model{
     public function getRecommendedMoviesIds($quantity): array
     {
         $client = new GuzzleHttp\Client();
-        $response = $client->request('GET', 'localhost:8001/recommendations/ids?userId=' . $this->id . '&n=' . $quantity);
+        $url = $_ENV["API_URL"] . '/recommendations/ids?userId=' . $this->id . '&n=' . $quantity;
+        $response = $client->request('GET', $_ENV["API_URL"] . '/recommendations/ids?userId=' . $this->id . '&n=' . $quantity);
         $response = json_decode($response->getBody(), true);
         return $response;
     }
@@ -357,7 +358,7 @@ class User extends Model{
     public function get_user_movies($quantity): array
     {
         $client = new GuzzleHttp\Client();
-        $response = $client->request('GET', 'localhost:8001/user-movies?userId=' . $this->id . '&n=' . $quantity);
+        $response = $client->request('GET', $_ENV["API_URL"] . '/user-movies?userId=' . $this->id . '&n=' . $quantity);
         $response = json_decode($response->getBody(), true);
         return $response;
     }
@@ -396,6 +397,7 @@ class User extends Model{
         $userData = $userDAO->find($id);
         $userFollowing = $userDAO->get_following($id);
         $userFollowers = $userDAO->get_followers($id);
+        unset($userDAO);
         //iterate through the followers and get the user objects
         $user = new User();
         $user->set_id($userData->id);
@@ -419,8 +421,8 @@ class User extends Model{
      * @param RatingsDAO $RatingsDAO An object of the RatingsDAO class used to retrieve the rating information.
      * @return bool Returns true if the user has rated the movie, false otherwise.
      */
-    public function has_rated_movie($movie_id, $RatingsDAO): bool{
-        $rating = $RatingsDAO->find_by_user_and_movie($this->id, $movie_id);
+    public function has_rated_movie($movieModel, $RatingsDAO): bool{
+        $rating = $RatingsDAO->find_by_user_and_movie($this->id, $movieModel->get_id());
         if($rating){
             return true;
         } else {

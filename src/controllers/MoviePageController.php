@@ -42,26 +42,32 @@ class MoviePageController extends BaseController
      * Finally, it renders the movie page template with the retrieved movie and ratings data.
      *
      * @param int $id The movie ID from the route.
+     * @param int $offset The offset for the ratings pagination query.
      * @return void Renders the movie page template.
      */
     public function moviePage($id, $offset = 0) {
         if($this->request->isPost()){
             // logic of request: Auth -> Validate -> Sanitize -> Save
             if(!$this->user || $this->user->get_id() == 1){
-                echo "You are not logged in";
-                $this->response->abort(404);
+                $this->response->abort(404 , "You need to be logged in to rate a movie");
             }
-            $body = $this->request->getBody();
-            $rating = $body["rating"];
-            $review = $body["review"];
-            $sql = [
-                'user_id' => $this->user->get_id(),
-                'movie_id' => $id,
-                'rating' => $rating,
-                'review' => $review,
-            ];
-            $this->ratingsDAO->insert($sql);
-            $this->response->redirect("/movie/$id");
+            $body = (object) $this->request->getBody();
+            $body->user_id = $this->user->get_id();
+            $body->movie_id = $id;
+            $rating = new Rating();
+            $rating->loadData($body);
+            if($rating->validate()){
+                $this->ratingsDAO->register($rating);
+                Application::$app->session->setFlash('success', 'The rating was created successfully');
+                $this->response->redirect("/movie/$id");
+            }
+            else {
+                $errors = array_reduce($rating->getErrors(), function ($carry, $item) {
+                    return array_merge($carry, is_array($item) ? $item : [$item]);
+                }, []);
+                Application::$app->session->setFlash('error', implode('<br>', $errors));
+                $this->response->redirect("/movie/$id");
+            }
 
         } else if ($this->request->isDelete()){
             dd($this->request);
@@ -74,8 +80,8 @@ class MoviePageController extends BaseController
         //this is how to validate the model, either returns true or false
         //var_dump($this->movieModel->validate(), $this->movieModel->getAllErrors());
         //dd($this->movieModel);
-        $this->movieModel->MovieDirectorRetrieval();
-        $this->movieModel->moviePosterFallback();
+        $this->movieModel->MovieDirectorRetrieval($this->movieDAO);
+        $this->movieModel->moviePosterFallback($this->movieDAO);
         $ratings_data = $this->ratingsDAO->getPagebyMovie($this->movieModel, $offset);
         
         if(isset($ratings_data['message'])){
@@ -99,7 +105,6 @@ class MoviePageController extends BaseController
                     array_push($ratings, $rating);
                 }
                 catch (Exception $e) {
-                    echo ("hola");
                     continue;
                 }
             
@@ -112,7 +117,7 @@ class MoviePageController extends BaseController
                 $this->response->abort(404);
             }
             if(!Application::isGuest()){
-                $hasRated = Application::$app->user->has_rated_movie($id, $this->ratingsDAO);
+                $hasRated = Application::$app->user->has_rated_movie($this->movieModel, $this->ratingsDAO);
             }
             else {
                 $hasRated = false;

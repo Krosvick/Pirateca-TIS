@@ -80,8 +80,7 @@ class Algorithm():
 
         return tuned_svd_model
     
-    def tune_model(ratings_df, tuned_svd_model, OFFSET = Algo_config.OFFSET,  chunk_size=100000):
-        return tuned_svd_model
+    def tune_model(ratings_df, tuned_svd_model,  chunk_size=100000):
         """
         Tune the SVD model incrementally by fitting it on chunks of the ratings dataframe.
         """
@@ -90,42 +89,46 @@ class Algorithm():
         from surprise.model_selection import train_test_split
         from surprise import accuracy
         from surprise.dump import dump
+        import sys
+        sys.path.append('src')
+        import models.Algo_config as algo_config
 
+        OFFSET = algo_config.OFFSET
         # Define the reader
         reader = Reader()
         #save a new offset var before changing the ratings_df len
-        OFFSET1 = OFFSET + ratings_df.shape[0]
-        # Split the dataframe into chunks based on the OFFSET
+        OFFSET1 = ratings_df.shape[0]
+        # Split the dataframe into chunks starting from OFFSET
         ratings_df = ratings_df[OFFSET:]
+        print(ratings_df.head())
         ratings_df = [ratings_df[i:i + chunk_size] for i in range(0, ratings_df.shape[0], chunk_size)]
-        #change the OFFSET value in the config file
-
-
-
+        
+        algo_config.OFFSET = OFFSET1
         with open('src/models/Algo_config.py', 'w') as f:
-                f.write(f'OFFSET = {OFFSET1}')
-        print('New algorithm offset: ' + str(OFFSET1))
+            f.write(f'OFFSET = {OFFSET1}')
 
         # Convert each chunk to a Dataset object
         ratings_df = [Dataset.load_from_df(chunk[['userId', 'movieId', 'rating']], reader) for chunk in ratings_df]
 
         for chunk in ratings_df:
             # Split data into training and testing sets
-            train_ratings, test_ratings = train_test_split(chunk, test_size=0.5, random_state=42)
+            train_ratings = chunk.build_full_trainset()
 
             # Fit the model incrementally on the current chunk
             tuned_svd_model.fit(train_ratings)
             del chunk
 
         # Evaluate the model on the last chunk's test set
+        # PREDICTIONS HANDLER SHOULD BE DONE AS SURPRISE DOCS SAYS
+        test_ratings = train_ratings.build_testset()
         test_predictions = tuned_svd_model.test(test_ratings)
 
         print("Tuned SVD Model Test RMSE:", accuracy.rmse(test_predictions, verbose=True))
-        dump('test_algorithm.pkl', algo=tuned_svd_model)
+        dump('algoritmo2.pkl', algo=tuned_svd_model)
 
         return tuned_svd_model
     
-    def get_user_recommendations(user_id, ratings_df, movies_df, model, top_n=10, include_rating=True):
+    def get_user_recommendations(user_id, ratings_df, movies_df, model, predictions, top_n=10, include_rating=True):
         """
         Generate movie recommendations for a given user based on their ratings and a trained model.
 
@@ -142,6 +145,9 @@ class Algorithm():
             list: A list of dictionaries containing movie IDs and ratings for the recommended movies.
         """
         from collections import defaultdict
+        from surprise import accuracy
+        from surprise import Dataset 
+        from surprise import Reader
 
         # exception control for default user
         if (user_id == 1) or (user_id is None):
@@ -163,7 +169,7 @@ class Algorithm():
                     result.append({'movie_id': movie_id})
 
             return result
-
+        
         # Get the list of movies the user has seen
         user_seen_movies = ratings_df[ratings_df['userId'] == user_id]['movieId'].unique()
         # Get the list of movies the user hasn't seen
@@ -175,6 +181,7 @@ class Algorithm():
 
         # Make predictions only on the unseen movies
         predictions = model.test(unseen_movies_testset)
+        print(accuracy.rmse(predictions))
 
         recommendations = defaultdict(list)
         for uid, iid, true_r, est, _ in predictions:
@@ -182,7 +189,6 @@ class Algorithm():
         # Then sort the predictions for each user and retrieve the k highest ones.
         for uid, user_ratings in recommendations.items():
             user_ratings.sort(key=lambda x: x[1], reverse=True)
-            #delete all recommendations where the rating is the same for at least, 2 movies
             recommendations[uid] = user_ratings[:top_n]
 
         """

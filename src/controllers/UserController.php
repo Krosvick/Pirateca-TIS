@@ -7,9 +7,7 @@ use Core\BaseController;
 use DAO\moviesDAO;
 use DAO\RatingsDAO;
 use Models\User;
-use Models\Movie;
 use Core\Application;
-use GuzzleHttp\Client;
 use Core\Middleware\AuthMiddleware;
 
 /**

@@ -58,7 +58,7 @@ use Models\Movie;
     </div>
     <div class="max-w-full w-full p-8">
         <div class="w-full mt-8 px-10 py-8 text-black shadow-md border-white border-4 glass rounded-md h-fit">
-
+            <?php if (!isset($noRatings) || !$noRatings): ?>
             <button class="btn btn-active">
                 Reviews
                 <span class="badge badge-secondary"><?= isset($noRatings) ? '0' : $totalRows ?></span>
@@ -88,7 +88,6 @@ use Models\Movie;
             <?php $crrt = 1; ?>
 
             <?php
-            if (!isset($noRatings) || !$noRatings) {
                 $Ratings = $Movie->get_ratings();
 
                 foreach ($Ratings as $rating) :
@@ -141,9 +140,6 @@ use Models\Movie;
                                     </div>
                                     <?= Application::isAdmin() ? '<a class="btn btn-error mt-5 hover:scale-110" href="/movie/' . $Movie->get_id() . '/review/' . $rating->get_id() . '/delete">Nuke review</a>' : '' ?>
                                 </div>
-
-
-
                             </article>
                         </div>
                     </div>
@@ -156,9 +152,11 @@ use Models\Movie;
                         <a href="/movie/<?= $Movie->get_id(); ?>/offset/<?= $lastResult ?>" class="join-item btn outline outline-1 bg-gray-900 text-white hover:bg-white hover:text-black outline-black">»</a>
                     <?php endif; ?>
                 </div>
-            <?php } else {
-                echo "<p class='text-2xl text-center'>No ratings found for this movie.</p>";
-            } ?>
+            <?php else : ?>
+                <p class="text-black font-bold">
+                    <?= $message ?>
+                </p>
+            <?php endif; ?>
         </div>
     </div>
 </section>
@@ -170,21 +168,21 @@ if(isset($hasRated) && $hasRated == true){
 echo '
 <input type="checkbox" id="my_modal_7" class="modal-toggle" />
 <div class="modal" role="dialog">
-    <div class="modal-box">
+    <div class="modal-box w-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
         <h3 class="font-bold text-lg text-black center">RATE THIS MOVIE</h3>
         <p class="py-4 text-black"></p>
-        <div class="rating">
-        <form method="post" action="">
-            <input type="radio" name="rating" value="1" class="mask mask-star-2 bg-orange-400" />
-            <input type="radio" name="rating" value="2" class="mask mask-star-2 bg-orange-400" />
-            <input type="radio" name="rating" value="3" class="mask mask-star-2 bg-orange-400" />
-            <input type="radio" name="rating" value="4" class="mask mask-star-2 bg-orange-400" />
-            <input type="radio" name="rating" value="5" class="mask mask-star-2 bg-orange-400" checked />
-            <p class="py-4 text-black">Review this movie!</p>
-            <input type="text" name="review" placeholder="Write your opinion..." class="w-full px-4 py-2 rounded-lg text-gray-500 bg-white border-2 border-gray-300 outline-none textarea textarea-bordered">
-            <p>&nbsp</p>
-            <button type="submit" class="bg-purple-900 text-white px-4 py-2 rounded-lg ml-2" href="/#">Rate</button>
-        </form>
+        <div class="rating w-full">
+            <form method="post" action="" class="w-full">
+                <input type="radio" name="rating" value="1" class="mask mask-star-2 bg-orange-400" />
+                <input type="radio" name="rating" value="2" class="mask mask-star-2 bg-orange-400" />
+                <input type="radio" name="rating" value="3" class="mask mask-star-2 bg-orange-400" />
+                <input type="radio" name="rating" value="4" class="mask mask-star-2 bg-orange-400" />
+                <input type="radio" name="rating" value="5" class="mask mask-star-2 bg-orange-400" checked />
+                <p class="py-4 text-black">Review this movie!</p>
+                <input type="text" name="review" placeholder="Write your opinion..." class="w-full px-4 py-2 rounded-lg text-gray-500 bg-white border-2 border-gray-300 outline-none textarea textarea-bordered">
+                <p>&nbsp</p>
+                <button type="submit" class="bg-purple-900 text-white px-4 py-2 rounded-lg ml-2" href="/#">Rate</button>
+            </form>
         </div>
     </div>
     <label class="modal-backdrop" for="my_modal_7"></label>

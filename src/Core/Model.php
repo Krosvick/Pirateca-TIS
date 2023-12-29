@@ -47,8 +47,14 @@ abstract class Model{
             $value = $this->{$attribute} ?? $this->{"get_$attribute"}();
             foreach($rules as $rule){
                 $ruleName = $rule;
-                if (!is_string($ruleName)) {
-                    $ruleName = $rule[0];
+                if (!is_string($rule)) {
+                    if (is_array($rule)) {
+                        $ruleName = $rule[0];
+                    } else {
+                        // Handle the case when $rule is not an array
+                        // For example, you might want to throw an exception or log an error
+                        continue;
+                    }
                 }
                 if ($ruleName === self::RULE_REQUIRED && !$value) {
                     $this->addErrorByRule($attribute, self::RULE_REQUIRED);
@@ -59,7 +65,7 @@ abstract class Model{
                 if ($ruleName === self::RULE_MIN && strlen($value) < $rule['min']) {
                     $this->addErrorByRule($attribute, self::RULE_MIN, $rule);
                 }
-                if ($ruleName === self::RULE_MAX && strlen($value) > $rule['max']) {
+                if ($ruleName === self::RULE_MAX && strlen($value) > (isset($rule['max']) ? $rule['max'] : $rules['max'])) {
                     $this->addErrorByRule($attribute, self::RULE_MAX, $rule);
                 }
                 if ($ruleName === self::RULE_MATCH && $value !== $this->{$rule['match']}) {
