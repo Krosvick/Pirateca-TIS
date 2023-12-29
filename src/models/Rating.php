@@ -177,6 +177,31 @@ class Rating extends Model{
     {
         return 'id';
     }
+    /**
+     * Get the validation rules for the 'original_title' attribute.
+     *
+     * @return array The validation rules for the 'original_title' attribute.
+     */
+    public function rules(){
+        return [
+            'rating' => [self::RULE_REQUIRED],
+            'review' => [self::RULE_MAX, 'max' => 1000],
+        ];
+    }
+    /**
+     * Get all the attributes of the 'Movie' class.
+     *
+     * @return array All the attributes of the 'Movie' class.
+     */
+    public function attributes(){
+        return [
+            'rating',
+            'review',
+            'created_at',
+            'movie_id',
+            'user_id',
+        ];
+    }
 
 
     /**
@@ -200,7 +225,7 @@ class Rating extends Model{
     {
         $client = new Client();
         $ratings = $this->get_all($ratingsDAO);
-        $response = $client->request('POST', 'localhost:8001/ratings', [
+        $response = $client->request('POST', $_ENV['API_URL'].'/ratings', [
             'json' => $ratings
         ]);
         $response = json_decode($response->getBody(), true);

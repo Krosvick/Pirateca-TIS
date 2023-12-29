@@ -421,8 +421,8 @@ class User extends Model{
      * @param RatingsDAO $RatingsDAO An object of the RatingsDAO class used to retrieve the rating information.
      * @return bool Returns true if the user has rated the movie, false otherwise.
      */
-    public function has_rated_movie($movie_id, $RatingsDAO): bool{
-        $rating = $RatingsDAO->find_by_user_and_movie($this->id, $movie_id);
+    public function has_rated_movie($movieModel, $RatingsDAO): bool{
+        $rating = $RatingsDAO->find_by_user_and_movie($this->id, $movieModel->get_id());
         if($rating){
             return true;
         } else {

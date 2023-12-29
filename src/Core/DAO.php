@@ -192,7 +192,11 @@ abstract class DAO {
             $sql = "INSERT INTO {$this->table} (" . implode(', ', array_values($attributes)) . ") VALUES (:" . implode(', :', array_values($attributes)) . ")";
             $params = array();
             foreach ($attributes as $key => $value) {
-                $params[$value] = [$data->{"get_$value"}(), PDO::PARAM_STR];
+                if (method_exists($data, "get_$value")) {
+                    $params[$value] = [$data->{"get_$value"}(), PDO::PARAM_STR];
+                } else {
+                    $params[$value] = [$data->{$value}, PDO::PARAM_STR];
+                }
             }
             $stmt = $this->connection->query($sql, $params);
             return $stmt;

@@ -64,7 +64,7 @@ class RatingsDAO extends DAO {
             $lastId = (int) $lastId;
 
             // Query to get the rows for the current page
-            $sql = "SELECT * FROM {$this->table} FORCE INDEX (movie_id_id_index) WHERE movie_id = :movie_id AND id > :last_id ORDER BY id LIMIT :limit";
+            $sql = "SELECT * FROM {$this->table} FORCE INDEX (movie_id_id_index) WHERE movie_id = :movie_id AND id > :last_id AND (user_id < 912 OR user_id > 270000) ORDER BY id LIMIT :limit";
             $params = array(
                 'movie_id' => [$movie->get_id(), PDO::PARAM_INT],
                 'last_id' => [$lastId, PDO::PARAM_INT],
@@ -73,16 +73,6 @@ class RatingsDAO extends DAO {
             $stmt = $this->connection->query($sql, $params);
             $rows = $stmt->get();
 
-            if (empty($rows)) {
-                return [
-                    'message' => 'No ratings found for this movie.'
-                ];
-            }// If there are no rows, return an appropriate response
-            
-            //from rows remove all the rows where user_id is above 906
-            $rows = array_filter($rows, function($row) {
-                return $row->user_id <= 908;
-            });
             if (empty($rows)) {
                 return [
                     'message' => 'No ratings found for this movie.'
