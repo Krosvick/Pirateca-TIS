@@ -109,7 +109,7 @@ class DAO():
             #HARDCODED FILE PATH
             with open('src/dao/py_config.py', 'w') as f:
                 f.write(f'OFFSET = {offset}')
-            print('New dao: ' + str(offset))
+            print('New dao OFFSET: ' + str(offset))
 
             time4 = time.time()
             print('Data fetched in ' + str(time4 - time3) + ' seconds.')
