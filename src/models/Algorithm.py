@@ -80,7 +80,7 @@ class Algorithm():
 
         return tuned_svd_model
     
-    def tune_model(ratings_df, tuned_svd_model, OFFSET = Algo_config.OFFSET,  chunk_size=100000):
+    def tune_model(ratings_df, tuned_svd_model,  chunk_size=100000):
         """
         Tune the SVD model incrementally by fitting it on chunks of the ratings dataframe.
         """
@@ -89,19 +89,23 @@ class Algorithm():
         from surprise.model_selection import train_test_split
         from surprise import accuracy
         from surprise.dump import dump
+        import sys
+        sys.path.append('src')
+        import models.Algo_config as algo_config
 
+        OFFSET = algo_config.OFFSET
         # Define the reader
         reader = Reader()
         #save a new offset var before changing the ratings_df len
         OFFSET1 = ratings_df.shape[0]
-        # Split the dataframe into chunks based on the OFFSET
+        # Split the dataframe into chunks starting from OFFSET
         ratings_df = ratings_df[OFFSET:]
+        print(ratings_df.head())
         ratings_df = [ratings_df[i:i + chunk_size] for i in range(0, ratings_df.shape[0], chunk_size)]
         
-        #change the OFFSET value in the config file
+        algo_config.OFFSET = OFFSET1
         with open('src/models/Algo_config.py', 'w') as f:
-                f.write(f'OFFSET = {OFFSET1}')
-        print('New algorithm offset: ' + str(OFFSET1))
+            f.write(f'OFFSET = {OFFSET1}')
 
         # Convert each chunk to a Dataset object
         ratings_df = [Dataset.load_from_df(chunk[['userId', 'movieId', 'rating']], reader) for chunk in ratings_df]
@@ -120,7 +124,7 @@ class Algorithm():
         test_predictions = tuned_svd_model.test(test_ratings)
 
         print("Tuned SVD Model Test RMSE:", accuracy.rmse(test_predictions, verbose=True))
-        dump('test_algorithm.pkl', algo=tuned_svd_model)
+        dump('algoritmo2.pkl', algo=tuned_svd_model)
 
         return tuned_svd_model
     

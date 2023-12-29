@@ -179,8 +179,9 @@ class SimpleAPI(BaseHTTPRequestHandler):
             movie_id = row[3]
             rating = float(row[1])
             rows.append({'userId': user_id, 'movieId': movie_id, 'rating': rating})
-
-        if len(rows) > 0:
+        print(rows)
+        if len(rows) > 1:
+            print('New ratings found.')
             SimpleAPI.ratings_df = pd.concat([SimpleAPI.ratings_df, pd.DataFrame(rows)])
             return pd.DataFrame(rows)
         else:
@@ -244,6 +245,7 @@ def generate_model_periodically():
         if new_ratings is not None:  # Check if there are new ratings
             # Update the ratings dataframe (for complete use in recommendation, not complete use in tuning)
             SimpleAPI.ratings_df = pd.concat([SimpleAPI.ratings_df, pd.DataFrame(new_ratings)])
+            SimpleAPI.ratings_df.to_csv('datasets/reprocessed_ratings.csv', index=False)
             time1 = time.time()
             # Tune the model with the new ratings (only using the new ratings, has own offset)
             SimpleAPI.model = Algorithm.tune_model(SimpleAPI.ratings_df, SimpleAPI.model) 
@@ -253,6 +255,7 @@ def generate_model_periodically():
             print('No new ratings.')
         
         # wait 100 seconds before checking for new ratings again
+        del new_ratings
         time.sleep(100) # TODO: change to 100 in presentation
 
 if __name__ == '__main__':
