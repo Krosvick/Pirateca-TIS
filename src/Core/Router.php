@@ -179,7 +179,6 @@ class Router
         $url = $this->request->getUrl();
         $method = $this->request->getMethod();
         $url = $this->removeQueryStringVariables($url);
-        dd($this->matchRoute($method, $url));
         if ($this->matchRoute($method, $url)) {
             $params = $this->params;
             $controller = $this->getNamespace() . $this->toStudlyCaps($params['controller']);

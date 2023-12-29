@@ -1,7 +1,7 @@
 <main class="min-w-screen min-h-screen flex flex-col items-center justify-center p-5">
 
     <div class="w-full max-w-md">
-        <h1>Aqui va una prueba</h1>
+        <h1>Search</h1>
 
         <form id="searchForm" action="/search" method="post" class="flex flex-col">
             <input type="text" name="busquedaInPage" class="mb-2 text-black"> 

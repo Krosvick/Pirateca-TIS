@@ -423,6 +423,9 @@ class Movie extends Model{
 
     public function MovieDirectorRetrieval($moviesDAO){
         $client = new Client();
+        if($this->director != null){
+            return $this->director;
+        }
         $movie_credits_request = $client->request('GET', 'https://api.themoviedb.org/3/movie/'.$this->id.'/credits?language=en-US', [
             'headers' => [
                 'Authorization' => 'Bearer '. $_ENV['TMDB_API_KEY'],
@@ -430,6 +433,9 @@ class Movie extends Model{
             ]
         ]);
         $movie_credits_response = json_decode($movie_credits_request->getBody(), true);
+        if(count($movie_credits_response['crew']) == 0){
+            return null;
+        }
         $movie_director = $movie_credits_response['crew'][0]['name'];
         $this->director = $movie_director;
         $moviesDAO->update($this->id, $this, ['director']);

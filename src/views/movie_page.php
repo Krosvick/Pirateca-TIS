@@ -125,7 +125,7 @@ use Models\Movie;
                                         </a>
                                     <?php elseif(isset(Application::$app->user) && Application::$app->user->get_id() !== $rating->get_user()->get_id()): 
                                     ?>
-                                        <p class="badge">Followed</p>
+                                        <p class="badge badge-primary badge-outline">Followed</p>
                                     <?php endif; ?>
                                 </div>
                                 <div class="mb-4">
