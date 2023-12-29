@@ -101,7 +101,7 @@ abstract class DAO {
             );
 
             $stmt = $this->connection->query($sql, $params);
-            $rows = $stmt->getSome();
+            $rows = $stmt->get();
 
             if (empty($rows)) {
                 return [

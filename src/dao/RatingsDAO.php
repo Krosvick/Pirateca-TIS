@@ -64,7 +64,7 @@ class RatingsDAO extends DAO {
             $lastId = (int) $lastId;
 
             // Query to get the rows for the current page
-            $sql = "SELECT * FROM {$this->table} WHERE movie_id = :movie_id AND id > :last_id AND (user_id < 912 OR user_id > 270896) ORDER BY id LIMIT :limit";
+            $sql = "SELECT * FROM {$this->table} WHERE movie_id = :movie_id AND id > :last_id AND (user_id < 913 OR user_id > 270896) ORDER BY id LIMIT :limit";
             $params = array(
                 'movie_id' => [$movie->get_id(), PDO::PARAM_INT],
                 'last_id' => [$lastId, PDO::PARAM_INT],
@@ -81,14 +81,14 @@ class RatingsDAO extends DAO {
             $firstId = $rows[0]->id;
             $lastId = end($rows)->id;
 
-            $lastResultSql = "SELECT id FROM (SELECT id FROM {$this->table} WHERE movie_id = :movie_id AND (user_id < 912 OR user_id > 270896) ORDER BY id DESC LIMIT 10) sub ORDER BY id ASC LIMIT 1";
+            $lastResultSql = "SELECT id FROM (SELECT id FROM {$this->table} WHERE movie_id = :movie_id AND (user_id < 913 OR user_id > 270896) ORDER BY id DESC LIMIT 10) sub ORDER BY id ASC LIMIT 1";
             $firstIdParams = array(
                 'movie_id' => [$movie->get_id(), PDO::PARAM_INT]
             );
             $lastResultStmt = $this->connection->query($lastResultSql, $firstIdParams);
             $lastResult = $lastResultStmt->statement->fetchColumn();
 
-            $countSql = "SELECT COUNT(*) FROM {$this->table} WHERE movie_id = :movie_id AND (user_id < 912 OR user_id > 270896)";
+            $countSql = "SELECT COUNT(*) FROM {$this->table} WHERE movie_id = :movie_id AND (user_id < 913 OR user_id > 270896)";
             $params = array(
                 'movie_id' => [$movie->get_id(), PDO::PARAM_INT]
             );
