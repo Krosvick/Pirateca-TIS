@@ -19,3 +19,4 @@ $dotenv->load();
 $app = new Application(BASE_PATH);
 require base_path('routes.php');
 $app->run();
+
