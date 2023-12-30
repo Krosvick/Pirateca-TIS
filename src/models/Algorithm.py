@@ -1,4 +1,4 @@
-class Algorithm():
+class AlgorithmSVDpp():
     _instance = None
 
     def __new__(cls, *args, **kwargs):
@@ -124,18 +124,18 @@ class Algorithm():
             train_ratings = chunk.build_full_trainset()
 
             # Fit the model incrementally on the current chunk
-            tuned_svd_model.fit(train_ratings)
+            self.model.fit(train_ratings)
             del chunk
 
         # Evaluate the model on the last chunk's test set
         # PREDICTIONS HANDLER SHOULD BE DONE AS SURPRISE DOCS SAYS
         test_ratings = train_ratings.build_testset()
-        test_predictions = tuned_svd_model.test(test_ratings)
+        test_predictions = self.model.test(test_ratings)
 
         print("Tuned SVD Model Test RMSE:", accuracy.rmse(test_predictions, verbose=True))
-        dump('algoritmo2.pkl', algo=tuned_svd_model)
+        dump('algoritmo2.pkl', algo=self.model)
 
-        return tuned_svd_model
+        return self.model
     
     def get_user_recommendations(self, user_id, top_n=10, include_rating=True):
         """

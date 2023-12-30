@@ -12,7 +12,7 @@ import os
 
 
 sys.path.append('src')
-from models.Algorithm import Algorithm
+from models.Algorithm import AlgorithmSVDpp
 
 class SimpleAPI(BaseHTTPRequestHandler):
     """
@@ -60,6 +60,8 @@ class SimpleAPI(BaseHTTPRequestHandler):
         Parses the URL to determine the requested endpoint and query parameters.
         If the endpoint is recognized, it performs the corresponding action and returns a response.
         If the endpoint is not recognized, it returns a 404 error.
+        
+        #############   SHOULD CALL A STRATEGY PATTERN WHICH CALLS THE ALGORITHM CORRESPONDING METHOD    #############
 
         :return: JSON response containing the requested data or an error message.
         """
@@ -78,7 +80,7 @@ class SimpleAPI(BaseHTTPRequestHandler):
             userId = int(query_params['userId'][0])
             #print every data in same "print" function to check if it's working, all df should print sample
             n = int(query_params['n'][0])
-            top_movies = Algorithm.get_user_recommendations(userId, n)
+            top_movies = AlgorithmSVDpp.get_user_recommendations(userId, n)
             response = {'top_movies': top_movies}
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
@@ -93,7 +95,7 @@ class SimpleAPI(BaseHTTPRequestHandler):
             userId = int(query_params['userId'][0])
             n = int(query_params['n'][0])
             #data processing via algorithm
-            top_movies = Algorithm.get_user_recommendations(userId, n)
+            top_movies = AlgorithmSVDpp.get_user_recommendations(userId, n)
             print(top_movies)
             #json serialization and response
             response = {'top_movies': top_movies}
@@ -235,7 +237,7 @@ if __name__ == '__main__':
     Outputs:
     None
     """
-    trainer = Trainer(Algorithm()) # due to algorithm being a singleton class we can use it as a parameter
+    trainer = Trainer(AlgorithmSVDpp()) # due to algorithm being a singleton class we can use it as a parameter
 
     model_thread = threading.Thread(target=trainer.generate_model_periodically)
     model_thread.daemon = True
