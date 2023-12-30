@@ -115,48 +115,6 @@ class SimpleAPI(BaseHTTPRequestHandler):
             self.send_response(404)
             self.end_headers()
 
-    def do_POST(self):
-        """
-        Handles the POST request to the '/ratings' endpoint.
-
-        This method receives a list of ratings in JSON format, updates the model with the new ratings, and sends a response message.
-
-        Example Usage:
-        ```
-        # POST request to '/ratings' endpoint with ratings data
-        # ratings_data is a list of dictionaries, each containing user_id, movie_id, and rating
-        response = requests.post('http://localhost:8000/ratings', json=ratings_data)
-        print(response.json())
-        # Output: {'message': 'Model updated.'}
-        ```
-
-        Inputs:
-        - self: The instance of the SimpleAPI class.
-        - self.headers['Content-Length']: The length of the content in the request headers.
-        - self.rfile: The file-like object used to read the request body.
-        - parsed_data: The parsed JSON data from the request body.
-
-        Outputs:
-        - A JSON response with a message indicating that the model has been updated.
-        """
-        content_length = int(self.headers['Content-Length'])
-        post_data = self.rfile.read(content_length).decode('utf-8')
-        parsed_data = json.loads(post_data)
-
-        if self.path == '/ratings':
-            for rating in parsed_data:
-                user_id = rating['user_id']
-                movie_id = rating['movie_id']
-                rating = rating['rating']
-
-            self.ratings_df = pd.concat([self.ratings_df, pd.DataFrame([[user_id, movie_id, rating]], columns=['user_id', 'movie_id', 'rating'])])
-            self.model = Algorithm.tune_model(self.ratings_df, self.model)
-            response = {'message': 'Model updated.'}
-            self.send_response(200)
-            self.send_header('Content-type', 'application/json')
-            self.end_headers()
-            self.wfile.write(json.dumps(response).encode('utf-8'))
-
 
 
 import numpy as np
@@ -168,6 +126,8 @@ class NpEncoder(json.JSONEncoder):
         Customizes the JSON encoding process for NumPy objects.
 
         Converts NumPy integers, floats, and arrays to their corresponding Python types before encoding them as JSON.
+        
+        Could be considered an adapter pattern.
 
         Args:
             obj: The object to be encoded as JSON.
@@ -267,7 +227,7 @@ if __name__ == '__main__':
     Can thread more than one model at the same time.
 
     Example Usage:
-    python script.py
+    python3 script.py
 
     Inputs:
     None
@@ -275,7 +235,7 @@ if __name__ == '__main__':
     Outputs:
     None
     """
-    trainer = Trainer(Algorithm())
+    trainer = Trainer(Algorithm()) # due to algorithm being a singleton class we can use it as a parameter
 
     model_thread = threading.Thread(target=trainer.generate_model_periodically)
     model_thread.daemon = True
