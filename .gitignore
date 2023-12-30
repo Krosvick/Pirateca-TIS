@@ -5,3 +5,5 @@
 *.pyc
 *.pkl
 *.csv
+py_config.py
+Algo_config.py
