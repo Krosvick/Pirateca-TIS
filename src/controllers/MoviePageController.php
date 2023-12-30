@@ -149,14 +149,15 @@ class MoviePageController extends BaseController
     public function deleteMovie($id){
         $movie = $this->movieDAO->find($id, Movie::class);
         $this->movieDAO->delete($id);
-        Application::$app->session->setFlash('error', "The movie $movie->original_title was deleted successfully");
+        //flash $movie->get_original_title() deleted successfully in the message
+        Application::$app->session->setFlash('success', "{$movie->get_original_title()} deleted successfully");
         $this->response->redirect("/");
     }
 
     public function deleteReview($idMovie, $idReview){
         $review = $this->ratingsDAO->find($idReview, Rating::class);
         $this->ratingsDAO->delete($idReview);
-        Application::$app->session->setFlash('error', "The review $review->review was deleted successfully");
+        Application::$app->session->setFlash('success', "Review deleted successfully");
         $this->response->redirect("/movie/$idMovie");
     }
 
