@@ -39,7 +39,7 @@
 
     <?php if (isset($totalPages)): ?>
         <div class="join flex justify-center w-full max-w-md">
-            <button class="join-item btn" <?= $page == 1 ? 'disabled' : '' ?>>«</button>
+            <a href="/search/<?= $busqueda ?>/page/1" class="join-item btn" <?= $page == 1 ? 'disabled' : '' ?>>«</a>
             <?php for ($i = 1; $i <= $totalPages; $i++): ?>
                 <?php if ($i >= $page - 3 && $i <= $page + 3): ?>
                     <?php if ($i == $page): ?>
@@ -49,7 +49,7 @@
                     <?php endif; ?>
                 <?php endif; ?>
             <?php endfor; ?>
-            <button class="join-item btn" <?= $page == $totalPages ? 'disabled' : '' ?>>»</button>
+            <a href="/search/<?= $busqueda ?>/page/<?= $totalPages ?>" class="join-item btn" <?= $page == $totalPages ? 'disabled' : '' ?>>»</a>
         </div>
     <?php endif; ?>
 </main>

@@ -18,6 +18,7 @@ class Response
      * @var View
      */
     protected $view;
+    protected $content;
 
     /**
      * Create a new Response instance.
@@ -90,5 +91,13 @@ class Response
     public function setStatusCode($code)
     {
         http_response_code($code);
+    }
+    public function setContent($content)
+    {
+        $this->content = $content;
+    }
+    public function send()
+    {
+        echo $this->content;
     }
 }
