@@ -18,7 +18,7 @@ class AlgorithmSVDpp():
         # hardcoded paths for better loading performance (memory_map)
         self.ratings_df = pd.read_csv('datasets/reprocessed_ratings.csv', memory_map=True)
         self.model = load('algoritmo2.pkl')[1]
-        self.movies_df = pd.read_csv('datasets/movies_metadata.csv', usecols=['id', 'title'], memory_map=True)
+        self.movies_df = pd.read_csv('datasets/movies_metadata_cleaned.csv', usecols=['id', 'original_title', 'belongs_to_collection', 'genres'], memory_map=True)
 
     def generate_model(self, chunk_size=100000): #all file input is in csv format, remember to save the model
         """

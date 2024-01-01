@@ -8,11 +8,12 @@ import threading
 import sys
 import pydao
 import os
-
+import numpy as np
 
 
 sys.path.append('src')
-from models.Algorithm import AlgorithmSVDpp
+from models.Algorithm_SVDpp import AlgorithmSVDpp
+from models.Algorithm_content import AlgorithmContent
 
 class SimpleAPI(BaseHTTPRequestHandler):
     """
@@ -80,7 +81,7 @@ class SimpleAPI(BaseHTTPRequestHandler):
             userId = int(query_params['userId'][0])
             #print every data in same "print" function to check if it's working, all df should print sample
             n = int(query_params['n'][0])
-            top_movies = AlgorithmSVDpp.get_user_recommendations(userId, n)
+            top_movies = Strategy([userId, 21]).execute() #TODO: change n of ratings dinamically in context (strategy pattern)
             response = {'top_movies': top_movies}
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
@@ -95,7 +96,7 @@ class SimpleAPI(BaseHTTPRequestHandler):
             userId = int(query_params['userId'][0])
             n = int(query_params['n'][0])
             #data processing via algorithm
-            top_movies = AlgorithmSVDpp.get_user_recommendations(userId, n)
+            top_movies = Strategy([userId, 21]).execute() #TODO: change n of ratings dinamically in context (strategy pattern)
             print(top_movies)
             #json serialization and response
             response = {'top_movies': top_movies}
@@ -118,8 +119,6 @@ class SimpleAPI(BaseHTTPRequestHandler):
             self.end_headers()
 
 
-
-import numpy as np
 
 class NpEncoder(json.JSONEncoder):
 
@@ -146,7 +145,7 @@ class NpEncoder(json.JSONEncoder):
         return super(NpEncoder, self).default(obj)
     
 
-class Trainer:
+class Semi_factory:
 
     _algoritmo = None
 
@@ -220,12 +219,43 @@ class Trainer:
             del new_ratings
             time.sleep(100) # TODO: change to 100 in presentation
 
+
+
+class Strategy:
+    """
+    This is strategy pattern half applied to the algorithm class, not fully applied because we merge context and strategy in the same
+    merge is only due to the scale of the project, can unmerge if needed later
+
+    can add more vars to context if needed, like the list of movies rated by the user 
+    
+
+    Inputs: context [id_user, n_ratings]
+
+    Outputs: top_n_movies
+
+    Example Usage:
+    strategy = Strategy([1, 0])
+    """
+    context = None
+
+    def __init__(self, context):
+        self.context = context
+        self.algorithmSVDpp = AlgorithmSVDpp()
+        self.algorithm_content = AlgorithmContent()
+    
+    def execute(self): # Here we can change functioning of the algorithm depending on the context 
+        if self.context[1] <= 20:
+            return self.algorithm_content.get_user_recommendations(self.context[0])
+        else:
+            return self.algorithmSVDpp.get_user_recommendations(self.context[0])
+        
+
 if __name__ == '__main__':
     """
     Starts a new thread that periodically tunes a recommendation model based on new ratings data.
     Then starts an HTTP server that listens for incoming requests and serves the API.
     Both process run in parallel and only communicate through the ratings dataframe and the model.
-    Trainer uses the strategy pattern to universally train models from different algorithms, only needs the algorithm to have the same name of methods.
+    Semi_factory uses the strategy pattern to universally train models from different algorithms, only needs the algorithm to have the same name of methods.
     Can thread more than one model at the same time.
 
     Example Usage:
@@ -237,9 +267,9 @@ if __name__ == '__main__':
     Outputs:
     None
     """
-    trainer = Trainer(AlgorithmSVDpp()) # due to algorithm being a singleton class we can use it as a parameter
+    semi_factory = Semi_factory(AlgorithmSVDpp()) # due to algorithm being a singleton class we can use it as a parameter
 
-    model_thread = threading.Thread(target=trainer.generate_model_periodically)
+    model_thread = threading.Thread(target=semi_factory.generate_model_periodically)
     model_thread.daemon = True
     model_thread.start()
 
