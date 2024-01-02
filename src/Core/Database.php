@@ -3,12 +3,26 @@
 namespace Core;
 use PDO;
 
+/**
+ * Class Database
+ *
+ * The Database class is responsible for establishing a database connection using PDO and setting the connection options.
+ */
 class Database
 {
     private static $instance;
     private $connection;
     public $statement; 
 
+    /**
+     * Database constructor.
+     *
+     * The constructor sets up the database connection using PDO.
+     * It constructs the DSN (Data Source Name) string using the values from the $_ENV superglobal array.
+     * It sets the connection options, including the SSL CA certificate path and the default fetch mode.
+     * It creates a new PDO instance with the DSN, username, password, and options.
+     * The connection is stored in the $connection property.
+     */
     private function __construct() {
         $dsn = "mysql:host={$_ENV["DB_HOST"]};dbname={$_ENV["DB_NAME"]}";
         $options = array(

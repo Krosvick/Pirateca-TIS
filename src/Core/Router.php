@@ -14,9 +14,6 @@ require_once __DIR__ . '/../../public/functions.php';
  * The Router class is responsible for adding routes for different HTTP methods (GET, POST, PUT, DELETE),
  * matching a given URL and HTTP method to a route, extracting values for dynamic segments in the URL,
  * and dispatching the request to the appropriate controller and action.
- *
- * @param Container $container An instance of the Container class.
- * @return void
  */
 class Router
 {

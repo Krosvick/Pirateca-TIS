@@ -92,10 +92,23 @@ class Response
     {
         http_response_code($code);
     }
+    /**
+     * Sets the content of the response object.
+     *
+     * @param string $content The content to be set for the response object.
+     * @return void
+     */
     public function setContent($content)
     {
         $this->content = $content;
     }
+    /**
+     * Sends the content of the response.
+     *
+     * This method echoes the content of the response.
+     *
+     * @return void
+     */
     public function send()
     {
         echo $this->content;

@@ -7,18 +7,6 @@ namespace Core;
  * Abstract class representing a base controller.
  *
  * This class contains various methods for rendering views, redirecting users, returning JSON data, and managing middleware.
- *
- * Example Usage:
- * ```php
- * $controller = new BaseController($container, $routeParams);
- * $controller->render('home', ['title' => 'Welcome']);
- * $controller->redirect('/login');
- * $controller->json(['message' => 'Success']);
- * $controller->registerMiddleware(new AuthMiddleware());
- * $middleware = $controller->getMiddleware();
- * ```
- *
- * @package YourPackage
  */
 abstract class BaseController
 {
