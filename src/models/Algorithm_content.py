@@ -5,7 +5,7 @@ import numpy as np
 class AlgorithmContent():
     _instance = None
 
-    def __new__(cls, *args, **kwargs):
+    def __new__(cls, *args, **kwargs): #singleton
         if not cls._instance:
             cls._instance = super(AlgorithmContent, cls).__new__(cls, *args, **kwargs)
         return cls._instance

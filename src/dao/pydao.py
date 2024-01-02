@@ -134,3 +134,21 @@ class DAO():
             return rows
         except Exception as e:
             print(e)
+
+    def get_user_ratings(self, user_id):
+        """
+        Retrieves all the ratings of a specified user.
+
+        Args:
+            user_id (int): The ID of the user whose ratings are to be retrieved.
+
+        Returns:
+            list: A list of the fetched rows from the database table.
+        """
+        try:
+            cursor = self._connection.get_connection().cursor()
+            cursor.execute(f"SELECT * FROM {self._table} WHERE user_id = {user_id}")
+            rows = cursor.fetchall()
+            return rows
+        except Exception as e:
+            print(e)

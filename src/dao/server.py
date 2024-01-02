@@ -81,7 +81,7 @@ class SimpleAPI(BaseHTTPRequestHandler):
             userId = int(query_params['userId'][0])
             #print every data in same "print" function to check if it's working, all df should print sample
             n = int(query_params['n'][0])
-            top_movies = Strategy([userId, n]).execute() #TODO: change n of ratings dinamically in context (strategy pattern)
+            top_movies = Context(userId, n).get_recommendations()
             response = {'top_movies': top_movies}
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
@@ -96,7 +96,7 @@ class SimpleAPI(BaseHTTPRequestHandler):
             userId = int(query_params['userId'][0])
             n = int(query_params['n'][0])
             #data processing via algorithm
-            top_movies = Strategy([userId, n]).execute() #TODO: change n of ratings dinamically in context (strategy pattern)
+            top_movies = Context(userId, n).get_recommendations()
             print(top_movies)
             #json serialization and response
             response = {'top_movies': top_movies}
@@ -220,34 +220,64 @@ class Semi_factory:
             time.sleep(100) # TODO: change to 100 in presentation
 
 
+class Context:
+    """
+    context defines which algorithm to use depending on the number of ratings of the user
+    the criteria can change and scale and modify it only requires modifying this class and the strategy pattern
+
+    inputs: id_user, top_n
+
+    outputs: top_n_movies
+
+    example usage:
+    context = Context(1, 10)
+    recommendations = context.get_recommendations()
+    """
+    def __init__(self, id_user, top_n):
+        self.id_user = id_user
+        self.top_n = top_n
+        self.n_ratings = len(self.get_number_of_user_movies())
+    
+    def get_number_of_user_movies(self):
+        """
+        returns the number of movies rated by the user
+        """
+        dao = pydao.DAO()
+        n_ratings = dao.get_user_ratings(self.id_user)
+        return n_ratings
+    
+    def get_recommendations(self):
+        """
+        returns the top n movies recommended for the user
+        """
+        strategy = Strategy(self)
+        return strategy.execute()
 
 class Strategy:
     """
-    This is strategy pattern half applied to the algorithm class, not fully applied because we merge context and strategy in the same
-    merge is only due to the scale of the project, can unmerge if needed later
+    This is strategy pattern applied to the algorithm, we can change the algorithm depending on the context
 
     can add more vars to context if needed, like the list of movies rated by the user 
-    
 
-    Inputs: context [id_user, n_ratings]
+    Inputs: context class
 
     Outputs: top_n_movies
 
-    Example Usage:
-    strategy = Strategy([1, 0])
+    example usage:
+    strategy = Strategy(context)
+    recommendations = strategy.execute()
     """
-    context = None
-
     def __init__(self, context):
         self.context = context
         self.algorithmSVDpp = AlgorithmSVDpp()
         self.algorithm_content = AlgorithmContent()
     
-    def execute(self): # Here we can change functioning of the algorithm depending on the context 
-        if self.context[1] <= 20:
-            return self.algorithm_content.get_user_recommendations(self.context[0])
+    def execute(self):
+        # Use context's properties directly
+        if self.context.n_ratings <= 20:
+            return self.algorithm_content.get_user_recommendations(self.context.id_user, self.context.top_n)
         else:
-            return self.algorithmSVDpp.get_user_recommendations(self.context[0])
+            return self.algorithmSVDpp.get_user_recommendations(self.context.id_user, self.context.top_n)
         
 
 if __name__ == '__main__':
