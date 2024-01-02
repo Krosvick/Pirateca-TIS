@@ -14,6 +14,10 @@ use Models\Rating;
 use GuzzleHttp\Client;
 use Exception;
 
+/**
+ * MoviePageController class handles the logic for rendering the movie page template, retrieving movie and ratings data from the database, and handling the rating functionality.
+ *
+ */
 class MoviePageController extends BaseController
 {
     private $client;
@@ -24,6 +28,14 @@ class MoviePageController extends BaseController
     private $ratingsDAO;
     private $userDAO;
 
+    /**
+     * MoviePageController constructor.
+     *
+     * Initializes the properties of the class and sets up the necessary dependencies.
+     *
+     * @param object $container An instance of the Container class that holds the dependencies.
+     * @param array $routeParams An array that contains the route parameters.
+     */
     public function __construct($container, $routeParams)
     {
         //call the parent constructor to get access to the properties and methods of the BaseController class
@@ -34,6 +46,7 @@ class MoviePageController extends BaseController
         $this->user = Application::$app->user ?? null;
         $this->registerMiddleware(new AdminMiddleware(['deleteMovie', 'deleteReview']));
     }
+
 
     /**
      * Retrieves the movie data from the database using the moviesDAO class and the provided movie ID.
@@ -146,6 +159,12 @@ class MoviePageController extends BaseController
         return $this->render("movie_page", $optionals);
     }
 
+    /**
+     * Deletes a movie from the database using the movie's ID.
+     *
+     * @param int $id The ID of the movie to be deleted.
+     * @return void
+     */
     public function deleteMovie($id){
         $movie = $this->movieDAO->find($id, Movie::class);
         $this->movieDAO->delete($id);
@@ -154,6 +173,13 @@ class MoviePageController extends BaseController
         $this->response->redirect("/");
     }
 
+    /**
+     * Deletes a review from the database based on the provided movie ID and review ID.
+     *
+     * @param int $idMovie The ID of the movie to which the review belongs.
+     * @param int $idReview The ID of the review to be deleted.
+     * @return void
+     */
     public function deleteReview($idMovie, $idReview){
         $review = $this->ratingsDAO->find($idReview, Rating::class);
         $this->ratingsDAO->delete($idReview);

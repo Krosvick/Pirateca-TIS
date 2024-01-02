@@ -8,12 +8,25 @@ use DAO\moviesDAO;
 use Core\BaseController;
 use Core\Middleware\AdminMiddleware;
 
+/**
+ * MovieController class
+ *
+ * Handles the creation of a new movie by validating the request data, saving it to the database, and redirecting the user to the home page.
+ *
+ */
 class MovieController extends BaseController {
     private $movieDAO;
     private $movieModel;
 
+    /**
+     * MovieController constructor
+     *
+     * Initializes the movieDAO and movieModel properties and registers the AdminMiddleware middleware for the createMovie action.
+     *
+     * @param string $base_url The base URL of the application.
+     * @param array $routeParams The route parameters passed to the controller.
+     */
     public function __construct($base_url, $routeParams) {
-        //call the parent constructor to get access to the properties and methods of the BaseController class
         parent::__construct(...func_get_args());
         $this->movieDAO = new moviesDAO();
         $this->movieModel = new Movie();
@@ -21,20 +34,15 @@ class MovieController extends BaseController {
     }
 
     /**
-     * Creates a new Movie object with the provided parameters, registers it using the movieDAO, and performs additional actions to handle the creation process.
+     * Create a new movie
      *
-     * @param string $originalTitle The original title of the movie.
-     * @param string $overview A brief overview of the movie.
-     * @param array $genres An array of genres that the movie belongs to.
-     * @param string $belongsToCollection The collection that the movie belongs to.
-     * @param bool $adult Indicates if the movie is for adults only.
-     * @param string $originalLanguage The original language of the movie.
-     * @param string $releaseDate The release date of the movie.
-     * @return void
+     * If the request method is POST, validate the request data, save the movie to the database, set a success flash message in the session, and redirect the user to the home page.
+     * If the request method is not POST, render the createMovie view with the Movie model and metadata.
+     *
+     * @return void The rendered view as the response.
      */
     public function createMovie(){
         if($this->request->isPost()){
-            // logic of request: Auth -> Validate -> Sanitize -> Save
             $body = (object) $this->request->getBody();
             $body->poster_status = 1 ? $body->poster_status = "1" : $body->poster_status = 0;
             $body->adult = 1 ? $body->adult = "1" : $body->adult = 0;
@@ -44,8 +52,8 @@ class MovieController extends BaseController {
                 $this->response->abort(404, "Movie data is not valid");
             }
             try {
-            $stmt = $this->movieDAO->register($movie);
-            $stmt = $stmt->get();
+                $stmt = $this->movieDAO->register($movie);
+                $stmt = $stmt->get();
             } catch (\Throwable $th) {
                 $this->response->abort(404, "Movie already exists");
             }

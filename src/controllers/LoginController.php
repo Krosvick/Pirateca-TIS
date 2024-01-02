@@ -7,12 +7,25 @@ use Core\BaseController;
 use DAO\UsersDAO;
 use Models\User;
 
+/**
+ * Class LoginController
+ *
+ * This class handles the login functionality by retrieving the username and password from the request body, 
+ * validating the credentials using the login() method of the User class, 
+ * and redirecting the user to the home page if the login is successful.
+ */
 class LoginController extends BaseController
 {
     private $userDAO;
+
+    /**
+     * LoginController constructor.
+     *
+     * @param object $container The dependency injection container.
+     * @param array $routeParams The route parameters.
+     */
     public function __construct($container, $routeParams)
     {
-        //call the parent constructor to get access to the properties and methods of the BaseController class
         parent::__construct(...func_get_args());
         $this->userDAO = new UsersDAO();
     }

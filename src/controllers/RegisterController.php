@@ -9,10 +9,22 @@ use DAO\UsersDAO;
 use Core\Auth\PasswordTrait;
 use Core\Application;
 
+/**
+ * Class RegisterController
+ *
+ * Handles the registration process for a user.
+ */
 class RegisterController extends BaseController
 {
     use PasswordTrait;
     private $userDAO;
+
+    /**
+     * RegisterController constructor.
+     *
+     * @param object $container The dependency injection container.
+     * @param array $routeParams The route parameters.
+     */
     public function __construct($container, $routeParams)
     {
         //call the parent constructor to get access to the properties and methods of the BaseController class
@@ -20,11 +32,10 @@ class RegisterController extends BaseController
         $this->userDAO = new UsersDAO();
     }
 
-
     /**
      * Handles the registration process for a user.
      *
-     * @return mixed The rendered registration page or a redirect response.
+     * @return void The rendered registration page or a redirect response.
      */
     public function index()
     {
