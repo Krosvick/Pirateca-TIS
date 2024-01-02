@@ -81,7 +81,7 @@ class SimpleAPI(BaseHTTPRequestHandler):
             userId = int(query_params['userId'][0])
             #print every data in same "print" function to check if it's working, all df should print sample
             n = int(query_params['n'][0])
-            top_movies = Strategy([userId, 21]).execute() #TODO: change n of ratings dinamically in context (strategy pattern)
+            top_movies = Strategy([userId, n]).execute() #TODO: change n of ratings dinamically in context (strategy pattern)
             response = {'top_movies': top_movies}
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
@@ -96,7 +96,7 @@ class SimpleAPI(BaseHTTPRequestHandler):
             userId = int(query_params['userId'][0])
             n = int(query_params['n'][0])
             #data processing via algorithm
-            top_movies = Strategy([userId, 21]).execute() #TODO: change n of ratings dinamically in context (strategy pattern)
+            top_movies = Strategy([userId, n]).execute() #TODO: change n of ratings dinamically in context (strategy pattern)
             print(top_movies)
             #json serialization and response
             response = {'top_movies': top_movies}
@@ -268,6 +268,7 @@ if __name__ == '__main__':
     None
     """
     semi_factory = Semi_factory(AlgorithmSVDpp()) # due to algorithm being a singleton class we can use it as a parameter
+    #we dont factory the content algorithm because it doesn't need to be trained
 
     model_thread = threading.Thread(target=semi_factory.generate_model_periodically)
     model_thread.daemon = True

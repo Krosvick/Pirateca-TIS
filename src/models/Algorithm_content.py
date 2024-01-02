@@ -87,4 +87,8 @@ class AlgorithmContent():
         #shuffle the list
         np.random.shuffle(recommendations)
         # return the recommendations
-        return recommendations[:top_n]
+        result = []
+        for movie_id in recommendations[:top_n]:
+            result.append({'movie_id': movie_id})
+
+        return result
