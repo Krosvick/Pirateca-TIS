@@ -362,20 +362,22 @@ class Movie extends Model{
     {
         return 'id';
     }
-    /**
-     * 
-     * @param array $movie  a movie data array
-     * 
-     * @return string a movie poster url
-     */
+   
 
     #movie poster fallback is now called on a complete list
+    /**
+     * A method that checks the availability of movie posters and updates their status in a database.
+     *
+     * @param object $moviesDAO An instance of the MoviesDAO class that provides access to the movie database.
+     * @param array $movies An array of movie objects representing the movies to check and update the poster status.
+     * @return int The number of movie posters successfully updated.
+     */
     public function moviePosterFallback($moviesDAO, $movies)
     {
         $client = new Client();
         $promises = [];
         $successfulUpdates = 0;
-    
+
         foreach ($movies as $movie) {
             $url = "https://image.tmdb.org/t/p/w780" . $movie->poster_path;
             $promises[] = $client->getAsync($url)->then(
@@ -410,12 +412,12 @@ class Movie extends Model{
                 }
             );
         }
-    
+
         // Wait for all the promises to complete
         foreach ($promises as $promise) {
             $promise->wait();
         }
-    
+
         return $successfulUpdates;
     }
 

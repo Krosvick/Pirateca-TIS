@@ -8,8 +8,18 @@ use Models\Movie;
 use Exception;
 use PDO;
 
+/**
+ * Class RatingsDAO
+ *
+ * This class represents a Data Access Object for the 'ratings' table.
+ */
 class RatingsDAO extends DAO {
 
+    /**
+     * Constructor method for RatingsDAO.
+     *
+     * Initializes the 'ratings' table name and calls the parent constructor.
+     */
     public function __construct() {
         $this->table = 'ratings';
         parent::__construct();
