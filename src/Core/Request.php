@@ -6,26 +6,27 @@ namespace Core;
  * Class Request
  *
  * Handles HTTP requests.
- *
- * @package     YourPackage
- * @subpackage  Request
  */
 class Request
 {
     protected $url;
     protected $base_url;
 
+    /**
+     * Request constructor.
+     *
+     * Initializes the `url` property with the value of `$_SERVER['REQUEST_URI']`.
+     */
     public function __construct()
     {
         $this->url = $_SERVER['REQUEST_URI'];
-
     }
+
 
     /**
      * Sets the base URL for the request.
      *
      * @param string $base_url The base URL to be set.
-     * @return void
      */
     public function setBaseUrl($base_url)
     {
