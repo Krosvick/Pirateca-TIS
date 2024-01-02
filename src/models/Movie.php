@@ -4,6 +4,7 @@ namespace Models;
 
 use Core\Model;
 use GuzzleHttp\Client;
+use GuzzleHttp\Promise;
 
 
 /**
@@ -368,50 +369,54 @@ class Movie extends Model{
      * @return string a movie poster url
      */
 
-    #movie poster fallback is called on self
-    public function moviePosterFallback($moviesDAO)
+    #movie poster fallback is now called on a complete list
+    public function moviePosterFallback($moviesDAO, $movies)
     {
-        /*$moviePoster = $this->poster_path;
-        if($this->moviedbapi->get() == 400){
-            $moviePoster = $this->moviedbapi->getthegoodone();
-        }*/
         $client = new Client();
-        $moviePoster = $this->poster_path;
-        $url = "https://image.tmdb.org/t/p/w780".$moviePoster;
-        if($this->poster_status == true){
-            return $moviePoster;
-        }
-        try{
-            $response = $client->request('GET', $url);
-            if($response->getStatusCode() == 200){
-                $this->poster_status = true;
-                $result = $moviesDAO->update($this->id, $this, ['poster_status']);
-            }
-            return $moviePoster;
-        }catch(\Exception $e){
-            if($e->getCode() == 404){
-                $new_poster_request = $client->request('GET', 'https://api.themoviedb.org/3/movie/'.$this->id.'/images?language=en', [
-                    'headers' => [
-                        'Authorization' => 'Bearer '. $_ENV['TMDB_API_KEY'],
-                        'accept' => 'application/json',
-                    ]
-                ]);
-                $new_poster_response = json_decode($new_poster_request->getBody(), true);
-                if(count($new_poster_response['posters']) > 0){
-                    $new_poster_url = $new_poster_response['posters'][0]['file_path'];
-                    $this->poster_path = $new_poster_url;
-                    $this->poster_status = true;
-                    #update the movie poster path in the database
-                    $result = $moviesDAO->update($this->id, $this, ['poster_path']);
-                    $result = $moviesDAO->update($this->id, $this, ['poster_status']);
+        $promises = [];
+        $successfulUpdates = 0;
+    
+        foreach ($movies as $movie) {
+            $url = "https://image.tmdb.org/t/p/w780" . $movie->poster_path;
+            $promises[] = $client->getAsync($url)->then(
+                function ($response) use ($movie, $moviesDAO, &$successfulUpdates) {
+                    if ($response->getStatusCode() == 200) {
+                        $movie->poster_status = true;
+                        $moviesDAO->update($movie->id, $movie, ['poster_status']);
+                        $successfulUpdates++;
+                    }
+                },
+                function ($exception) use ($movie, $moviesDAO, $client, &$successfulUpdates) {
+                    if ($exception->getCode() == 404) {
+                        $new_poster_request = $client->request('GET', 'https://api.themoviedb.org/3/movie/'.$movie->id.'/images?language=en', [
+                            'headers' => [
+                                'Authorization' => 'Bearer '. $_ENV['TMDB_API_KEY'],
+                                'accept' => 'application/json',
+                            ]
+                        ]);
+                        $new_poster_response = json_decode($new_poster_request->getBody(), true);
+                        if(count($new_poster_response['posters']) > 0){
+                            $new_poster_url = $new_poster_response['posters'][0]['file_path'];
+                            $movie->poster_path = $new_poster_url;
+                            $movie->poster_status = true;
+                            $moviesDAO->update($movie->id, $movie, ['poster_path']);
+                            $moviesDAO->update($movie->id, $movie, ['poster_status']);
+                            $successfulUpdates++;
+                        }
+                        else{
+                            $movie->poster_path = 'https://www.movienewz.com/img/films/poster-holder.jpg';
+                        }
+                    }
                 }
-                else{
-                    #if the movie doesn't have a poster, we will use a default image
-                    $moviePoster = 'https://www.movienewz.com/img/films/poster-holder.jpg';
-                }
-            }
+            );
         }
-        return $moviePoster;
+    
+        // Wait for all the promises to complete
+        foreach ($promises as $promise) {
+            $promise->wait();
+        }
+    
+        return $successfulUpdates;
     }
 
 

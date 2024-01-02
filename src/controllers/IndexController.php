@@ -50,15 +50,22 @@ class IndexController extends BaseController
         }
 
         $recommended_movies = $this->user->getRecommendedMoviesIds(10);
-        #the array is top_movies and then the recommended movies
         $recommended_movies = $recommended_movies['top_movies'];
         $user_movies = [];
+        $movies_to_update = [];
+
         foreach ($recommended_movies as $movie_id) {
             $movie = $this->movieDAO->find($movie_id['movie_id'], Movie::class);
             if($movie !== null) {
-                $movie->movieposterfallback($this->movieDAO);
-                array_push($user_movies, $movie);
+                array_push($movies_to_update, $movie);
             }
+        }
+        $movie = new Movie(); //we need to create a movie object to use the moviePosterFallback method
+
+        $movie->moviePosterFallback($this->movieDAO, $movies_to_update);
+
+        foreach ($movies_to_update as $movie) {
+            array_push($user_movies, $movie);
         }
         $data = [
             'user_movies' => $user_movies
