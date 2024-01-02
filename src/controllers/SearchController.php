@@ -36,7 +36,7 @@ class SearchController extends BaseController
      *
      * @param string $busqueda The search query.
      * @param int|null $page The page number. Defaults to 1 if not provided.
-     * @return string The rendered view with a list of movies that match the search query.
+     * @return void The rendered view with a list of movies that match the search query.
      */
     public function search($busqueda = '', $page = null){
         if($busqueda == '' && !isset($this->routeParams['busqueda'])) {

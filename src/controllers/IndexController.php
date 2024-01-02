@@ -9,6 +9,11 @@ use Models\Movie;
 use Core\Application;
 use GuzzleHttp\Client;
 
+/**
+ * Class IndexController
+ *
+ * The IndexController class retrieves recommended movies for a user and prepares the data to be rendered in a view.
+ */
 class IndexController extends BaseController
 {
     private $user;
@@ -19,8 +24,8 @@ class IndexController extends BaseController
     /**
      * IndexController constructor.
      *
-     * @param mixed $container The dependency injection container.
-     * @param mixed $routeParams The route parameters.
+     * @param object $container The dependency injection container.
+     * @param array $routeParams The route parameters.
      */
     public function __construct($container, $routeParams)
     {
@@ -31,9 +36,14 @@ class IndexController extends BaseController
     }
     
 
+    /**
+     * Retrieves recommended movies for a user and prepares the data to be rendered in a view.
+     *
+     * @return void The rendered "index" view with the user's recommended movies and metadata.
+     */
     public function index()
     {
-       //the client should be logged before this, if not it will be a guest user with id 1
+        //the client should be logged before this, if not it will be a guest user with id 1
         if (!$this->user) {
             $this->user = new User();
             $this->user->set_id(1);
@@ -65,6 +75,6 @@ class IndexController extends BaseController
             'metadata' => $metadata
         ];
         return $this->render("index", $optionals);
- 
+
     }
 }

@@ -40,7 +40,7 @@ class UserController extends BaseController{
      *
      * Renders a page that displays the movies liked by a user.
      *
-     * @return string The rendered HTML content of the "likedpost" template.
+     * @return void The rendered HTML content of the "likedpost" template.
      */
     public function likedMovies($id){
         $ratingsDAO = new RatingsDAO();
