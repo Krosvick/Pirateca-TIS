@@ -16,20 +16,19 @@ use Exception;
  * This is an abstract class called `DAO` that serves as a base class for data access objects.
  * It provides methods for performing common database operations such as retrieving records, inserting new records, updating existing records, and deleting records.
  * The class uses an instance of the `Database` class to interact with the database.
- *
- *
- * Inputs:
- * - $limit (optional): The maximum number of records to retrieve. Default is 10.
- * - $offset (optional): The starting point for retrieving records. Default is 0.
- *
- * Outputs:
- * - An array of objects representing the retrieved records from the database.
  */
 abstract class DAO {
     protected $connection;
     protected $table;
     protected $Relations = [];
 
+    /**
+     * DAO constructor.
+     *
+     * Initializes the 'connection' property by calling the 'getInstance' method of the 'Database' class.
+     *
+     * @throws Exception if an error occurs while getting the database connection instance.
+     */
     public function __construct() {
         try {
             $this->connection = Database::getInstance();
@@ -38,16 +37,14 @@ abstract class DAO {
         } 
     }
 
-
     /**
-     * 
-     * @param int $limit  limit search
-     * @param int $offset  starting point for search
-     * 
-     * @return array<array>
+     * Retrieves a specified number of rows from a database table with pagination support.
+     *
+     * @param int $limit The maximum number of rows to retrieve. Default is 10.
+     * @param int $offset The number of rows to skip before starting to retrieve. Default is 0.
+     * @return array An array of rows retrieved from the database table.
+     * @throws Exception if an error occurs while executing the query.
      */
-
-
     public function get_some($limit = 10, $offset = 0) {
         try {
             $sql = "SELECT * FROM {$this->table} LIMIT :limit OFFSET :offset";
@@ -63,11 +60,13 @@ abstract class DAO {
         }
     }
   
-    /**
-    * 
-    * @return array<array>
-    */
 
+    /**
+     * Retrieves all rows from the specified table.
+     *
+     * @return array An array of rows fetched from the table.
+     * @throws Exception if an error occurs while executing the query.
+     */
     public function get_all() {
         try {
             $sql = "SELECT * FROM {$this->table}";
@@ -86,6 +85,7 @@ abstract class DAO {
      * @param string $busqueda The search query.
      * @param int $page The page number for pagination.
      * @return array An array containing the paginated list of rows, the total number of pages, the current page number, and the IDs of the first and last rows.
+     * @throws Exception if an error occurs while executing the query.
      */
     public function fulltext_search($busqueda, $page){
         try {
@@ -132,13 +132,16 @@ abstract class DAO {
             die($e->getMessage());
         }
     }
-     /**
-      * @param int $id
-      * @param string $className
-      *
-      * @return ?object
-      */
+  
 
+    /**
+     * Retrieves a single row from the database table based on the provided id value.
+     *
+     * @param int $id The value of the primary key to search for.
+     * @param string|null $className The name of the class to instantiate the result as.
+     * @return object|null The fetched row as an object of the specified class, or null if no row is found.
+     * @throws Exception if an error occurs while executing the query.
+     */
     public function find($id, $className = null): ?object {
         try {
 
@@ -161,6 +164,7 @@ abstract class DAO {
      * @param string $attribute The attribute to search for the value in.
      * @param string|null $className The name of the class to instantiate the result as (optional).
      * @return object|null The result of the query, either a single object matching the specified attribute value or null if no match is found.
+     * @throws Exception if an error occurs while executing the query.
      */
     public function findBy($value, $attribute, $className = null): ?object {
         try {
@@ -176,13 +180,14 @@ abstract class DAO {
         }
     }
 
-    /**
-     * 
-     * @param object $data
-     * 
-     * @return Database
-     */
 
+    /**
+     * Inserts the attributes of the given object into the specified database table.
+     *
+     * @param object $data The object containing the data to be inserted.
+     * @return object The result of the query execution.
+     * @throws Exception if an error occurs while executing the query.
+     */
     public function register(object $data)
     {
         $attributes = $data->attributes();
@@ -203,11 +208,12 @@ abstract class DAO {
             die($e->getMessage());
         }
     }
+
     /**
-     * Insert data into a database table using a prepared statement.
+     * Insert data into a database table using a prepared SQL statement.
      *
      * @param array $data An associative array containing the data to be inserted into the table.
-     * @return mixed The result of the query execution.
+     * @return void The result of the SQL query execution.
      */
     public function insert(array $data)
     {
@@ -227,15 +233,15 @@ abstract class DAO {
     }
     
 
-     /**
-      * 
-      *@param int $id
-      *@param object $data
-      *@param array $fields
-      *
-      *@return bool
-      */
-
+    /**
+     * Updates a record in the database table.
+     *
+     * @param int $id The ID of the record to be updated.
+     * @param object $data The data object containing the new values for the fields to be updated.
+     * @param array $fields The fields to be updated in the database table.
+     * @return bool Returns true if the update is successful, or false if there is an error.
+     * @throws Exception if an error occurs while executing the query.
+     */
     public function update($id, $data, $fields = []) {
         try {
             if (empty($fields)) {
@@ -263,12 +269,16 @@ abstract class DAO {
         }
     }
 
-     /**
-      * @param int $id
-      * 
-      * @return void
-      */
+   
 
+    /**
+     * Deletes a record from the database table based on the provided ID.
+     * If there are any related tables specified in the Relations array, it also performs a cascade delete on those tables.
+     *
+     * @param int $id The ID of the record to be deleted.
+     * @return void
+     * @throws Exception if an error occurs while executing the query.
+     */
     public function delete($id) {
         try {
             $sql = "DELETE FROM {$this->table} WHERE id = :id";
@@ -290,15 +300,14 @@ abstract class DAO {
 
   
 
-
     /**
-     * 
-     * @param int $id
-     * @param array<string> $tables
-     * 
+     * Deletes related records from multiple tables based on a given movie ID.
+     *
+     * @param int $idMovie The ID of the movie to be deleted.
+     * @param array $tables An array of tables and their corresponding ID columns.
      * @return void
+     * @throws Exception if an error occurs while executing the query.
      */
-
     private function cascadeDelete($idMovie, ...$tables)
     {
         //i need to iterate over the keys not the values
@@ -339,10 +348,13 @@ abstract class DAO {
         }
     }
 
-     /**
-     * @return void
-     */
 
+    /**
+     * Deletes all records from the table in the database.
+     * 
+     * @return void
+     * @throws Exception If an error occurs during the query execution.
+     */
     public function deleteAll() {
         try {
             $this->connection->query("DELETE FROM {$this->table}");
@@ -357,6 +369,7 @@ abstract class DAO {
      * @param string $attribute The name of the attribute to match.
      * @param mixed $value The value to match against the attribute.
      * @return object The result set containing the rows from the table where the attribute matches the given value.
+     * @throws Exception If an error occurs during the query execution.
      */
     public function matchAttribute(string $attribute, $value) {
         try{
