@@ -1,9 +1,6 @@
 <?php
 
 namespace DAO;
-//PENSADO PARA UNA TABLA "Users"
-//CON COLUMNAS ID, USERNAME, PASSWORD, MAIL, role, STATUS
-//SUJETO A CAMBIOS
 
 use Core\Database;
 use Core\DAO;
