@@ -62,7 +62,7 @@ class IndexController extends BaseController
         }
         $movie = new Movie(); //we need to create a movie object to use the moviePosterFallback method
 
-        $movie->moviePosterFallback($this->movieDAO, $movies_to_update);
+        $movie->moviePosterFallbackArray($this->movieDAO, $movies_to_update);
 
         foreach ($movies_to_update as $movie) {
             array_push($user_movies, $movie);
