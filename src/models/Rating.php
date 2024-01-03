@@ -36,6 +36,7 @@ class Rating extends Model{
      * @param Movie|null $movie The movie associated with the rating.
      * @param float|null $rating The rating value.
      * @param string|null $review The review comment.
+     * @param string|null $created_at The created_at value.
      */
     public function __construct($id = null, $user = null, $movie = null, $rating = null, $review = null, $created_at = null)
     {

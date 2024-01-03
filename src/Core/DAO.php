@@ -182,9 +182,10 @@ abstract class DAO {
 
 
     /**
-     * Inserts the attributes of the given object into the specified database table.
+     * Inserts data into a database table based on the attributes of an object.
      *
-     * @param object $data The object containing the data to be inserted.
+     * @param object $data An object that represents the data to be inserted into the database.
+     *                     It should have attributes that correspond to the columns of the table.
      * @return object The result of the query execution.
      * @throws Exception if an error occurs while executing the query.
      */
@@ -210,10 +211,11 @@ abstract class DAO {
     }
 
     /**
-     * Insert data into a database table using a prepared SQL statement.
+     * Insert data into a database table.
      *
      * @param array $data An associative array containing the data to be inserted into the table.
-     * @return void The result of the SQL query execution.
+     * @return object The result of the query execution, which can be used to check if the insertion was successful.
+     * @throws Exception if an error occurs while executing the query.
      */
     public function insert(array $data)
     {

@@ -27,6 +27,7 @@ class Request
      * Sets the base URL for the request.
      *
      * @param string $base_url The base URL to be set.
+     * @return void
      */
     public function setBaseUrl($base_url)
     {
