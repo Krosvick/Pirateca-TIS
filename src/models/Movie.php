@@ -297,15 +297,37 @@ class Movie extends Model{
     public function set_director($director){
         $this->director = $director;
     }
+    /**
+     * Retrieves the ratings of the movie.
+     *
+     * @return array The ratings of the movie.
+     */
     public function get_ratings(){
         return $this->ratings;
     }
+    /**
+     * Sets the ratings for the movie.
+     *
+     * @param array $ratings The ratings to be set for the movie.
+     * @return void
+     */
     public function set_ratings($ratings){
         $this->ratings = $ratings;
     }
+    /**
+     * Returns the value of the `poster_status` property.
+     *
+     * @return mixed The value of the `poster_status` property.
+     */
     public function get_poster_status(){
         return $this->poster_status;
     }
+    /**
+     * Sets the value of the `poster_status` property based on the input parameter.
+     *
+     * @param boolean $poster_status The value to set the `poster_status` property to. It can be either `1` or `0`.
+     * @return void
+     */
     public function set_poster_status($poster_status){
         if($poster_status == 1){
             $poster_status = true;
@@ -420,14 +442,13 @@ class Movie extends Model{
 
         return $successfulUpdates;
     }
-    /**
-     * 
-     * @param array $movie  a movie data array
-     * 
-     * @return string a movie poster url
-     */
 
-    #movie poster fallback is called on self
+    /**
+     * A method that checks if a movie's poster is available and updates its status accordingly.
+     *
+     * @param object $moviesDAO An instance of the MoviesDAO class used to update the movie's poster status and path.
+     * @return string The current poster path or a default poster URL.
+     */
     public function moviePosterFallback($moviesDAO)
     {
         $client = new Client();
