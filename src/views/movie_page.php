@@ -145,7 +145,7 @@ use Models\Movie;
                         <div hx-ext="class-tools" class="w-full bg-gray-900 mt-1 rounded-lg p-3 hidden" aria-label="commentary" classes="remove hidden" hx-trigger="click">
                             <div class="w-full flex flex-col items-center gap-3">
                                 <p class="place-self-start">leave a comment on this review</p>
-                                <form action="" method="post" class="w-full flex flex-col">
+                                <form action="" method="post" class="w-full flex">
                                     <input type="text" placeholder="Type here" class="input input-ghost w-full" />
                                     <button class="btn btn-info text-white mt-3 place-self-end" type="submit">Submit</button>
                                 </form>
@@ -194,7 +194,7 @@ echo '
         <h3 class="font-bold text-lg text-black center">RATE THIS MOVIE</h3>
         <p class="py-4 text-black"></p>
         <div class="rating w-full">
-            <form method="post" action="/movie/' . $Movie->get_id().'" class="w-full>
+            <form method="post" action="/movie/' . $Movie->get_id().'" class="w-full">
                 <input type="radio" name="rating" value="1" class="mask mask-star-2 bg-orange-400" />
                 <input type="radio" name="rating" value="2" class="mask mask-star-2 bg-orange-400" />
                 <input type="radio" name="rating" value="3" class="mask mask-star-2 bg-orange-400" />
