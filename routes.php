@@ -22,7 +22,10 @@ $app->router->post('/search/{busqueda}/page/{page}', 'SearchController@search');
 $app->router->get('/register', 'RegisterController@index');
 $app->router->post('/register', 'RegisterController@index'); //registra al usuario
 
-$app->router->post('/comment/test', 'MovieController@test');
+$app->router->post('/comments', 'CommentsController@createComment');
+$app->router->get('/comments/{id}', 'CommentsController@getComments');
+
+
 $app->router->get('/movie/{id}/delete', 'MoviePageController@DeleteMovie');
 $app->router->get('/movie/{idmovie}/review/{idreview}/delete', 'MoviePageController@DeleteReview');
 $app->router->get('/movie/{id}/offset/{offset}', 'MoviePageController@MoviePage');
