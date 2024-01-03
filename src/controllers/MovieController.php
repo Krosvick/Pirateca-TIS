@@ -4,6 +4,7 @@ namespace Controllers;
 
 use Core\Application;
 use Models\Movie;
+use Models\Comment;
 use DAO\moviesDAO;
 use Core\BaseController;
 use Core\Middleware\AdminMiddleware;
@@ -74,13 +75,5 @@ class MovieController extends BaseController {
         $this->render('createMovie', $optionals);
     }
 
-    public function test(){
-        ob_start();
-        require(base_path("src/views/partials/comment.php"));
-        $output = ob_get_clean();
-        $this->response->setStatusCode(200);
-        $this->response->setContent($output);
-        $this->response->send();
-    }
 }
 ?>

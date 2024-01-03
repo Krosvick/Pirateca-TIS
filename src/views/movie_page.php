@@ -129,7 +129,7 @@ use Models\Movie;
                                     <?php endif; ?>
                                 </div>
                                 <div class="mb-4">
-                                    <p class="text-gray-300 dark:text-gray-400 mb-2">
+                                    <p class="text-gray-300 dark:text-gray-200 mb-2">
                                         <?= $rating->get_review() ?>
                                     </p>
                                 </div>
@@ -144,23 +144,14 @@ use Models\Movie;
                         </div>
                         <div hx-ext="class-tools" class="w-full bg-gray-900 mt-1 rounded-lg p-3 hidden" aria-label="commentary" classes="remove hidden" hx-trigger="click">
                             <div class="w-full flex flex-col items-center gap-3">
-                                <p class="place-self-start">leave a comment on this review</p>
-                                <form action="" method="post" class="w-full flex">
-                                    <input type="text" placeholder="Type here" class="input input-ghost w-full" />
-                                    <button class="btn btn-info text-white mt-3 place-self-end" type="submit">Submit</button>
+                                <form id="commentform" hx-post="/comments" class="w-full flex m-0 gap-1" hx-target=".comment-list" hx-swap="beforeend" hx-trigger="submit" hx-on:submit="commentform.reset()">
+                                    <input type="hidden" name="rating_id" value="<?= $rating->get_id() ?>" />
+                                    <input type="text" name="comment" placeholder="Leave a comment on this review" class="input input-ghost w-full" required/>
+                                    <button class="btn btn-info text-white place-self-end" type="submit">Submit</button>
                                 </form>
                             </div>
                         </div>
-                        <div hx-ext="class-tools" class="w-full bg-gray-900 mt-1 rounded-lg p-5 hidden" aria-label="commentary" classes="remove hidden" hx-trigger="click">
-                            <div class="w-full flex items-center gap-3">
-                                <div>
-                                    <img class="w-10 h-10 me-4 rounded-full" src="https://img.icons8.com/nolan/64/user-default.png" alt="userImage">
-                                </div>
-                                <div>
-                                    <p class="text-xs">Krosvick</p>
-                                    <p class="font-light text-md">Wenisimoooo</p>
-                                </div>
-                            </div>
+                        <div class="w-full pl-20 comment-list" hx-get="/comments/<?= $rating->get_id() ?>" hx-trigger="load">
                         </div>
                     </div>
                 <?php endforeach; ?>
