@@ -236,14 +236,14 @@ class Context:
     def __init__(self, id_user, top_n):
         self.id_user = id_user
         self.top_n = top_n
-        self.n_ratings = len(self.get_number_of_user_movies())
+        self.n_ratings = self.get_number_of_user_movies()
     
     def get_number_of_user_movies(self):
         """
         returns the number of movies rated by the user
         """
         dao = pydao.DAO()
-        n_ratings = dao.get_user_ratings(self.id_user)
+        n_ratings = dao.get_n_user_ratings(self.id_user)
         return n_ratings
     
     def get_recommendations(self):
@@ -298,7 +298,7 @@ if __name__ == '__main__':
     None
     """
     semi_factory = Semi_factory(AlgorithmSVDpp()) # due to algorithm being a singleton class we can use it as a parameter
-    #we dont factory the content algorithm because it doesn't need to be trained
+    semi_factory2 = Semi_factory(AlgorithmContent()) # we don't thread this one because it's not needed, but it's possible
 
     model_thread = threading.Thread(target=semi_factory.generate_model_periodically)
     model_thread.daemon = True

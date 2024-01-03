@@ -1,5 +1,8 @@
 class AlgorithmSVDpp():
     _instance = None
+    ratings_df = None
+    movies_df = None
+    
 
     def __new__(cls, *args, **kwargs):
         if not cls._instance:
@@ -15,10 +18,13 @@ class AlgorithmSVDpp():
         sys.path.append('src')
         import models.Algo_config as Algo_config
 
-        # hardcoded paths for better loading performance (memory_map)
-        self.ratings_df = pd.read_csv('datasets/reprocessed_ratings.csv', memory_map=True)
+        # Load the dataframes only if they have not been loaded before
+        if AlgorithmSVDpp.ratings_df is None:
+            AlgorithmSVDpp.ratings_df = pd.read_csv('datasets/reprocessed_ratings.csv', memory_map=True)
+        if AlgorithmSVDpp.movies_df is None:
+            AlgorithmSVDpp.movies_df = pd.read_csv('datasets/movies_metadata_cleaned.csv', usecols=['id', 'original_title', 'belongs_to_collection', 'genres'], memory_map=True)
+
         self.model = load('algoritmo2.pkl')[1]
-        self.movies_df = pd.read_csv('datasets/movies_metadata_cleaned.csv', usecols=['id', 'original_title', 'belongs_to_collection', 'genres'], memory_map=True)
 
     def generate_model(self, chunk_size=100000): #all file input is in csv format, remember to save the model
         """
@@ -41,7 +47,7 @@ class AlgorithmSVDpp():
         reader = Reader()
 
         # Split the dataframe into chunks
-        df = [df[i:i + chunk_size] for i in range(0, self.ratings_df.shape[0], chunk_size)]
+        df = [df[i:i + chunk_size] for i in range(0, AlgorithmSVDpp.ratings_df.shape[0], chunk_size)]
 
         # Convert each chunk to a Dataset object
         df = [Dataset.load_from_df(chunk[['userId', 'movieId', 'rating']], reader) for chunk in df]
@@ -100,26 +106,26 @@ class AlgorithmSVDpp():
         import models.Algo_config as algo_config
 
         # load again ratings_df to get the new rows
-        self.ratings_df = pd.read_csv('datasets/reprocessed_ratings.csv', memory_map=True)
+        AlgorithmSVDpp.ratings_df = pd.read_csv('datasets/reprocessed_ratings.csv', memory_map=True)
 
         OFFSET = algo_config.OFFSET
         # Define the reader
         reader = Reader()
         #save a new offset var before changing the ratings_df len
-        OFFSET1 = self.ratings_df.shape[0]
+        OFFSET1 = AlgorithmSVDpp.ratings_df.shape[0]
         # Split the dataframe into chunks starting from OFFSET
-        self.ratings_df = self.ratings_df[OFFSET:]
-        print(self.ratings_df.head())
-        self.ratings_df = [self.ratings_df[i:i + chunk_size] for i in range(0, self.ratings_df.shape[0], chunk_size)]
+        AlgorithmSVDpp.ratings_df = AlgorithmSVDpp.ratings_df[OFFSET:]
+        print(AlgorithmSVDpp.ratings_df.head())
+        AlgorithmSVDpp.ratings_df = [AlgorithmSVDpp.ratings_df[i:i + chunk_size] for i in range(0, AlgorithmSVDpp.ratings_df.shape[0], chunk_size)]
         
         algo_config.OFFSET = OFFSET1
         with open('src/models/Algo_config.py', 'w') as f:
             f.write(f'OFFSET = {OFFSET1}')
 
         # Convert each chunk to a Dataset object
-        self.ratings_df = [Dataset.load_from_df(chunk[['userId', 'movieId', 'rating']], reader) for chunk in self.ratings_df]
+        AlgorithmSVDpp.ratings_df = [Dataset.load_from_df(chunk[['userId', 'movieId', 'rating']], reader) for chunk in AlgorithmSVDpp.ratings_df]
 
-        for chunk in self.ratings_df:
+        for chunk in AlgorithmSVDpp.ratings_df:
             # Split data into training and testing sets
             train_ratings = chunk.build_full_trainset()
 
@@ -138,6 +144,8 @@ class AlgorithmSVDpp():
         return self.model
     
     def get_user_recommendations(self, user_id, top_n=10, include_rating=True):
+        import time
+        time1 = time.time()
         """
         Generate movie recommendations for a given user based on their ratings and a trained model.
 
@@ -160,8 +168,8 @@ class AlgorithmSVDpp():
             import random
             recommendations = []
             for i in range(0, top_n):
-                # get random id from self.movies_df['id']
-                random_id = random.choice(self.movies_df['id'].values)
+                # get random id from AlgorithmSVDpp.movies_df['id']
+                random_id = random.choice(AlgorithmSVDpp.movies_df['id'].values)
                 # get random rating from 0 to 5
                 random_rating = random.uniform(0, 5)
                 recommendations.append((random_id, random_rating))
@@ -176,9 +184,9 @@ class AlgorithmSVDpp():
             return result
         
         # Get the list of movies the user has seen
-        user_seen_movies = self.ratings_df[self.ratings_df['userId'] == user_id]['movieId'].unique()
+        user_seen_movies = AlgorithmSVDpp.ratings_df[AlgorithmSVDpp.ratings_df['userId'] == user_id]['movieId'].unique()
         # Get the list of movies the user hasn't seen
-        unseen_movies = self.movies_df[~self.movies_df['id'].isin(user_seen_movies)]
+        unseen_movies = AlgorithmSVDpp.movies_df[~AlgorithmSVDpp.movies_df['id'].isin(user_seen_movies)]
         # Placeholder for the true rating
         true_rating = 0.0
         # Prepare the testset
@@ -202,7 +210,7 @@ class AlgorithmSVDpp():
                 result.append({'movie_id': movie_id, 'rating': rating})
             else:
                 result.append({'movie_id': movie_id})
-
+        print('Real time for get_user_recommendations: ' + str(time.time() - time1) + ' seconds.')
         return result
     
     def get_all_predictions(self):
@@ -214,7 +222,7 @@ class AlgorithmSVDpp():
         from surprise.dump import dump
 
         reader = Reader()
-        data = Dataset.load_from_df(self.ratings_df[['userId', 'movieId', 'rating']], reader)
+        data = Dataset.load_from_df(AlgorithmSVDpp.ratings_df[['userId', 'movieId', 'rating']], reader)
         trainset = data.build_full_trainset()
         predictions = self.model.test(trainset.build_testset())
         dump('test_algorithm.pkl', algo=self.model, predictions=predictions)

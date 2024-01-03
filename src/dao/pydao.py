@@ -135,7 +135,7 @@ class DAO():
         except Exception as e:
             print(e)
 
-    def get_user_ratings(self, user_id):
+    def get_n_user_ratings(self, user_id):
         """
         Retrieves all the ratings of a specified user.
 
@@ -147,8 +147,8 @@ class DAO():
         """
         try:
             cursor = self._connection.get_connection().cursor()
-            cursor.execute(f"SELECT * FROM {self._table} WHERE user_id = {user_id}")
+            cursor.execute(f"SELECT COUNT(*) FROM {self._table} WHERE user_id = {user_id}")
             rows = cursor.fetchall()
-            return rows
+            return rows[0][0]
         except Exception as e:
             print(e)

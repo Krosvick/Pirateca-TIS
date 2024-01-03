@@ -369,7 +369,7 @@ class Movie extends Model{
      * @return string a movie poster url
      */
 
-    #movie poster fallback is now called on a complete list
+    #movie poster fallback is now called on a complete list, should be called from a external object
     public function moviePosterFallback($moviesDAO, $movies)
     {
         $client = new Client();

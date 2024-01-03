@@ -4,6 +4,8 @@ import numpy as np
 
 class AlgorithmContent():
     _instance = None
+    ratings_df = None
+    movies_df = None
 
     def __new__(cls, *args, **kwargs): #singleton
         if not cls._instance:
@@ -12,8 +14,11 @@ class AlgorithmContent():
 
     def __init__(self):
         import pandas as pd
-        self.ratings_df = pd.read_csv('datasets/reprocessed_ratings.csv', memory_map=True)
-        self.movies_df = pd.read_csv('datasets/movies_metadata_cleaned.csv', usecols=['id', 'original_title', 'belongs_to_collection', 'genres'], memory_map=True)
+        # Load the dataframes only if they have not been loaded before
+        if AlgorithmContent.ratings_df is None:
+            AlgorithmContent.ratings_df = pd.read_csv('datasets/reprocessed_ratings.csv', memory_map=True)
+        if AlgorithmContent.movies_df is None:
+            AlgorithmContent.movies_df = pd.read_csv('datasets/movies_metadata_cleaned.csv', usecols=['id', 'original_title', 'belongs_to_collection', 'genres'], memory_map=True)
     
     def get_movie_recommendations_recursive(self, movie_id_list, top_n):
         """
@@ -25,21 +30,21 @@ class AlgorithmContent():
         if top_n <= 0 or len(movie_id_list) == 0:
             return []
 
-        movie_row = self.movies_df[self.movies_df['id'] == movie_id_list[0]] #due to preprocessing, the row always exists
+        movie_row = AlgorithmContent.movies_df[AlgorithmContent.movies_df['id'] == movie_id_list[0]] #due to preprocessing, the row always exists
         
         if movie_row['belongs_to_collection'].empty or pd.isna(movie_row['belongs_to_collection'].values[0]):
             genres = ast.literal_eval(movie_row['genres'].values[0])
             genres = [genre['name'] for genre in genres]
-            mask = self.movies_df['genres'].apply(lambda x: any(genre in x for genre in genres))
+            mask = AlgorithmContent.movies_df['genres'].apply(lambda x: any(genre in x for genre in genres))
             mask = mask.fillna(False)
-            movies = self.movies_df[mask]
+            movies = AlgorithmContent.movies_df[mask]
             movies = movies[movies['id'] != movie_id_list[0]]
             movies['genre_similarity'] = movies['genres'].apply(lambda x: len(set(genre['name'] for genre in ast.literal_eval(x)).intersection(genres)))
             movies = movies.sort_values(by='genre_similarity', ascending=False)
             movies = movies['id'].tolist()
 
             if len(movie_id_list) > top_n: # if there are more movies in the list than the top_n, return only the best top_n
-                movies = movies[:1]
+                movies = movies[:3]
             else: # if there are less movies in the list than the top_n, return the top_n and finallize the recursion
                 movies = movies[:top_n]
             
@@ -50,9 +55,9 @@ class AlgorithmContent():
         else:
             collection_id = movie_row['belongs_to_collection'].values[0].split(':')[1].split(',')[0]
             collection_id = int(collection_id)
-            collection_mask = self.movies_df['belongs_to_collection'].str.contains(str(collection_id))
+            collection_mask = AlgorithmContent.movies_df['belongs_to_collection'].str.contains(str(collection_id))
             collection_mask = collection_mask.fillna(False)
-            collection = self.movies_df[collection_mask]
+            collection = AlgorithmContent.movies_df[collection_mask]
             collection = collection[collection['id'] != movie_id_list[0]]
             collection = collection['id'].tolist() #if belongs to collection, weights more than genres, return all movies from the collection
             movie_id_list.pop(0)
@@ -63,14 +68,14 @@ class AlgorithmContent():
 
     def get_user_recommendations(self, user_id, top_n=10):
         # get all movies rated by the user
-        movies_rated = self.ratings_df[self.ratings_df['userId'] == user_id]
+        movies_rated = AlgorithmContent.ratings_df[AlgorithmContent.ratings_df['userId'] == user_id]
         # before calling the recursive function, order by priority, first delete the movies with bad ratings (< 3)
         movies_rated = movies_rated[movies_rated['rating'] >= 3]
         movies_rated = movies_rated['movieId'].tolist()
         ordered_movies = []
         # now order by collection, if the liked movie belongs to a collection, put them first in the list
         for movie in movies_rated:
-            movie_row = self.movies_df[self.movies_df['id'] == movie]
+            movie_row = AlgorithmContent.movies_df[AlgorithmContent.movies_df['id'] == movie]
             if movie_row.empty:
                 continue
             elif movie_row['belongs_to_collection'].empty or pd.isna(movie_row['belongs_to_collection'].values[0]):
