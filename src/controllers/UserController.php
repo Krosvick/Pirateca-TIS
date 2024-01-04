@@ -134,4 +134,76 @@ class UserController extends BaseController{
         $this->userDAO->add_follower($id, $this->user->get_id());
         $this->response->redirect("/profile/$id");
     }
+
+    public function likeReview($id){
+        try{
+         $this->userDAO->like_review($id, $this->user->get_id());
+        }catch(\Exception $e){
+            $this->response->setStatusCode(500);
+            $this->response->setContent($e->getMessage());
+            $this->response->send();
+        }
+        $data = [
+            'review_id' => $id,
+        ];
+        ob_start();
+        extract($data);
+        require(base_path("/src/views/partials/like-button.php"));
+        $content = ob_get_clean();
+        $this->response->setStatusCode(200);
+        $this->response->setContent($content);
+        $this->response->send();
+    }
+
+    public function dislikeReview($id){
+        try{
+         $this->userDAO->unlike_review($id, $this->user->get_id());
+        }catch(\Exception $e){
+            $this->response->setStatusCode(500);
+            $this->response->setContent($e->getMessage());
+            $this->response->send();
+        }
+        $data = [
+            'review_id' => $id,
+        ];
+        ob_start();
+        extract($data);
+        require(base_path("/src/views/partials/unlike-button.php"));
+        $content = ob_get_clean();
+        $this->response->setStatusCode(200);
+        $this->response->setContent($content);
+        $this->response->send();
+    }
+
+    public function getLikeReview($id){
+        try{
+            $like = $this->userDAO->get_like_review($id, $this->user->get_id());
+        }catch(\Exception $e){
+            return;
+        }
+        if(!$like){
+            $data = [
+                'review_id' => $id,
+            ];
+            ob_start();
+            extract($data);
+            require(base_path("/src/views/partials/unlike-button.php"));
+            $content = ob_get_clean();
+            $this->response->setStatusCode(200);
+            $this->response->setContent($content);
+            $this->response->send();
+            return;
+        }
+        $data = [
+            'like' => $like,
+            'review_id' => $like[0]->rating_id,
+        ];
+        ob_start();
+        extract($data);
+        require(base_path("/src/views/partials/like-button.php"));
+        $content = ob_get_clean();
+        $this->response->setStatusCode(200);
+        $this->response->setContent($content);
+        $this->response->send();
+    }
 }

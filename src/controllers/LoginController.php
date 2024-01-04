@@ -6,6 +6,7 @@ use Core\Application;
 use Core\BaseController;
 use DAO\UsersDAO;
 use Models\User;
+use Core\Middleware\LoggedinMiddleware;
 
 /**
  * Class LoginController
@@ -28,6 +29,7 @@ class LoginController extends BaseController
     {
         parent::__construct(...func_get_args());
         $this->userDAO = new UsersDAO();
+        $this->registerMiddleware(new LoggedinMiddleware(['index']));
     }
 
     /**

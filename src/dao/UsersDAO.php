@@ -80,4 +80,37 @@ class UsersDAO extends DAO{
         }
         return $followers;
     }
+
+    public function like_review($review_id, $user_id){
+        $sql = "INSERT INTO likes (rating_id, user_id) VALUES (:rating_id, :user_id)";
+        $params = array(
+            'rating_id' => [$review_id, PDO::PARAM_INT],
+            'user_id' => [$user_id, PDO::PARAM_INT]
+        );
+        $stmt = $this->connection->query($sql, $params);
+        $rows = $stmt->get();
+        return $rows;
+    }
+    
+    public function unlike_review($review_id, $user_id){
+        $sql = "DELETE FROM likes WHERE rating_id = :rating_id AND user_id = :user_id";
+        $params = array(
+            'rating_id' => [$review_id, PDO::PARAM_INT],
+            'user_id' => [$user_id, PDO::PARAM_INT]
+        );
+        $stmt = $this->connection->query($sql, $params);
+        $rows = $stmt->get();
+        return $rows;
+    }
+
+    public function get_like_review($review_id, $user_id){
+        $sql = "SELECT * FROM likes WHERE rating_id = :rating_id AND user_id = :user_id";
+        $params = array(
+            'rating_id' => [$review_id, PDO::PARAM_INT],
+            'user_id' => [$user_id, PDO::PARAM_INT]
+        );
+        $stmt = $this->connection->query($sql, $params);
+        $rows = $stmt->get();
+        return $rows;
+    }
 }

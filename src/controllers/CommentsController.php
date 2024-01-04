@@ -77,7 +77,7 @@ class CommentsController extends BaseController {
      * @return void
      */
     public function getComments($id){
-        $comments_data= $this->commentDAO->getComments($id, 5, desc: true);
+        $comments_data= $this->commentDAO->getComments($id, 5, desc: false);
         
         // Check if comments_data is empty
         if(empty($comments_data)) {
@@ -86,7 +86,7 @@ class CommentsController extends BaseController {
             $this->response->send();
             return;
         }
-
+        
         $comments = [];
         $content = "";
         foreach ($comments_data as $comment_data) {

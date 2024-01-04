@@ -24,6 +24,9 @@ $app->router->post('/register', 'RegisterController@index'); //registra al usuar
 
 $app->router->post('/comments', 'CommentsController@createComment');
 $app->router->get('/comments/{id}', 'CommentsController@getComments');
+$app->router->post('/like/{id}', 'UserController@likeReview');
+$app->router->post('/dislike/{id}', 'UserController@dislikeReview');
+$app->router->get('/like/{id}', 'UserController@getLikeReview');
 
 
 $app->router->get('/movie/{id}/delete', 'MoviePageController@DeleteMovie');
