@@ -56,7 +56,7 @@ use Models\Movie;
             </div>
         </div>
     </div>
-    <div class="max-w-full w-full p-8">
+    <div class="max-w-full w-full p-8 rating-item">
         <div class="w-full mt-8 px-10 py-8 text-black shadow-md border-white border-4 glass rounded-md h-fit">
             <?php if (!isset($noRatings) || !$noRatings): ?>
             <button class="btn btn-active">
@@ -142,16 +142,16 @@ use Models\Movie;
                                 </div>
                             </article>
                         </div>
-                        <div hx-ext="class-tools" class="w-full bg-gray-900 mt-1 rounded-lg p-3 hidden" aria-label="commentary" classes="remove hidden" hx-trigger="click">
+                        <div class="w-full bg-gray-900 mt-1 rounded-lg p-3" aria-label="commentary" hx-trigger="click">
                             <div class="w-full flex flex-col items-center gap-3">
-                                <form id="commentform" hx-post="/comments" class="w-full flex m-0 gap-1" hx-target=".comment-list" hx-swap="beforeend" hx-trigger="submit" hx-on:submit="commentform.reset()">
+                                <form id="commentform-<?=$rating->get_id()?>" hx-post="/comments" class="w-full flex m-0 gap-1" hx-target=".comment-list-<?= $rating->get_id() ?>" hx-swap="beforeend" hx-trigger="submit" hx-on:submit="this.reset()">
                                     <input type="hidden" name="rating_id" value="<?= $rating->get_id() ?>" />
-                                    <input type="text" name="comment" placeholder="Leave a comment on this review" class="input input-ghost w-full" required/>
+                                    <input type="text" name="comment" placeholder="Leave a comment on this review" class="input input-ghost w-full" required autocomplete="off" />
                                     <button class="btn btn-info text-white place-self-end" type="submit">Submit</button>
                                 </form>
                             </div>
                         </div>
-                        <div class="w-full pl-20 comment-list" hx-get="/comments/<?= $rating->get_id() ?>" hx-trigger="load">
+                        <div class="w-full pl-20 comment-list-<?= $rating->get_id() ?>" hx-get="/comments/<?= $rating->get_id() ?>" hx-trigger="every 1s load">
                         </div>
                     </div>
                 <?php endforeach; ?>
