@@ -41,3 +41,4 @@ $app->router->get('/profile/{id}', 'UserController@ProfilePage');
 $app->router->get('/profile/{id}/likedpost', 'UserController@LikedMovies');
 
 $app->router->get('/follow/{id}', 'UserController@follow');
+$app->router->get('/unfollow/{id}', 'UserController@unfollow');

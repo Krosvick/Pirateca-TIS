@@ -136,6 +136,19 @@ class UserController extends BaseController{
     }
 
     /**
+     * Unfollows a user and redirects to their profile page.
+     * 
+     * This method deletes a follower from a user and redirects to the profile page of the user being unfollowed.
+     * 
+     * @param int $id The ID of the user to be unfollowed.
+     * @return void
+     */
+    public function unfollow($id){
+        $this->userDAO->delete_follower($id, $this->user->get_id());
+        $this->response->redirect("/profile/$id");
+    }
+
+    /**
      * Method to handle the action of liking a review.
      *
      * Calls the `like_review` method of the `userDAO` object to perform the like operation.
