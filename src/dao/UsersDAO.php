@@ -81,6 +81,13 @@ class UsersDAO extends DAO{
         return $followers;
     }
 
+    /**
+     * Inserts a new row into the `likes` table in the database, with the provided `rating_id` and `user_id` values.
+     *
+     * @param int $review_id The ID of the review to be liked.
+     * @param int $user_id The ID of the user who likes the review.
+     * @return array The result set from the executed query.
+     */
     public function like_review($review_id, $user_id){
         $sql = "INSERT INTO likes (rating_id, user_id) VALUES (:rating_id, :user_id)";
         $params = array(
@@ -92,6 +99,13 @@ class UsersDAO extends DAO{
         return $rows;
     }
     
+    /**
+     * Deletes a row from the `likes` table in the database based on the given `review_id` and `user_id`.
+     *
+     * @param int $review_id The ID of the review to be unliked.
+     * @param int $user_id The ID of the user who unlikes the review.
+     * @return array An array containing the result set from the executed query.
+     */
     public function unlike_review($review_id, $user_id){
         $sql = "DELETE FROM likes WHERE rating_id = :rating_id AND user_id = :user_id";
         $params = array(
@@ -103,6 +117,13 @@ class UsersDAO extends DAO{
         return $rows;
     }
 
+    /**
+     * Retrieves a row from the `likes` table in the database based on the given `review_id` and `user_id`.
+     *
+     * @param int $review_id The ID of the review.
+     * @param int $user_id The ID of the user.
+     * @return array An array containing the rows from the `likes` table that match the given `review_id` and `user_id`.
+     */
     public function get_like_review($review_id, $user_id){
         $sql = "SELECT * FROM likes WHERE rating_id = :rating_id AND user_id = :user_id";
         $params = array(
