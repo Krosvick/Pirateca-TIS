@@ -135,10 +135,22 @@ class UserController extends BaseController{
         $this->response->redirect("/profile/$id");
     }
 
-    public function likeReview($id){
-        try{
-         $this->userDAO->like_review($id, $this->user->get_id());
-        }catch(\Exception $e){
+    /**
+     * Method to handle the action of liking a review.
+     *
+     * Calls the `like_review` method of the `userDAO` object to perform the like operation.
+     * If an exception occurs, sets the response status code to 500 and sends an error message as the response content.
+     * Retrieves the review ID and renders a partial view called `like-button.php` using the extracted data.
+     * Sets the response status code to 200 and sends the rendered content as the response.
+     *
+     * @param int $id The ID of the review to be liked.
+     * @return void
+     */
+    public function likeReview($id)
+    {
+        try {
+            $this->userDAO->like_review($id, $this->user->get_id());
+        } catch (\Exception $e) {
             $this->response->setStatusCode(500);
             $this->response->setContent($e->getMessage());
             $this->response->send();
@@ -155,9 +167,17 @@ class UserController extends BaseController{
         $this->response->send();
     }
 
+    /**
+     * Dislikes a review.
+     *
+     * This method handles the action of disliking a review. It calls the `unlike_review` method of the `userDAO` object to perform the dislike operation. If an exception occurs, it sets the response status code to 500 and sends an error message as the response content. It then retrieves the review ID and renders a partial view called `unlike-button.php` using the extracted data. Finally, it sets the response status code to 200 and sends the rendered content as the response.
+     *
+     * @param int $id The ID of the review to be disliked.
+     * @return void
+     */
     public function dislikeReview($id){
         try{
-         $this->userDAO->unlike_review($id, $this->user->get_id());
+            $this->userDAO->unlike_review($id, $this->user->get_id());
         }catch(\Exception $e){
             $this->response->setStatusCode(500);
             $this->response->setContent($e->getMessage());
@@ -175,6 +195,12 @@ class UserController extends BaseController{
         $this->response->send();
     }
 
+    /**
+     * Retrieves the like status of a review for the currently logged-in user and renders a partial view accordingly.
+     *
+     * @param int $id The ID of the review to check the like status for.
+     * @return void
+     */
     public function getLikeReview($id){
         try{
             $like = $this->userDAO->get_like_review($id, $this->user->get_id());

@@ -165,6 +165,16 @@ class Comment extends Model{
         ];
     }
 
+    /**
+     * Renders a comment by extracting the necessary data and passing it to a view file.
+     *
+     * Example Usage:
+     * $comment = new Comment(1, $user, $rating, "This is a comment", "2021-01-01");
+     * $output = $comment->render();
+     * echo $output;
+     *
+     * @return string The rendered output of the comment.
+     */
     public function render(){
         $data = [
             'comment' => $this->comment,
