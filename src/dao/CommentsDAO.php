@@ -10,7 +10,7 @@ use Core\DAO;
  *
  * This class represents a data access object for retrieving comments from the database.
  */
-class commentsDAO extends DAO {
+class CommentsDAO extends DAO {
 
     /**
      * Constructor method for commentsDAO class.

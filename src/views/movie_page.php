@@ -151,8 +151,10 @@ use Models\Movie;
                                 </form>
                             </div>
                         </div>
-                        <div class="w-full pl-20 comment-list-<?= $rating->get_id() ?>" hx-get="/comments/<?= $rating->get_id() ?>" hx-trigger="every 1s load">
+                        <div class="w-full pl-20 comment-list-<?= $rating->get_id() ?>" hx-get="/comments/<?= $rating->get_id()?>" hx-trigger="load, every 1s" hx-indicator=".loader">
+                            <div class="loader">Loading...</div>
                         </div>
+
                     </div>
                 <?php endforeach; ?>
 

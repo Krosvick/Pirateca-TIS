@@ -5,7 +5,7 @@ namespace Controllers;
 use Core\BaseController;
 use Models\Comment;
 use Core\Application;
-use DAO\commentsDAO;
+use DAO\CommentsDAO;
 use DAO\usersDAO;
 use DAO\RatingsDAO;
 use Models\User;
@@ -35,7 +35,7 @@ class CommentsController extends BaseController {
     {
         //call the parent constructor to get access to the properties and methods of the BaseController class
         parent::__construct(...func_get_args());
-        $this->commentDAO = new commentsDAO();
+        $this->commentDAO = new CommentsDAO();
         $this->userDAO = new usersDAO();
         $this->ratingsDAO = new ratingsDAO();
     }
@@ -73,11 +73,20 @@ class CommentsController extends BaseController {
      * Retrieves comments from the database, creates Comment objects, and renders them into a string.
      * Sets the response status code, content, and sends the response.
      *
-     * @param int $id The ID of the comments to retrieve.
+     * @param int $id The ID of the movie review from which to retrieve the comments.
      * @return void
      */
     public function getComments($id){
         $comments_data= $this->commentDAO->getComments($id, 5, desc: true);
+        
+        // Check if comments_data is empty
+        if(empty($comments_data)) {
+            $this->response->setStatusCode(200);
+            $this->response->setContent("");
+            $this->response->send();
+            return;
+        }
+
         $comments = [];
         $content = "";
         foreach ($comments_data as $comment_data) {
