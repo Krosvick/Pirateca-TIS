@@ -160,4 +160,18 @@ class RatingsDAO extends DAO {
             die($e->getMessage());
         }
     }
+
+    public function get_like_count($rating_id){
+        try {
+            $sql = "SELECT COUNT(*) FROM likes WHERE rating_id = :rating_id";
+            $params = array(
+                'rating_id' => [$rating_id, PDO::PARAM_INT],
+            );
+            $stmt = $this->connection->query($sql, $params);
+            $row = $stmt->statement->fetchColumn();
+            return $row;
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
 }

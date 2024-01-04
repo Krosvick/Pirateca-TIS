@@ -24,6 +24,7 @@ class Rating extends Model{
     private $rating;
     private $review;
     private $created_at;
+    public $like_count;
 
    
     /**
@@ -233,5 +234,8 @@ class Rating extends Model{
         return $response;
     }
 
-    
+    public function get_like_count($ratingsDAO){
+        $count = $ratingsDAO->get_like_count($this->id);
+        return $count;
+    }
 }

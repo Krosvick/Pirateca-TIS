@@ -115,6 +115,7 @@ class MoviePageController extends BaseController
                     $rating->set_rating($rating_data->rating);
                     $rating->set_review($rating_data->review);
                     $rating->set_created_at($rating_data->created_at);
+                    $rating->like_count = $rating->get_like_count($this->ratingsDAO);
                     array_push($ratings, $rating);
                 }
                 catch (Exception $e) {
