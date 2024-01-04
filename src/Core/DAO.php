@@ -112,7 +112,7 @@ abstract class DAO {
             $firstId = $rows[0]->id;
             $lastId = end($rows)->id;
 
-            $sql = "SELECT COUNT(*) FROM movies WHERE MATCH (original_title) AGAINST (:busqueda IN BOOLEAN MODE)";
+            $sql = "SELECT COUNT(*) FROM movies WHERE MATCH (original_title, overview) AGAINST (:busqueda IN BOOLEAN MODE)";
             $params = array(
                 'busqueda' => [$busqueda . "*", PDO::PARAM_STR]
             );
