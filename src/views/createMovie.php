@@ -6,27 +6,27 @@
                 <div class="label">
                     <span class="label-text">Movie Title</span>
                 </div>
-                <input type="text" placeholder="Type here" name="original_title" class="input input-bordered w-full max-w-xs" />
+                <input type="text" placeholder="Type here" name="original_title" class="input input-bordered w-full max-w-xs" required/>
             </label>
             <label class="form-control w-full max-w-xs">
                 <div class="label">
                     <span class="label-text">Overview</span>
                 </div>
-                <input type="text" placeholder="Type here" name="overview" class="input input-bordered w-full max-w-xs" />
+                <input type="text" placeholder="Type here" name="overview" class="input input-bordered w-full max-w-xs" required />
             </label>
             <label class="form-control w-full max-w-xs">
                 <div class="label">
                     <span class="label-text">Director</span>
                 </div>
-                <input type="text" placeholder="Type here" name="director" class="input input-bordered w-full max-w-xs" />
+                <input type="text" placeholder="Type here" name="director" class="input input-bordered w-full max-w-xs" required/>
             </label>
             <label class="form-control w-full max-w-xs">
                 <div class="label">
                     <span class="label-text">Release date</span>
                 </div>
-                <input type="date" placeholder="Type here" name="release_date" class="input input-bordered w-full max-w-xs" />
+                <input type="date" placeholder="Type here" name="release_date" class="input input-bordered w-full max-w-xs" required/>
             </label>
-            <select class="select select-bordered w-full max-w-xs" name="adult">
+            <select class="select select-bordered w-full max-w-xs" name="adult" required>
                 <option disabled selected>Adult content?</option>
                 <option value="1">Yes</option>
                 <option value="0">No</option>
