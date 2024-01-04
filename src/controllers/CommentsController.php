@@ -42,6 +42,12 @@ class CommentsController extends BaseController {
 
  
 
+    /**
+     * Creates a new comment by processing the request body, validating the comment data,
+     * registering the comment in the database, and sending a response.
+     *
+     * @return void
+     */
     public function createComment(){
         $body = (object) $this->request->getBody();
         $body->user = Application::$app->user;
@@ -63,6 +69,13 @@ class CommentsController extends BaseController {
         $this->response->send();
     }
 
+    /**
+     * Retrieves comments from the database, creates Comment objects, and renders them into a string.
+     * Sets the response status code, content, and sends the response.
+     *
+     * @param int $id The ID of the comments to retrieve.
+     * @return void
+     */
     public function getComments($id){
         $comments_data= $this->commentDAO->getComments($id, 5, desc: true);
         $comments = [];
