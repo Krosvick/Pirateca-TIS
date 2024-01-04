@@ -50,13 +50,14 @@ class MovieController extends BaseController {
             $movie = new Movie();
             $movie->loadData($body);
             if(!$movie->validate()){
-                $this->response->abort(404, "Movie data is not valid");
+                Application::$app->session->setFlash('error', 'The movie was not created successfully');
             }
             try {
                 $stmt = $this->movieDAO->register($movie);
                 $stmt = $stmt->get();
             } catch (\Throwable $th) {
-                $this->response->abort(404, "Movie already exists");
+                Application::$app->session->setFlash('error', 'The movie was not created successfully');
+                $this->response->redirect('/createMovie');
             }
             Application::$app->session->setFlash('success', 'The movie was created successfully');
             $this->response->redirect('/');
