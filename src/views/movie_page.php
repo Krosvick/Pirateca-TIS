@@ -142,6 +142,7 @@ use Models\Movie;
                                 </div>
                             </article>
                         </div>
+                        <?php if(!Application::isGuest()): ?>
                         <div class="w-full bg-gray-900 mt-1 rounded-lg p-3" aria-label="commentary" hx-trigger="click">
                             <div class="w-full flex flex-col items-center gap-3">
                                 <form id="commentform-<?=$rating->get_id()?>" hx-post="/comments" class="w-full flex m-0 gap-1" hx-target=".comment-list-<?= $rating->get_id() ?>" hx-swap="beforeend" hx-trigger="submit" hx-on:submit="this.reset()">
@@ -151,6 +152,7 @@ use Models\Movie;
                                 </form>
                             </div>
                         </div>
+                        <?php endif; ?>
                         <div class="w-full pl-20 comment-list-<?= $rating->get_id() ?>" hx-get="/comments/<?= $rating->get_id()?>" hx-trigger="load, every 1s" hx-indicator=".loader">
                             <p>&nbsp;</p>
                             <div class="loader text-center">
