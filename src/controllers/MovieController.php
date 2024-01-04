@@ -51,6 +51,7 @@ class MovieController extends BaseController {
             $movie->loadData($body);
             if(!$movie->validate()){
                 Application::$app->session->setFlash('error', 'The movie was not created successfully');
+                $this->response->redirect('/createMovie');
             }
             try {
                 $stmt = $this->movieDAO->register($movie);
