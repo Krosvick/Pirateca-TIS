@@ -40,6 +40,23 @@ class UsersDAO extends DAO{
         $rows = $stmt->get();
         return $rows;
     }
+    /**
+     * Deletes a follower from a user in the followers table.
+     * 
+     * @param int $follower_id The ID of the follower to be deleted.
+     * @param int $user_id The ID of the user from whom the follower is being deleted.
+     * @return array The result set from the executed query.
+     */
+    public function delete_follower($follower_id, $user_id){
+        $sql = "DELETE FROM followers WHERE follower_id = :follower_id AND followed_id = :followed_id";
+        $params = array(
+            'followed_id' => [$follower_id, PDO::PARAM_INT],
+            'follower_id' => [$user_id, PDO::PARAM_INT]
+        );
+        $stmt = $this->connection->query($sql, $params);
+        $rows = $stmt->get();
+        return $rows;
+    }
 
     /**
      * Retrieves the IDs of the users that a given user is following.

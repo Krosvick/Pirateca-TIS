@@ -42,7 +42,7 @@ class UserController extends BaseController{
      *
      * @return void The rendered HTML content of the "likedpost" template.
      */
-    public function likedMovies($id){
+    public function likedMovies($id, $page = 1){
         $ratingsDAO = new RatingsDAO();
         $MoviesDAO = new MoviesDAO();
 
@@ -51,17 +51,21 @@ class UserController extends BaseController{
 
         if($isLogged && $loggedUserId == $id){
             $username = $this->user->get_username();
-            $user_movies = $this->user->get_liked_movies($ratingsDAO, $MoviesDAO, 10);
+            $result = $this->user->get_liked_movies($ratingsDAO, $MoviesDAO, 10, $page);
             $userData = $this->user;
         }else{
             $userData = $this->userDAO->find($id, User::class);
-            $user_movies = $userData->get_liked_movies($ratingsDAO, $MoviesDAO, 15);
+            $result = $userData->get_liked_movies($ratingsDAO, $MoviesDAO, 15, $page);
             $username = $userData->get_username();
         }
+        $user_movies = $result['movies'];
+        $totalPages = $result['totalPages'];
         $data = [
             'user_movies' => $user_movies,
             'username' => $username,
             'userData' => $userData,
+            'page' => $page,
+            'totalPages' => $totalPages,
         ];
         $metadata = [
             'title' => 'Pirateca - Profile',
@@ -132,6 +136,19 @@ class UserController extends BaseController{
      */
     public function follow($id){
         $this->userDAO->add_follower($id, $this->user->get_id());
+        $this->response->redirect("/profile/$id");
+    }
+
+    /**
+     * Unfollows a user and redirects to their profile page.
+     * 
+     * This method deletes a follower from a user and redirects to the profile page of the user being unfollowed.
+     * 
+     * @param int $id The ID of the user to be unfollowed.
+     * @return void
+     */
+    public function unfollow($id){
+        $this->userDAO->delete_follower($id, $this->user->get_id());
         $this->response->redirect("/profile/$id");
     }
 

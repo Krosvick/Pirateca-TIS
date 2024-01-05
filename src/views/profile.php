@@ -54,6 +54,11 @@ use Core\Application;
                         <a href="/follow/<?= $userProfileData->get_id(); ?>">
                             <button class="bg-gray-500 text-white hover:bg-white hover:text-gray-500 border border-gray-300 rounded-md py-2 px-3 w-full">Follow</button>
                         </a>
+                    <?php
+                    elseif(!Application::isGuest() && Application::$app->user->is_following($userProfileData->get_id())): ?>
+                        <a href="/unfollow/<?= $userProfileData->get_id(); ?>">
+                            <button class="bg-gray-500 text-white hover:bg-white hover:text-gray-500 border border-gray-300 rounded-md py-2 px-3 w-full">Unfollow</button>
+                        </a>
                     <?php endif; ?>
                 </div>
             </div>

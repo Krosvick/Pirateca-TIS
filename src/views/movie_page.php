@@ -126,7 +126,10 @@ use Models\Movie;
                                         </a>
                                     <?php elseif(isset(Application::$app->user) && Application::$app->user->get_id() !== $rating->get_user()->get_id()): 
                                     ?>
-                                        <p class="badge badge-primary badge-outline">Followed</p>
+                                        <a href="/unfollow/<?= $rating->get_user()->get_id() ?>" class="badge badge-primary badge-outline hover:scale-110">
+                                            <span class="normal-text">Followed</span>
+                                            <span class="hover-text" style="display: none;">Unfollow</span>
+                                        </a>
                                     <?php endif; ?>
                                     
                                 </div>
@@ -197,7 +200,17 @@ use Models\Movie;
         </div>
     </div>
 </section>
-
+<script>
+    var anchor = document.querySelector('.badge-outline');
+    anchor.addEventListener('mouseover', function() {
+        this.querySelector('.normal-text').style.display = 'none';
+        this.querySelector('.hover-text').style.display = 'inline';
+    });
+    anchor.addEventListener('mouseout', function() {
+        this.querySelector('.normal-text').style.display = 'inline';
+        this.querySelector('.hover-text').style.display = 'none';
+    });
+</script>
 <?php 
 if(isset($hasRated) && $hasRated == true){
     echo '';
