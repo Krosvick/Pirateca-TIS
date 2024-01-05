@@ -74,6 +74,10 @@ Una vez que tenga un archivo requirements.txt, puede instalar los paquetes neces
 pip install -r requirements.txt
 ```
 
+## Activacion del sv simulado
+Una vez terminada la instalacion de los requisitos para el servidor WSL en python se requerirá descargar la base de datos del mismo, estos son 2 archivos faltantes: reprocessed_ratings.csv y algoritmo2.pkl, estos archivos no se pueden subir al repositorio por problemas de peso y se requiere solicitarlos a cualquiera de los integrantes del proyecto, sin estos archivos el servidor no podrá correr.
+
+
 ## Desactivacion de un entorno virtual
 Una vez que haya terminado de trabajar en su proyecto, puede desactivar el entorno virtual. Esto le permitirá volver a su entorno normal. Para desactivar el entorno virtual, puede usar el siguiente comando:
 
