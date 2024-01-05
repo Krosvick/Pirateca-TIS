@@ -371,9 +371,11 @@ class User extends Model{
      * @param int $quantity The number of liked movies to retrieve.
      * @return array An array of movie objects representing the movies that the user has liked.
      */
-    public function get_liked_movies($RatingsDAO, $MoviesDAO, $quantity): array
+    public function get_liked_movies($RatingsDAO, $MoviesDAO, $quantity, $page): array
     {
-        $ratings = $RatingsDAO->get_liked_movies($this->id, $quantity);
+        $result = $RatingsDAO->get_liked_movies($this->id, $quantity, $page);
+        $ratings = $result['movies'];
+        $totalPages = $result['totalPages'];
         $movies = [];
         foreach($ratings as $rating) {
             $movie = $MoviesDAO->find($rating->movie_id, Movie::class);
@@ -381,8 +383,7 @@ class User extends Model{
             array_push($movies, $movie);
         }
 
-        //$movies = $MoviesDAO->get_liked_movies($this->id, $quantity);
-        return $movies;
+        return ['movies' => $movies, 'totalPages' => $totalPages];
     }
 
     /**

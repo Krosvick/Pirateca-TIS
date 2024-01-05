@@ -124,16 +124,32 @@ class RatingsDAO extends DAO {
      * @param int $quantity The number of liked movies to retrieve.
      * @return array An array of rows containing the liked movies for the given user.
      */
-    public function get_liked_movies($user_id, $quantity) {
+    public function get_liked_movies($user_id, $quantity, $page) {
         try {
-            $sql = "SELECT * FROM {$this->table} WHERE user_id = :user_id ORDER BY user_id LIMIT :quantity";
+            // Get total number of liked movies
+            $sql = "SELECT COUNT(*) as total FROM {$this->table} WHERE user_id = :user_id";
+            $params = array('user_id' => [$user_id, PDO::PARAM_INT]);
+            $stmt = $this->connection->query($sql, $params);
+            $totalMovies = $stmt->get()[0]->total;
+
+            // Calculate total pages
+            $totalPages = ceil($totalMovies / $quantity);
+
+            // Calculate offset
+            $offset = ($page - 1) * $quantity;
+
+            // Get liked movies for the current page
+            $sql = "SELECT * FROM {$this->table} WHERE user_id = :user_id ORDER BY user_id LIMIT :quantity OFFSET :offset";
             $params = array(
                 'user_id' => [$user_id, PDO::PARAM_INT],
                 'quantity' => [$quantity, PDO::PARAM_INT],
+                'offset' => [$offset, PDO::PARAM_INT],
             );
             $stmt = $this->connection->query($sql, $params);
             $rows = $stmt->get();
-            return $rows;
+
+            // Return both the movies and the total pages
+            return ['movies' => $rows, 'totalPages' => $totalPages];
         } catch (Exception $e) {
             die($e->getMessage());
         }

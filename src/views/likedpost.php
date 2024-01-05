@@ -31,8 +31,25 @@
     <?php
     if (empty($user_movies)) {
             echo '<div class="flex justify-center mt-5 mx-5">
-                            <h1 class="text-3xl font-bold pb-5 inline">You have not reviewed any movies yet!</h1>
-                        </div>';
+            <h1 class="text-3xl font-bold pb-5 inline">You have not reviewed any movies yet!</h1>
+            </div>';
     }
     ?>
+</div>
+<div class="w-full flex justify-center">
+<?php if (isset($totalPages)): ?>
+    <div class="join flex justify-center w-full max-w-md">
+        <a href="/profile/<?= $userData->get_id() ?>/likedpost/1" class="join-item btn" <?= $page == 1 ? 'disabled' : '' ?>>«</a>
+        <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+            <?php if ($i >= $page - 3 && $i <= $page + 3): ?>
+                <?php if ($i == $page): ?>
+                    <a class="join-item btn btn-active"><?= $i ?></a>
+                <?php else: ?>
+                    <a class="join-item btn" href="/profile/<?= $userData->get_id() ?>/likedpost/<?= $i ?>"><?= $i ?></a>
+                <?php endif; ?>
+            <?php endif; ?>
+        <?php endfor; ?>
+        <a href="/profile/<?= $userData->get_id() ?>/likedpost/<?= $totalPages ?>" class="join-item btn" <?= $page == $totalPages ? 'disabled' : '' ?>>»</a>
+    </div>
+<?php endif; ?>
 </div>
