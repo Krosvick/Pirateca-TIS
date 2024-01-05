@@ -106,12 +106,6 @@
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
     <a href="packages/YourPackage.html" class="">YourPackage</a>
 </h4>
-    <ul class="phpdocumentor-list">
-                    <li>
-                <a href="packages/YourPackage-Request.html" class="">Request</a>
-                
-            </li>
-            </ul>
 
                         </section>
             
@@ -160,21 +154,13 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="controllers/MovieController.php"><a href="files/controllers-moviecontroller.html"><abbr title="controllers/MovieController.php">MovieController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">12</span>
+    <span class="phpdocumentor-element-found-in__line">18</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">Abstract class representing a base controller.</p>
+            <p class="phpdocumentor-summary">MovieController class</p>
 
-    <section class="phpdocumentor-description"><p>This class contains various methods for rendering views, redirecting users, returning JSON data, and managing middleware.</p>
-<p>Example Usage:</p>
-<pre class="prettyprint"><code class="language-php">$controller = new BaseController($container, $routeParams);
-$controller-&gt;render('home', ['title' =&gt; 'Welcome']);
-$controller-&gt;redirect('/login');
-$controller-&gt;json(['message' =&gt; 'Success']);
-$controller-&gt;registerMiddleware(new AuthMiddleware());
-$middleware = $controller-&gt;getMiddleware();
-</code></pre>
+    <section class="phpdocumentor-description"><p>Handles the creation of a new movie by validating the request data, saving it to the database, and redirecting the user to the home page.</p>
 </section>
 
 
@@ -232,12 +218,6 @@ $middleware = $controller-&gt;getMiddleware();
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a href="classes/Controllers-MovieController.html#property_client">$client</a>
-    <span>
-                        &nbsp;: mixed            </span>
-</dt>
-
-            <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Controllers-MovieController.html#property_movieDAO">$movieDAO</a>
     <span>
                         &nbsp;: mixed            </span>
@@ -262,14 +242,14 @@ $middleware = $controller-&gt;getMiddleware();
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
-<dd>Constructor.</dd>
+<dd>MovieController constructor</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Controllers-MovieController.html#method_createMovie">createMovie()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
-<dd>Creates a new Movie object with the provided parameters, registers it using the movieDAO, and performs additional actions to handle the creation process.</dd>
+<dd>Create a new movie</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Core-BaseController.html#method_getMiddleware">getMiddleware()</a>
@@ -351,7 +331,7 @@ $middleware = $controller-&gt;getMiddleware();
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Core/BaseController.php"><a href="files/core-basecontroller.html"><abbr title="Core/BaseController.php">BaseController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">29</span>
+    <span class="phpdocumentor-element-found-in__line">17</span>
 
     </aside>
 
@@ -384,7 +364,7 @@ $middleware = $controller-&gt;getMiddleware();
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Core/BaseController.php"><a href="files/core-basecontroller.html"><abbr title="Core/BaseController.php">BaseController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">28</span>
+    <span class="phpdocumentor-element-found-in__line">16</span>
 
     </aside>
 
@@ -417,7 +397,7 @@ $middleware = $controller-&gt;getMiddleware();
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Core/BaseController.php"><a href="files/core-basecontroller.html"><abbr title="Core/BaseController.php">BaseController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">27</span>
+    <span class="phpdocumentor-element-found-in__line">15</span>
 
     </aside>
 
@@ -450,7 +430,7 @@ $middleware = $controller-&gt;getMiddleware();
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Core/BaseController.php"><a href="files/core-basecontroller.html"><abbr title="Core/BaseController.php">BaseController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">26</span>
+    <span class="phpdocumentor-element-found-in__line">14</span>
 
     </aside>
 
@@ -483,7 +463,7 @@ $middleware = $controller-&gt;getMiddleware();
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Core/BaseController.php"><a href="files/core-basecontroller.html"><abbr title="Core/BaseController.php">BaseController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">25</span>
+    <span class="phpdocumentor-element-found-in__line">13</span>
 
     </aside>
 
@@ -492,39 +472,6 @@ $middleware = $controller-&gt;getMiddleware();
     <span class="phpdocumentor-signature__visibility">protected</span>
         <span class="phpdocumentor-signature__type">mixed</span>
     <span class="phpdocumentor-signature__name">$routeParams</span>
-    </code>
-
-    
-    
-    
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -private
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="property_client">
-        $client
-        <a href="classes/Controllers-MovieController.html#property_client" class="headerlink"><i class="fas fa-link"></i></a>
-
-        <span class="phpdocumentor-element__modifiers">
-                                </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="controllers/MovieController.php"><a href="files/controllers-moviecontroller.html"><abbr title="controllers/MovieController.php">MovieController.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">14</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type">mixed</span>
-    <span class="phpdocumentor-signature__name">$client</span>
     </code>
 
     
@@ -549,7 +496,7 @@ $middleware = $controller-&gt;getMiddleware();
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="controllers/MovieController.php"><a href="files/controllers-moviecontroller.html"><abbr title="controllers/MovieController.php">MovieController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">13</span>
+    <span class="phpdocumentor-element-found-in__line">19</span>
 
     </aside>
 
@@ -582,7 +529,7 @@ $middleware = $controller-&gt;getMiddleware();
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="controllers/MovieController.php"><a href="files/controllers-moviecontroller.html"><abbr title="controllers/MovieController.php">MovieController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">15</span>
+    <span class="phpdocumentor-element-found-in__line">20</span>
 
     </aside>
 
@@ -620,36 +567,38 @@ $middleware = $controller-&gt;getMiddleware();
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="controllers/MovieController.php"><a href="files/controllers-moviecontroller.html"><abbr title="controllers/MovieController.php">MovieController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">17</span>
+    <span class="phpdocumentor-element-found-in__line">30</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Constructor.</p>
+        <p class="phpdocumentor-summary">MovieController constructor</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$base_url</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$routeParams</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$base_url</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$routeParams</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
-        <section class="phpdocumentor-description"><p>Initializes the BaseController object.</p>
+        <section class="phpdocumentor-description"><p>Initializes the movieDAO and movieModel properties and registers the AdminMiddleware middleware for the createMovie action.</p>
 </section>
 
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$base_url</span>
-                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The base URL of the application.</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$routeParams</span>
-                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>An array containing the route parameters.</p>
+                    <section class="phpdocumentor-description"><p>The route parameters passed to the controller.</p>
 </section>
 
             </dd>
@@ -673,11 +622,11 @@ $middleware = $controller-&gt;getMiddleware();
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="controllers/MovieController.php"><a href="files/controllers-moviecontroller.html"><abbr title="controllers/MovieController.php">MovieController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">37</span>
+    <span class="phpdocumentor-element-found-in__line">45</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Creates a new Movie object with the provided parameters, registers it using the movieDAO, and performs additional actions to handle the creation process.</p>
+        <p class="phpdocumentor-summary">Create a new movie</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -685,11 +634,22 @@ $middleware = $controller-&gt;getMiddleware();
 
     <div class="phpdocumentor-label-line">
         </div>
-    
+        <section class="phpdocumentor-description"><p>If the request method is POST, validate the request data, save the movie to the database, set a success flash message in the session, and redirect the user to the home page.
+If the request method is not POST, render the createMovie view with the Movie model and metadata.</p>
+</section>
+
     
     
 
-    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">void</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The rendered view as the response.</p>
+</section>
+
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -705,7 +665,7 @@ $middleware = $controller-&gt;getMiddleware();
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Core/BaseController.php"><a href="files/core-basecontroller.html"><abbr title="Core/BaseController.php">BaseController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">119</span>
+    <span class="phpdocumentor-element-found-in__line">107</span>
 
     </aside>
 
@@ -745,7 +705,7 @@ $middleware = $controller-&gt;getMiddleware();
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Core/BaseController.php"><a href="files/core-basecontroller.html"><abbr title="Core/BaseController.php">BaseController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">109</span>
+    <span class="phpdocumentor-element-found-in__line">97</span>
 
     </aside>
 
@@ -789,7 +749,7 @@ $middleware = $controller-&gt;getMiddleware();
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Core/BaseController.php"><a href="files/core-basecontroller.html"><abbr title="Core/BaseController.php">BaseController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">61</span>
+    <span class="phpdocumentor-element-found-in__line">49</span>
 
     </aside>
 
@@ -823,7 +783,7 @@ $middleware = $controller-&gt;getMiddleware();
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Core/BaseController.php"><a href="files/core-basecontroller.html"><abbr title="Core/BaseController.php">BaseController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">51</span>
+    <span class="phpdocumentor-element-found-in__line">39</span>
 
     </aside>
 
@@ -857,7 +817,7 @@ $middleware = $controller-&gt;getMiddleware();
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Core/BaseController.php"><a href="files/core-basecontroller.html"><abbr title="Core/BaseController.php">BaseController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">97</span>
+    <span class="phpdocumentor-element-found-in__line">85</span>
 
     </aside>
 
@@ -901,7 +861,7 @@ $middleware = $controller-&gt;getMiddleware();
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Core/BaseController.php"><a href="files/core-basecontroller.html"><abbr title="Core/BaseController.php">BaseController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">85</span>
+    <span class="phpdocumentor-element-found-in__line">73</span>
 
     </aside>
 
@@ -954,7 +914,7 @@ $middleware = $controller-&gt;getMiddleware();
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Core/BaseController.php"><a href="files/core-basecontroller.html"><abbr title="Core/BaseController.php">BaseController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">73</span>
+    <span class="phpdocumentor-element-found-in__line">61</span>
 
     </aside>
 
@@ -1111,7 +1071,6 @@ $middleware = $controller-&gt;getMiddleware();
                                                     <li><a href="classes/Core-BaseController.html#property_request">$request<a href="classes/Controllers-MovieController.html"></li>
                                                     <li><a href="classes/Core-BaseController.html#property_response">$response<a href="classes/Controllers-MovieController.html"></li>
                                                     <li><a href="classes/Core-BaseController.html#property_routeParams">$routeParams<a href="classes/Controllers-MovieController.html"></li>
-                                                    <li><a href="classes/Controllers-MovieController.html#property_client">$client<a href="classes/Controllers-MovieController.html"></li>
                                                     <li><a href="classes/Controllers-MovieController.html#property_movieDAO">$movieDAO<a href="classes/Controllers-MovieController.html"></li>
                                                     <li><a href="classes/Controllers-MovieController.html#property_movieModel">$movieModel<a href="classes/Controllers-MovieController.html"></li>
                                             </ul>

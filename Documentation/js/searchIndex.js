@@ -1,9 +1,44 @@
 Search.appendIndex(
     [
                 {
+            "fqsen": "\\Controllers\\CommentsController",
+            "name": "CommentsController",
+            "summary": "Class\u0020InfoController",
+            "url": "classes/Controllers-CommentsController.html"
+        },                {
+            "fqsen": "\\Controllers\\CommentsController\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "InfoController\u0020constructor.",
+            "url": "classes/Controllers-CommentsController.html#method___construct"
+        },                {
+            "fqsen": "\\Controllers\\CommentsController\u003A\u003AcreateComment\u0028\u0029",
+            "name": "createComment",
+            "summary": "Creates\u0020a\u0020new\u0020comment\u0020by\u0020processing\u0020the\u0020request\u0020body,\u0020validating\u0020the\u0020comment\u0020data,\nregistering\u0020the\u0020comment\u0020in\u0020the\u0020database,\u0020and\u0020sending\u0020a\u0020response.",
+            "url": "classes/Controllers-CommentsController.html#method_createComment"
+        },                {
+            "fqsen": "\\Controllers\\CommentsController\u003A\u003AgetComments\u0028\u0029",
+            "name": "getComments",
+            "summary": "Retrieves\u0020comments\u0020from\u0020the\u0020database,\u0020creates\u0020Comment\u0020objects,\u0020and\u0020renders\u0020them\u0020into\u0020a\u0020string.",
+            "url": "classes/Controllers-CommentsController.html#method_getComments"
+        },                {
+            "fqsen": "\\Controllers\\CommentsController\u003A\u003A\u0024commentDAO",
+            "name": "commentDAO",
+            "summary": "",
+            "url": "classes/Controllers-CommentsController.html#property_commentDAO"
+        },                {
+            "fqsen": "\\Controllers\\CommentsController\u003A\u003A\u0024userDAO",
+            "name": "userDAO",
+            "summary": "",
+            "url": "classes/Controllers-CommentsController.html#property_userDAO"
+        },                {
+            "fqsen": "\\Controllers\\CommentsController\u003A\u003A\u0024ratingsDAO",
+            "name": "ratingsDAO",
+            "summary": "",
+            "url": "classes/Controllers-CommentsController.html#property_ratingsDAO"
+        },                {
             "fqsen": "\\Controllers\\IndexController",
             "name": "IndexController",
-            "summary": "Abstract\u0020class\u0020representing\u0020a\u0020base\u0020controller.",
+            "summary": "Class\u0020IndexController",
             "url": "classes/Controllers-IndexController.html"
         },                {
             "fqsen": "\\Controllers\\IndexController\u003A\u003A__construct\u0028\u0029",
@@ -13,7 +48,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Controllers\\IndexController\u003A\u003Aindex\u0028\u0029",
             "name": "index",
-            "summary": "",
+            "summary": "Retrieves\u0020recommended\u0020movies\u0020for\u0020a\u0020user\u0020and\u0020prepares\u0020the\u0020data\u0020to\u0020be\u0020rendered\u0020in\u0020a\u0020view.",
             "url": "classes/Controllers-IndexController.html#method_index"
         },                {
             "fqsen": "\\Controllers\\IndexController\u003A\u003A\u0024user",
@@ -33,27 +68,27 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Controllers\\InfoController",
             "name": "InfoController",
-            "summary": "Abstract\u0020class\u0020representing\u0020a\u0020base\u0020controller.",
+            "summary": "Class\u0020InfoController",
             "url": "classes/Controllers-InfoController.html"
         },                {
             "fqsen": "\\Controllers\\InfoController\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "Constructor.",
+            "summary": "InfoController\u0020constructor.",
             "url": "classes/Controllers-InfoController.html#method___construct"
         },                {
             "fqsen": "\\Controllers\\InfoController\u003A\u003AinfoPage\u0028\u0029",
             "name": "infoPage",
-            "summary": "",
+            "summary": "Method\u0020to\u0020display\u0020the\u0020information\u0020page.",
             "url": "classes/Controllers-InfoController.html#method_infoPage"
         },                {
             "fqsen": "\\Controllers\\LoginController",
             "name": "LoginController",
-            "summary": "Abstract\u0020class\u0020representing\u0020a\u0020base\u0020controller.",
+            "summary": "Class\u0020LoginController",
             "url": "classes/Controllers-LoginController.html"
         },                {
             "fqsen": "\\Controllers\\LoginController\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "Constructor.",
+            "summary": "LoginController\u0020constructor.",
             "url": "classes/Controllers-LoginController.html#method___construct"
         },                {
             "fqsen": "\\Controllers\\LoginController\u003A\u003Aindex\u0028\u0029",
@@ -68,28 +103,23 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Controllers\\MovieController",
             "name": "MovieController",
-            "summary": "Abstract\u0020class\u0020representing\u0020a\u0020base\u0020controller.",
+            "summary": "MovieController\u0020class",
             "url": "classes/Controllers-MovieController.html"
         },                {
             "fqsen": "\\Controllers\\MovieController\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "Constructor.",
+            "summary": "MovieController\u0020constructor",
             "url": "classes/Controllers-MovieController.html#method___construct"
         },                {
             "fqsen": "\\Controllers\\MovieController\u003A\u003AcreateMovie\u0028\u0029",
             "name": "createMovie",
-            "summary": "Creates\u0020a\u0020new\u0020Movie\u0020object\u0020with\u0020the\u0020provided\u0020parameters,\u0020registers\u0020it\u0020using\u0020the\u0020movieDAO,\u0020and\u0020performs\u0020additional\u0020actions\u0020to\u0020handle\u0020the\u0020creation\u0020process.",
+            "summary": "Create\u0020a\u0020new\u0020movie",
             "url": "classes/Controllers-MovieController.html#method_createMovie"
         },                {
             "fqsen": "\\Controllers\\MovieController\u003A\u003A\u0024movieDAO",
             "name": "movieDAO",
             "summary": "",
             "url": "classes/Controllers-MovieController.html#property_movieDAO"
-        },                {
-            "fqsen": "\\Controllers\\MovieController\u003A\u003A\u0024client",
-            "name": "client",
-            "summary": "",
-            "url": "classes/Controllers-MovieController.html#property_client"
         },                {
             "fqsen": "\\Controllers\\MovieController\u003A\u003A\u0024movieModel",
             "name": "movieModel",
@@ -98,12 +128,12 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Controllers\\MoviePageController",
             "name": "MoviePageController",
-            "summary": "Abstract\u0020class\u0020representing\u0020a\u0020base\u0020controller.",
+            "summary": "MoviePageController\u0020class\u0020handles\u0020the\u0020logic\u0020for\u0020rendering\u0020the\u0020movie\u0020page\u0020template,\u0020retrieving\u0020movie\u0020and\u0020ratings\u0020data\u0020from\u0020the\u0020database,\u0020and\u0020handling\u0020the\u0020rating\u0020functionality.",
             "url": "classes/Controllers-MoviePageController.html"
         },                {
             "fqsen": "\\Controllers\\MoviePageController\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "Constructor.",
+            "summary": "MoviePageController\u0020constructor.",
             "url": "classes/Controllers-MoviePageController.html#method___construct"
         },                {
             "fqsen": "\\Controllers\\MoviePageController\u003A\u003AmoviePage\u0028\u0029",
@@ -113,12 +143,12 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Controllers\\MoviePageController\u003A\u003AdeleteMovie\u0028\u0029",
             "name": "deleteMovie",
-            "summary": "",
+            "summary": "Deletes\u0020a\u0020movie\u0020from\u0020the\u0020database\u0020using\u0020the\u0020movie\u0027s\u0020ID.",
             "url": "classes/Controllers-MoviePageController.html#method_deleteMovie"
         },                {
             "fqsen": "\\Controllers\\MoviePageController\u003A\u003AdeleteReview\u0028\u0029",
             "name": "deleteReview",
-            "summary": "",
+            "summary": "Deletes\u0020a\u0020review\u0020from\u0020the\u0020database\u0020based\u0020on\u0020the\u0020provided\u0020movie\u0020ID\u0020and\u0020review\u0020ID.",
             "url": "classes/Controllers-MoviePageController.html#method_deleteReview"
         },                {
             "fqsen": "\\Controllers\\MoviePageController\u003A\u003A\u0024client",
@@ -153,12 +183,12 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Controllers\\RegisterController",
             "name": "RegisterController",
-            "summary": "Abstract\u0020class\u0020representing\u0020a\u0020base\u0020controller.",
+            "summary": "Class\u0020RegisterController",
             "url": "classes/Controllers-RegisterController.html"
         },                {
             "fqsen": "\\Controllers\\RegisterController\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "Constructor.",
+            "summary": "RegisterController\u0020constructor.",
             "url": "classes/Controllers-RegisterController.html#method___construct"
         },                {
             "fqsen": "\\Controllers\\RegisterController\u003A\u003Aindex\u0028\u0029",
@@ -186,15 +216,10 @@ Search.appendIndex(
             "summary": "Search\u0020for\u0020movies\u0020based\u0020on\u0020a\u0020search\u0020query\u0020and\u0020page\u0020number.",
             "url": "classes/Controllers-SearchController.html#method_search"
         },                {
-            "fqsen": "\\Controllers\\SearchController\u003A\u003A\u0024movied",
-            "name": "movied",
+            "fqsen": "\\Controllers\\SearchController\u003A\u003A\u0024movieDAO",
+            "name": "movieDAO",
             "summary": "",
-            "url": "classes/Controllers-SearchController.html#property_movied"
-        },                {
-            "fqsen": "\\Controllers\\SearchController\u003A\u003A\u0024moviem",
-            "name": "moviem",
-            "summary": "",
-            "url": "classes/Controllers-SearchController.html#property_moviem"
+            "url": "classes/Controllers-SearchController.html#property_movieDAO"
         },                {
             "fqsen": "\\Controllers\\UserController",
             "name": "UserController",
@@ -225,6 +250,21 @@ Search.appendIndex(
             "name": "follow",
             "summary": "Follows\u0020a\u0020user\u0020and\u0020redirects\u0020to\u0020their\u0020profile\u0020page.",
             "url": "classes/Controllers-UserController.html#method_follow"
+        },                {
+            "fqsen": "\\Controllers\\UserController\u003A\u003AlikeReview\u0028\u0029",
+            "name": "likeReview",
+            "summary": "Method\u0020to\u0020handle\u0020the\u0020action\u0020of\u0020liking\u0020a\u0020review.",
+            "url": "classes/Controllers-UserController.html#method_likeReview"
+        },                {
+            "fqsen": "\\Controllers\\UserController\u003A\u003AdislikeReview\u0028\u0029",
+            "name": "dislikeReview",
+            "summary": "Dislikes\u0020a\u0020review.",
+            "url": "classes/Controllers-UserController.html#method_dislikeReview"
+        },                {
+            "fqsen": "\\Controllers\\UserController\u003A\u003AgetLikeReview\u0028\u0029",
+            "name": "getLikeReview",
+            "summary": "Retrieves\u0020the\u0020like\u0020status\u0020of\u0020a\u0020review\u0020for\u0020the\u0020currently\u0020logged\u002Din\u0020user\u0020and\u0020renders\u0020a\u0020partial\u0020view\u0020accordingly.",
+            "url": "classes/Controllers-UserController.html#method_getLikeReview"
         },                {
             "fqsen": "\\Controllers\\UserController\u003A\u003A\u0024userDAO",
             "name": "userDAO",
@@ -503,17 +543,17 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Core\\DAO\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "",
+            "summary": "DAO\u0020constructor.",
             "url": "classes/Core-DAO.html#method___construct"
         },                {
             "fqsen": "\\Core\\DAO\u003A\u003Aget_some\u0028\u0029",
             "name": "get_some",
-            "summary": "",
+            "summary": "Retrieves\u0020a\u0020specified\u0020number\u0020of\u0020rows\u0020from\u0020a\u0020database\u0020table\u0020with\u0020pagination\u0020support.",
             "url": "classes/Core-DAO.html#method_get_some"
         },                {
             "fqsen": "\\Core\\DAO\u003A\u003Aget_all\u0028\u0029",
             "name": "get_all",
-            "summary": "",
+            "summary": "Retrieves\u0020all\u0020rows\u0020from\u0020the\u0020specified\u0020table.",
             "url": "classes/Core-DAO.html#method_get_all"
         },                {
             "fqsen": "\\Core\\DAO\u003A\u003Afulltext_search\u0028\u0029",
@@ -523,7 +563,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Core\\DAO\u003A\u003Afind\u0028\u0029",
             "name": "find",
-            "summary": "",
+            "summary": "Retrieves\u0020a\u0020single\u0020row\u0020from\u0020the\u0020database\u0020table\u0020based\u0020on\u0020the\u0020provided\u0020id\u0020value.",
             "url": "classes/Core-DAO.html#method_find"
         },                {
             "fqsen": "\\Core\\DAO\u003A\u003AfindBy\u0028\u0029",
@@ -533,27 +573,27 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Core\\DAO\u003A\u003Aregister\u0028\u0029",
             "name": "register",
-            "summary": "",
+            "summary": "Inserts\u0020data\u0020into\u0020a\u0020database\u0020table\u0020based\u0020on\u0020the\u0020attributes\u0020of\u0020an\u0020object.",
             "url": "classes/Core-DAO.html#method_register"
         },                {
             "fqsen": "\\Core\\DAO\u003A\u003Ainsert\u0028\u0029",
             "name": "insert",
-            "summary": "Insert\u0020data\u0020into\u0020a\u0020database\u0020table\u0020using\u0020a\u0020prepared\u0020statement.",
+            "summary": "Insert\u0020data\u0020into\u0020a\u0020database\u0020table.",
             "url": "classes/Core-DAO.html#method_insert"
         },                {
             "fqsen": "\\Core\\DAO\u003A\u003Aupdate\u0028\u0029",
             "name": "update",
-            "summary": "",
+            "summary": "Updates\u0020a\u0020record\u0020in\u0020the\u0020database\u0020table.",
             "url": "classes/Core-DAO.html#method_update"
         },                {
             "fqsen": "\\Core\\DAO\u003A\u003Adelete\u0028\u0029",
             "name": "delete",
-            "summary": "",
+            "summary": "Deletes\u0020a\u0020record\u0020from\u0020the\u0020database\u0020table\u0020based\u0020on\u0020the\u0020provided\u0020ID.",
             "url": "classes/Core-DAO.html#method_delete"
         },                {
             "fqsen": "\\Core\\DAO\u003A\u003AcascadeDelete\u0028\u0029",
             "name": "cascadeDelete",
-            "summary": "",
+            "summary": "Deletes\u0020related\u0020records\u0020from\u0020multiple\u0020tables\u0020based\u0020on\u0020a\u0020given\u0020movie\u0020ID.",
             "url": "classes/Core-DAO.html#method_cascadeDelete"
         },                {
             "fqsen": "\\Core\\DAO\u003A\u003AgetRelations\u0028\u0029",
@@ -563,7 +603,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Core\\DAO\u003A\u003AdeleteAll\u0028\u0029",
             "name": "deleteAll",
-            "summary": "",
+            "summary": "Deletes\u0020all\u0020records\u0020from\u0020the\u0020table\u0020in\u0020the\u0020database.",
             "url": "classes/Core-DAO.html#method_deleteAll"
         },                {
             "fqsen": "\\Core\\DAO\u003A\u003AmatchAttribute\u0028\u0029",
@@ -588,12 +628,12 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Core\\Database",
             "name": "Database",
-            "summary": "",
+            "summary": "Class\u0020Database",
             "url": "classes/Core-Database.html"
         },                {
             "fqsen": "\\Core\\Database\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "",
+            "summary": "Database\u0020constructor.",
             "url": "classes/Core-Database.html#method___construct"
         },                {
             "fqsen": "\\Core\\Database\u003A\u003AgetInstance\u0028\u0029",
@@ -616,36 +656,6 @@ Search.appendIndex(
             "summary": "Retrieves\u0020a\u0020single\u0020row\u0020from\u0020the\u0020database\u0020and\u0020returns\u0020it\u0020as\u0020an\u0020object\u0020of\u0020the\u0020specified\u0020class,\u0020or\u0020as\u0020a\u0020generic\u0020object\u0020if\u0020no\u0020class\u0020is\u0020specified.",
             "url": "classes/Core-Database.html#method_find"
         },                {
-            "fqsen": "\\Core\\Database\u003A\u003AgetSome\u0028\u0029",
-            "name": "getSome",
-            "summary": "Fetch\u0020a\u0020certain\u0020quantity\u0020of\u0020results\u0020from\u0020a\u0020query\u0020based\u0020on\u0020a\u0020limit\u0020and\u0020offset.",
-            "url": "classes/Core-Database.html#method_getSome"
-        },                {
-            "fqsen": "\\Core\\Database\u003A\u003AcascadeDelete\u0028\u0029",
-            "name": "cascadeDelete",
-            "summary": "Cascade\u0020delete\u0020records\u0020in\u0020multiple\u0020tables\u0020based\u0020on\u0020an\u0020ID.",
-            "url": "classes/Core-Database.html#method_cascadeDelete"
-        },                {
-            "fqsen": "\\Core\\Database\u003A\u003ADelete\u0028\u0029",
-            "name": "Delete",
-            "summary": "Update\u0020the\u0020deleted_at\u0020column\u0020of\u0020a\u0020record\u0020in\u0020a\u0020table\u0020based\u0020on\u0020an\u0020ID.",
-            "url": "classes/Core-Database.html#method_Delete"
-        },                {
-            "fqsen": "\\Core\\Database\u003A\u003ADeleteAll\u0028\u0029",
-            "name": "DeleteAll",
-            "summary": "Update\u0020the\u0020deleted_at\u0020column\u0020of\u0020all\u0020records\u0020in\u0020a\u0020table.",
-            "url": "classes/Core-Database.html#method_DeleteAll"
-        },                {
-            "fqsen": "\\Core\\Database\u003A\u003ADeleteAllHard\u0028\u0029",
-            "name": "DeleteAllHard",
-            "summary": "Delete\u0020all\u0020records\u0020from\u0020a\u0020table\u0020and\u0020reset\u0020the\u0020auto\u002Dincrement\u0020value.",
-            "url": "classes/Core-Database.html#method_DeleteAllHard"
-        },                {
-            "fqsen": "\\Core\\Database\u003A\u003AJoinFilter\u0028\u0029",
-            "name": "JoinFilter",
-            "summary": "Perform\u0020a\u0020join\u0020query\u0020with\u0020a\u0020pivot\u0020table\u0020and\u0020filter\u0020the\u0020results.",
-            "url": "classes/Core-Database.html#method_JoinFilter"
-        },                {
             "fqsen": "\\Core\\Database\u003A\u003A\u0024instance",
             "name": "instance",
             "summary": "",
@@ -663,7 +673,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Core\\Exceptions\\ForbiddenException",
             "name": "ForbiddenException",
-            "summary": "",
+            "summary": "Class\u0020ForbiddenException",
             "url": "classes/Core-Exceptions-ForbiddenException.html"
         },                {
             "fqsen": "\\Core\\Exceptions\\ForbiddenException\u003A\u003A__construct\u0028\u0029",
@@ -683,12 +693,12 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Core\\Middleware\\AdminMiddleware",
             "name": "AdminMiddleware",
-            "summary": "Abstract\u0020class\u0020representing\u0020a\u0020base\u0020middleware.",
+            "summary": "Class\u0020AdminMiddleware",
             "url": "classes/Core-Middleware-AdminMiddleware.html"
         },                {
             "fqsen": "\\Core\\Middleware\\AdminMiddleware\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "",
+            "summary": "AdminMiddleware\u0020constructor.",
             "url": "classes/Core-Middleware-AdminMiddleware.html#method___construct"
         },                {
             "fqsen": "\\Core\\Middleware\\AdminMiddleware\u003A\u003Aexecute\u0028\u0029",
@@ -703,17 +713,17 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Core\\Middleware\\AuthMiddleware",
             "name": "AuthMiddleware",
-            "summary": "Abstract\u0020class\u0020representing\u0020a\u0020base\u0020middleware.",
+            "summary": "Class\u0020AuthMiddleware",
             "url": "classes/Core-Middleware-AuthMiddleware.html"
         },                {
             "fqsen": "\\Core\\Middleware\\AuthMiddleware\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "",
+            "summary": "AuthMiddleware\u0020constructor.",
             "url": "classes/Core-Middleware-AuthMiddleware.html#method___construct"
         },                {
             "fqsen": "\\Core\\Middleware\\AuthMiddleware\u003A\u003Aexecute\u0028\u0029",
             "name": "execute",
-            "summary": "Executes\u0020the\u0020method.",
+            "summary": "Executes\u0020the\u0020middleware.",
             "url": "classes/Core-Middleware-AuthMiddleware.html#method_execute"
         },                {
             "fqsen": "\\Core\\Middleware\\AuthMiddleware\u003A\u003A\u0024actions",
@@ -721,25 +731,25 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Core-Middleware-AuthMiddleware.html#property_actions"
         },                {
-            "fqsen": "\\Core\\Middleware\\TestMiddleware",
-            "name": "TestMiddleware",
-            "summary": "Abstract\u0020class\u0020representing\u0020a\u0020base\u0020middleware.",
-            "url": "classes/Core-Middleware-TestMiddleware.html"
+            "fqsen": "\\Core\\Middleware\\LoggedinMiddleware",
+            "name": "LoggedinMiddleware",
+            "summary": "Class\u0020AuthMiddleware",
+            "url": "classes/Core-Middleware-LoggedinMiddleware.html"
         },                {
-            "fqsen": "\\Core\\Middleware\\TestMiddleware\u003A\u003A__construct\u0028\u0029",
+            "fqsen": "\\Core\\Middleware\\LoggedinMiddleware\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "",
-            "url": "classes/Core-Middleware-TestMiddleware.html#method___construct"
+            "summary": "AuthMiddleware\u0020constructor.",
+            "url": "classes/Core-Middleware-LoggedinMiddleware.html#method___construct"
         },                {
-            "fqsen": "\\Core\\Middleware\\TestMiddleware\u003A\u003Aexecute\u0028\u0029",
+            "fqsen": "\\Core\\Middleware\\LoggedinMiddleware\u003A\u003Aexecute\u0028\u0029",
             "name": "execute",
-            "summary": "Executes\u0020the\u0020method.",
-            "url": "classes/Core-Middleware-TestMiddleware.html#method_execute"
+            "summary": "Executes\u0020the\u0020middleware.",
+            "url": "classes/Core-Middleware-LoggedinMiddleware.html#method_execute"
         },                {
-            "fqsen": "\\Core\\Middleware\\TestMiddleware\u003A\u003A\u0024container",
-            "name": "container",
+            "fqsen": "\\Core\\Middleware\\LoggedinMiddleware\u003A\u003A\u0024actions",
+            "name": "actions",
             "summary": "",
-            "url": "classes/Core-Middleware-TestMiddleware.html#property_container"
+            "url": "classes/Core-Middleware-LoggedinMiddleware.html#property_actions"
         },                {
             "fqsen": "\\Core\\Model",
             "name": "Model",
@@ -863,7 +873,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Core\\Request\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "",
+            "summary": "Request\u0020constructor.",
             "url": "classes/Core-Request.html#method___construct"
         },                {
             "fqsen": "\\Core\\Request\u003A\u003AsetBaseUrl\u0028\u0029",
@@ -956,10 +966,25 @@ Search.appendIndex(
             "summary": "Sets\u0020the\u0020HTTP\u0020response\u0020code\u0020for\u0020the\u0020current\u0020request.",
             "url": "classes/Core-Response.html#method_setStatusCode"
         },                {
+            "fqsen": "\\Core\\Response\u003A\u003AsetContent\u0028\u0029",
+            "name": "setContent",
+            "summary": "Sets\u0020the\u0020content\u0020of\u0020the\u0020response\u0020object.",
+            "url": "classes/Core-Response.html#method_setContent"
+        },                {
+            "fqsen": "\\Core\\Response\u003A\u003Asend\u0028\u0029",
+            "name": "send",
+            "summary": "Sends\u0020the\u0020content\u0020of\u0020the\u0020response.",
+            "url": "classes/Core-Response.html#method_send"
+        },                {
             "fqsen": "\\Core\\Response\u003A\u003A\u0024view",
             "name": "view",
             "summary": "The\u0020View\u0020instance\u0020used\u0020for\u0020rendering\u0020views.",
             "url": "classes/Core-Response.html#property_view"
+        },                {
+            "fqsen": "\\Core\\Response\u003A\u003A\u0024content",
+            "name": "content",
+            "summary": "",
+            "url": "classes/Core-Response.html#property_content"
         },                {
             "fqsen": "\\Core\\Router",
             "name": "Router",
@@ -1146,6 +1171,21 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Core-View.html#property_base_url"
         },                {
+            "fqsen": "\\DAO\\CommentsDAO",
+            "name": "CommentsDAO",
+            "summary": "Class\u0020commentsDAO",
+            "url": "classes/DAO-CommentsDAO.html"
+        },                {
+            "fqsen": "\\DAO\\CommentsDAO\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Constructor\u0020method\u0020for\u0020commentsDAO\u0020class.",
+            "url": "classes/DAO-CommentsDAO.html#method___construct"
+        },                {
+            "fqsen": "\\DAO\\CommentsDAO\u003A\u003AgetComments\u0028\u0029",
+            "name": "getComments",
+            "summary": "Retrieves\u0020comments\u0020from\u0020the\u0020database\u0020based\u0020on\u0020the\u0020provided\u0020rating\u0020ID,\u0020quantity,\u0020and\u0020sorting\u0020order.",
+            "url": "classes/DAO-CommentsDAO.html#method_getComments"
+        },                {
             "fqsen": "\\DAO\\MoviesDAO",
             "name": "MoviesDAO",
             "summary": "This\u0020is\u0020an\u0020abstract\u0020class\u0020called\u0020\u0060DAO\u0060\u0020that\u0020serves\u0020as\u0020a\u0020base\u0020class\u0020for\u0020data\u0020access\u0020objects.",
@@ -1158,12 +1198,12 @@ Search.appendIndex(
         },                {
             "fqsen": "\\DAO\\RatingsDAO",
             "name": "RatingsDAO",
-            "summary": "This\u0020is\u0020an\u0020abstract\u0020class\u0020called\u0020\u0060DAO\u0060\u0020that\u0020serves\u0020as\u0020a\u0020base\u0020class\u0020for\u0020data\u0020access\u0020objects.",
+            "summary": "Class\u0020RatingsDAO",
             "url": "classes/DAO-RatingsDAO.html"
         },                {
             "fqsen": "\\DAO\\RatingsDAO\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "",
+            "summary": "Constructor\u0020method\u0020for\u0020RatingsDAO.",
             "url": "classes/DAO-RatingsDAO.html#method___construct"
         },                {
             "fqsen": "\\DAO\\RatingsDAO\u003A\u003Aget_all_data\u0028\u0029",
@@ -1191,6 +1231,11 @@ Search.appendIndex(
             "summary": "This\u0020method\u0020retrieves\u0020a\u0020row\u0020from\u0020the\u0020\u0060ratings\u0060\u0020table\u0020in\u0020the\u0020database\u0020based\u0020on\u0020the\u0020given\u0020\u0060user_id\u0060\u0020and\u0020\u0060movie_id\u0060.",
             "url": "classes/DAO-RatingsDAO.html#method_find_by_user_and_movie"
         },                {
+            "fqsen": "\\DAO\\RatingsDAO\u003A\u003Aget_like_count\u0028\u0029",
+            "name": "get_like_count",
+            "summary": "",
+            "url": "classes/DAO-RatingsDAO.html#method_get_like_count"
+        },                {
             "fqsen": "\\DAO\\UsersDAO",
             "name": "UsersDAO",
             "summary": "This\u0020is\u0020an\u0020abstract\u0020class\u0020called\u0020\u0060DAO\u0060\u0020that\u0020serves\u0020as\u0020a\u0020base\u0020class\u0020for\u0020data\u0020access\u0020objects.",
@@ -1215,6 +1260,136 @@ Search.appendIndex(
             "name": "get_followers",
             "summary": "Retrieves\u0020the\u0020IDs\u0020of\u0020the\u0020users\u0020who\u0020are\u0020following\u0020a\u0020given\u0020user.",
             "url": "classes/DAO-UsersDAO.html#method_get_followers"
+        },                {
+            "fqsen": "\\DAO\\UsersDAO\u003A\u003Alike_review\u0028\u0029",
+            "name": "like_review",
+            "summary": "Inserts\u0020a\u0020new\u0020row\u0020into\u0020the\u0020\u0060likes\u0060\u0020table\u0020in\u0020the\u0020database,\u0020with\u0020the\u0020provided\u0020\u0060rating_id\u0060\u0020and\u0020\u0060user_id\u0060\u0020values.",
+            "url": "classes/DAO-UsersDAO.html#method_like_review"
+        },                {
+            "fqsen": "\\DAO\\UsersDAO\u003A\u003Aunlike_review\u0028\u0029",
+            "name": "unlike_review",
+            "summary": "Deletes\u0020a\u0020row\u0020from\u0020the\u0020\u0060likes\u0060\u0020table\u0020in\u0020the\u0020database\u0020based\u0020on\u0020the\u0020given\u0020\u0060review_id\u0060\u0020and\u0020\u0060user_id\u0060.",
+            "url": "classes/DAO-UsersDAO.html#method_unlike_review"
+        },                {
+            "fqsen": "\\DAO\\UsersDAO\u003A\u003Aget_like_review\u0028\u0029",
+            "name": "get_like_review",
+            "summary": "Retrieves\u0020a\u0020row\u0020from\u0020the\u0020\u0060likes\u0060\u0020table\u0020in\u0020the\u0020database\u0020based\u0020on\u0020the\u0020given\u0020\u0060review_id\u0060\u0020and\u0020\u0060user_id\u0060.",
+            "url": "classes/DAO-UsersDAO.html#method_get_like_review"
+        },                {
+            "fqsen": "\\Models\\Comment",
+            "name": "Comment",
+            "summary": "Abstract\u0020class\u0020Model",
+            "url": "classes/Models-Comment.html"
+        },                {
+            "fqsen": "\\Models\\Comment\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Comment\u0020constructor.",
+            "url": "classes/Models-Comment.html#method___construct"
+        },                {
+            "fqsen": "\\Models\\Comment\u003A\u003Aget_id\u0028\u0029",
+            "name": "get_id",
+            "summary": "",
+            "url": "classes/Models-Comment.html#method_get_id"
+        },                {
+            "fqsen": "\\Models\\Comment\u003A\u003Aset_id\u0028\u0029",
+            "name": "set_id",
+            "summary": "Set\u0020the\u0020ID\u0020of\u0020the\u0020comment.",
+            "url": "classes/Models-Comment.html#method_set_id"
+        },                {
+            "fqsen": "\\Models\\Comment\u003A\u003Aget_user\u0028\u0029",
+            "name": "get_user",
+            "summary": "Get\u0020the\u0020user\u0020associated\u0020with\u0020the\u0020comment.",
+            "url": "classes/Models-Comment.html#method_get_user"
+        },                {
+            "fqsen": "\\Models\\Comment\u003A\u003Aset_user\u0028\u0029",
+            "name": "set_user",
+            "summary": "Set\u0020the\u0020user\u0020associated\u0020with\u0020the\u0020comment.",
+            "url": "classes/Models-Comment.html#method_set_user"
+        },                {
+            "fqsen": "\\Models\\Comment\u003A\u003Aget_rating\u0028\u0029",
+            "name": "get_rating",
+            "summary": "Get\u0020the\u0020rating\u0020associated\u0020with\u0020the\u0020comment.",
+            "url": "classes/Models-Comment.html#method_get_rating"
+        },                {
+            "fqsen": "\\Models\\Comment\u003A\u003Aset_rating\u0028\u0029",
+            "name": "set_rating",
+            "summary": "Set\u0020the\u0020rating\u0020associated\u0020with\u0020the\u0020comment.",
+            "url": "classes/Models-Comment.html#method_set_rating"
+        },                {
+            "fqsen": "\\Models\\Comment\u003A\u003Aget_comment\u0028\u0029",
+            "name": "get_comment",
+            "summary": "Get\u0020the\u0020comment.",
+            "url": "classes/Models-Comment.html#method_get_comment"
+        },                {
+            "fqsen": "\\Models\\Comment\u003A\u003Aset_comment\u0028\u0029",
+            "name": "set_comment",
+            "summary": "Set\u0020the\u0020comment.",
+            "url": "classes/Models-Comment.html#method_set_comment"
+        },                {
+            "fqsen": "\\Models\\Comment\u003A\u003Aget_created_at\u0028\u0029",
+            "name": "get_created_at",
+            "summary": "",
+            "url": "classes/Models-Comment.html#method_get_created_at"
+        },                {
+            "fqsen": "\\Models\\Comment\u003A\u003Aset_created_at\u0028\u0029",
+            "name": "set_created_at",
+            "summary": "",
+            "url": "classes/Models-Comment.html#method_set_created_at"
+        },                {
+            "fqsen": "\\Models\\Comment\u003A\u003Aget_user_id\u0028\u0029",
+            "name": "get_user_id",
+            "summary": "",
+            "url": "classes/Models-Comment.html#method_get_user_id"
+        },                {
+            "fqsen": "\\Models\\Comment\u003A\u003Aget_review_id\u0028\u0029",
+            "name": "get_review_id",
+            "summary": "",
+            "url": "classes/Models-Comment.html#method_get_review_id"
+        },                {
+            "fqsen": "\\Models\\Comment\u003A\u003AprimaryKey\u0028\u0029",
+            "name": "primaryKey",
+            "summary": "Get\u0020the\u0020primary\u0020key\u0020of\u0020the\u0020Rating\u0020model.",
+            "url": "classes/Models-Comment.html#method_primaryKey"
+        },                {
+            "fqsen": "\\Models\\Comment\u003A\u003Arules\u0028\u0029",
+            "name": "rules",
+            "summary": "Get\u0020the\u0020validation\u0020rules\u0020for\u0020the\u0020\u0027original_title\u0027\u0020attribute.",
+            "url": "classes/Models-Comment.html#method_rules"
+        },                {
+            "fqsen": "\\Models\\Comment\u003A\u003Aattributes\u0028\u0029",
+            "name": "attributes",
+            "summary": "Get\u0020all\u0020the\u0020attributes\u0020of\u0020the\u0020\u0027Movie\u0027\u0020class.",
+            "url": "classes/Models-Comment.html#method_attributes"
+        },                {
+            "fqsen": "\\Models\\Comment\u003A\u003Arender\u0028\u0029",
+            "name": "render",
+            "summary": "Renders\u0020a\u0020comment\u0020by\u0020extracting\u0020the\u0020necessary\u0020data\u0020and\u0020passing\u0020it\u0020to\u0020a\u0020view\u0020file.",
+            "url": "classes/Models-Comment.html#method_render"
+        },                {
+            "fqsen": "\\Models\\Comment\u003A\u003A\u0024id",
+            "name": "id",
+            "summary": "",
+            "url": "classes/Models-Comment.html#property_id"
+        },                {
+            "fqsen": "\\Models\\Comment\u003A\u003A\u0024user",
+            "name": "user",
+            "summary": "",
+            "url": "classes/Models-Comment.html#property_user"
+        },                {
+            "fqsen": "\\Models\\Comment\u003A\u003A\u0024rating",
+            "name": "rating",
+            "summary": "",
+            "url": "classes/Models-Comment.html#property_rating"
+        },                {
+            "fqsen": "\\Models\\Comment\u003A\u003A\u0024comment",
+            "name": "comment",
+            "summary": "",
+            "url": "classes/Models-Comment.html#property_comment"
+        },                {
+            "fqsen": "\\Models\\Comment\u003A\u003A\u0024created_at",
+            "name": "created_at",
+            "summary": "",
+            "url": "classes/Models-Comment.html#property_created_at"
         },                {
             "fqsen": "\\Models\\Movie",
             "name": "Movie",
@@ -1348,22 +1523,22 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Models\\Movie\u003A\u003Aget_ratings\u0028\u0029",
             "name": "get_ratings",
-            "summary": "",
+            "summary": "Retrieves\u0020the\u0020ratings\u0020of\u0020the\u0020movie.",
             "url": "classes/Models-Movie.html#method_get_ratings"
         },                {
             "fqsen": "\\Models\\Movie\u003A\u003Aset_ratings\u0028\u0029",
             "name": "set_ratings",
-            "summary": "",
+            "summary": "Sets\u0020the\u0020ratings\u0020for\u0020the\u0020movie.",
             "url": "classes/Models-Movie.html#method_set_ratings"
         },                {
             "fqsen": "\\Models\\Movie\u003A\u003Aget_poster_status\u0028\u0029",
             "name": "get_poster_status",
-            "summary": "",
+            "summary": "Returns\u0020the\u0020value\u0020of\u0020the\u0020\u0060poster_status\u0060\u0020property.",
             "url": "classes/Models-Movie.html#method_get_poster_status"
         },                {
             "fqsen": "\\Models\\Movie\u003A\u003Aset_poster_status\u0028\u0029",
             "name": "set_poster_status",
-            "summary": "",
+            "summary": "Sets\u0020the\u0020value\u0020of\u0020the\u0020\u0060poster_status\u0060\u0020property\u0020based\u0020on\u0020the\u0020input\u0020parameter.",
             "url": "classes/Models-Movie.html#method_set_poster_status"
         },                {
             "fqsen": "\\Models\\Movie\u003A\u003Arules\u0028\u0029",
@@ -1381,14 +1556,14 @@ Search.appendIndex(
             "summary": "Get\u0020the\u0020primary\u0020key\u0020of\u0020the\u0020movie.",
             "url": "classes/Models-Movie.html#method_primaryKey"
         },                {
-            "fqsen": "\\Models\\Movie\u003A\u003Afind_movies\u0028\u0029",
-            "name": "find_movies",
-            "summary": "Find\u0020movies\u0020based\u0020on\u0020the\u0020given\u0020list\u0020of\u0020movie\u0020IDs.",
-            "url": "classes/Models-Movie.html#method_find_movies"
+            "fqsen": "\\Models\\Movie\u003A\u003AmoviePosterFallbackArray\u0028\u0029",
+            "name": "moviePosterFallbackArray",
+            "summary": "A\u0020method\u0020that\u0020checks\u0020the\u0020availability\u0020of\u0020movie\u0020posters\u0020and\u0020updates\u0020their\u0020status\u0020in\u0020a\u0020database.",
+            "url": "classes/Models-Movie.html#method_moviePosterFallbackArray"
         },                {
             "fqsen": "\\Models\\Movie\u003A\u003AmoviePosterFallback\u0028\u0029",
             "name": "moviePosterFallback",
-            "summary": "",
+            "summary": "A\u0020method\u0020that\u0020checks\u0020if\u0020a\u0020movie\u0027s\u0020poster\u0020is\u0020available\u0020and\u0020updates\u0020its\u0020status\u0020accordingly.",
             "url": "classes/Models-Movie.html#method_moviePosterFallback"
         },                {
             "fqsen": "\\Models\\Movie\u003A\u003AMovieDirectorRetrieval\u0028\u0029",
@@ -1400,21 +1575,6 @@ Search.appendIndex(
             "name": "search_movie",
             "summary": "",
             "url": "classes/Models-Movie.html#method_search_movie"
-        },                {
-            "fqsen": "\\Models\\Movie\u003A\u003Aget_all\u0028\u0029",
-            "name": "get_all",
-            "summary": "",
-            "url": "classes/Models-Movie.html#method_get_all"
-        },                {
-            "fqsen": "\\Models\\Movie\u003A\u003Adelete_movie\u0028\u0029",
-            "name": "delete_movie",
-            "summary": "",
-            "url": "classes/Models-Movie.html#method_delete_movie"
-        },                {
-            "fqsen": "\\Models\\Movie\u003A\u003Aadd_movie\u0028\u0029",
-            "name": "add_movie",
-            "summary": "",
-            "url": "classes/Models-Movie.html#method_add_movie"
         },                {
             "fqsen": "\\Models\\Movie\u003A\u003A\u0024id",
             "name": "id",
@@ -1485,11 +1645,6 @@ Search.appendIndex(
             "name": "ratings",
             "summary": "",
             "url": "classes/Models-Movie.html#property_ratings"
-        },                {
-            "fqsen": "\\Models\\Movie\u003A\u003A\u0024moviesDAO",
-            "name": "moviesDAO",
-            "summary": "",
-            "url": "classes/Models-Movie.html#property_moviesDAO"
         },                {
             "fqsen": "\\Models\\Rating",
             "name": "Rating",
@@ -1566,25 +1721,15 @@ Search.appendIndex(
             "summary": "Get\u0020the\u0020primary\u0020key\u0020of\u0020the\u0020Rating\u0020model.",
             "url": "classes/Models-Rating.html#method_primaryKey"
         },                {
-            "fqsen": "\\Models\\Rating\u003A\u003Asearch_by_movie_id\u0028\u0029",
-            "name": "search_by_movie_id",
-            "summary": "Search\u0020for\u0020ratings\u0020by\u0020movie\u0020ID.",
-            "url": "classes/Models-Rating.html#method_search_by_movie_id"
+            "fqsen": "\\Models\\Rating\u003A\u003Arules\u0028\u0029",
+            "name": "rules",
+            "summary": "Get\u0020the\u0020validation\u0020rules\u0020for\u0020the\u0020\u0027original_title\u0027\u0020attribute.",
+            "url": "classes/Models-Rating.html#method_rules"
         },                {
-            "fqsen": "\\Models\\Rating\u003A\u003Aadd_rating\u0028\u0029",
-            "name": "add_rating",
-            "summary": "Add\u0020a\u0020new\u0020rating.",
-            "url": "classes/Models-Rating.html#method_add_rating"
-        },                {
-            "fqsen": "\\Models\\Rating\u003A\u003Adelete_review\u0028\u0029",
-            "name": "delete_review",
-            "summary": "Delete\u0020a\u0020rating.",
-            "url": "classes/Models-Rating.html#method_delete_review"
-        },                {
-            "fqsen": "\\Models\\Rating\u003A\u003Ashow_movie_ratings\u0028\u0029",
-            "name": "show_movie_ratings",
-            "summary": "Show\u0020ratings\u0020for\u0020a\u0020specific\u0020movie.",
-            "url": "classes/Models-Rating.html#method_show_movie_ratings"
+            "fqsen": "\\Models\\Rating\u003A\u003Aattributes\u0028\u0029",
+            "name": "attributes",
+            "summary": "Get\u0020all\u0020the\u0020attributes\u0020of\u0020the\u0020\u0027Movie\u0027\u0020class.",
+            "url": "classes/Models-Rating.html#method_attributes"
         },                {
             "fqsen": "\\Models\\Rating\u003A\u003Aget_all\u0028\u0029",
             "name": "get_all",
@@ -1595,6 +1740,11 @@ Search.appendIndex(
             "name": "post_all_ratings",
             "summary": "Sends\u0020a\u0020POST\u0020request\u0020to\u0020a\u0020specific\u0020URL\u0020with\u0020the\u0020ratings\u0020data.",
             "url": "classes/Models-Rating.html#method_post_all_ratings"
+        },                {
+            "fqsen": "\\Models\\Rating\u003A\u003Aget_like_count\u0028\u0029",
+            "name": "get_like_count",
+            "summary": "",
+            "url": "classes/Models-Rating.html#method_get_like_count"
         },                {
             "fqsen": "\\Models\\Rating\u003A\u003A\u0024id",
             "name": "id",
@@ -1625,6 +1775,11 @@ Search.appendIndex(
             "name": "created_at",
             "summary": "",
             "url": "classes/Models-Rating.html#property_created_at"
+        },                {
+            "fqsen": "\\Models\\Rating\u003A\u003A\u0024like_count",
+            "name": "like_count",
+            "summary": "",
+            "url": "classes/Models-Rating.html#property_like_count"
         },                {
             "fqsen": "\\Models\\User",
             "name": "User",

@@ -106,12 +106,6 @@
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
     <a href="packages/YourPackage.html" class="">YourPackage</a>
 </h4>
-    <ul class="phpdocumentor-list">
-                    <li>
-                <a href="packages/YourPackage-Request.html" class="">Request</a>
-                
-            </li>
-            </ul>
 
                         </section>
             
@@ -258,6 +252,12 @@ and posting all ratings to a specific URL.</p>
                         &nbsp;: array&lt;string|int, mixed&gt;            </span>
 </dt>
 
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/Models-Rating.html#property_like_count">$like_count</a>
+    <span>
+                        &nbsp;: mixed            </span>
+</dt>
+
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Models-Rating.html#property_created_at">$created_at</a>
     <span>
@@ -324,10 +324,11 @@ and posting all ratings to a specific URL.</p>
 <dd>Adds an error message to the `errors` array based on a given attribute, rule, and optional parameters.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Core-Model.html#method_attributes">attributes()</a>
+    <a href="classes/Models-Rating.html#method_attributes">attributes()</a>
     <span>
                                 &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
+<dd>Get all the attributes of the &#039;Movie&#039; class.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Core-Model.html#method_errorMessage">errorMessage()</a>
@@ -358,9 +359,15 @@ and posting all ratings to a specific URL.</p>
 <dd>Get the ID of the rating.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/Models-Rating.html#method_get_like_count">get_like_count()</a>
+    <span>
+                                &nbsp;: mixed    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Models-Rating.html#method_get_movie">get_movie()</a>
     <span>
-                                &nbsp;: string    </span>
+                                &nbsp;: <a href="classes/Models-Movie.html"><abbr title="\Models\Movie">Movie</abbr></a>    </span>
 </dt>
 <dd>Get the movie associated with the rating.</dd>
 
@@ -381,7 +388,7 @@ and posting all ratings to a specific URL.</p>
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Models-Rating.html#method_get_user">get_user()</a>
     <span>
-                                &nbsp;: string    </span>
+                                &nbsp;: <a href="classes/Models-User.html"><abbr title="\Models\User">User</abbr></a>    </span>
 </dt>
 <dd>Get the user associated with the rating.</dd>
 
@@ -435,17 +442,11 @@ and posting all ratings to a specific URL.</p>
 <dd>Get the primary key of the Rating model.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Core-Model.html#method_rules">rules()</a>
+    <a href="classes/Models-Rating.html#method_rules">rules()</a>
     <span>
                                 &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Models-Rating.html#method_search_by_movie_id">search_by_movie_id()</a>
-    <span>
-                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
-</dt>
-<dd>Search for ratings by movie ID.</dd>
+<dd>Get the validation rules for the &#039;original_title&#039; attribute.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Models-Rating.html#method_set_created_at">set_created_at()</a>
@@ -497,32 +498,11 @@ and posting all ratings to a specific URL.</p>
 <dd>Validates the attributes of the model object based on the defined rules.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
-    <a href="classes/Models-Rating.html#method_add_rating">add_rating()</a>
-    <span>
-                                &nbsp;: mixed    </span>
-</dt>
-<dd>Add a new rating.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -private">
-    <a href="classes/Models-Rating.html#method_delete_review">delete_review()</a>
-    <span>
-                                &nbsp;: mixed    </span>
-</dt>
-<dd>Delete a rating.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a href="classes/Models-Rating.html#method_get_all">get_all()</a>
     <span>
                                 &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
 <dd>Get all ratings.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -private">
-    <a href="classes/Models-Rating.html#method_show_movie_ratings">show_movie_ratings()</a>
-    <span>
-                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
-</dt>
-<dd>Show ratings for a specific movie.</dd>
 
     </dl>
 
@@ -811,6 +791,39 @@ and posting all ratings to a specific URL.</p>
         class="
             phpdocumentor-element
             -property
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_like_count">
+        $like_count
+        <a href="classes/Models-Rating.html#property_like_count" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="models/Rating.php"><a href="files/models-rating.html"><abbr title="models/Rating.php">Rating.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">27</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">$like_count</span>
+    </code>
+
+    
+    
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
             -private
                                                         "
 >
@@ -1027,7 +1040,7 @@ and posting all ratings to a specific URL.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="models/Rating.php"><a href="files/models-rating.html"><abbr title="models/Rating.php">Rating.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">40</span>
+    <span class="phpdocumentor-element-found-in__line">42</span>
 
     </aside>
 
@@ -1035,7 +1048,7 @@ and posting all ratings to a specific URL.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">int|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$id</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Models-User.html"><abbr title="\Models\User">User</abbr></a>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$user</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Models-Movie.html"><abbr title="\Models\Movie">Movie</abbr></a>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$movie</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">float|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$rating</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$review</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$created_at</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">int|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$id</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Models-User.html"><abbr title="\Models\User">User</abbr></a>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$user</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Models-Movie.html"><abbr title="\Models\Movie">Movie</abbr></a>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$movie</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">float|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$rating</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$review</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$created_at</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -1091,10 +1104,12 @@ and posting all ratings to a specific URL.</p>
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$created_at</span>
-                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string|null</span>
                  = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The created_at value.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -1116,7 +1131,7 @@ and posting all ratings to a specific URL.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Core/Model.php"><a href="files/core-model.html"><abbr title="Core/Model.php">Model.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">135</span>
+    <span class="phpdocumentor-element-found-in__line">141</span>
 
     </aside>
 
@@ -1169,7 +1184,7 @@ and posting all ratings to a specific URL.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Core/Model.php"><a href="files/core-model.html"><abbr title="Core/Model.php">Model.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">92</span>
+    <span class="phpdocumentor-element-found-in__line">98</span>
 
     </aside>
 
@@ -1225,17 +1240,18 @@ and posting all ratings to a specific URL.</p>
 >
     <h4 class="phpdocumentor-element__name" id="method_attributes">
         attributes()
-        <a href="classes/Core-Model.html#method_attributes" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Models-Rating.html#method_attributes" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Core/Model.php"><a href="files/core-model.html"><abbr title="Core/Model.php">Model.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="models/Rating.php"><a href="files/models-rating.html"><abbr title="models/Rating.php">Rating.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">36</span>
+    <span class="phpdocumentor-element-found-in__line">198</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Get all the attributes of the &#039;Movie&#039; class.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">attributes</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
@@ -1250,7 +1266,7 @@ and posting all ratings to a specific URL.</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
                     &mdash;
-                <section class="phpdocumentor-description"><p>The empty array.</p>
+                <section class="phpdocumentor-description"><p>All the attributes of the 'Movie' class.</p>
 </section>
 
             </section>
@@ -1270,7 +1286,7 @@ and posting all ratings to a specific URL.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Core/Model.php"><a href="files/core-model.html"><abbr title="Core/Model.php">Model.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">124</span>
+    <span class="phpdocumentor-element-found-in__line">130</span>
 
     </aside>
 
@@ -1322,7 +1338,7 @@ and posting all ratings to a specific URL.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Core/Model.php"><a href="files/core-model.html"><abbr title="Core/Model.php">Model.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">105</span>
+    <span class="phpdocumentor-element-found-in__line">111</span>
 
     </aside>
 
@@ -1362,7 +1378,7 @@ and posting all ratings to a specific URL.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="models/Rating.php"><a href="files/models-rating.html"><abbr title="models/Rating.php">Rating.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">156</span>
+    <span class="phpdocumentor-element-found-in__line">158</span>
 
     </aside>
 
@@ -1402,7 +1418,7 @@ and posting all ratings to a specific URL.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="models/Rating.php"><a href="files/models-rating.html"><abbr title="models/Rating.php">Rating.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">57</span>
+    <span class="phpdocumentor-element-found-in__line">59</span>
 
     </aside>
 
@@ -1434,6 +1450,47 @@ and posting all ratings to a specific URL.</p>
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_get_like_count">
+        get_like_count()
+        <a href="classes/Models-Rating.html#method_get_like_count" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="models/Rating.php"><a href="files/models-rating.html"><abbr title="models/Rating.php">Rating.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">237</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">get_like_count</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$ratingsDAO</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$ratingsDAO</span>
+                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_get_movie">
         get_movie()
         <a href="classes/Models-Rating.html#method_get_movie" class="headerlink"><i class="fas fa-link"></i></a>
@@ -1442,7 +1499,7 @@ and posting all ratings to a specific URL.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="models/Rating.php"><a href="files/models-rating.html"><abbr title="models/Rating.php">Rating.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">97</span>
+    <span class="phpdocumentor-element-found-in__line">99</span>
 
     </aside>
 
@@ -1450,7 +1507,7 @@ and posting all ratings to a specific URL.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">get_movie</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+                    <span class="phpdocumentor-signature__name">get_movie</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Models-Movie.html"><abbr title="\Models\Movie">Movie</abbr></a></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -1460,7 +1517,7 @@ and posting all ratings to a specific URL.</p>
 
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">string</span>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/Models-Movie.html"><abbr title="\Models\Movie">Movie</abbr></a></span>
                     &mdash;
                 <section class="phpdocumentor-description"><p>The movie associated with the rating.</p>
 </section>
@@ -1482,7 +1539,7 @@ and posting all ratings to a specific URL.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="models/Rating.php"><a href="files/models-rating.html"><abbr title="models/Rating.php">Rating.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">117</span>
+    <span class="phpdocumentor-element-found-in__line">119</span>
 
     </aside>
 
@@ -1522,7 +1579,7 @@ and posting all ratings to a specific URL.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="models/Rating.php"><a href="files/models-rating.html"><abbr title="models/Rating.php">Rating.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">137</span>
+    <span class="phpdocumentor-element-found-in__line">139</span>
 
     </aside>
 
@@ -1562,7 +1619,7 @@ and posting all ratings to a specific URL.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="models/Rating.php"><a href="files/models-rating.html"><abbr title="models/Rating.php">Rating.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">77</span>
+    <span class="phpdocumentor-element-found-in__line">79</span>
 
     </aside>
 
@@ -1570,7 +1627,7 @@ and posting all ratings to a specific URL.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">get_user</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+                    <span class="phpdocumentor-signature__name">get_user</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Models-User.html"><abbr title="\Models\User">User</abbr></a></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -1580,7 +1637,7 @@ and posting all ratings to a specific URL.</p>
 
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">string</span>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/Models-User.html"><abbr title="\Models\User">User</abbr></a></span>
                     &mdash;
                 <section class="phpdocumentor-description"><p>The user associated with the rating.</p>
 </section>
@@ -1602,7 +1659,7 @@ and posting all ratings to a specific URL.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Core/Model.php"><a href="files/core-model.html"><abbr title="Core/Model.php">Model.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">165</span>
+    <span class="phpdocumentor-element-found-in__line">171</span>
 
     </aside>
 
@@ -1642,7 +1699,7 @@ and posting all ratings to a specific URL.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Core/Model.php"><a href="files/core-model.html"><abbr title="Core/Model.php">Model.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">175</span>
+    <span class="phpdocumentor-element-found-in__line">181</span>
 
     </aside>
 
@@ -1694,7 +1751,7 @@ and posting all ratings to a specific URL.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Core/Model.php"><a href="files/core-model.html"><abbr title="Core/Model.php">Model.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">146</span>
+    <span class="phpdocumentor-element-found-in__line">152</span>
 
     </aside>
 
@@ -1746,7 +1803,7 @@ and posting all ratings to a specific URL.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Core/Model.php"><a href="files/core-model.html"><abbr title="Core/Model.php">Model.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">155</span>
+    <span class="phpdocumentor-element-found-in__line">161</span>
 
     </aside>
 
@@ -1787,7 +1844,7 @@ Returns true if there are errors, false if there are no errors.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Core/Model.php"><a href="files/core-model.html"><abbr title="Core/Model.php">Model.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">185</span>
+    <span class="phpdocumentor-element-found-in__line">191</span>
 
     </aside>
 
@@ -1831,7 +1888,7 @@ Returns true if there are errors, false if there are no errors.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="models/Rating.php"><a href="files/models-rating.html"><abbr title="models/Rating.php">Rating.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">248</span>
+    <span class="phpdocumentor-element-found-in__line">226</span>
 
     </aside>
 
@@ -1839,12 +1896,22 @@ Returns true if there are errors, false if there are no errors.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">post_all_ratings</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">post_all_ratings</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$ratingsDAO</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
     
-    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$ratingsDAO</span>
+                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
     
 
             <section>
@@ -1871,7 +1938,7 @@ Returns true if there are errors, false if there are no errors.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="models/Rating.php"><a href="files/models-rating.html"><abbr title="models/Rating.php">Rating.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">176</span>
+    <span class="phpdocumentor-element-found-in__line">178</span>
 
     </aside>
 
@@ -1905,17 +1972,18 @@ Returns true if there are errors, false if there are no errors.</p>
 >
     <h4 class="phpdocumentor-element__name" id="method_rules">
         rules()
-        <a href="classes/Core-Model.html#method_rules" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Models-Rating.html#method_rules" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Core/Model.php"><a href="files/core-model.html"><abbr title="Core/Model.php">Model.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="models/Rating.php"><a href="files/models-rating.html"><abbr title="models/Rating.php">Rating.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">28</span>
+    <span class="phpdocumentor-element-found-in__line">187</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Get the validation rules for the &#039;original_title&#039; attribute.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">rules</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
@@ -1930,59 +1998,7 @@ Returns true if there are errors, false if there are no errors.</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
                     &mdash;
-                <section class="phpdocumentor-description"><p>The rules for the Model.</p>
-</section>
-
-            </section>
-
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_search_by_movie_id">
-        search_by_movie_id()
-        <a href="classes/Models-Rating.html#method_search_by_movie_id" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="models/Rating.php"><a href="files/models-rating.html"><abbr title="models/Rating.php">Rating.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">187</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Search for ratings by movie ID.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">search_by_movie_id</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$movie_id</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$movie_id</span>
-                : <span class="phpdocumentor-signature__argument__return-type">int</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>The ID of the movie to search for ratings.</p>
-</section>
-
-            </dd>
-            </dl>
-
-    
-
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
-                    &mdash;
-                <section class="phpdocumentor-description"><p>An array of ratings for the specified movie.</p>
+                <section class="phpdocumentor-description"><p>The validation rules for the 'original_title' attribute.</p>
 </section>
 
             </section>
@@ -2002,7 +2018,7 @@ Returns true if there are errors, false if there are no errors.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="models/Rating.php"><a href="files/models-rating.html"><abbr title="models/Rating.php">Rating.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">165</span>
+    <span class="phpdocumentor-element-found-in__line">167</span>
 
     </aside>
 
@@ -2046,7 +2062,7 @@ Returns true if there are errors, false if there are no errors.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="models/Rating.php"><a href="files/models-rating.html"><abbr title="models/Rating.php">Rating.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">67</span>
+    <span class="phpdocumentor-element-found-in__line">69</span>
 
     </aside>
 
@@ -2090,7 +2106,7 @@ Returns true if there are errors, false if there are no errors.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="models/Rating.php"><a href="files/models-rating.html"><abbr title="models/Rating.php">Rating.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">107</span>
+    <span class="phpdocumentor-element-found-in__line">109</span>
 
     </aside>
 
@@ -2098,7 +2114,7 @@ Returns true if there are errors, false if there are no errors.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">set_movie</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$movie</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">set_movie</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Models-Movie.html"><abbr title="\Models\Movie">Movie</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$movie</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -2107,7 +2123,7 @@ Returns true if there are errors, false if there are no errors.</p>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$movie</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Models-Movie.html"><abbr title="\Models\Movie">Movie</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"><p>The movie associated with the rating.</p>
@@ -2134,7 +2150,7 @@ Returns true if there are errors, false if there are no errors.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="models/Rating.php"><a href="files/models-rating.html"><abbr title="models/Rating.php">Rating.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">127</span>
+    <span class="phpdocumentor-element-found-in__line">129</span>
 
     </aside>
 
@@ -2178,7 +2194,7 @@ Returns true if there are errors, false if there are no errors.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="models/Rating.php"><a href="files/models-rating.html"><abbr title="models/Rating.php">Rating.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">147</span>
+    <span class="phpdocumentor-element-found-in__line">149</span>
 
     </aside>
 
@@ -2222,7 +2238,7 @@ Returns true if there are errors, false if there are no errors.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="models/Rating.php"><a href="files/models-rating.html"><abbr title="models/Rating.php">Rating.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">87</span>
+    <span class="phpdocumentor-element-found-in__line">89</span>
 
     </aside>
 
@@ -2230,7 +2246,7 @@ Returns true if there are errors, false if there are no errors.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">set_user</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$user</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">set_user</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Models-User.html"><abbr title="\Models\User">User</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$user</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -2239,7 +2255,7 @@ Returns true if there are errors, false if there are no errors.</p>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$user</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Models-User.html"><abbr title="\Models\User">User</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"><p>The user associated with the rating.</p>
@@ -2298,80 +2314,9 @@ Returns true if there are errors, false if there are no errors.</p>
             -private
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_add_rating">
-        add_rating()
-        <a href="classes/Models-Rating.html#method_add_rating" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="models/Rating.php"><a href="files/models-rating.html"><abbr title="models/Rating.php">Rating.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">201</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Add a new rating.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-                    <span class="phpdocumentor-signature__name">add_rating</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$user_id</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">float&nbsp;</span><span class="phpdocumentor-signature__argument__name">$rating</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$movie_id</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$commentary</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$user_id</span>
-                : <span class="phpdocumentor-signature__argument__return-type">int</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>The ID of the user associated with the rating.</p>
-</section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$rating</span>
-                : <span class="phpdocumentor-signature__argument__return-type">float</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>The rating value.</p>
-</section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$movie_id</span>
-                : <span class="phpdocumentor-signature__argument__return-type">int</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>The ID of the movie associated with the rating.</p>
-</section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$commentary</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>The commentary for the rating.</p>
-</section>
-
-            </dd>
-            </dl>
-
-    
-
-    
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -private
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_delete_review">
-        delete_review()
-        <a href="classes/Models-Rating.html#method_delete_review" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_get_all">
+        get_all()
+        <a href="classes/Models-Rating.html#method_get_all" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
@@ -2381,11 +2326,11 @@ Returns true if there are errors, false if there are no errors.</p>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Delete a rating.</p>
+        <p class="phpdocumentor-summary">Get all ratings.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-                    <span class="phpdocumentor-signature__name">delete_review</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$user_id</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$movie_id</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">get_all</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$ratingsDAO</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -2393,57 +2338,14 @@ Returns true if there are errors, false if there are no errors.</p>
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$user_id</span>
-                : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                <span class="phpdocumentor-signature__argument__name">$ratingsDAO</span>
+                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>The ID of the user associated with the rating.</p>
-</section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$movie_id</span>
-                : <span class="phpdocumentor-signature__argument__return-type">int</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>The ID of the movie associated with the rating.</p>
-</section>
-
+                
             </dd>
             </dl>
 
-    
-
-    
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -private
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_get_all">
-        get_all()
-        <a href="classes/Models-Rating.html#method_get_all" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="models/Rating.php"><a href="files/models-rating.html"><abbr title="models/Rating.php">Rating.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">236</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Get all ratings.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-                    <span class="phpdocumentor-signature__name">get_all</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
     
 
             <section>
@@ -2451,58 +2353,6 @@ Returns true if there are errors, false if there are no errors.</p>
         <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
                     &mdash;
                 <section class="phpdocumentor-description"><p>An array of all ratings.</p>
-</section>
-
-            </section>
-
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -private
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_show_movie_ratings">
-        show_movie_ratings()
-        <a href="classes/Models-Rating.html#method_show_movie_ratings" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="models/Rating.php"><a href="files/models-rating.html"><abbr title="models/Rating.php">Rating.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">225</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Show ratings for a specific movie.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-                    <span class="phpdocumentor-signature__name">show_movie_ratings</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$movie_id</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$movie_id</span>
-                : <span class="phpdocumentor-signature__argument__return-type">int</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>The ID of the movie to show ratings for.</p>
-</section>
-
-            </dd>
-            </dl>
-
-    
-
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
-                    &mdash;
-                <section class="phpdocumentor-description"><p>An array of ratings for the specified movie.</p>
 </section>
 
             </section>
@@ -2636,6 +2486,7 @@ Returns true if there are errors, false if there are no errors.</p>
                     <ul class="phpdocumentor-list -clean">
                                                     <li><a href="classes/Core-Model.html#property_DAOs">$DAOs<a href="classes/Models-Rating.html"></li>
                                                     <li><a href="classes/Core-Model.html#property_errors">$errors<a href="classes/Models-Rating.html"></li>
+                                                    <li><a href="classes/Models-Rating.html#property_like_count">$like_count<a href="classes/Models-Rating.html"></li>
                                                     <li><a href="classes/Models-Rating.html#property_created_at">$created_at<a href="classes/Models-Rating.html"></li>
                                                     <li><a href="classes/Models-Rating.html#property_id">$id<a href="classes/Models-Rating.html"></li>
                                                     <li><a href="classes/Models-Rating.html#property_movie">$movie<a href="classes/Models-Rating.html"></li>
@@ -2651,11 +2502,12 @@ Returns true if there are errors, false if there are no errors.</p>
                                             <li><a href="classes/Models-Rating.html#method___construct">__construct()</a></li>
                                             <li><a href="classes/Core-Model.html#method_addError">addError()</a></li>
                                             <li><a href="classes/Core-Model.html#method_addErrorByRule">addErrorByRule()</a></li>
-                                            <li><a href="classes/Core-Model.html#method_attributes">attributes()</a></li>
+                                            <li><a href="classes/Models-Rating.html#method_attributes">attributes()</a></li>
                                             <li><a href="classes/Core-Model.html#method_errorMessage">errorMessage()</a></li>
                                             <li><a href="classes/Core-Model.html#method_errorMessages">errorMessages()</a></li>
                                             <li><a href="classes/Models-Rating.html#method_get_created_at">get_created_at()</a></li>
                                             <li><a href="classes/Models-Rating.html#method_get_id">get_id()</a></li>
+                                            <li><a href="classes/Models-Rating.html#method_get_like_count">get_like_count()</a></li>
                                             <li><a href="classes/Models-Rating.html#method_get_movie">get_movie()</a></li>
                                             <li><a href="classes/Models-Rating.html#method_get_rating">get_rating()</a></li>
                                             <li><a href="classes/Models-Rating.html#method_get_review">get_review()</a></li>
@@ -2667,8 +2519,7 @@ Returns true if there are errors, false if there are no errors.</p>
                                             <li><a href="classes/Core-Model.html#method_loadData">loadData()</a></li>
                                             <li><a href="classes/Models-Rating.html#method_post_all_ratings">post_all_ratings()</a></li>
                                             <li><a href="classes/Models-Rating.html#method_primaryKey">primaryKey()</a></li>
-                                            <li><a href="classes/Core-Model.html#method_rules">rules()</a></li>
-                                            <li><a href="classes/Models-Rating.html#method_search_by_movie_id">search_by_movie_id()</a></li>
+                                            <li><a href="classes/Models-Rating.html#method_rules">rules()</a></li>
                                             <li><a href="classes/Models-Rating.html#method_set_created_at">set_created_at()</a></li>
                                             <li><a href="classes/Models-Rating.html#method_set_id">set_id()</a></li>
                                             <li><a href="classes/Models-Rating.html#method_set_movie">set_movie()</a></li>
@@ -2676,10 +2527,7 @@ Returns true if there are errors, false if there are no errors.</p>
                                             <li><a href="classes/Models-Rating.html#method_set_review">set_review()</a></li>
                                             <li><a href="classes/Models-Rating.html#method_set_user">set_user()</a></li>
                                             <li><a href="classes/Core-Model.html#method_validate">validate()</a></li>
-                                            <li><a href="classes/Models-Rating.html#method_add_rating">add_rating()</a></li>
-                                            <li><a href="classes/Models-Rating.html#method_delete_review">delete_review()</a></li>
                                             <li><a href="classes/Models-Rating.html#method_get_all">get_all()</a></li>
-                                            <li><a href="classes/Models-Rating.html#method_show_movie_ratings">show_movie_ratings()</a></li>
                                     </ul>
             </li>
                     </ul>

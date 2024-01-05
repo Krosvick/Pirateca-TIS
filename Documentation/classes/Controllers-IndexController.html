@@ -106,12 +106,6 @@
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
     <a href="packages/YourPackage.html" class="">YourPackage</a>
 </h4>
-    <ul class="phpdocumentor-list">
-                    <li>
-                <a href="packages/YourPackage-Request.html" class="">Request</a>
-                
-            </li>
-            </ul>
 
                         </section>
             
@@ -160,21 +154,13 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="controllers/IndexController.php"><a href="files/controllers-indexcontroller.html"><abbr title="controllers/IndexController.php">IndexController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">12</span>
+    <span class="phpdocumentor-element-found-in__line">17</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">Abstract class representing a base controller.</p>
+            <p class="phpdocumentor-summary">Class IndexController</p>
 
-    <section class="phpdocumentor-description"><p>This class contains various methods for rendering views, redirecting users, returning JSON data, and managing middleware.</p>
-<p>Example Usage:</p>
-<pre class="prettyprint"><code class="language-php">$controller = new BaseController($container, $routeParams);
-$controller-&gt;render('home', ['title' =&gt; 'Welcome']);
-$controller-&gt;redirect('/login');
-$controller-&gt;json(['message' =&gt; 'Success']);
-$controller-&gt;registerMiddleware(new AuthMiddleware());
-$middleware = $controller-&gt;getMiddleware();
-</code></pre>
+    <section class="phpdocumentor-description"><p>The IndexController class retrieves recommended movies for a user and prepares the data to be rendered in a view.</p>
 </section>
 
 
@@ -274,8 +260,9 @@ $middleware = $controller-&gt;getMiddleware();
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Controllers-IndexController.html#method_index">index()</a>
     <span>
-                                &nbsp;: mixed    </span>
+                                &nbsp;: void    </span>
 </dt>
+<dd>Retrieves recommended movies for a user and prepares the data to be rendered in a view.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Core-BaseController.html#method_registerMiddleware">registerMiddleware()</a>
@@ -350,7 +337,7 @@ $middleware = $controller-&gt;getMiddleware();
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Core/BaseController.php"><a href="files/core-basecontroller.html"><abbr title="Core/BaseController.php">BaseController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">29</span>
+    <span class="phpdocumentor-element-found-in__line">17</span>
 
     </aside>
 
@@ -383,7 +370,7 @@ $middleware = $controller-&gt;getMiddleware();
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Core/BaseController.php"><a href="files/core-basecontroller.html"><abbr title="Core/BaseController.php">BaseController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">28</span>
+    <span class="phpdocumentor-element-found-in__line">16</span>
 
     </aside>
 
@@ -416,7 +403,7 @@ $middleware = $controller-&gt;getMiddleware();
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Core/BaseController.php"><a href="files/core-basecontroller.html"><abbr title="Core/BaseController.php">BaseController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">27</span>
+    <span class="phpdocumentor-element-found-in__line">15</span>
 
     </aside>
 
@@ -449,7 +436,7 @@ $middleware = $controller-&gt;getMiddleware();
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Core/BaseController.php"><a href="files/core-basecontroller.html"><abbr title="Core/BaseController.php">BaseController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">26</span>
+    <span class="phpdocumentor-element-found-in__line">14</span>
 
     </aside>
 
@@ -482,7 +469,7 @@ $middleware = $controller-&gt;getMiddleware();
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Core/BaseController.php"><a href="files/core-basecontroller.html"><abbr title="Core/BaseController.php">BaseController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">25</span>
+    <span class="phpdocumentor-element-found-in__line">13</span>
 
     </aside>
 
@@ -515,7 +502,7 @@ $middleware = $controller-&gt;getMiddleware();
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="controllers/IndexController.php"><a href="files/controllers-indexcontroller.html"><abbr title="controllers/IndexController.php">IndexController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">16</span>
+    <span class="phpdocumentor-element-found-in__line">21</span>
 
     </aside>
 
@@ -548,7 +535,7 @@ $middleware = $controller-&gt;getMiddleware();
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="controllers/IndexController.php"><a href="files/controllers-indexcontroller.html"><abbr title="controllers/IndexController.php">IndexController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">15</span>
+    <span class="phpdocumentor-element-found-in__line">20</span>
 
     </aside>
 
@@ -581,7 +568,7 @@ $middleware = $controller-&gt;getMiddleware();
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="controllers/IndexController.php"><a href="files/controllers-indexcontroller.html"><abbr title="controllers/IndexController.php">IndexController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">14</span>
+    <span class="phpdocumentor-element-found-in__line">19</span>
 
     </aside>
 
@@ -619,7 +606,7 @@ $middleware = $controller-&gt;getMiddleware();
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="controllers/IndexController.php"><a href="files/controllers-indexcontroller.html"><abbr title="controllers/IndexController.php">IndexController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">26</span>
+    <span class="phpdocumentor-element-found-in__line">30</span>
 
     </aside>
 
@@ -627,7 +614,7 @@ $middleware = $controller-&gt;getMiddleware();
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$container</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$routeParams</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">object&nbsp;</span><span class="phpdocumentor-signature__argument__name">$container</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$routeParams</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -636,7 +623,7 @@ $middleware = $controller-&gt;getMiddleware();
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$container</span>
-                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
+                : <span class="phpdocumentor-signature__argument__return-type">object</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"><p>The dependency injection container.</p>
@@ -645,7 +632,7 @@ $middleware = $controller-&gt;getMiddleware();
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$routeParams</span>
-                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"><p>The route parameters.</p>
@@ -672,7 +659,7 @@ $middleware = $controller-&gt;getMiddleware();
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Core/BaseController.php"><a href="files/core-basecontroller.html"><abbr title="Core/BaseController.php">BaseController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">119</span>
+    <span class="phpdocumentor-element-found-in__line">107</span>
 
     </aside>
 
@@ -712,14 +699,15 @@ $middleware = $controller-&gt;getMiddleware();
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="controllers/IndexController.php"><a href="files/controllers-indexcontroller.html"><abbr title="controllers/IndexController.php">IndexController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">35</span>
+    <span class="phpdocumentor-element-found-in__line">44</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Retrieves recommended movies for a user and prepares the data to be rendered in a view.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">index</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">index</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -727,7 +715,15 @@ $middleware = $controller-&gt;getMiddleware();
     
     
 
-    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">void</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The rendered &quot;index&quot; view with the user's recommended movies and metadata.</p>
+</section>
+
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -743,7 +739,7 @@ $middleware = $controller-&gt;getMiddleware();
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Core/BaseController.php"><a href="files/core-basecontroller.html"><abbr title="Core/BaseController.php">BaseController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">109</span>
+    <span class="phpdocumentor-element-found-in__line">97</span>
 
     </aside>
 
@@ -787,7 +783,7 @@ $middleware = $controller-&gt;getMiddleware();
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Core/BaseController.php"><a href="files/core-basecontroller.html"><abbr title="Core/BaseController.php">BaseController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">61</span>
+    <span class="phpdocumentor-element-found-in__line">49</span>
 
     </aside>
 
@@ -821,7 +817,7 @@ $middleware = $controller-&gt;getMiddleware();
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Core/BaseController.php"><a href="files/core-basecontroller.html"><abbr title="Core/BaseController.php">BaseController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">51</span>
+    <span class="phpdocumentor-element-found-in__line">39</span>
 
     </aside>
 
@@ -855,7 +851,7 @@ $middleware = $controller-&gt;getMiddleware();
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Core/BaseController.php"><a href="files/core-basecontroller.html"><abbr title="Core/BaseController.php">BaseController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">97</span>
+    <span class="phpdocumentor-element-found-in__line">85</span>
 
     </aside>
 
@@ -899,7 +895,7 @@ $middleware = $controller-&gt;getMiddleware();
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Core/BaseController.php"><a href="files/core-basecontroller.html"><abbr title="Core/BaseController.php">BaseController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">85</span>
+    <span class="phpdocumentor-element-found-in__line">73</span>
 
     </aside>
 
@@ -952,7 +948,7 @@ $middleware = $controller-&gt;getMiddleware();
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Core/BaseController.php"><a href="files/core-basecontroller.html"><abbr title="Core/BaseController.php">BaseController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">73</span>
+    <span class="phpdocumentor-element-found-in__line">61</span>
 
     </aside>
 

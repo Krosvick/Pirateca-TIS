@@ -106,12 +106,6 @@
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
     <a href="packages/YourPackage.html" class="">YourPackage</a>
 </h4>
-    <ul class="phpdocumentor-list">
-                    <li>
-                <a href="packages/YourPackage-Request.html" class="">Request</a>
-                
-            </li>
-            </ul>
 
                         </section>
             
@@ -293,12 +287,6 @@ Contains methods for finding movies, retrieving movie posters, retrieving movie 
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a href="classes/Models-Movie.html#property_moviesDAO">$moviesDAO</a>
-    <span>
-                        &nbsp;: mixed            </span>
-</dt>
-
-            <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Models-Movie.html#property_original_language">$original_language</a>
     <span>
                         &nbsp;: mixed            </span>
@@ -362,12 +350,6 @@ Contains methods for finding movies, retrieving movie posters, retrieving movie 
 <dd>Constructor method for the Movie class.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Models-Movie.html#method_add_movie">add_movie()</a>
-    <span>
-                                &nbsp;: void    </span>
-</dt>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Core-Model.html#method_addError">addError()</a>
     <span>
                                 &nbsp;: void    </span>
@@ -389,12 +371,6 @@ Contains methods for finding movies, retrieving movie posters, retrieving movie 
 <dd>Get all the attributes of the &#039;Movie&#039; class.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Models-Movie.html#method_delete_movie">delete_movie()</a>
-    <span>
-                                &nbsp;: void    </span>
-</dt>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Core-Model.html#method_errorMessage">errorMessage()</a>
     <span>
                                 &nbsp;: string    </span>
@@ -409,24 +385,11 @@ Contains methods for finding movies, retrieving movie posters, retrieving movie 
 <dd>Returns an array of error messages based on predefined rules.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Models-Movie.html#method_find_movies">find_movies()</a>
-    <span>
-                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
-</dt>
-<dd>Find movies based on the given list of movie IDs.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Models-Movie.html#method_get_adult">get_adult()</a>
     <span>
                                 &nbsp;: bool    </span>
 </dt>
 <dd>Check if the movie is for adults only.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Models-Movie.html#method_get_all">get_all()</a>
-    <span>
-                                &nbsp;: array&lt;string|int, array&lt;string|int, mixed&gt;&gt;    </span>
-</dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Models-Movie.html#method_get_belongs_to_collection">get_belongs_to_collection()</a>
@@ -496,12 +459,14 @@ Contains methods for finding movies, retrieving movie posters, retrieving movie 
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
+<dd>Returns the value of the `poster_status` property.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Models-Movie.html#method_get_ratings">get_ratings()</a>
     <span>
-                                &nbsp;: mixed    </span>
+                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
+<dd>Retrieves the ratings of the movie.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Models-Movie.html#method_get_release_date">get_release_date()</a>
@@ -563,6 +528,14 @@ Contains methods for finding movies, retrieving movie posters, retrieving movie 
     <span>
                                 &nbsp;: string    </span>
 </dt>
+<dd>A method that checks if a movie&#039;s poster is available and updates its status accordingly.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/Models-Movie.html#method_moviePosterFallbackArray">moviePosterFallbackArray()</a>
+    <span>
+                                &nbsp;: int    </span>
+</dt>
+<dd>A method that checks the availability of movie posters and updates their status in a database.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Models-Movie.html#method_primaryKey">primaryKey()</a>
@@ -657,14 +630,16 @@ Contains methods for finding movies, retrieving movie posters, retrieving movie 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Models-Movie.html#method_set_poster_status">set_poster_status()</a>
     <span>
-                                &nbsp;: mixed    </span>
+                                &nbsp;: void    </span>
 </dt>
+<dd>Sets the value of the `poster_status` property based on the input parameter.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Models-Movie.html#method_set_ratings">set_ratings()</a>
     <span>
-                                &nbsp;: mixed    </span>
+                                &nbsp;: void    </span>
 </dt>
+<dd>Sets the ratings for the movie.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Models-Movie.html#method_set_release_date">set_release_date()</a>
@@ -1175,39 +1150,6 @@ Contains methods for finding movies, retrieving movie posters, retrieving movie 
             -private
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="property_moviesDAO">
-        $moviesDAO
-        <a href="classes/Models-Movie.html#property_moviesDAO" class="headerlink"><i class="fas fa-link"></i></a>
-
-        <span class="phpdocumentor-element__modifiers">
-                                </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="models/Movie.php"><a href="files/models-movie.html"><abbr title="models/Movie.php">Movie.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">34</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type">mixed</span>
-    <span class="phpdocumentor-signature__name">$moviesDAO</span>
-    </code>
-
-    
-    
-    
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -private
-                                                        "
->
     <h4 class="phpdocumentor-element__name" id="property_original_language">
         $original_language
         <a href="classes/Models-Movie.html#property_original_language" class="headerlink"><i class="fas fa-link"></i></a>
@@ -1487,7 +1429,7 @@ Contains methods for finding movies, retrieving movie posters, retrieving movie 
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="models/Movie.php"><a href="files/models-movie.html"><abbr title="models/Movie.php">Movie.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">57</span>
+    <span class="phpdocumentor-element-found-in__line">56</span>
 
     </aside>
 
@@ -1633,49 +1575,6 @@ Contains methods for finding movies, retrieving movie posters, retrieving movie 
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_add_movie">
-        add_movie()
-        <a href="classes/Models-Movie.html#method_add_movie" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="models/Movie.php"><a href="files/models-movie.html"><abbr title="models/Movie.php">Movie.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">502</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">add_movie</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$movie</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$movie</span>
-                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>a movie data array</p>
-</section>
-
-            </dd>
-            </dl>
-
-    
-
-    
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
     <h4 class="phpdocumentor-element__name" id="method_addError">
         addError()
         <a href="classes/Core-Model.html#method_addError" class="headerlink"><i class="fas fa-link"></i></a>
@@ -1684,7 +1583,7 @@ Contains methods for finding movies, retrieving movie posters, retrieving movie 
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Core/Model.php"><a href="files/core-model.html"><abbr title="Core/Model.php">Model.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">135</span>
+    <span class="phpdocumentor-element-found-in__line">141</span>
 
     </aside>
 
@@ -1737,7 +1636,7 @@ Contains methods for finding movies, retrieving movie posters, retrieving movie 
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Core/Model.php"><a href="files/core-model.html"><abbr title="Core/Model.php">Model.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">92</span>
+    <span class="phpdocumentor-element-found-in__line">98</span>
 
     </aside>
 
@@ -1799,7 +1698,7 @@ Contains methods for finding movies, retrieving movie posters, retrieving movie 
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="models/Movie.php"><a href="files/models-movie.html"><abbr title="models/Movie.php">Movie.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">340</span>
+    <span class="phpdocumentor-element-found-in__line">360</span>
 
     </aside>
 
@@ -1831,49 +1730,6 @@ Contains methods for finding movies, retrieving movie posters, retrieving movie 
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_delete_movie">
-        delete_movie()
-        <a href="classes/Models-Movie.html#method_delete_movie" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="models/Movie.php"><a href="files/models-movie.html"><abbr title="models/Movie.php">Movie.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">492</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">delete_movie</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$id</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$id</span>
-                : <span class="phpdocumentor-signature__argument__return-type">int</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>a movie id</p>
-</section>
-
-            </dd>
-            </dl>
-
-    
-
-    
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
     <h4 class="phpdocumentor-element__name" id="method_errorMessage">
         errorMessage()
         <a href="classes/Core-Model.html#method_errorMessage" class="headerlink"><i class="fas fa-link"></i></a>
@@ -1882,7 +1738,7 @@ Contains methods for finding movies, retrieving movie posters, retrieving movie 
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Core/Model.php"><a href="files/core-model.html"><abbr title="Core/Model.php">Model.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">124</span>
+    <span class="phpdocumentor-element-found-in__line">130</span>
 
     </aside>
 
@@ -1934,7 +1790,7 @@ Contains methods for finding movies, retrieving movie posters, retrieving movie 
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Core/Model.php"><a href="files/core-model.html"><abbr title="Core/Model.php">Model.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">105</span>
+    <span class="phpdocumentor-element-found-in__line">111</span>
 
     </aside>
 
@@ -1966,58 +1822,6 @@ Contains methods for finding movies, retrieving movie posters, retrieving movie 
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_find_movies">
-        find_movies()
-        <a href="classes/Models-Movie.html#method_find_movies" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="models/Movie.php"><a href="files/models-movie.html"><abbr title="models/Movie.php">Movie.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">374</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Find movies based on the given list of movie IDs.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">find_movies</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$id_list</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$id_list</span>
-                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>An array of arrays containing movie IDs.</p>
-</section>
-
-            </dd>
-            </dl>
-
-    
-
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
-                    &mdash;
-                <section class="phpdocumentor-description"><p>An array of movies.</p>
-</section>
-
-            </section>
-
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
     <h4 class="phpdocumentor-element__name" id="method_get_adult">
         get_adult()
         <a href="classes/Models-Movie.html#method_get_adult" class="headerlink"><i class="fas fa-link"></i></a>
@@ -2026,7 +1830,7 @@ Contains methods for finding movies, retrieving movie posters, retrieving movie 
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="models/Movie.php"><a href="files/models-movie.html"><abbr title="models/Movie.php">Movie.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">194</span>
+    <span class="phpdocumentor-element-found-in__line">192</span>
 
     </aside>
 
@@ -2058,45 +1862,6 @@ Contains methods for finding movies, retrieving movie posters, retrieving movie 
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_get_all">
-        get_all()
-        <a href="classes/Models-Movie.html#method_get_all" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="models/Movie.php"><a href="files/models-movie.html"><abbr title="models/Movie.php">Movie.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">481</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">get_all</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, array&lt;string|int, mixed&gt;&gt;</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-    
-
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">array&lt;string|int, array&lt;string|int, mixed&gt;&gt;</span>
-                    &mdash;
-                <section class="phpdocumentor-description"><p>retrieve all movies</p>
-</section>
-
-            </section>
-
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
     <h4 class="phpdocumentor-element__name" id="method_get_belongs_to_collection">
         get_belongs_to_collection()
         <a href="classes/Models-Movie.html#method_get_belongs_to_collection" class="headerlink"><i class="fas fa-link"></i></a>
@@ -2105,7 +1870,7 @@ Contains methods for finding movies, retrieving movie posters, retrieving movie 
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="models/Movie.php"><a href="files/models-movie.html"><abbr title="models/Movie.php">Movie.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">175</span>
+    <span class="phpdocumentor-element-found-in__line">173</span>
 
     </aside>
 
@@ -2145,7 +1910,7 @@ Contains methods for finding movies, retrieving movie posters, retrieving movie 
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="models/Movie.php"><a href="files/models-movie.html"><abbr title="models/Movie.php">Movie.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">251</span>
+    <span class="phpdocumentor-element-found-in__line">249</span>
 
     </aside>
 
@@ -2185,7 +1950,7 @@ Contains methods for finding movies, retrieving movie posters, retrieving movie 
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="models/Movie.php"><a href="files/models-movie.html"><abbr title="models/Movie.php">Movie.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">289</span>
+    <span class="phpdocumentor-element-found-in__line">287</span>
 
     </aside>
 
@@ -2225,7 +1990,7 @@ Contains methods for finding movies, retrieving movie posters, retrieving movie 
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="models/Movie.php"><a href="files/models-movie.html"><abbr title="models/Movie.php">Movie.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">156</span>
+    <span class="phpdocumentor-element-found-in__line">154</span>
 
     </aside>
 
@@ -2265,7 +2030,7 @@ Contains methods for finding movies, retrieving movie posters, retrieving movie 
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="models/Movie.php"><a href="files/models-movie.html"><abbr title="models/Movie.php">Movie.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">80</span>
+    <span class="phpdocumentor-element-found-in__line">78</span>
 
     </aside>
 
@@ -2305,7 +2070,7 @@ Contains methods for finding movies, retrieving movie posters, retrieving movie 
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="models/Movie.php"><a href="files/models-movie.html"><abbr title="models/Movie.php">Movie.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">213</span>
+    <span class="phpdocumentor-element-found-in__line">211</span>
 
     </aside>
 
@@ -2345,7 +2110,7 @@ Contains methods for finding movies, retrieving movie posters, retrieving movie 
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="models/Movie.php"><a href="files/models-movie.html"><abbr title="models/Movie.php">Movie.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">99</span>
+    <span class="phpdocumentor-element-found-in__line">97</span>
 
     </aside>
 
@@ -2385,7 +2150,7 @@ Contains methods for finding movies, retrieving movie posters, retrieving movie 
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="models/Movie.php"><a href="files/models-movie.html"><abbr title="models/Movie.php">Movie.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">118</span>
+    <span class="phpdocumentor-element-found-in__line">116</span>
 
     </aside>
 
@@ -2425,7 +2190,7 @@ Contains methods for finding movies, retrieving movie posters, retrieving movie 
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="models/Movie.php"><a href="files/models-movie.html"><abbr title="models/Movie.php">Movie.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">137</span>
+    <span class="phpdocumentor-element-found-in__line">135</span>
 
     </aside>
 
@@ -2465,11 +2230,12 @@ Contains methods for finding movies, retrieving movie posters, retrieving movie 
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="models/Movie.php"><a href="files/models-movie.html"><abbr title="models/Movie.php">Movie.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">308</span>
+    <span class="phpdocumentor-element-found-in__line">322</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Returns the value of the `poster_status` property.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">get_poster_status</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
@@ -2480,7 +2246,15 @@ Contains methods for finding movies, retrieving movie posters, retrieving movie 
     
     
 
-    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">mixed</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The value of the <code class="prettyprint">poster_status</code> property.</p>
+</section>
+
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -2496,14 +2270,15 @@ Contains methods for finding movies, retrieving movie posters, retrieving movie 
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="models/Movie.php"><a href="files/models-movie.html"><abbr title="models/Movie.php">Movie.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">302</span>
+    <span class="phpdocumentor-element-found-in__line">305</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Retrieves the ratings of the movie.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">get_ratings</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">get_ratings</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -2511,7 +2286,15 @@ Contains methods for finding movies, retrieving movie posters, retrieving movie 
     
     
 
-    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The ratings of the movie.</p>
+</section>
+
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -2527,7 +2310,7 @@ Contains methods for finding movies, retrieving movie posters, retrieving movie 
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="models/Movie.php"><a href="files/models-movie.html"><abbr title="models/Movie.php">Movie.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">232</span>
+    <span class="phpdocumentor-element-found-in__line">230</span>
 
     </aside>
 
@@ -2567,7 +2350,7 @@ Contains methods for finding movies, retrieving movie posters, retrieving movie 
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="models/Movie.php"><a href="files/models-movie.html"><abbr title="models/Movie.php">Movie.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">270</span>
+    <span class="phpdocumentor-element-found-in__line">268</span>
 
     </aside>
 
@@ -2607,7 +2390,7 @@ Contains methods for finding movies, retrieving movie posters, retrieving movie 
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Core/Model.php"><a href="files/core-model.html"><abbr title="Core/Model.php">Model.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">165</span>
+    <span class="phpdocumentor-element-found-in__line">171</span>
 
     </aside>
 
@@ -2647,7 +2430,7 @@ Contains methods for finding movies, retrieving movie posters, retrieving movie 
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Core/Model.php"><a href="files/core-model.html"><abbr title="Core/Model.php">Model.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">175</span>
+    <span class="phpdocumentor-element-found-in__line">181</span>
 
     </aside>
 
@@ -2699,7 +2482,7 @@ Contains methods for finding movies, retrieving movie posters, retrieving movie 
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Core/Model.php"><a href="files/core-model.html"><abbr title="Core/Model.php">Model.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">146</span>
+    <span class="phpdocumentor-element-found-in__line">152</span>
 
     </aside>
 
@@ -2751,7 +2534,7 @@ Contains methods for finding movies, retrieving movie posters, retrieving movie 
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Core/Model.php"><a href="files/core-model.html"><abbr title="Core/Model.php">Model.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">155</span>
+    <span class="phpdocumentor-element-found-in__line">161</span>
 
     </aside>
 
@@ -2792,7 +2575,7 @@ Returns true if there are errors, false if there are no errors.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Core/Model.php"><a href="files/core-model.html"><abbr title="Core/Model.php">Model.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">185</span>
+    <span class="phpdocumentor-element-found-in__line">191</span>
 
     </aside>
 
@@ -2836,19 +2619,29 @@ Returns true if there are errors, false if there are no errors.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="models/Movie.php"><a href="files/models-movie.html"><abbr title="models/Movie.php">Movie.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">450</span>
+    <span class="phpdocumentor-element-found-in__line">505</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">MovieDirectorRetrieval</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+                    <span class="phpdocumentor-signature__name">MovieDirectorRetrieval</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$moviesDAO</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
     
-    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$moviesDAO</span>
+                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
     
 
             <section>
@@ -2875,26 +2668,100 @@ Returns true if there are errors, false if there are no errors.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="models/Movie.php"><a href="files/models-movie.html"><abbr title="models/Movie.php">Movie.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">398</span>
+    <span class="phpdocumentor-element-found-in__line">452</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">A method that checks if a movie&#039;s poster is available and updates its status accordingly.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">moviePosterFallback</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+                    <span class="phpdocumentor-signature__name">moviePosterFallback</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">object&nbsp;</span><span class="phpdocumentor-signature__argument__name">$moviesDAO</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
     
-    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$moviesDAO</span>
+                : <span class="phpdocumentor-signature__argument__return-type">object</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>An instance of the MoviesDAO class used to update the movie's poster status and path.</p>
+</section>
+
+            </dd>
+            </dl>
+
     
 
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">string</span>
                     &mdash;
-                <section class="phpdocumentor-description"><p>a movie poster url</p>
+                <section class="phpdocumentor-description"><p>The current poster path or a default poster URL.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_moviePosterFallbackArray">
+        moviePosterFallbackArray()
+        <a href="classes/Models-Movie.html#method_moviePosterFallbackArray" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="models/Movie.php"><a href="files/models-movie.html"><abbr title="models/Movie.php">Movie.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">397</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">A method that checks the availability of movie posters and updates their status in a database.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">moviePosterFallbackArray</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">object&nbsp;</span><span class="phpdocumentor-signature__argument__name">$moviesDAO</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$movies</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$moviesDAO</span>
+                : <span class="phpdocumentor-signature__argument__return-type">object</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>An instance of the MoviesDAO class that provides access to the movie database.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$movies</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>An array of movie objects representing the movies to check and update the poster status.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">int</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The number of movie posters successfully updated.</p>
 </section>
 
             </section>
@@ -2914,7 +2781,7 @@ Returns true if there are errors, false if there are no errors.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="models/Movie.php"><a href="files/models-movie.html"><abbr title="models/Movie.php">Movie.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">363</span>
+    <span class="phpdocumentor-element-found-in__line">383</span>
 
     </aside>
 
@@ -2954,7 +2821,7 @@ Returns true if there are errors, false if there are no errors.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="models/Movie.php"><a href="files/models-movie.html"><abbr title="models/Movie.php">Movie.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">328</span>
+    <span class="phpdocumentor-element-found-in__line">348</span>
 
     </aside>
 
@@ -2994,14 +2861,14 @@ Returns true if there are errors, false if there are no errors.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="models/Movie.php"><a href="files/models-movie.html"><abbr title="models/Movie.php">Movie.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">472</span>
+    <span class="phpdocumentor-element-found-in__line">533</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">search_movie</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$title</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, array&lt;string|int, mixed&gt;&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">search_movie</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$title</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$moviesDAO</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, array&lt;string|int, mixed&gt;&gt;</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -3016,6 +2883,13 @@ Returns true if there are errors, false if there are no errors.</p>
                     <section class="phpdocumentor-description"><p>a movie title</p>
 </section>
 
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$moviesDAO</span>
+                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
             </dd>
             </dl>
 
@@ -3045,7 +2919,7 @@ Returns true if there are errors, false if there are no errors.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="models/Movie.php"><a href="files/models-movie.html"><abbr title="models/Movie.php">Movie.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">204</span>
+    <span class="phpdocumentor-element-found-in__line">202</span>
 
     </aside>
 
@@ -3089,7 +2963,7 @@ Returns true if there are errors, false if there are no errors.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="models/Movie.php"><a href="files/models-movie.html"><abbr title="models/Movie.php">Movie.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">185</span>
+    <span class="phpdocumentor-element-found-in__line">183</span>
 
     </aside>
 
@@ -3133,7 +3007,7 @@ Returns true if there are errors, false if there are no errors.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="models/Movie.php"><a href="files/models-movie.html"><abbr title="models/Movie.php">Movie.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">261</span>
+    <span class="phpdocumentor-element-found-in__line">259</span>
 
     </aside>
 
@@ -3177,7 +3051,7 @@ Returns true if there are errors, false if there are no errors.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="models/Movie.php"><a href="files/models-movie.html"><abbr title="models/Movie.php">Movie.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">299</span>
+    <span class="phpdocumentor-element-found-in__line">297</span>
 
     </aside>
 
@@ -3221,7 +3095,7 @@ Returns true if there are errors, false if there are no errors.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="models/Movie.php"><a href="files/models-movie.html"><abbr title="models/Movie.php">Movie.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">166</span>
+    <span class="phpdocumentor-element-found-in__line">164</span>
 
     </aside>
 
@@ -3265,7 +3139,7 @@ Returns true if there are errors, false if there are no errors.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="models/Movie.php"><a href="files/models-movie.html"><abbr title="models/Movie.php">Movie.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">90</span>
+    <span class="phpdocumentor-element-found-in__line">88</span>
 
     </aside>
 
@@ -3309,7 +3183,7 @@ Returns true if there are errors, false if there are no errors.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="models/Movie.php"><a href="files/models-movie.html"><abbr title="models/Movie.php">Movie.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">223</span>
+    <span class="phpdocumentor-element-found-in__line">221</span>
 
     </aside>
 
@@ -3353,7 +3227,7 @@ Returns true if there are errors, false if there are no errors.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="models/Movie.php"><a href="files/models-movie.html"><abbr title="models/Movie.php">Movie.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">109</span>
+    <span class="phpdocumentor-element-found-in__line">107</span>
 
     </aside>
 
@@ -3397,7 +3271,7 @@ Returns true if there are errors, false if there are no errors.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="models/Movie.php"><a href="files/models-movie.html"><abbr title="models/Movie.php">Movie.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">128</span>
+    <span class="phpdocumentor-element-found-in__line">126</span>
 
     </aside>
 
@@ -3441,7 +3315,7 @@ Returns true if there are errors, false if there are no errors.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="models/Movie.php"><a href="files/models-movie.html"><abbr title="models/Movie.php">Movie.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">147</span>
+    <span class="phpdocumentor-element-found-in__line">145</span>
 
     </aside>
 
@@ -3485,14 +3359,15 @@ Returns true if there are errors, false if there are no errors.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="models/Movie.php"><a href="files/models-movie.html"><abbr title="models/Movie.php">Movie.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">311</span>
+    <span class="phpdocumentor-element-found-in__line">331</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Sets the value of the `poster_status` property based on the input parameter.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">set_poster_status</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$poster_status</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">set_poster_status</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$poster_status</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -3501,10 +3376,12 @@ Returns true if there are errors, false if there are no errors.</p>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$poster_status</span>
-                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
+                : <span class="phpdocumentor-signature__argument__return-type">bool</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The value to set the <code class="prettyprint">poster_status</code> property to. It can be either <code class="prettyprint">1</code> or <code class="prettyprint">0</code>.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -3526,14 +3403,15 @@ Returns true if there are errors, false if there are no errors.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="models/Movie.php"><a href="files/models-movie.html"><abbr title="models/Movie.php">Movie.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">305</span>
+    <span class="phpdocumentor-element-found-in__line">314</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Sets the ratings for the movie.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">set_ratings</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$ratings</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">set_ratings</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$ratings</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -3542,10 +3420,12 @@ Returns true if there are errors, false if there are no errors.</p>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$ratings</span>
-                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The ratings to be set for the movie.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -3567,7 +3447,7 @@ Returns true if there are errors, false if there are no errors.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="models/Movie.php"><a href="files/models-movie.html"><abbr title="models/Movie.php">Movie.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">242</span>
+    <span class="phpdocumentor-element-found-in__line">240</span>
 
     </aside>
 
@@ -3611,7 +3491,7 @@ Returns true if there are errors, false if there are no errors.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="models/Movie.php"><a href="files/models-movie.html"><abbr title="models/Movie.php">Movie.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">280</span>
+    <span class="phpdocumentor-element-found-in__line">278</span>
 
     </aside>
 
@@ -3815,7 +3695,6 @@ Returns true if there are errors, false if there are no errors.</p>
                                                     <li><a href="classes/Models-Movie.html#property_director">$director<a href="classes/Models-Movie.html"></li>
                                                     <li><a href="classes/Models-Movie.html#property_genres">$genres<a href="classes/Models-Movie.html"></li>
                                                     <li><a href="classes/Models-Movie.html#property_id">$id<a href="classes/Models-Movie.html"></li>
-                                                    <li><a href="classes/Models-Movie.html#property_moviesDAO">$moviesDAO<a href="classes/Models-Movie.html"></li>
                                                     <li><a href="classes/Models-Movie.html#property_original_language">$original_language<a href="classes/Models-Movie.html"></li>
                                                     <li><a href="classes/Models-Movie.html#property_original_title">$original_title<a href="classes/Models-Movie.html"></li>
                                                     <li><a href="classes/Models-Movie.html#property_overview">$overview<a href="classes/Models-Movie.html"></li>
@@ -3831,16 +3710,12 @@ Returns true if there are errors, false if there are no errors.</p>
             <li>
                 <ul class="phpdocumentor-list -clean">
                                             <li><a href="classes/Models-Movie.html#method___construct">__construct()</a></li>
-                                            <li><a href="classes/Models-Movie.html#method_add_movie">add_movie()</a></li>
                                             <li><a href="classes/Core-Model.html#method_addError">addError()</a></li>
                                             <li><a href="classes/Core-Model.html#method_addErrorByRule">addErrorByRule()</a></li>
                                             <li><a href="classes/Models-Movie.html#method_attributes">attributes()</a></li>
-                                            <li><a href="classes/Models-Movie.html#method_delete_movie">delete_movie()</a></li>
                                             <li><a href="classes/Core-Model.html#method_errorMessage">errorMessage()</a></li>
                                             <li><a href="classes/Core-Model.html#method_errorMessages">errorMessages()</a></li>
-                                            <li><a href="classes/Models-Movie.html#method_find_movies">find_movies()</a></li>
                                             <li><a href="classes/Models-Movie.html#method_get_adult">get_adult()</a></li>
-                                            <li><a href="classes/Models-Movie.html#method_get_all">get_all()</a></li>
                                             <li><a href="classes/Models-Movie.html#method_get_belongs_to_collection">get_belongs_to_collection()</a></li>
                                             <li><a href="classes/Models-Movie.html#method_get_deleted_at">get_deleted_at()</a></li>
                                             <li><a href="classes/Models-Movie.html#method_get_director">get_director()</a></li>
@@ -3861,6 +3736,7 @@ Returns true if there are errors, false if there are no errors.</p>
                                             <li><a href="classes/Core-Model.html#method_loadData">loadData()</a></li>
                                             <li><a href="classes/Models-Movie.html#method_MovieDirectorRetrieval">MovieDirectorRetrieval()</a></li>
                                             <li><a href="classes/Models-Movie.html#method_moviePosterFallback">moviePosterFallback()</a></li>
+                                            <li><a href="classes/Models-Movie.html#method_moviePosterFallbackArray">moviePosterFallbackArray()</a></li>
                                             <li><a href="classes/Models-Movie.html#method_primaryKey">primaryKey()</a></li>
                                             <li><a href="classes/Models-Movie.html#method_rules">rules()</a></li>
                                             <li><a href="classes/Models-Movie.html#method_search_movie">search_movie()</a></li>

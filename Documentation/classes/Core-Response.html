@@ -106,12 +106,6 @@
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
     <a href="packages/YourPackage.html" class="">YourPackage</a>
 </h4>
-    <ul class="phpdocumentor-list">
-                    <li>
-                <a href="packages/YourPackage-Request.html" class="">Request</a>
-                
-            </li>
-            </ul>
 
                         </section>
             
@@ -194,6 +188,12 @@ and setting the HTTP response code.</p>
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
+    <a href="classes/Core-Response.html#property_content">$content</a>
+    <span>
+                        &nbsp;: mixed            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a href="classes/Core-Response.html#property_view">$view</a>
     <span>
                         &nbsp;: <a href="classes/Core-View.html"><abbr title="\Core\View">View</abbr></a>            </span>
@@ -237,6 +237,20 @@ and setting the HTTP response code.</p>
 <dd>Renders a view using the View instance.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/Core-Response.html#method_send">send()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd>Sends the content of the response.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/Core-Response.html#method_setContent">setContent()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd>Sets the content of the response object.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Core-Response.html#method_setStatusCode">setStatusCode()</a>
     <span>
                                 &nbsp;: void    </span>
@@ -257,6 +271,39 @@ and setting the HTTP response code.</p>
             <a href="classes/Core-Response.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -protected
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_content">
+        $content
+        <a href="classes/Core-Response.html#property_content" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="Core/Response.php"><a href="files/core-response.html"><abbr title="Core/Response.php">Response.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">21</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">protected</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">$content</span>
+    </code>
+
+    
+    
+    
+
+</article>
                     <article
         class="
             phpdocumentor-element
@@ -313,7 +360,7 @@ and setting the HTTP response code.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Core/Response.php"><a href="files/core-response.html"><abbr title="Core/Response.php">Response.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">28</span>
+    <span class="phpdocumentor-element-found-in__line">29</span>
 
     </aside>
 
@@ -357,7 +404,7 @@ and setting the HTTP response code.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Core/Response.php"><a href="files/core-response.html"><abbr title="Core/Response.php">Response.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">57</span>
+    <span class="phpdocumentor-element-found-in__line">58</span>
 
     </aside>
 
@@ -410,7 +457,7 @@ and setting the HTTP response code.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Core/Response.php"><a href="files/core-response.html"><abbr title="Core/Response.php">Response.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">39</span>
+    <span class="phpdocumentor-element-found-in__line">40</span>
 
     </aside>
 
@@ -454,7 +501,7 @@ and setting the HTTP response code.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Core/Response.php"><a href="files/core-response.html"><abbr title="Core/Response.php">Response.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">79</span>
+    <span class="phpdocumentor-element-found-in__line">80</span>
 
     </aside>
 
@@ -499,6 +546,84 @@ and setting the HTTP response code.</p>
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_send">
+        send()
+        <a href="classes/Core-Response.html#method_send" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="Core/Response.php"><a href="files/core-response.html"><abbr title="Core/Response.php">Response.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">112</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Sends the content of the response.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">send</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+        <section class="phpdocumentor-description"><p>This method echoes the content of the response.</p>
+</section>
+
+    
+    
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_setContent">
+        setContent()
+        <a href="classes/Core-Response.html#method_setContent" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="Core/Response.php"><a href="files/core-response.html"><abbr title="Core/Response.php">Response.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">101</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Sets the content of the response object.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">setContent</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$content</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$content</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The content to be set for the response object.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_setStatusCode">
         setStatusCode()
         <a href="classes/Core-Response.html#method_setStatusCode" class="headerlink"><i class="fas fa-link"></i></a>
@@ -507,7 +632,7 @@ and setting the HTTP response code.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Core/Response.php"><a href="files/core-response.html"><abbr title="Core/Response.php">Response.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">90</span>
+    <span class="phpdocumentor-element-found-in__line">91</span>
 
     </aside>
 
@@ -650,6 +775,7 @@ and setting the HTTP response code.</p>
                             <li class="phpdocumentor-on-this-page-section__title">Properties</li>
                 <li>
                     <ul class="phpdocumentor-list -clean">
+                                                    <li><a href="classes/Core-Response.html#property_content">$content<a href="classes/Core-Response.html"></li>
                                                     <li><a href="classes/Core-Response.html#property_view">$view<a href="classes/Core-Response.html"></li>
                                             </ul>
                 </li>
@@ -661,6 +787,8 @@ and setting the HTTP response code.</p>
                                             <li><a href="classes/Core-Response.html#method_abort">abort()</a></li>
                                             <li><a href="classes/Core-Response.html#method_redirect">redirect()</a></li>
                                             <li><a href="classes/Core-Response.html#method_render">render()</a></li>
+                                            <li><a href="classes/Core-Response.html#method_send">send()</a></li>
+                                            <li><a href="classes/Core-Response.html#method_setContent">setContent()</a></li>
                                             <li><a href="classes/Core-Response.html#method_setStatusCode">setStatusCode()</a></li>
                                     </ul>
             </li>

@@ -106,12 +106,6 @@
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
     <a href="packages/YourPackage.html" class="">YourPackage</a>
 </h4>
-    <ul class="phpdocumentor-list">
-                    <li>
-                <a href="packages/YourPackage-Request.html" class="">Request</a>
-                
-            </li>
-            </ul>
 
                         </section>
             
@@ -161,21 +155,13 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Core/Middleware/AuthMiddleware.php"><a href="files/core-middleware-authmiddleware.html"><abbr title="Core/Middleware/AuthMiddleware.php">AuthMiddleware.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">11</span>
+    <span class="phpdocumentor-element-found-in__line">16</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">Abstract class representing a base middleware.</p>
+            <p class="phpdocumentor-summary">Class AuthMiddleware</p>
 
-    <section class="phpdocumentor-description"><p>This class defines a base middleware with a single abstract method <code class="prettyprint">execute()</code>.
-Any class that extends <code class="prettyprint">BaseMiddleware</code> must provide an implementation for the <code class="prettyprint">execute()</code> method.</p>
-<p>Example Usage:</p>
-<pre class="prettyprint"><code class="language-php">abstract class MyMiddleware extends BaseMiddleware {
-    public function execute() {
-        // implementation of the execute method
-    }
-}
-</code></pre>
+    <section class="phpdocumentor-description"><p>This class extends the BaseMiddleware class and provides functionality for authentication middleware.</p>
 </section>
 
 
@@ -221,13 +207,14 @@ Any class that extends <code class="prettyprint">BaseMiddleware</code> must prov
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
+<dd>AuthMiddleware constructor.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Core-Middleware-AuthMiddleware.html#method_execute">execute()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
-<dd>Executes the method.</dd>
+<dd>Executes the middleware.</dd>
 
     </dl>
 
@@ -260,7 +247,7 @@ Any class that extends <code class="prettyprint">BaseMiddleware</code> must prov
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Core/Middleware/AuthMiddleware.php"><a href="files/core-middleware-authmiddleware.html"><abbr title="Core/Middleware/AuthMiddleware.php">AuthMiddleware.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">13</span>
+    <span class="phpdocumentor-element-found-in__line">21</span>
 
     </aside>
 
@@ -272,7 +259,9 @@ Any class that extends <code class="prettyprint">BaseMiddleware</code> must prov
      = <span class="phpdocumentor-signature__default-value">[]</span></code>
 
     
-    
+        <section class="phpdocumentor-description"><p>An array of actions that are allowed without authentication.</p>
+</section>
+
     
 
 </article>
@@ -298,18 +287,21 @@ Any class that extends <code class="prettyprint">BaseMiddleware</code> must prov
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Core/Middleware/AuthMiddleware.php"><a href="files/core-middleware-authmiddleware.html"><abbr title="Core/Middleware/AuthMiddleware.php">AuthMiddleware.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">14</span>
+    <span class="phpdocumentor-element-found-in__line">30</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">AuthMiddleware constructor.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$actions</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">[]</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
-    
+        <section class="phpdocumentor-description"><p>Constructs a new AuthMiddleware object with optional allowed actions.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -317,7 +309,9 @@ Any class that extends <code class="prettyprint">BaseMiddleware</code> must prov
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                  = <span class="phpdocumentor-signature__argument__default-value">[]</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>An optional array of actions that are allowed without authentication.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -339,11 +333,11 @@ Any class that extends <code class="prettyprint">BaseMiddleware</code> must prov
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Core/Middleware/AuthMiddleware.php"><a href="files/core-middleware-authmiddleware.html"><abbr title="Core/Middleware/AuthMiddleware.php">AuthMiddleware.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">26</span>
+    <span class="phpdocumentor-element-found-in__line">43</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Executes the method.</p>
+        <p class="phpdocumentor-summary">Executes the middleware.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -351,8 +345,8 @@ Any class that extends <code class="prettyprint">BaseMiddleware</code> must prov
 
     <div class="phpdocumentor-label-line">
         </div>
-        <section class="phpdocumentor-description"><p>This method checks if a POST request is being made and if the request body contains a 'username' field.
-If the 'username' field is not present, it throws a ForbiddenException with the message &quot;user name is required&quot;.</p>
+        <section class="phpdocumentor-description"><p>This method checks if the user is a guest and if the current action is in the list of allowed actions.
+If the user is a guest and the action is not in the allowed actions, it sets a flash message and redirects the user to the login page.</p>
 </section>
 
     

@@ -106,12 +106,6 @@
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
     <a href="packages/YourPackage.html" class="">YourPackage</a>
 </h4>
-    <ul class="phpdocumentor-list">
-                    <li>
-                <a href="packages/YourPackage-Request.html" class="">Request</a>
-                
-            </li>
-            </ul>
 
                         </section>
             
@@ -160,7 +154,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="controllers/UserController.php"><a href="files/controllers-usercontroller.html"><abbr title="controllers/UserController.php">UserController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">20</span>
+    <span class="phpdocumentor-element-found-in__line">18</span>
 
     </aside>
 
@@ -251,11 +245,25 @@
 <dd>UserController constructor</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/Controllers-UserController.html#method_dislikeReview">dislikeReview()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd>Dislikes a review.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Controllers-UserController.html#method_follow">follow()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
 <dd>Follows a user and redirects to their profile page.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/Controllers-UserController.html#method_getLikeReview">getLikeReview()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd>Retrieves the like status of a review for the currently logged-in user and renders a partial view accordingly.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Core-BaseController.html#method_getMiddleware">getMiddleware()</a>
@@ -267,9 +275,16 @@
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Controllers-UserController.html#method_likedMovies">likedMovies()</a>
     <span>
-                                &nbsp;: string    </span>
+                                &nbsp;: void    </span>
 </dt>
 <dd>LikedMovies method</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/Controllers-UserController.html#method_likeReview">likeReview()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd>Method to handle the action of liking a review.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Controllers-UserController.html#method_logout">logout()</a>
@@ -358,7 +373,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Core/BaseController.php"><a href="files/core-basecontroller.html"><abbr title="Core/BaseController.php">BaseController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">29</span>
+    <span class="phpdocumentor-element-found-in__line">17</span>
 
     </aside>
 
@@ -391,7 +406,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="controllers/UserController.php"><a href="files/controllers-usercontroller.html"><abbr title="controllers/UserController.php">UserController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">22</span>
+    <span class="phpdocumentor-element-found-in__line">20</span>
 
     </aside>
 
@@ -424,7 +439,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Core/BaseController.php"><a href="files/core-basecontroller.html"><abbr title="Core/BaseController.php">BaseController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">28</span>
+    <span class="phpdocumentor-element-found-in__line">16</span>
 
     </aside>
 
@@ -457,7 +472,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Core/BaseController.php"><a href="files/core-basecontroller.html"><abbr title="Core/BaseController.php">BaseController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">27</span>
+    <span class="phpdocumentor-element-found-in__line">15</span>
 
     </aside>
 
@@ -490,7 +505,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Core/BaseController.php"><a href="files/core-basecontroller.html"><abbr title="Core/BaseController.php">BaseController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">26</span>
+    <span class="phpdocumentor-element-found-in__line">14</span>
 
     </aside>
 
@@ -523,7 +538,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Core/BaseController.php"><a href="files/core-basecontroller.html"><abbr title="Core/BaseController.php">BaseController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">25</span>
+    <span class="phpdocumentor-element-found-in__line">13</span>
 
     </aside>
 
@@ -556,7 +571,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="controllers/UserController.php"><a href="files/controllers-usercontroller.html"><abbr title="controllers/UserController.php">UserController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">21</span>
+    <span class="phpdocumentor-element-found-in__line">19</span>
 
     </aside>
 
@@ -594,7 +609,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="controllers/UserController.php"><a href="files/controllers-usercontroller.html"><abbr title="controllers/UserController.php">UserController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">33</span>
+    <span class="phpdocumentor-element-found-in__line">31</span>
 
     </aside>
 
@@ -641,6 +656,52 @@
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_dislikeReview">
+        dislikeReview()
+        <a href="classes/Controllers-UserController.html#method_dislikeReview" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="controllers/UserController.php"><a href="files/controllers-usercontroller.html"><abbr title="controllers/UserController.php">UserController.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">178</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Dislikes a review.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">dislikeReview</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$id</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+        <section class="phpdocumentor-description"><p>This method handles the action of disliking a review. It calls the <code class="prettyprint">unlike_review</code> method of the <code class="prettyprint">userDAO</code> object to perform the dislike operation. If an exception occurs, it sets the response status code to 500 and sends an error message as the response content. It then retrieves the review ID and renders a partial view called <code class="prettyprint">unlike-button.php</code> using the extracted data. Finally, it sets the response status code to 200 and sends the rendered content as the response.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$id</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The ID of the review to be disliked.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_follow">
         follow()
         <a href="classes/Controllers-UserController.html#method_follow" class="headerlink"><i class="fas fa-link"></i></a>
@@ -649,7 +710,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="controllers/UserController.php"><a href="files/controllers-usercontroller.html"><abbr title="controllers/UserController.php">UserController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">135</span>
+    <span class="phpdocumentor-element-found-in__line">133</span>
 
     </aside>
 
@@ -687,6 +748,50 @@
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_getLikeReview">
+        getLikeReview()
+        <a href="classes/Controllers-UserController.html#method_getLikeReview" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="controllers/UserController.php"><a href="files/controllers-usercontroller.html"><abbr title="controllers/UserController.php">UserController.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">204</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Retrieves the like status of a review for the currently logged-in user and renders a partial view accordingly.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getLikeReview</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$id</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$id</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The ID of the review to check the like status for.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_getMiddleware">
         getMiddleware()
         <a href="classes/Core-BaseController.html#method_getMiddleware" class="headerlink"><i class="fas fa-link"></i></a>
@@ -695,7 +800,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Core/BaseController.php"><a href="files/core-basecontroller.html"><abbr title="Core/BaseController.php">BaseController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">119</span>
+    <span class="phpdocumentor-element-found-in__line">107</span>
 
     </aside>
 
@@ -735,7 +840,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="controllers/UserController.php"><a href="files/controllers-usercontroller.html"><abbr title="controllers/UserController.php">UserController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">47</span>
+    <span class="phpdocumentor-element-found-in__line">45</span>
 
     </aside>
 
@@ -743,7 +848,7 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">likedMovies</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$id</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+                    <span class="phpdocumentor-signature__name">likedMovies</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$id</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -765,13 +870,62 @@
 
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">string</span>
+        <span class="phpdocumentor-signature__response_type">void</span>
                     &mdash;
                 <section class="phpdocumentor-description"><p>The rendered HTML content of the &quot;likedpost&quot; template.</p>
 </section>
 
             </section>
 
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_likeReview">
+        likeReview()
+        <a href="classes/Controllers-UserController.html#method_likeReview" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="controllers/UserController.php"><a href="files/controllers-usercontroller.html"><abbr title="controllers/UserController.php">UserController.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">149</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Method to handle the action of liking a review.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">likeReview</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$id</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+        <section class="phpdocumentor-description"><p>Calls the <code class="prettyprint">like_review</code> method of the <code class="prettyprint">userDAO</code> object to perform the like operation.
+If an exception occurs, sets the response status code to 500 and sends an error message as the response content.
+Retrieves the review ID and renders a partial view called <code class="prettyprint">like-button.php</code> using the extracted data.
+Sets the response status code to 200 and sends the rendered content as the response.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$id</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The ID of the review to be liked.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+    
 </article>
                     <article
         class="phpdocumentor-element
@@ -787,7 +941,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="controllers/UserController.php"><a href="files/controllers-usercontroller.html"><abbr title="controllers/UserController.php">UserController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">117</span>
+    <span class="phpdocumentor-element-found-in__line">115</span>
 
     </aside>
 
@@ -821,7 +975,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="controllers/UserController.php"><a href="files/controllers-usercontroller.html"><abbr title="controllers/UserController.php">UserController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">89</span>
+    <span class="phpdocumentor-element-found-in__line">87</span>
 
     </aside>
 
@@ -865,7 +1019,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Core/BaseController.php"><a href="files/core-basecontroller.html"><abbr title="Core/BaseController.php">BaseController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">109</span>
+    <span class="phpdocumentor-element-found-in__line">97</span>
 
     </aside>
 
@@ -909,7 +1063,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Core/BaseController.php"><a href="files/core-basecontroller.html"><abbr title="Core/BaseController.php">BaseController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">61</span>
+    <span class="phpdocumentor-element-found-in__line">49</span>
 
     </aside>
 
@@ -943,7 +1097,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Core/BaseController.php"><a href="files/core-basecontroller.html"><abbr title="Core/BaseController.php">BaseController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">51</span>
+    <span class="phpdocumentor-element-found-in__line">39</span>
 
     </aside>
 
@@ -977,7 +1131,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Core/BaseController.php"><a href="files/core-basecontroller.html"><abbr title="Core/BaseController.php">BaseController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">97</span>
+    <span class="phpdocumentor-element-found-in__line">85</span>
 
     </aside>
 
@@ -1021,7 +1175,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Core/BaseController.php"><a href="files/core-basecontroller.html"><abbr title="Core/BaseController.php">BaseController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">85</span>
+    <span class="phpdocumentor-element-found-in__line">73</span>
 
     </aside>
 
@@ -1074,7 +1228,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Core/BaseController.php"><a href="files/core-basecontroller.html"><abbr title="Core/BaseController.php">BaseController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">73</span>
+    <span class="phpdocumentor-element-found-in__line">61</span>
 
     </aside>
 
@@ -1240,9 +1394,12 @@
             <li>
                 <ul class="phpdocumentor-list -clean">
                                             <li><a href="classes/Controllers-UserController.html#method___construct">__construct()</a></li>
+                                            <li><a href="classes/Controllers-UserController.html#method_dislikeReview">dislikeReview()</a></li>
                                             <li><a href="classes/Controllers-UserController.html#method_follow">follow()</a></li>
+                                            <li><a href="classes/Controllers-UserController.html#method_getLikeReview">getLikeReview()</a></li>
                                             <li><a href="classes/Core-BaseController.html#method_getMiddleware">getMiddleware()</a></li>
                                             <li><a href="classes/Controllers-UserController.html#method_likedMovies">likedMovies()</a></li>
+                                            <li><a href="classes/Controllers-UserController.html#method_likeReview">likeReview()</a></li>
                                             <li><a href="classes/Controllers-UserController.html#method_logout">logout()</a></li>
                                             <li><a href="classes/Controllers-UserController.html#method_profilePage">profilePage()</a></li>
                                             <li><a href="classes/Core-BaseController.html#method_registerMiddleware">registerMiddleware()</a></li>
